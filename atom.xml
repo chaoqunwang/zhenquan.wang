@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-07T02:10:44-08:00</updated>
+  <updated>2014-01-07T02:14:16-08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -15,10 +15,10 @@
   
   <entry>
     <title type="html"><![CDATA[安装git, 建立Octopress博客]]></title>
-    <link href="http://www.wangchaoqun.com/blog/2013/01/06/an-zhuang-git/"/>
+    <link href="http://www.wangchaoqun.com/blog/2013/01/06/an-zhuang-git-create-octopress-blog/"/>
     <updated>2013-01-06T22:34:24-08:00</updated>
-    <id>http://www.wangchaoqun.com/blog/2013/01/06/an-zhuang-git</id>
-    <content type="html"><![CDATA[<p><em>本文是在参考若干网络日志（谢过~）,配置个人博客后整理而成</em></p>
+    <id>http://www.wangchaoqun.com/blog/2013/01/06/an-zhuang-git-create-octopress-blog</id>
+    <content type="html"><![CDATA[<p>本文参考了若干网络日志（谢过~）, 配置个人博客后整理而成</p>
 
 <h2>安装git  </h2>
 
