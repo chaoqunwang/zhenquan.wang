@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | 超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-07T00:53:42-08:00</updated>
+  <updated>2014-01-07T01:01:52-08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -18,7 +18,7 @@
     <link href="http://www.wangchaoqun.com/blog/2013/01/01/exceldao-chu-gong-ju-lei/"/>
     <updated>2013-01-01T00:32:42-08:00</updated>
     <id>http://www.wangchaoqun.com/blog/2013/01/01/exceldao-chu-gong-ju-lei</id>
-    <content type="html"><![CDATA[<p>前端使用jquery easyui，datagrid添加导出按钮（另外的js逻辑）即可将当前页或所有页数据导出到excel，支持office excel 2003和2007+;<br/>
+    <content type="html"><![CDATA[<p>前端使用jquery easyui，datagrid添加导出按钮（另外的js逻辑）即可将当前页或所有页数据(支持查询条件的导出)导出到excel，支持office excel 2003和2007+;<br/>
 使用apache poi（+ooxml）实现，主要代码片段如下：</p>
 
 <!--more-->
@@ -276,6 +276,189 @@ private static void setBorder(CellStyle style) {
 </code></pre>
 
 <p>}</p>
+
+<p>```</p>
+
+<h2>页面调用  </h2>
+
+<p>在相应页面的toolbar里添加导出按钮，调用js function，例如：<br/>
+```javascript</p>
+
+<pre><code>function exportData() {
+</code></pre>
+
+<p>//      默认导出
+//      jsUtil.doDefaultExport(&lsquo;&lt;%=request.getContextPath()%>/core/operlog/export&rsquo;, datagrid);</p>
+
+<p>//      支持查询条件的导出</p>
+
+<pre><code>    var inputs = $("#searchForm input").clone();
+    jsUtil.doExport('&lt;%=request.getContextPath()%&gt;/core/operlog/export', datagrid, inputs);
+}
+</code></pre>
+
+<p><code>
+jsUtil里的js逻辑：  
+</code>javascript
+/<em>*
+ * 提交导出form
+ </em>/
+jsUtil.submitExportForm = function(form) {</p>
+
+<pre><code>form.submit();
+form.remove();
+</code></pre>
+
+<p>}
+/<em>*
+ * 导出方法，input为其他查询条件
+ </em>/
+jsUtil.doExport = function(url, dg, inputs) {</p>
+
+<pre><code>$.messager.defaults = { ok:"当前页数据", cancel:"所有页数据" };
+//导出当前页的数据?导出符合条件的所有数据?
+$.messager.confirm('导出', '选择导出查询结果里的：', function(isCurrent){
+    var form = jsUtil.getDefaultExportForm(url, dg, isCurrent);
+    if (inputs != null) {
+        // 其他查询条件
+        for (var i = 0; i &lt; inputs.length; i++) {
+            form.append(inputs[i]);
+        }
+    }
+    jsUtil.submitExportForm(form);
+});
+$.messager.defaults = { ok:"确定", cancel:"取消" };
+</code></pre>
+
+<p>}
+/<em>*
+ * 导出方法，无其他附加条件，按后台逻辑导出数据
+ </em>/
+jsUtil.doDefaultExport = function(url, dg) {</p>
+
+<pre><code> var form = jsUtil.getDefaultExportForm(url, dg);
+ jsUtil.submitExportForm(form);
+</code></pre>
+
+<p>}
+/<em>*
+ * 构造导出form，默认提交分页信息，列表字段和字段显示名信息
+ </em>/
+jsUtil.getDefaultExportForm = function(url, dg, isCurrent) {</p>
+
+<pre><code>var form = $("&lt;form&gt;");
+form.attr('style', 'display:none');
+form.attr('target', '');
+form.attr('method', 'post');
+form.attr('action', url);
+$('body').append(form);
+var defaultInputs = jsUtil.getDefaultInputs(url, dg, isCurrent);
+for (var i = 0; i &lt; defaultInputs.length; i++) {
+    form.append(defaultInputs[i]);
+}
+return form;
+</code></pre>
+
+<p>}
+/<em>*
+ * 导出form的默认提交参数，包括分页信息，列表字段和字段显示名信息
+ </em>/
+jsUtil.getDefaultInputs = function(url, dg, isCurrent) {</p>
+
+<pre><code>var inputs = [];
+var page = $('&lt;input&gt;');
+page.attr('type', 'hidden');
+page.attr('name', 'page');
+var rows = $('&lt;input&gt;');
+rows.attr('type', 'hidden');
+rows.attr('name', 'rows');
+//导出当前页的数据?导出符合条件的所有数据?
+if (isCurrent) {
+    page.attr('value', dg.datagrid('options').pageNumber);
+    rows.attr('value', dg.datagrid("options").pageSize);
+} else {
+    page.attr('value', 1);
+    rows.attr('value', 2147483647);
+}
+
+var sort = $('&lt;input&gt;');
+sort.attr('type', 'hidden');
+sort.attr('name', 'sort');
+sort.attr('value', dg.datagrid('options').sortName);
+
+var order = $('&lt;input&gt;');
+order.attr('type', 'hidden');
+order.attr('name', 'order');
+order.attr('value', dg.datagrid('options').sortOrder);
+
+var fields = $('&lt;input&gt;');
+fields.attr('type', 'hidden');
+fields.attr('name', 'fields');
+fields.attr('value', jsUtil.getFields(dg));
+
+var titles = $('&lt;input&gt;');
+titles.attr('type', 'hidden');
+titles.attr('name', 'titles');
+titles.attr('value', jsUtil.getTitles(dg));
+
+inputs.push(page);
+inputs.push(rows);
+inputs.push(sort);
+inputs.push(order);
+inputs.push(fields);
+inputs.push(titles);
+return inputs;
+</code></pre>
+
+<p>};
+/<em>*
+ * 导出form的列表字段
+ </em>/
+jsUtil.getFields = function(dg) {</p>
+
+<pre><code>var columns = dg.datagrid("options").columns[0];
+var json = '';
+if (columns) {
+    for (var i = 0; i &lt; columns.length; i++) {
+        var field = columns[i].field;
+        var title = columns[i].title;
+        var hidden = columns[i].hidden;
+        if (!hidden) {
+            json += field + ','
+        }
+    }
+    if (json != '') {
+        json = json.substring(0, json.length - 1);
+    }
+}
+return json;
+</code></pre>
+
+<p>};
+/<em>*
+ * 导出form的列表字段显示名称
+ </em>/
+jsUtil.getTitles = function(dg) {</p>
+
+<pre><code>var columns = dg.datagrid("options").columns[0];
+var json = '';
+if (columns) {
+    for (var i = 0; i &lt; columns.length; i++) {
+        var field = columns[i].field;
+        var title = columns[i].title;
+        var hidden = columns[i].hidden;
+        if (!hidden) {
+            json += title + ','
+        }
+    }
+    if (json != '') {
+        json = json.substring(0, json.length - 1);
+    }
+}
+return json;
+</code></pre>
+
+<p>};</p>
 
 <p>```</p>
 ]]></content>

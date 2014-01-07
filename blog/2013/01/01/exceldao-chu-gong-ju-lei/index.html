@@ -104,7 +104,7 @@ if (location.href == "http://www.colalife.com/"
   </header>
 
 
-<div class="entry-content"><p>前端使用jquery easyui，datagrid添加导出按钮（另外的js逻辑）即可将当前页或所有页数据导出到excel，支持office excel 2003和2007+;<br/>
+<div class="entry-content"><p>前端使用jquery easyui，datagrid添加导出按钮（另外的js逻辑）即可将当前页或所有页数据(支持查询条件的导出)导出到excel，支持office excel 2003和2007+;<br/>
 使用apache poi（+ooxml）实现，主要代码片段如下：</p>
 
 <!--more-->
@@ -602,6 +602,312 @@ if (location.href == "http://www.colalife.com/"
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<h2>页面调用  </h2>
+
+<p>在相应页面的toolbar里添加导出按钮，调用js function，例如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">exportData</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'><span class="c1">//       默认导出</span>
+</span><span class='line'><span class="c1">//       jsUtil.doDefaultExport(&#39;&lt;%=request.getContextPath()%&gt;/core/operlog/export&#39;, datagrid);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//       支持查询条件的导出</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">inputs</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#searchForm input&quot;</span><span class="p">).</span><span class="nx">clone</span><span class="p">();</span>
+</span><span class='line'>  <span class="nx">jsUtil</span><span class="p">.</span><span class="nx">doExport</span><span class="p">(</span><span class="s1">&#39;&lt;%=request.getContextPath()%&gt;/core/operlog/export&#39;</span><span class="p">,</span> <span class="nx">datagrid</span><span class="p">,</span> <span class="nx">inputs</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>jsUtil里的js逻辑：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 提交导出form</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="nx">jsUtil</span><span class="p">.</span><span class="nx">submitExportForm</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">form</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">form</span><span class="p">.</span><span class="nx">submit</span><span class="p">();</span>
+</span><span class='line'>  <span class="nx">form</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 导出方法，input为其他查询条件</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="nx">jsUtil</span><span class="p">.</span><span class="nx">doExport</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">dg</span><span class="p">,</span> <span class="nx">inputs</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">messager</span><span class="p">.</span><span class="nx">defaults</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">ok</span><span class="o">:</span><span class="s2">&quot;当前页数据&quot;</span><span class="p">,</span> <span class="nx">cancel</span><span class="o">:</span><span class="s2">&quot;所有页数据&quot;</span> <span class="p">};</span>
+</span><span class='line'>  <span class="c1">//导出当前页的数据?导出符合条件的所有数据?</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">messager</span><span class="p">.</span><span class="nx">confirm</span><span class="p">(</span><span class="s1">&#39;导出&#39;</span><span class="p">,</span> <span class="s1">&#39;选择导出查询结果里的：&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">isCurrent</span><span class="p">){</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">jsUtil</span><span class="p">.</span><span class="nx">getDefaultExportForm</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">dg</span><span class="p">,</span> <span class="nx">isCurrent</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="nx">inputs</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="c1">// 其他查询条件</span>
+</span><span class='line'>          <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">inputs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">inputs</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="nx">jsUtil</span><span class="p">.</span><span class="nx">submitExportForm</span><span class="p">(</span><span class="nx">form</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">messager</span><span class="p">.</span><span class="nx">defaults</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">ok</span><span class="o">:</span><span class="s2">&quot;确定&quot;</span><span class="p">,</span> <span class="nx">cancel</span><span class="o">:</span><span class="s2">&quot;取消&quot;</span> <span class="p">};</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 导出方法，无其他附加条件，按后台逻辑导出数据</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="nx">jsUtil</span><span class="p">.</span><span class="nx">doDefaultExport</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">dg</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>   <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">jsUtil</span><span class="p">.</span><span class="nx">getDefaultExportForm</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">dg</span><span class="p">);</span>
+</span><span class='line'>   <span class="nx">jsUtil</span><span class="p">.</span><span class="nx">submitExportForm</span><span class="p">(</span><span class="nx">form</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 构造导出form，默认提交分页信息，列表字段和字段显示名信息</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="nx">jsUtil</span><span class="p">.</span><span class="nx">getDefaultExportForm</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">dg</span><span class="p">,</span> <span class="nx">isCurrent</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;form&gt;&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;style&#39;</span><span class="p">,</span> <span class="s1">&#39;display:none&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">form</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;action&#39;</span><span class="p">,</span> <span class="nx">url</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">form</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">defaultInputs</span> <span class="o">=</span> <span class="nx">jsUtil</span><span class="p">.</span><span class="nx">getDefaultInputs</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">dg</span><span class="p">,</span> <span class="nx">isCurrent</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">defaultInputs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">form</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">defaultInputs</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">form</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 导出form的默认提交参数，包括分页信息，列表字段和字段显示名信息</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="nx">jsUtil</span><span class="p">.</span><span class="nx">getDefaultInputs</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">dg</span><span class="p">,</span> <span class="nx">isCurrent</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">inputs</span> <span class="o">=</span> <span class="p">[];</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">page</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;input&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">page</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">page</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;page&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">rows</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;input&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">rows</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">rows</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;rows&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="c1">//导出当前页的数据?导出符合条件的所有数据?</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">isCurrent</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">page</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">dg</span><span class="p">.</span><span class="nx">datagrid</span><span class="p">(</span><span class="s1">&#39;options&#39;</span><span class="p">).</span><span class="nx">pageNumber</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">rows</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">dg</span><span class="p">.</span><span class="nx">datagrid</span><span class="p">(</span><span class="s2">&quot;options&quot;</span><span class="p">).</span><span class="nx">pageSize</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">page</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">rows</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="mi">2147483647</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">sort</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;input&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">sort</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">sort</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;sort&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">sort</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">dg</span><span class="p">.</span><span class="nx">datagrid</span><span class="p">(</span><span class="s1">&#39;options&#39;</span><span class="p">).</span><span class="nx">sortName</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">order</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;input&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">order</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">order</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;order&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">order</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">dg</span><span class="p">.</span><span class="nx">datagrid</span><span class="p">(</span><span class="s1">&#39;options&#39;</span><span class="p">).</span><span class="nx">sortOrder</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;input&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">fields</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">fields</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;fields&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">fields</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">jsUtil</span><span class="p">.</span><span class="nx">getFields</span><span class="p">(</span><span class="nx">dg</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">titles</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;input&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">titles</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">titles</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;titles&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">titles</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">jsUtil</span><span class="p">.</span><span class="nx">getTitles</span><span class="p">(</span><span class="nx">dg</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">inputs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">page</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">inputs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">rows</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">inputs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">sort</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">inputs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">order</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">inputs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">fields</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">inputs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">titles</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">inputs</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 导出form的列表字段</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="nx">jsUtil</span><span class="p">.</span><span class="nx">getFields</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dg</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">columns</span> <span class="o">=</span> <span class="nx">dg</span><span class="p">.</span><span class="nx">datagrid</span><span class="p">(</span><span class="s2">&quot;options&quot;</span><span class="p">).</span><span class="nx">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">json</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">columns</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">columns</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">columns</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">field</span><span class="p">;</span>
+</span><span class='line'>          <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">columns</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">title</span><span class="p">;</span>
+</span><span class='line'>          <span class="kd">var</span> <span class="nx">hidden</span> <span class="o">=</span> <span class="nx">columns</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">hidden</span><span class="p">;</span>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">hidden</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nx">json</span> <span class="o">+=</span> <span class="nx">field</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="nx">json</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">json</span> <span class="o">=</span> <span class="nx">json</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">json</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">json</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 导出form的列表字段显示名称</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="nx">jsUtil</span><span class="p">.</span><span class="nx">getTitles</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dg</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">columns</span> <span class="o">=</span> <span class="nx">dg</span><span class="p">.</span><span class="nx">datagrid</span><span class="p">(</span><span class="s2">&quot;options&quot;</span><span class="p">).</span><span class="nx">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">json</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">columns</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">columns</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">columns</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">field</span><span class="p">;</span>
+</span><span class='line'>          <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">columns</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">title</span><span class="p">;</span>
+</span><span class='line'>          <span class="kd">var</span> <span class="nx">hidden</span> <span class="o">=</span> <span class="nx">columns</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">hidden</span><span class="p">;</span>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">hidden</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nx">json</span> <span class="o">+=</span> <span class="nx">title</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="nx">json</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">json</span> <span class="o">=</span> <span class="nx">json</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">json</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">json</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
 </span></code></pre></td></tr></table></div></figure>
 
 </div>
