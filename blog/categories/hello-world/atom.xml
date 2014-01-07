@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hello World | 超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/blog/categories/hello-world/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-06T22:23:03-08:00</updated>
+  <updated>2014-01-06T23:37:33-08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -15,10 +15,10 @@
   
   <entry>
     <title type="html"><![CDATA[Hello World]]></title>
-    <link href="http://www.wangchaoqun.com/blog/2014/01/05/hello-world/"/>
-    <updated>2014-01-05T21:39:06-08:00</updated>
-    <id>http://www.wangchaoqun.com/blog/2014/01/05/hello-world</id>
-    <content type="html"><![CDATA[<p>welcome, have a nice day!<br/>
+    <link href="http://www.wangchaoqun.com/blog/2013/01/05/hello-world/"/>
+    <updated>2013-01-05T21:39:06-08:00</updated>
+    <id>http://www.wangchaoqun.com/blog/2013/01/05/hello-world</id>
+    <content type="html"><![CDATA[<p>welcome, have a nice day<br/>
 javascript code:
 <code>javascript  
 var name='someone';
