@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | 超群的博客]]></title>
+  <link href="http://www.wangchaoqun.com/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://www.wangchaoqun.com/"/>
+  <updated>2014-01-07T02:10:44-08:00</updated>
+  <id>http://www.wangchaoqun.com/</id>
+  <author>
+    <name><![CDATA[wang chaoqun]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[安装git, 建立Octopress博客]]></title>
+    <link href="http://www.wangchaoqun.com/blog/2013/01/06/an-zhuang-git/"/>
+    <updated>2013-01-06T22:34:24-08:00</updated>
+    <id>http://www.wangchaoqun.com/blog/2013/01/06/an-zhuang-git</id>
+    <content type="html"><![CDATA[<p><em>本文是在参考若干网络日志（谢过~）,配置个人博客后整理而成</em></p>
+
+<h2>安装git  </h2>
+
+<p><code>sh  
+yum -y install git
+git --version
+</code></p>
+
+<!--more-->
+
+
+<p>在本机使用git创建SSH Key<br/>
+<code>  
+ssh-keygen -C "username" -t rsa  
+ssh -v git@github.com  
+</code><br/>
+//if denied, use <code>ssh-add ~/.ssh/id_rsa</code> to fix this.<br/>
+备注: useremail为你注册github用户时的邮箱地址 这时，在系统目录下就会生成一个.ssh文件夹，里面为对应的SSH Key，其中id_rsa.pub是Gighub需要的SSH公钥文件。 将id_ras.pub文件里内容拷贝到Github的Account Settings里的key中。 这样你就可以直接使用Git和Github了.</p>
+
+<h2>安装ruby  </h2>
+
+<p><code>  
+wget ftp://ftp.ruby-lang.org//pub/ruby/2.1/ruby-2.1.0.tar.gz  
+tar -zxvf ruby-2.1.0.tar.gz
+cd ruby-2.1.0
+./configure --prefix=/usr/local/ruby
+make
+make test
+make install
+</code></p>
+
+<h2>安装OctoPress  </h2>
+
+<p>通过Git从Github上克隆一份Octopress<br/>
+<code>  
+git clone git://github.com/imathis/octopress.git octopress
+cd octopress  
+gem install bundler  
+bundle install  
+</code>
+安装Octopress默认的Theme
+<code>  
+rake install  
+</code><br/>
+//if error: rake aborted!<br/>
+//You have already activated rake 10.1.0, but your Gemfile requires rake 0.9.2.2.
+delete your Gemfile.lock and edit the version of rake specified in your Gemfile to 10.1. Job done</p>
+
+<h2>通过_config.yml来配置博客  </h2>
+
+<h2>创建一个博客</h2>
+
+<p><code>  
+rake new_post["Hello World"]
+</code></p>
+
+<h2>创建一个博客页面</h2>
+
+<p><code>  
+rake new_page["blog"]
+</code></p>
+
+<p>预览效果：<br/>
+<code>  
+rake generate  
+rake preview  
+</code></p>
+
+<p>然后在浏览器中打开<a href="http://localhost:4000">http://localhost:4000</a></p>
+
+<h2>发布Octopress到Github</h2>
+
+<p><code>
+cd octopress  
+rake setup_github_pages  
+Repository url: git@github.com:username/username.github.com.git  
+</code>
+将博客发布到Github上，输入下面命令：
+<code>  
+rake deploy  
+</code>
+这样，生成的内容将会自动发布到master分支，并且可以使用 <a href="http://username.github.com">http://username.github.com</a> 访问内容。</p>
+
+<p>将source提交：<br/>
+<code>  
+git add .  
+git commit -m "blog init"  
+git push origin source  
+</code>
+删除之前的添加信息 (配置文件在 ~/octopress/.git/config)
+<code>  
+git remote rm origin  
+git remote add origin git@github.com:username/username.github.com.git  
+</code></p>
+
+<h2>添加多说评论  </h2>
+
+<p>在_config.yml尾部添加如下行：<br/>
+```</p>
+
+<h1>Duoshuo Comments</h1>
+
+<p>duoshuo_show_comment_count: true<br/>
+```</p>
+
+<p>在source/_layouts/post.html尾部添加如下代码：<br/>
+```sh<br/>
+<br/>
+```</p>
+
+<p>创建source/_includes/post/duoshuo.html文件，将从多说获得的代码放入其中。<br/>
+```</p>
+
+<!-- Duoshuo Comment BEGIN -->
+
+
+<pre><code>&lt;div class="ds-thread"&gt;&lt;/div&gt;
+</code></pre>
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"username"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+<!-- Duoshuo Comment END -->
+
+
+<p>```</p>
+
+<h2>Octopress写作</h2>
+
+<p><code>  
+cd octopress  
+rake new_post["new blog"]  
+</code></p>
+
+<h2>another pc</h2>
+
+<p><code>  
+git clone -b source git@github.com:username/username.github.com.git octopress  
+cd octopress  
+git clone git@github.com:username/username.github.com.git _deploy  
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>
