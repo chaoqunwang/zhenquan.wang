@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-07T01:19:19-08:00</updated>
+  <updated>2014-01-07T01:20:02-08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -248,77 +248,6 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 
 
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Test Blog No1]]></title>
-    <link href="http://www.wangchaoqun.com/blog/2013/01/05/test-blog-no1/"/>
-    <updated>2013-01-05T23:32:33-08:00</updated>
-    <id>http://www.wangchaoqun.com/blog/2013/01/05/test-blog-no1</id>
-    <content type="html"><![CDATA[<p>java code:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;anther one&quot;</span><span class="o">;</span>
-</span><span class='line'><span class="kt">int</span> <span class="n">age</span><span class="o">=</span><span class="mi">22</span><span class="o">;</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">name</span> <span class="o">+</span> <span class="s">&quot; is &quot;</span> <span class="o">+</span> <span class="n">age</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<!--more-->
-
-
-<p>javascript code:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">name</span><span class="o">=</span><span class="s1">&#39;someone&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">age</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span>
-</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; is &#39;</span> <span class="o">+</span> <span class="nx">age</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>end</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hello World]]></title>
-    <link href="http://www.wangchaoqun.com/blog/2013/01/05/hello-world/"/>
-    <updated>2013-01-05T21:39:06-08:00</updated>
-    <id>http://www.wangchaoqun.com/blog/2013/01/05/hello-world</id>
-    <content type="html"><![CDATA[<p>welcome, have a nice day<br/>
-javascript code:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">name</span><span class="o">=</span><span class="s1">&#39;someone&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">age</span><span class="o">=</span><span class="mi">12</span><span class="p">;</span>
-</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; is &#39;</span> <span class="o">+</span> <span class="nx">age</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<!--more-->
-
-
-<p>java code:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;anther one&quot;</span><span class="o">;</span>
-</span><span class='line'><span class="kt">int</span> <span class="n">age</span><span class="o">=</span><span class="mi">22</span><span class="o">;</span>
-</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">name</span> <span class="o">+</span> <span class="s">&quot; is &quot;</span> <span class="o">+</span> <span class="n">age</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>end</p>
 ]]></content>
   </entry>
   
