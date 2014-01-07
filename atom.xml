@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-07T01:01:52-08:00</updated>
+  <updated>2014-01-07T01:19:19-08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -1132,6 +1132,156 @@ javascript code:</p>
 </span><span class='line'>  <span class="k">return</span> <span class="nx">json</span><span class="p">;</span>
 </span><span class='line'><span class="p">};</span>
 </span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Htmlparser和httpclient解析页面并下载]]></title>
+    <link href="http://www.wangchaoqun.com/blog/2012/12/17/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai/"/>
+    <updated>2012-12-17T11:05:41-08:00</updated>
+    <id>http://www.wangchaoqun.com/blog/2012/12/17/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai</id>
+    <content type="html"><![CDATA[<p>如果你想抓取某个网页（如新浪、csdn之类）获取最新资讯列表，或者到某个站点下载文件、图片之类，就需要html解析例如htmlparser,jsoup之类的jar包，下载可用httpclient。如果想更高效率可以搞线程池，抓取解析线程和下载线程，类似消费者和生产者模型（此处不涉及，仅演示使用），代码如下：</p>
+
+<!--more-->
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">digLinks</span><span class="o">(</span><span class="n">String</span> <span class="n">address</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</span><span class='line'>  <span class="n">URL</span> <span class="n">url</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="n">address</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">Parser</span> <span class="n">parser</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Parser</span><span class="o">((</span><span class="n">HttpURLConnection</span><span class="o">)</span> <span class="n">url</span><span class="o">.</span><span class="na">openConnection</span><span class="o">());</span>
+</span><span class='line'>  <span class="n">NodeFilter</span> <span class="n">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HasAttributeFilter</span><span class="o">(</span><span class="s">&quot;id&quot;</span><span class="o">,</span> <span class="s">&quot;someid&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">NodeList</span> <span class="n">nodes</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">extractAllNodesThatMatch</span><span class="o">(</span><span class="n">filter</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">Node</span> <span class="n">root</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="na">elementAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">String</span> <span class="n">html</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="na">getChildren</span><span class="o">().</span><span class="na">toHtml</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="o">.</span><span class="na">createParser</span><span class="o">(</span><span class="n">html</span><span class="o">,</span> <span class="s">&quot;utf-8&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">nodes</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">extractAllNodesThatMatch</span><span class="o">(</span><span class="k">new</span> <span class="n">TagNameFilter</span><span class="o">(</span><span class="s">&quot;li&quot;</span><span class="o">));</span>
+</span><span class='line'>  <span class="n">parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="o">.</span><span class="na">createParser</span><span class="o">(</span><span class="n">html</span><span class="o">,</span> <span class="s">&quot;utf-8&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">nodes</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">extractAllNodesThatMatch</span><span class="o">(</span><span class="k">new</span> <span class="n">TagNameFilter</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">));</span>
+</span><span class='line'>  <span class="n">add</span><span class="o">(</span><span class="n">result</span><span class="o">,</span> <span class="n">nodes</span><span class="o">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span><span class="o">,</span> <span class="n">NodeList</span> <span class="n">nodes</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nodes</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">Node</span> <span class="n">child</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="na">elementAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">child</span> <span class="k">instanceof</span> <span class="n">LinkTag</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">LinkTag</span> <span class="n">linknode</span> <span class="o">=</span> <span class="o">(</span><span class="n">LinkTag</span><span class="o">)</span> <span class="n">child</span><span class="o">;</span>
+</span><span class='line'>          <span class="n">String</span> <span class="n">href</span> <span class="o">=</span> <span class="n">linknode</span><span class="o">.</span><span class="na">getLink</span><span class="o">();</span>
+</span><span class='line'>          <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">href</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>httpclient 下载  </h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 读出文件中的url，连接下载保存</span>
+</span><span class='line'><span class="cm"> * @param file</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">doSave</span><span class="o">(</span><span class="n">String</span> <span class="n">file</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">files</span> <span class="o">=</span> <span class="n">FileUtil</span><span class="o">.</span><span class="na">readLines</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
+</span><span class='line'>  <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">url</span> <span class="o">:</span> <span class="n">files</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">String</span> <span class="n">fileName</span> <span class="o">=</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">substringAfterLast</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="s">&quot;/&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">download</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="n">fileName</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">download</span><span class="o">(</span><span class="n">String</span> <span class="n">url</span><span class="o">,</span> <span class="n">String</span> <span class="n">fileName</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">OutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">HttpURLConnection</span> <span class="n">connection</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">URL</span> <span class="n">server</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">server</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">connection</span> <span class="o">=</span> <span class="o">(</span><span class="n">HttpURLConnection</span><span class="o">)</span> <span class="n">server</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">connection</span><span class="o">.</span><span class="na">connect</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">in</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">dir</span> <span class="o">+</span> <span class="n">fileName</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">exists</span><span class="o">())</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">return</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+</span><span class='line'>      <span class="k">while</span> <span class="o">(</span><span class="n">b</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">out</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
+</span><span class='line'>          <span class="n">b</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 
 ]]></content>
   </entry>
