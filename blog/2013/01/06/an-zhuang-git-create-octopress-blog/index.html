@@ -337,7 +337,78 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>增加category_list插件</h2>
 
+<p>保存以下代码到plugins/category_list_tag.rb：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>module Jekyll
+</span><span class='line'>  class CategoryListTag &lt; Liquid::Tag
+</span><span class='line'>    def render<span class="o">(</span>context<span class="o">)</span>
+</span><span class='line'>      <span class="nv">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>      <span class="nv">categories</span> <span class="o">=</span> context.registers<span class="o">[</span>:site<span class="o">]</span>.categories.keys
+</span><span class='line'>      categories.sort.each <span class="k">do</span> |category|
+</span><span class='line'>        <span class="nv">posts_in_category</span> <span class="o">=</span> context.registers<span class="o">[</span>:site<span class="o">]</span>.categories<span class="o">[</span>category<span class="o">]</span>.size
+</span><span class='line'>        <span class="nv">category_dir</span> <span class="o">=</span> context.registers<span class="o">[</span>:site<span class="o">]</span>.config<span class="o">[</span><span class="s1">&#39;category_dir&#39;</span><span class="o">]</span>
+</span><span class='line'>        <span class="nv">category_url</span> <span class="o">=</span> File.join<span class="o">(</span>category_dir, category.gsub<span class="o">(</span>/_|<span class="se">\P</span><span class="o">{</span>Word<span class="o">}</span>/, <span class="s1">&#39;-&#39;</span><span class="o">)</span>.gsub<span class="o">(</span>/-<span class="o">{</span>2,<span class="o">}</span>/, <span class="s1">&#39;-&#39;</span><span class="o">)</span>.downcase<span class="o">)</span>
+</span><span class='line'>        html &lt;&lt; <span class="s2">&quot;&lt;li class=&#39;category&#39;&gt;&lt;a href=&#39;/#{category_url}/&#39;&gt;#{category} (#{posts_in_category})&lt;/a&gt;&lt;/li&gt;\n&quot;</span>
+</span><span class='line'>      end
+</span><span class='line'>      html
+</span><span class='line'>    end
+</span><span class='line'>  end
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'>Liquid::Template.register_tag<span class="o">(</span><span class="s1">&#39;category_list&#39;</span>, Jekyll::CategoryListTag<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>将category加入到侧边导航栏，需要增加一个aside
+复制以下代码到source/_includes/asides/category_list.html。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;section&gt;
+</span><span class='line'>  &lt;h1&gt;文章分类&lt;/h1&gt;
+</span><span class='line'>  &lt;ul <span class="nv">id</span><span class="o">=</span><span class="s2">&quot;categories&quot;</span>&gt;
+</span><span class='line'>    <span class="o">{</span>% category_list %<span class="o">}</span>
+</span><span class='line'>  &lt;/ul&gt;
+</span><span class='line'>&lt;/section&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>配置侧边栏需要修改_config.yml文件，修改其default_asides项：
+default_asides: [&hellip;, asides/category_list.html, &hellip;]</p>
+
+<h2>中文分类支持</h2>
+
+<p>侧边栏添加了文章分类后，英文分类没有问题，点击打开是分类下的文章列表；但中文分类，如云计算、设计模式之类就不行了，网上有各种解决办法，复杂了点；而且我发现新建日志的文件名如果是中文则会转成拼音，文章分类也是，你可以看下public/blog/categories下的文件名；所以如果能把边栏的链接地址改成拼音就行了，rakefile里有<code>rake new_post</code>代码；查看分析发现和<code>plugins/category_list_tag.rb</code>的处理类似，<br/>
+<code>category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase</code>是转换为单词‘-’分隔并且小写，rakefile里是<code> mkdir_p  
+"#{source_dir}/#{posts_dir}"  
+filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.to_url}.#{new_post_ext}"</code><br/>
+  <strong>注意:</strong>title多了<code>.to_url</code>，原来如此，将<code>category_list_tag.rb</code>里改成<br/>
+  <code>category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase.to_url</code>，
+然后rake generate  rake preview<br/>
+done！</p>
 </div>
 
 
@@ -507,9 +578,9 @@ var duoshuoQuery = {short_name:"colalife"};
 <li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
 <li class='category'><a href='/blog/categories/tomcat/'>tomcat (1)</a></li>
 <li class='category'><a href='/blog/categories/web/'>web (1)</a></li>
-<li class='category'><a href='/blog/categories/算法/'>算法 (1)</a></li>
-<li class='category'><a href='/blog/categories/设计模式/'>设计模式 (1)</a></li>
-<li class='category'><a href='/blog/categories/读书/'>读书 (1)</a></li>
+<li class='category'><a href='/blog/categories/suan-fa/'>算法 (1)</a></li>
+<li class='category'><a href='/blog/categories/she-ji-mo-shi/'>设计模式 (1)</a></li>
+<li class='category'><a href='/blog/categories/du-shu/'>读书 (1)</a></li>
  
   </ul> 
 </section>
