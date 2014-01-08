@@ -84,6 +84,59 @@ if (location.href == "http://www.colalife.com/"
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2008/10/22/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi/">本地搭建SVN服务器及配置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-22T21:50:35-07:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h4>1. 创建SVN数据库</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>svnadmin create D:\svn</span></code></pre></td></tr></table></div></figure>
+
+
+<p>说明：
+ repository创建完毕后会在目录下生成若干个文件和文件夹，
+ dav目录是提供给Apache与mod_dav_svn使用的目录，让它们存储内部数据；
+ db目录就是所有版本控制的数据文件；
+ hooks目录放置hook脚本文件的目录；
+ locks用来放置Subversion文件库锁定数据的目录，用来追踪存取文件库的客户端；
+ format文件是一个文本文件，里面只放了一个整数，表示当前文件库配置的版本号；</p>
+
+</div>
+  
+  
+    <footer style="text-align:right;">
+      <a rel="full-article" href="/blog/2008/10/22/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi/">&larr;点击阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2008/04/29/zhuan-ruan-jian-she-ji-de-qi-da-yuan-ze/">[转]软件设计的七大原则</a></h1>
     
     
@@ -227,11 +280,11 @@ if (location.href == "http://www.colalife.com/"
       </li>
     
       <li class="post">
-        <a href="/blog/2008/04/29/zhuan-ruan-jian-she-ji-de-qi-da-yuan-ze/">[转]软件设计的七大原则</a>
+        <a href="/blog/2008/10/22/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi/">本地搭建SVN服务器及配置</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2008/03/02/zhuan-cheng-xu-ren-sheng-you-tiao-zhan-xing-de-javacheng-xu-yuan-mian-shi-32wen/">[转]有挑战性的JAVA程序员面试32问</a>
+        <a href="/blog/2008/04/29/zhuan-ruan-jian-she-ji-de-qi-da-yuan-ze/">[转]软件设计的七大原则</a>
       </li>
     
   </ul>
@@ -244,7 +297,7 @@ if (location.href == "http://www.colalife.com/"
 <li class='category'><a href='/blog/categories/java/'>java (5)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
 <li class='category'><a href='/blog/categories/tomcat/'>tomcat (1)</a></li>
-<li class='category'><a href='/blog/categories/web/'>web (1)</a></li>
+<li class='category'><a href='/blog/categories/web/'>web (2)</a></li>
 <li class='category'><a href='/blog/categories/suan-fa/'>算法 (1)</a></li>
 <li class='category'><a href='/blog/categories/she-ji-mo-shi/'>设计模式 (1)</a></li>
 <li class='category'><a href='/blog/categories/du-shu/'>读书 (1)</a></li>

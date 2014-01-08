@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-07T23:15:47-08:00</updated>
+  <updated>2014-01-08T00:12:00-08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -2744,6 +2744,72 @@ Patterns） 76</p></li>
 <li><p>“UNIX 编程艺术”（The Art of Unix Programming） 103</p></li>
 <li><p>“数据访问模式 —— 面向对象应用中的数据库交互” 103</p></li>
 </ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[本地搭建SVN服务器及配置]]></title>
+    <link href="http://www.wangchaoqun.com/blog/2008/10/22/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi/"/>
+    <updated>2008-10-22T21:50:35-07:00</updated>
+    <id>http://www.wangchaoqun.com/blog/2008/10/22/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi</id>
+    <content type="html"><![CDATA[<h4>1. 创建SVN数据库</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>svnadmin create D:\svn</span></code></pre></td></tr></table></div></figure>
+
+
+<p>说明：
+ repository创建完毕后会在目录下生成若干个文件和文件夹，
+ dav目录是提供给Apache与mod_dav_svn使用的目录，让它们存储内部数据；
+ db目录就是所有版本控制的数据文件；
+ hooks目录放置hook脚本文件的目录；
+ locks用来放置Subversion文件库锁定数据的目录，用来追踪存取文件库的客户端；
+ format文件是一个文本文件，里面只放了一个整数，表示当前文件库配置的版本号；</p>
+
+<!--more-->
+
+
+<h4>2. 创建服务</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sc create svnservice binpath= "D:\Subversion\bin\svnserve.exe --service -r D:\svn" displayname= "SVNService" depend= Tcpip</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>3. 删除服务</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sc delete svnservice</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<h4>4. 启动服务/停止服务</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>net start svnservice</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>net stop svnservice</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也可以在运行里输入 services.msc 找到名称为“svnservice”的服务 手动启动或停止</p>
+
+<h4>5. 导入工程</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>svn import E:\workspace\myproject\ svn://localhost/svn -m "initial import" --username admin --password mypassword</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<h4>6. 导出工程</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>svn co svn://localhost/server --username admin --password mypassword</span></code></pre></td></tr></table></div></figure>
+
+
 
 ]]></content>
   </entry>

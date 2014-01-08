@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Web | 超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/blog/categories/web/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-07T23:15:47-08:00</updated>
+  <updated>2014-01-08T00:12:00-08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -229,6 +229,63 @@ IE6 和 IE7 中的 compatMode 有两个可能的值“CSS1Compat”和“BackCom
 <p>服务器端只能通过浏览器模式所标识的版本来确定客户端浏览器的版本，如果你将浏览器模式标识为IE9，但文档模式选择为IE7标准的话，就可能会有问题。不过这还要看服务器端是否有针对不同浏览器的处理策略，如果服务器端并未对不同浏览器的输出做差异化处理的话，那么这两个模式选项不同就不会有问题。</p>
 
 <p><em>小结</em>： 如果服务器端对不同浏览器的输出做了差异化处理，那么浏览器模式和文档模式不一致就可能产生问题。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[本地搭建SVN服务器及配置]]></title>
+    <link href="http://www.wangchaoqun.com/blog/2008/10/22/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi/"/>
+    <updated>2008-10-22T21:50:35-07:00</updated>
+    <id>http://www.wangchaoqun.com/blog/2008/10/22/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi</id>
+    <content type="html"><![CDATA[<h4>1. 创建SVN数据库</h4>
+
+<p><code>
+svnadmin create D:\svn
+</code>
+说明：
+ repository创建完毕后会在目录下生成若干个文件和文件夹，
+ dav目录是提供给Apache与mod_dav_svn使用的目录，让它们存储内部数据；
+ db目录就是所有版本控制的数据文件；
+ hooks目录放置hook脚本文件的目录；
+ locks用来放置Subversion文件库锁定数据的目录，用来追踪存取文件库的客户端；
+ format文件是一个文本文件，里面只放了一个整数，表示当前文件库配置的版本号；</p>
+
+<!--more-->
+
+
+<h4>2. 创建服务</h4>
+
+<p><code>
+sc create svnservice binpath= "D:\Subversion\bin\svnserve.exe --service -r D:\svn" displayname= "SVNService" depend= Tcpip
+</code></p>
+
+<h4>3. 删除服务</h4>
+
+<p><code>
+sc delete svnservice
+</code></p>
+
+<h4>4. 启动服务/停止服务</h4>
+
+<p><code>
+net start svnservice
+</code>
+<code>
+net stop svnservice
+</code>
+也可以在运行里输入 services.msc 找到名称为“svnservice”的服务 手动启动或停止</p>
+
+<h4>5. 导入工程</h4>
+
+<p><code>
+svn import E:\workspace\myproject\ svn://localhost/svn -m "initial import" --username admin --password mypassword
+</code></p>
+
+<h4>6. 导出工程</h4>
+
+<p><code>
+svn co svn://localhost/server --username admin --password mypassword
+</code></p>
 ]]></content>
   </entry>
   
