@@ -36,6 +36,14 @@ if (location.href == "http://www.colalife.com/"
 	|| location.href == "http://wangchaoqun.cn/") {
 	window.location.replace("http://www.wangchaoqun.com/");
 }
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+      $(this).attr('target', '_blank');
+  });
+}
+$(document).bind('DOMNodeInserted', function(event) {
+  addBlankTargetForLinks();
+});
 </script>
 
   
@@ -66,11 +74,10 @@ if (location.href == "http://www.colalife.com/"
 <ul class="main-navigation" id="mytop">
   <li><a href="/">首页</a></li> 
   <li><a href="/blog/archives">文章列表</a></li> 
-  <li><a href="/">开源资讯</a></li> 
-  <li><a href="/">精品收藏</a></li>
-  <li><a href="/">职业生涯</a></li>
-  <li><a href="/">代码片段</a></li>
-  <li><a href="/">其他</a></li>
+  <li><a href="/du-shu-bi-ji/">读书笔记</a></li> 
+  <li><a href="/dai-ma-pian-duan/">代码片段</a></li>
+  <li><a href="/zhi-ye-sheng-ya/">职业生涯</a></li>
+  <li><a href="/qi-ta">其他</a></li>
 </ul>
 
 </nav>
@@ -103,7 +110,7 @@ if (location.href == "http://www.colalife.com/"
 <p>……成长, 需要积累……是为记录</p>
 
 <p><a href="http://www.colalife.com">www.colalife.com</a><br/>
-Email: <a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#58;&#x63;&#111;&#x6c;&#97;&#108;&#x69;&#x66;&#x65;&#x40;&#x68;&#111;&#116;&#x6d;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#109;">&#99;&#111;&#x6c;&#x61;&#108;&#x69;&#x66;&#101;&#64;&#104;&#111;&#x74;&#109;&#x61;&#x69;&#108;&#46;&#99;&#111;&#109;</a></p></blockquote>
+Email: <a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#x63;&#111;&#x6c;&#97;&#108;&#105;&#x66;&#101;&#x40;&#x68;&#x6f;&#116;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;">&#99;&#x6f;&#x6c;&#x61;&#x6c;&#105;&#102;&#101;&#x40;&#104;&#x6f;&#116;&#109;&#97;&#105;&#108;&#46;&#99;&#x6f;&#109;</a></p></blockquote>
 
   
     <footer>
@@ -159,15 +166,15 @@ Email: <a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#58;&#x63;&#111;&#x6c;&#97;&
 <div class="ds-thread"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"colalife"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = 'http://static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		|| document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = 'http://static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
 <!-- Duoshuo Comment END -->
 
 </section>

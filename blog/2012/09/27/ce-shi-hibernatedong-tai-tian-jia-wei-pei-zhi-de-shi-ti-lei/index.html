@@ -36,6 +36,14 @@ if (location.href == "http://www.colalife.com/"
 	|| location.href == "http://wangchaoqun.cn/") {
 	window.location.replace("http://www.wangchaoqun.com/");
 }
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+      $(this).attr('target', '_blank');
+  });
+}
+$(document).bind('DOMNodeInserted', function(event) {
+  addBlankTargetForLinks();
+});
 </script>
 
   
@@ -66,11 +74,10 @@ if (location.href == "http://www.colalife.com/"
 <ul class="main-navigation" id="mytop">
   <li><a href="/">首页</a></li> 
   <li><a href="/blog/archives">文章列表</a></li> 
-  <li><a href="/">开源资讯</a></li> 
-  <li><a href="/">精品收藏</a></li>
-  <li><a href="/">职业生涯</a></li>
-  <li><a href="/">代码片段</a></li>
-  <li><a href="/">其他</a></li>
+  <li><a href="/du-shu-bi-ji/">读书笔记</a></li> 
+  <li><a href="/dai-ma-pian-duan/">代码片段</a></li>
+  <li><a href="/zhi-ye-sheng-ya/">职业生涯</a></li>
+  <li><a href="/qi-ta">其他</a></li>
 </ul>
 
 </nav>
@@ -281,15 +288,15 @@ if (location.href == "http://www.colalife.com/"
 <div class="ds-thread"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"colalife"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = 'http://static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		|| document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = 'http://static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
 <!-- Duoshuo Comment END -->
 
 </section>
