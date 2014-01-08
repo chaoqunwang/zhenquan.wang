@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | 超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-07T21:56:58-08:00</updated>
+  <updated>2014-01-07T22:04:36-08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -155,6 +155,10 @@ var duoshuoQuery = {short_name:"username"};
 
 
 <p>```</p>
+
+<h2>将AddThis更换为JiaThis</h2>
+
+<p>打开source/_includes/post/sharing.html，注释掉<code>&lt;div class="share"&gt;...&lt;/div&gt;</code>中的AddThis相关语句,然后在<code>&lt;/div&gt;</code>前加入从JiaThis获得的代码。</p>
 
 <h2>Octopress写作</h2>
 
