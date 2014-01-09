@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: github | 超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/tags/github/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-09T00:28:55-08:00</updated>
+  <updated>2014-01-09T00:38:51-08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -208,12 +208,12 @@ end</p>
   <h1>文章分类</h1>
   <ul id="categories"></p>
 
-<pre><code><li class='category'><a href='/blog/categories/code/'>code (3)</a></li>
-<li class='category'><a href='/blog/categories/hibernate/'>hibernate (1)</a></li>
+<pre><code><li class='category'><a href='/blog/categories/hibernate/'>hibernate (1)</a></li>
 <li class='category'><a href='/blog/categories/java/'>java (5)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
 <li class='category'><a href='/blog/categories/tomcat/'>tomcat (1)</a></li>
 <li class='category'><a href='/blog/categories/web/'>web (2)</a></li>
+<li class='category'><a href='/blog/categories/dai-ma/'>代码 (3)</a></li>
 <li class='category'><a href='/blog/categories/qi-ta/'>其他 (2)</a></li>
 <li class='category'><a href='/blog/categories/sheng-huo/'>生活 (1)</a></li>
 <li class='category'><a href='/blog/categories/suan-fa/'>算法 (1)</a></li>
