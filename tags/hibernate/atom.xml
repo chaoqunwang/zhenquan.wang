@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: hibernate | 超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/tags/hibernate/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-08T19:38:47-08:00</updated>
+  <updated>2014-01-08T19:48:37-08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -12,15 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[tags test]]></title>
-    <link href="http://www.wangchaoqun.com/blog/2014/01/08/tags-test/"/>
-    <updated>2014-01-08T19:05:43-08:00</updated>
-    <id>http://www.wangchaoqun.com/blog/2014/01/08/tags-test</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[测试Hibernate动态添加实体类]]></title>

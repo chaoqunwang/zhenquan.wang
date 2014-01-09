@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: github | 超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/tags/github/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-08T19:38:47-08:00</updated>
+  <updated>2014-01-08T19:48:37-08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -214,7 +214,7 @@ end</p>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
 <li class='category'><a href='/blog/categories/tomcat/'>tomcat (1)</a></li>
 <li class='category'><a href='/blog/categories/web/'>web (2)</a></li>
-<li class='category'><a href='/blog/categories/qi-ta/'>其他 (1)</a></li>
+<li class='category'><a href='/blog/categories/qi-ta/'>其他 (2)</a></li>
 <li class='category'><a href='/blog/categories/sheng-huo/'>生活 (1)</a></li>
 <li class='category'><a href='/blog/categories/suan-fa/'>算法 (1)</a></li>
 <li class='category'><a href='/blog/categories/zhi-ye/'>职业 (1)</a></li>
@@ -239,6 +239,15 @@ filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.
   <code>category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase.to_url</code>，
 然后rake generate  rake preview<br/>
 done！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[tags test]]></title>
+    <link href="http://www.wangchaoqun.com/blog/2004/01/08/tags-test/"/>
+    <updated>2004-01-08T17:48:58-08:00</updated>
+    <id>http://www.wangchaoqun.com/blog/2004/01/08/tags-test</id>
+    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   

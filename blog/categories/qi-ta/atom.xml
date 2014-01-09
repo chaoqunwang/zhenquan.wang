@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | 超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/blog/categories/qi-ta/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-08T19:38:47-08:00</updated>
+  <updated>2014-01-08T19:48:37-08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Tags Test]]></title>
+    <link href="http://www.wangchaoqun.com/blog/2004/01/08/tags-test/"/>
+    <updated>2004-01-08T17:48:58-08:00</updated>
+    <id>http://www.wangchaoqun.com/blog/2004/01/08/tags-test</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Qita Test]]></title>
