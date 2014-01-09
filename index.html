@@ -74,11 +74,11 @@ $(document).bind('DOMNodeInserted', function(event) {
 <ul class="main-navigation" id="mytop">
   <li><a href="/">首页</a></li> 
   <li><a href="/blog/archives">文章列表</a></li> 
-  <li><a href="/dai-ma/">代码</a></li>
-  <li><a href="/du-shu/">读书</a></li> 
-  <li><a href="/zhi-ye/">职业</a></li>
-  <li><a href="/sheng-huo">生活</a></li>
-  <li><a href="/qi-ta">其他</a></li>
+  <li><a href="/blog/categories/code/">代码</a></li>
+  <li><a href="/blog/categories/du-shu/">读书</a></li> 
+  <li><a href="/blog/categories/zhi-ye/">职业</a></li>
+  <li><a href="/blog/categories/sheng-huo/">生活</a></li>
+  <li><a href="/blog/categories/qi-ta/">其他</a></li>
 </ul>
 
 </nav>
@@ -86,6 +86,114 @@ $(document).bind('DOMNodeInserted', function(event) {
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/08/zhiye-test/">Zhiye Test</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-08T17:49:05-08:00" pubdate data-updated="true">Jan 8<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/08/qita-test/">Qita Test</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-08T17:48:58-08:00" pubdate data-updated="true">Jan 8<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/08/shenghuo-test/">Shenghuo Test</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-08T17:48:48-08:00" pubdate data-updated="true">Jan 8<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -304,145 +412,6 @@ $(document).bind('DOMNodeInserted', function(event) {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/27/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei/">测试Hibernate动态添加实体类</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-27T16:54:33-07:00" pubdate data-updated="true">Sep 27<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>大家知道通过hibernate cfg或和spring集成的配置里，可用packagesToScan或mapping*之类声明实体类；但有需求可能要在某个项目中编码式加载实体类（例如某个不常用的或特定用户的实体类，并未事先配置），然后进行增删改查操作。下面代码配合spring test framework做了测试（注：hibernate升级到了4.3.final，与4.2有不同，spring3或4测试通过）：</div>
-  
-  
-    <footer style="text-align:right;">
-      <a rel="full-article" href="/blog/2012/09/27/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei/">&larr;点击阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/08/08/jiu-zhong-pai-xu-suan-fa-de-javashi-xian/">9种排序算法的java实现</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-08-08T22:09:09-07:00" pubdate data-updated="true">Aug 8<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>使用枚举类型存入各算法和接口实现，main方法打印排序后的数组，也可以加入nanotime、currentTimeMillis测试效率，但可能数组太小不明显</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">comcolalife</span><span class="o">.</span><span class="na">demo</span><span class="o">.</span><span class="na">sort</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
-</span><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * 冒择入希快(快改进)归(归改进)堆：9种排序算法的java实现</span>
-</span><span class='line'><span class="cm"> * @author wangchaoqun</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SortTest</span> <span class="o">{</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer style="text-align:right;">
-      <a rel="full-article" href="/blog/2010/08/08/jiu-zhong-pai-xu-suan-fa-de-javashi-xian/">&larr;点击阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/03/20/zhuan-hao-de-ruan-jian-ren-yuan-yi-sheng-bi-kan-de-liu-shi-ben-shu/">[转]好的软件人员一生必看的六十本书</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-03-20T20:51:09-07:00" pubdate data-updated="true">Mar 20<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>好的软件人员一生必看的六十本书，好歹看过一些（<strong>加粗的</strong>）：
-<a href="http://nescaped.blog.edu.cn/2008/130819.html" target="_blank">来自紫炙寒雪</a></p>
-
-<p>一、 科学哲学和管理哲学 13</div>
-  
-  
-    <footer style="text-align:right;">
-      <a rel="full-article" href="/blog/2009/03/20/zhuan-hao-de-ruan-jian-ren-yuan-yi-sheng-bi-kan-de-liu-shi-ben-shu/">&larr;点击阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; 前一页</a>
@@ -465,6 +434,18 @@ $(document).bind('DOMNodeInserted', function(event) {
 <section>
   <h1>最新文章</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/zhiye-test/">Zhiye Test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/qita-test/">Qita Test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/08/shenghuo-test/">Shenghuo Test</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/24/zhuan-tomcat-sheng-chan-fu-wu-qi-xing-neng-you-hua/">[转]Tomcat 生产服务器性能优化</a>
@@ -494,18 +475,6 @@ $(document).bind('DOMNodeInserted', function(event) {
         <a href="/blog/2010/08/08/jiu-zhong-pai-xu-suan-fa-de-javashi-xian/">9种排序算法的java实现</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2009/03/20/zhuan-hao-de-ruan-jian-ren-yuan-yi-sheng-bi-kan-de-liu-shi-ben-shu/">[转]好的软件人员一生必看的六十本书</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2008/10/22/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi/">本地搭建SVN服务器及配置</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2008/04/29/zhuan-ruan-jian-she-ji-de-qi-da-yuan-ze/">[转]软件设计的七大原则</a>
-      </li>
-    
   </ul>
 </section>
 <section> 
@@ -517,7 +486,10 @@ $(document).bind('DOMNodeInserted', function(event) {
 <li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
 <li class='category'><a href='/blog/categories/tomcat/'>tomcat (1)</a></li>
 <li class='category'><a href='/blog/categories/web/'>web (2)</a></li>
+<li class='category'><a href='/blog/categories/qi-ta/'>其他 (1)</a></li>
+<li class='category'><a href='/blog/categories/sheng-huo/'>生活 (1)</a></li>
 <li class='category'><a href='/blog/categories/suan-fa/'>算法 (1)</a></li>
+<li class='category'><a href='/blog/categories/zhi-ye/'>职业 (1)</a></li>
 <li class='category'><a href='/blog/categories/she-ji-mo-shi/'>设计模式 (1)</a></li>
 <li class='category'><a href='/blog/categories/du-shu/'>读书 (1)</a></li>
  
