@@ -29,20 +29,10 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="/javascripts/libs/jquery.scrollUp.min.js"></script>
 <script language="javascript" type="text/javascript">
-if (location.href == "http://www.colalife.com/" 
-	|| location.href == "http://colalife.com/"
-	|| location.href == "http://www.wangchaoqun.cn/"
-	|| location.href == "http://wangchaoqun.cn/") {
-	window.location.replace("http://www.wangchaoqun.com/");
-}
-function addBlankTargetForLinks () {
-  $('a[href^="http"]').each(function(){
-      $(this).attr('target', '_blank');
-  });
-}
-$(document).bind('DOMNodeInserted', function(event) {
-  addBlankTargetForLinks();
+$(function () {
+    $.scrollUp();
 });
 </script>
 
@@ -71,7 +61,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   </fieldset>
 </form>
   
-<ul class="main-navigation" id="mytop">
+<ul class="main-navigation">
   <li><a href="/">首页</a></li> 
   <li><a href="/blog/archives">文章列表</a></li> 
   <li><a href="/blog/categories/code/">代码</a></li>
@@ -251,6 +241,7 @@ var duoshuoQuery = {short_name:"colalife"};
     </div>
   </div>
   <footer role="contentinfo"><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"6","bdPos":"right","bdTop":"110"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=86835285.js?cdnversion='+~(-new Date()/36e5)];</script>
+<a id="scrollUp" href="#main" title="返回顶部" style="position: fixed; z-index: 2147483647; display: block;">返回顶部</a>
 <p>
   Copyright &copy; 2014 - wang chaoqun -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>

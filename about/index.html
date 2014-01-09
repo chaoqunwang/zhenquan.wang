@@ -29,20 +29,10 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="/javascripts/libs/jquery.scrollUp.min.js"></script>
 <script language="javascript" type="text/javascript">
-if (location.href == "http://www.colalife.com/" 
-	|| location.href == "http://colalife.com/"
-	|| location.href == "http://www.wangchaoqun.cn/"
-	|| location.href == "http://wangchaoqun.cn/") {
-	window.location.replace("http://www.wangchaoqun.com/");
-}
-function addBlankTargetForLinks () {
-  $('a[href^="http"]').each(function(){
-      $(this).attr('target', '_blank');
-  });
-}
-$(document).bind('DOMNodeInserted', function(event) {
-  addBlankTargetForLinks();
+$(function () {
+    $.scrollUp();
 });
 </script>
 
@@ -71,7 +61,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   </fieldset>
 </form>
   
-<ul class="main-navigation" id="mytop">
+<ul class="main-navigation">
   <li><a href="/">首页</a></li> 
   <li><a href="/blog/archives">文章列表</a></li> 
   <li><a href="/blog/categories/code/">代码</a></li>
@@ -114,7 +104,7 @@ $(document).bind('DOMNodeInserted', function(event) {
 <p>……成长, 需要积累……是为记录</p>
 
 <p><a href="http://www.colalife.com">www.colalife.com</a><br/>
-Email: <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x63;&#x6f;&#108;&#x61;&#x6c;&#105;&#x66;&#x65;&#x40;&#x68;&#x6f;&#x74;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#x63;&#111;&#x6c;&#97;&#x6c;&#x69;&#x66;&#x65;&#64;&#104;&#111;&#x74;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a></p></blockquote>
+Email: <a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#x3a;&#x63;&#x6f;&#108;&#x61;&#108;&#x69;&#x66;&#101;&#x40;&#104;&#x6f;&#116;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#109;">&#x63;&#x6f;&#x6c;&#97;&#108;&#x69;&#102;&#101;&#64;&#x68;&#x6f;&#x74;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;</a></p></blockquote>
 
   
     <footer>
@@ -270,6 +260,7 @@ var duoshuoQuery = {short_name:"colalife"};
     </div>
   </div>
   <footer role="contentinfo"><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"6","bdPos":"right","bdTop":"110"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=86835285.js?cdnversion='+~(-new Date()/36e5)];</script>
+<a id="scrollUp" href="#main" title="返回顶部" style="position: fixed; z-index: 2147483647; display: block;">返回顶部</a>
 <p>
   Copyright &copy; 2014 - wang chaoqun -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
