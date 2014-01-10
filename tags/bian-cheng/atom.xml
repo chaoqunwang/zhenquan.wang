@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: 职业 | 超群的博客]]></title>
-  <link href="http://www.wangchaoqun.com/blog/categories/zhi-ye/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: 编程 | 超群的博客]]></title>
+  <link href="http://www.wangchaoqun.com/tags/bian-cheng/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
   <updated>2014-01-09T19:16:06-08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
@@ -98,15 +98,6 @@
 </code></pre>
 
 <p>当你能编写精彩的代码、并且能用精彩的言辞向世人解释那些代码时，到那时候，我会觉得你已经掌握了最牛的编码套路！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Zhiye Test]]></title>
-    <link href="http://www.wangchaoqun.com/blog/2004/01/08/zhiye-test/"/>
-    <updated>2004-01-08T17:49:05-08:00</updated>
-    <id>http://www.wangchaoqun.com/blog/2004/01/08/zhiye-test</id>
-    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
