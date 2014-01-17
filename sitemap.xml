@@ -91,6 +91,12 @@
         <lastmod>2014-01-17T13:59:33+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://www.wangchaoqun.com/blog/2013/11/17/mongodb-replsetji-qun-he-shardfen-pian/
+        </loc>
+        <lastmod>2014-01-17T17:56:24+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://www.wangchaoqun.com/blog/2013/12/03/zhuan-code-kata-bian-ma-tao-lu/</loc>
         <lastmod>2014-01-17T14:52:17+08:00</lastmod>
     </url>
@@ -104,11 +110,11 @@
     </url>
     <url>
         <loc>http://www.wangchaoqun.com/blog/archives/</loc>
-        <lastmod>2014-01-17T14:52:17+08:00</lastmod>
+        <lastmod>2014-01-17T17:56:24+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.wangchaoqun.com/</loc>
-        <lastmod>2014-01-17T14:52:17+08:00</lastmod>
+        <lastmod>2014-01-17T17:56:24+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.wangchaoqun.com/robots.txt</loc>
