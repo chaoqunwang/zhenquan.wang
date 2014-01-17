@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-16T16:28:02+08:00</updated>
+  <updated>2014-01-17T13:42:56+08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[[转]最牛B的编码套路]]></title>
-    <link href="http://www.wangchaoqun.com/blog/2013/12/03/zhuan-zui-niu-bde-bian-ma-tao-lu/"/>
+    <title type="html"><![CDATA[[转]Code Kata：编码套路]]></title>
+    <link href="http://www.wangchaoqun.com/blog/2013/12/03/zhuan-code-kata-bian-ma-tao-lu/"/>
     <updated>2013-12-03T10:39:05+08:00</updated>
-    <id>http://www.wangchaoqun.com/blog/2013/12/03/zhuan-zui-niu-bde-bian-ma-tao-lu</id>
+    <id>http://www.wangchaoqun.com/blog/2013/12/03/zhuan-code-kata-bian-ma-tao-lu</id>
     <content type="html"><![CDATA[<p><a href="http://blog.csdn.net/happydeer/article/details/17023229" target="_blank">来自happydeer</a><br/>
 [正文]
 最近，我大量阅读了Steve Yegge的文章。其中有一篇叫“Practicing Programming”（练习编程），写成于2005年，读后令我惊讶不已：</p>
@@ -3626,15 +3626,6 @@ Patterns） 76</p></li>
 <p>就不要想太多，留到两年之后吧，舍不得蓝的天空狂的风，舍不得小池边的柳树，舍不得洞门山上的蔓藤松子，还有拿馒头屑砸过的那些鱼儿……已成回忆­</p>
 
 <p>“随风奔跑自由是方向，追逐雷和闪电的力量，把浩瀚的海洋装进我胸膛，即使再小的帆也能远航；随风飞翔有梦做翅膀，敢爱敢做勇敢闯一闯，哪怕遇见再大的风，再大的浪，也会有默契的目光……”唱起我们心爱的歌，去拥抱我们的完美生活……­</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Zhiye Test]]></title>
-    <link href="http://www.wangchaoqun.com/blog/2004/01/09/zhiye-test/"/>
-    <updated>2004-01-09T09:49:05+08:00</updated>
-    <id>http://www.wangchaoqun.com/blog/2004/01/09/zhiye-test</id>
-    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   

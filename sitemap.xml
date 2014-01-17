@@ -1,15 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://www.wangchaoqun.com/blog/2004/01/09/qita-test/</loc>
-        <lastmod>2014-01-16T13:03:01+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://www.wangchaoqun.com/blog/2004/01/09/tags-test/</loc>
-        <lastmod>2014-01-16T13:03:01+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://www.wangchaoqun.com/blog/2004/01/09/zhiye-test/</loc>
         <lastmod>2014-01-16T13:03:01+08:00</lastmod>
     </url>
     <url>
@@ -99,8 +91,8 @@
         <lastmod>2014-01-16T13:03:01+08:00</lastmod>
     </url>
     <url>
-        <loc>http://www.wangchaoqun.com/blog/2013/12/03/zhuan-zui-niu-bde-bian-ma-tao-lu/</loc>
-        <lastmod>2014-01-16T13:03:01+08:00</lastmod>
+        <loc>http://www.wangchaoqun.com/blog/2013/12/03/zhuan-code-kata-bian-ma-tao-lu/</loc>
+        <lastmod>2014-01-17T13:40:47+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.wangchaoqun.com/404.html</loc>
@@ -112,11 +104,11 @@
     </url>
     <url>
         <loc>http://www.wangchaoqun.com/blog/archives/</loc>
-        <lastmod>2014-01-16T16:25:30+08:00</lastmod>
+        <lastmod>2014-01-17T13:40:47+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.wangchaoqun.com/</loc>
-        <lastmod>2014-01-16T16:25:30+08:00</lastmod>
+        <lastmod>2014-01-17T13:40:47+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.wangchaoqun.com/robots.txt</loc>
