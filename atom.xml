@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-17T14:11:16+08:00</updated>
+  <updated>2014-01-17T14:28:27+08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -1185,9 +1185,11 @@ done！</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<blockquote><h2>页面调用  </h2>
+<p></p>
 
-<p>在相应页面的toolbar里添加导出按钮，调用js function，例如：</p></blockquote>
+<h2>页面调用  </h2>
+
+<p>在相应页面的toolbar里添加导出按钮，调用js function，例如：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
