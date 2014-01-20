@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-20T15:49:02+08:00</updated>
+  <updated>2014-01-20T15:51:23+08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -2254,10 +2254,10 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[公司技术管理工作的几点思考]]></title>
-    <link href="http://www.wangchaoqun.com/blog/2011/04/14/gong-si-ji-zhu-guan-li-gong-zuo-de-ji-dian-si-kao/"/>
+    <title type="html"><![CDATA[关于公司技术管理工作的几点思考]]></title>
+    <link href="http://www.wangchaoqun.com/blog/2011/04/14/guan-yu-gong-si-ji-zhu-guan-li-gong-zuo-de-ji-dian-si-kao/"/>
     <updated>2011-04-14T15:06:42+08:00</updated>
-    <id>http://www.wangchaoqun.com/blog/2011/04/14/gong-si-ji-zhu-guan-li-gong-zuo-de-ji-dian-si-kao</id>
+    <id>http://www.wangchaoqun.com/blog/2011/04/14/guan-yu-gong-si-ji-zhu-guan-li-gong-zuo-de-ji-dian-si-kao</id>
     <content type="html"><![CDATA[<p>一. 关于文档规范</p>
 
 <p>文档规范化正在形成的过程中，具体标准根据项目大小、要求、进度等不同而不同。开发人员写文档的能力向来是个短板，多看多借鉴国标、成熟的开发过程以及其他公司的文档，明白知道各文档所应涵盖的内容，学会并提高文档书写水平，是文档规范化的前提。在此基础之上，再召开会议讨论制定文档规范化模板，制定公司特色的文档体系才是可行的。<!--more--></p>
