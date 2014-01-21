@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-21T15:22:31+08:00</updated>
+  <updated>2014-01-21T15:24:42+08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -3553,9 +3553,9 @@ oh,my God，真是美妙！</p>
   
   <entry>
     <title type="html"><![CDATA[SQL Server 2005的安装和JDBC连接方法]]></title>
-    <link href="http://www.wangchaoqun.com/blog/2008/08/11/sql-server-2005de-an-zhuang-he-jdbc-lian-jie-fang-fa/"/>
+    <link href="http://www.wangchaoqun.com/blog/2008/08/11/sql-server-2005-de-an-zhuang-he-jdbc-lian-jie-fang-fa/"/>
     <updated>2008-08-11T13:29:34+08:00</updated>
-    <id>http://www.wangchaoqun.com/blog/2008/08/11/sql-server-2005de-an-zhuang-he-jdbc-lian-jie-fang-fa</id>
+    <id>http://www.wangchaoqun.com/blog/2008/08/11/sql-server-2005-de-an-zhuang-he-jdbc-lian-jie-fang-fa</id>
     <content type="html"><![CDATA[<p>本文先介绍Windows XP SP2/SP3 下Microsoft SQL Server 2005 的安装及有关问题的解决方法，然后介绍Eclipse3.2 / 3.3 或 MyEclipse6.0 / 6.5 进行JDBC连接SQL Server 2005数据库的方法。</p>
 
 
