@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: java | 超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/tags/java/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-22T11:37:48+08:00</updated>
+  <updated>2014-01-22T15:10:23+08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -485,15 +485,6 @@ public static void print(int[] data) {
 <p>}</p>
 
 <p>```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[tags test]]></title>
-    <link href="http://www.wangchaoqun.com/blog/2004/01/09/tags-test/"/>
-    <updated>2004-01-09T09:48:58+08:00</updated>
-    <id>http://www.wangchaoqun.com/blog/2004/01/09/tags-test</id>
-    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   

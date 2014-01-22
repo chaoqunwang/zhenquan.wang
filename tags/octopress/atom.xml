@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: octopress | 超群的博客]]></title>
   <link href="http://www.wangchaoqun.com/tags/octopress/atom.xml" rel="self"/>
   <link href="http://www.wangchaoqun.com/"/>
-  <updated>2014-01-22T11:37:48+08:00</updated>
+  <updated>2014-01-22T15:10:23+08:00</updated>
   <id>http://www.wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -142,7 +142,7 @@ category_list_tag.rb中很多地方用到了ruby的正则表达式，而ruby的�
 
 <h2>安装git  </h2>
 
-<p><code>sh  
+<p><code>  
 yum -y install git
 git --version
 </code></p>
@@ -161,7 +161,7 @@ ssh -v git@github.com
 <h2>安装ruby  </h2>
 
 <p><code>  
-wget ftp://ftp.ruby-lang.org//pub/ruby/2.1/ruby-2.1.0.tar.gz  
+wget ftp://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.tar.gz  
 tar -zxvf ruby-2.1.0.tar.gz
 cd ruby-2.1.0
 ./configure --prefix=/usr/local/ruby
@@ -245,7 +245,7 @@ git remote add origin git@github.com:username/username.github.com.git
 ```</p>
 
 <p>在source/_layouts/post.html尾部添加如下代码：<br/>
-```sh<br/>
+```<br/>
 <br/>
 ```</p>
 
@@ -330,8 +330,8 @@ end</p>
 
 <pre><code><li class='category'><a href='/blog/categories/hibernate/'>hibernate (1)</a></li>
 <li class='category'><a href='/blog/categories/java/'>java (6)</a></li>
+<li class='category'><a href='/blog/categories/linux/'>linux (1)</a></li>
 <li class='category'><a href='/blog/categories/mongodb/'>mongodb (1)</a></li>
-<li class='category'><a href='/blog/categories/octopress/'>octopress (2)</a></li>
 <li class='category'><a href='/blog/categories/tomcat/'>tomcat (1)</a></li>
 <li class='category'><a href='/blog/categories/web/'>web (2)</a></li>
 <li class='category'><a href='/blog/categories/dai-ma/'>代码 (3)</a></li>
@@ -360,15 +360,6 @@ filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.
   <code>category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase.to_url</code>，
 然后rake generate  rake preview<br/>
 done！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[tags test]]></title>
-    <link href="http://www.wangchaoqun.com/blog/2004/01/09/tags-test/"/>
-    <updated>2004-01-09T09:48:58+08:00</updated>
-    <id>http://www.wangchaoqun.com/blog/2004/01/09/tags-test</id>
-    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   

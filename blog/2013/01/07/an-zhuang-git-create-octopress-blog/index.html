@@ -9,8 +9,8 @@
   <meta name="author" content="wang chaoqun">
 
   
-  <meta name="description" content="github git octopress">
-  <meta name="keywords" content="github git octopress">
+  <meta name="description" content="github git octopress ruby blog 博客 中文分类">
+  <meta name="keywords" content="github git octopress ruby blog 博客 中文分类">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -123,11 +123,10 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 <h2>安装git  </h2>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>yum -y install git
-</span><span class='line'>git --version
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>yum -y install git
+</span><span class='line'>git --version</span></code></pre></td></tr></table></div></figure>
 
 
 <p></p>
@@ -137,11 +136,10 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 <p>在本机使用git创建SSH Key</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ssh-keygen -C <span class="s2">&quot;username&quot;</span> -t rsa
-</span><span class='line'>ssh -v git@github.com
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh-keygen -C "username" -t rsa  
+</span><span class='line'>ssh -v git@github.com  </span></code></pre></td></tr></table></div></figure>
 
 
 <p>
@@ -150,43 +148,40 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 <h2>安装ruby  </h2>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>wget ftp://ftp.ruby-lang.org//pub/ruby/2.1/ruby-2.1.0.tar.gz
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget ftp://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.tar.gz  
 </span><span class='line'>tar -zxvf ruby-2.1.0.tar.gz
-</span><span class='line'><span class="nb">cd </span>ruby-2.1.0
-</span><span class='line'>./configure --prefix<span class="o">=</span>/usr/local/ruby
+</span><span class='line'>cd ruby-2.1.0
+</span><span class='line'>./configure --prefix=/usr/local/ruby
 </span><span class='line'>make
-</span><span class='line'>make <span class="nb">test</span>
-</span><span class='line'>make install
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>make test
+</span><span class='line'>make install</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>安装OctoPress  </h2>
 
 <p>通过Git从Github上克隆一份Octopress</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git clone git://github.com/imathis/octopress.git octopress
-</span><span class='line'><span class="nb">cd </span>octopress
-</span><span class='line'>gem install bundler
-</span><span class='line'>bundle install
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/imathis/octopress.git octopress
+</span><span class='line'>cd octopress  
+</span><span class='line'>gem install bundler  
+</span><span class='line'>bundle install  </span></code></pre></td></tr></table></div></figure>
 
 
 <p>安装Octopress默认的Theme</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake install
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake install  </span></code></pre></td></tr></table></div></figure>
 
 
 <p>
@@ -198,25 +193,22 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 
 <h2>创建一个博客</h2>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake new_post<span class="o">[</span><span class="s2">&quot;Hello World&quot;</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake new_post["Hello World"]</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>创建一个博客页面</h2>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake new_page<span class="o">[</span><span class="s2">&quot;blog&quot;</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake new_page["blog"]</span></code></pre></td></tr></table></div></figure>
 
 
 <p>预览效果：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake generate
-</span><span class='line'>rake preview
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate  
+</span><span class='line'>rake preview  </span></code></pre></td></tr></table></div></figure>
 
 
 <p></p>
@@ -225,77 +217,66 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 
 <h2>发布Octopress到Github</h2>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd </span>octopress
-</span><span class='line'>rake setup_github_pages
-</span><span class='line'>Repository url: git@github.com:username/username.github.com.git
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress  
+</span><span class='line'>rake setup_github_pages  
+</span><span class='line'>Repository url: git@github.com:username/username.github.com.git  </span></code></pre></td></tr></table></div></figure>
 
 
 <p>将博客发布到Github上，输入下面命令：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake deploy
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy  </span></code></pre></td></tr></table></div></figure>
 
 
 <p>这样，生成的内容将会自动发布到master分支，并且可以使用 <a href="http://username.github.com">http://username.github.com</a> 访问内容。</p>
 
 <p>将source提交：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git add .
-</span><span class='line'>git commit -m <span class="s2">&quot;blog init&quot;</span>
-</span><span class='line'>git push origin <span class="nb">source</span>
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git add .  
+</span><span class='line'>git commit -m "blog init"  
+</span><span class='line'>git push origin source  </span></code></pre></td></tr></table></div></figure>
 
 
 <p>删除之前的添加信息 (配置文件在 ~/octopress/.git/config)</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git remote rm origin
-</span><span class='line'>git remote add origin git@github.com:username/username.github.com.git
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git remote rm origin  
+</span><span class='line'>git remote add origin git@github.com:username/username.github.com.git  </span></code></pre></td></tr></table></div></figure>
 
 
 <h2>添加多说评论  </h2>
 
 <p>在_config.yml尾部添加如下行：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># Duoshuo Comments  </span>
-</span><span class='line'>duoshuo_show_comment_count: <span class="nb">true</span>
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Duoshuo Comments  
+</span><span class='line'>duoshuo_show_comment_count: true  </span></code></pre></td></tr></table></div></figure>
 
 
 <p>在source/_layouts/post.html尾部添加如下代码：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">{</span>% <span class="k">if </span>site.duoshuo_show_comment_count<span class="o">==</span><span class="nb">true </span>and page.comments<span class="o">==</span><span class="nb">true</span> %<span class="o">}</span>
-</span><span class='line'>&lt;section <span class="nv">id</span><span class="o">=</span><span class="s2">&quot;comment&quot;</span>&gt;
-</span><span class='line'>&lt;h1&gt;发表评论&lt;/h1&gt;
-</span><span class='line'><span class="o">{</span>% include post/duoshuo.html %<span class="o">}</span>
-</span><span class='line'>&lt;/section&gt;
-</span><span class='line'><span class="o">{</span>% endif %<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>  </span></code></pre></td></tr></table></div></figure>
 
 
 <p></p>
 
 <p>创建source/_includes/post/duoshuo.html文件，将从多说获得的代码放入其中。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -309,21 +290,20 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;!-- Duoshuo Comment BEGIN --&gt;
-</span><span class='line'>    &lt;div <span class="nv">class</span><span class="o">=</span><span class="s2">&quot;ds-thread&quot;</span>&gt;&lt;/div&gt;
-</span><span class='line'>&lt;script <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span>&gt;
-</span><span class='line'>var <span class="nv">duoshuoQuery</span> <span class="o">=</span> <span class="o">{</span>short_name:<span class="s2">&quot;username&quot;</span><span class="o">}</span>;
-</span><span class='line'>  <span class="o">(</span><span class="k">function</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      var <span class="nv">ds</span> <span class="o">=</span> document.createElement<span class="o">(</span><span class="s1">&#39;script&#39;</span><span class="o">)</span>;
-</span><span class='line'>      ds.type <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span>;ds.async <span class="o">=</span> <span class="nb">true</span>;
-</span><span class='line'>      ds.src <span class="o">=</span> <span class="s1">&#39;http://static.duoshuo.com/embed.js&#39;</span>;
-</span><span class='line'>      ds.charset <span class="o">=</span> <span class="s1">&#39;UTF-8&#39;</span>;
-</span><span class='line'>      <span class="o">(</span>document.getElementsByTagName<span class="o">(</span><span class="s1">&#39;head&#39;</span><span class="o">)[</span>0<span class="o">]</span>
-</span><span class='line'>      <span class="o">||</span> document.getElementsByTagName<span class="o">(</span><span class="s1">&#39;body&#39;</span><span class="o">)[</span>0<span class="o">])</span>.appendChild<span class="o">(</span>ds<span class="o">)</span>;
-</span><span class='line'>  <span class="o">})()</span>;
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;!-- Duoshuo Comment BEGIN --&gt;
+</span><span class='line'>    &lt;div class="ds-thread"&gt;&lt;/div&gt;
+</span><span class='line'>&lt;script type="text/javascript"&gt;
+</span><span class='line'>var duoshuoQuery = {short_name:"username"};
+</span><span class='line'>  (function() {
+</span><span class='line'>      var ds = document.createElement('script');
+</span><span class='line'>      ds.type = 'text/javascript';ds.async = true;
+</span><span class='line'>      ds.src = 'http://static.duoshuo.com/embed.js';
+</span><span class='line'>      ds.charset = 'UTF-8';
+</span><span class='line'>      (document.getElementsByTagName('head')[0] 
+</span><span class='line'>      || document.getElementsByTagName('body')[0]).appendChild(ds);
+</span><span class='line'>  })();
 </span><span class='line'>  &lt;/script&gt;
-</span><span class='line'>&lt;!-- Duoshuo Comment END --&gt;
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>&lt;!-- Duoshuo Comment END --&gt;</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>将AddThis更换为JiaThis</h2>
@@ -332,31 +312,29 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 
 <h2>Octopress写作</h2>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd </span>octopress
-</span><span class='line'>rake new_post<span class="o">[</span><span class="s2">&quot;new blog&quot;</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress  
+</span><span class='line'>rake new_post["new blog"]  </span></code></pre></td></tr></table></div></figure>
 
 
 <p></p>
 
 <h2>another pc</h2>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git clone -b <span class="nb">source </span>git@github.com:username/username.github.com.git octopress
-</span><span class='line'><span class="nb">cd </span>octopress
-</span><span class='line'>git clone git@github.com:username/username.github.com.git _deploy
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone -b source git@github.com:username/username.github.com.git octopress  
+</span><span class='line'>cd octopress  
+</span><span class='line'>git clone git@github.com:username/username.github.com.git _deploy  </span></code></pre></td></tr></table></div></figure>
 
 
 <h2>增加category_list插件</h2>
 
 <p>保存以下代码到plugins/category_list_tag.rb：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -373,42 +351,53 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>module Jekyll
+</pre></td><td class='code'><pre><code class=''><span class='line'>module Jekyll
 </span><span class='line'>  class CategoryListTag &lt; Liquid::Tag
-</span><span class='line'>    def render<span class="o">(</span>context<span class="o">)</span>
-</span><span class='line'>      <span class="nv">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-</span><span class='line'>      <span class="nv">categories</span> <span class="o">=</span> context.registers<span class="o">[</span>:site<span class="o">]</span>.categories.keys
-</span><span class='line'>      categories.sort.each <span class="k">do</span> |category|
-</span><span class='line'>        <span class="nv">posts_in_category</span> <span class="o">=</span> context.registers<span class="o">[</span>:site<span class="o">]</span>.categories<span class="o">[</span>category<span class="o">]</span>.size
-</span><span class='line'>        <span class="nv">category_dir</span> <span class="o">=</span> context.registers<span class="o">[</span>:site<span class="o">]</span>.config<span class="o">[</span><span class="s1">&#39;category_dir&#39;</span><span class="o">]</span>
-</span><span class='line'>        <span class="nv">category_url</span> <span class="o">=</span> File.join<span class="o">(</span>category_dir, category.gsub<span class="o">(</span>/_|<span class="se">\P</span><span class="o">{</span>Word<span class="o">}</span>/, <span class="s1">&#39;-&#39;</span><span class="o">)</span>.gsub<span class="o">(</span>/-<span class="o">{</span>2,<span class="o">}</span>/, <span class="s1">&#39;-&#39;</span><span class="o">)</span>.downcase<span class="o">)</span>
-</span><span class='line'>        html &lt;&lt; <span class="s2">&quot;&lt;li class=&#39;category&#39;&gt;&lt;a href=&#39;/#{category_url}/&#39;&gt;#{category} (#{posts_in_category})&lt;/a&gt;&lt;/li&gt;\n&quot;</span>
+</span><span class='line'>    def render(context)
+</span><span class='line'>      html = ""
+</span><span class='line'>      categories = context.registers[:site].categories.keys
+</span><span class='line'>      categories.sort.each do |category|
+</span><span class='line'>        posts_in_category = context.registers[:site].categories[category].size
+</span><span class='line'>        category_dir = context.registers[:site].config['category_dir']
+</span><span class='line'>        category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase)
+</span><span class='line'>        html &lt;&lt; "&lt;li class='category'&gt;&lt;a href='/#{category_url}/'&gt;#{category} (#{posts_in_category})&lt;/a&gt;&lt;/li&gt;\n"
 </span><span class='line'>      end
 </span><span class='line'>      html
 </span><span class='line'>    end
 </span><span class='line'>  end
 </span><span class='line'>end
 </span><span class='line'>
-</span><span class='line'>Liquid::Template.register_tag<span class="o">(</span><span class="s1">&#39;category_list&#39;</span>, Jekyll::CategoryListTag<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>Liquid::Template.register_tag('category_list', Jekyll::CategoryListTag)</span></code></pre></td></tr></table></div></figure>
 
 
 <p>将category加入到侧边导航栏，需要增加一个aside
 复制以下代码到source/_includes/asides/category_list.html。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;section&gt;
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
 </span><span class='line'>  &lt;h1&gt;文章分类&lt;/h1&gt;
-</span><span class='line'>  &lt;ul <span class="nv">id</span><span class="o">=</span><span class="s2">&quot;categories&quot;</span>&gt;
-</span><span class='line'>    <span class="o">{</span>% category_list %<span class="o">}</span>
+</span><span class='line'>  &lt;ul id="categories"&gt;
+</span><span class='line'>    <li class='category'><a href='/blog/categories/hibernate/'>hibernate (1)</a></li>
+<li class='category'><a href='/blog/categories/java/'>java (6)</a></li>
+<li class='category'><a href='/blog/categories/linux/'>linux (1)</a></li>
+<li class='category'><a href='/blog/categories/mongodb/'>mongodb (1)</a></li>
+<li class='category'><a href='/blog/categories/tomcat/'>tomcat (1)</a></li>
+<li class='category'><a href='/blog/categories/web/'>web (2)</a></li>
+<li class='category'><a href='/blog/categories/dai-ma/'>代码 (3)</a></li>
+<li class='category'><a href='/blog/categories/qi-ta/'>其他 (1)</a></li>
+<li class='category'><a href='/blog/categories/sheng-huo/'>生活 (7)</a></li>
+<li class='category'><a href='/blog/categories/suan-fa/'>算法 (1)</a></li>
+<li class='category'><a href='/blog/categories/zhi-ye/'>职业 (2)</a></li>
+<li class='category'><a href='/blog/categories/she-ji-mo-shi/'>设计模式 (1)</a></li>
+<li class='category'><a href='/blog/categories/du-shu/'>读书 (3)</a></li>
+
 </span><span class='line'>  &lt;/ul&gt;
-</span><span class='line'>&lt;/section&gt;
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>&lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
 
 
 <p>配置侧边栏需要修改_config.yml文件，修改其default_asides项：
@@ -451,7 +440,7 @@ done！</p>
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+    <a class='category' href='/blog/categories/qi-ta/'>其他</a>
   
 </span>
 
@@ -474,7 +463,7 @@ done！</p>
 
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/01/01/exceldao-chu-gong-ju-lei/" title="Previous Post: excel导出工具类">&laquo; excel导出工具类</a>
+        <a class="basic-alignment left" href="/blog/2013/01/01/excel-dao-chu-gong-ju-lei/" title="Previous Post: excel导出工具类">&laquo; excel导出工具类</a>
       
       
         <a class="basic-alignment right" href="/blog/2013/01/16/cygwin-and-wine-and-ruby-ji-lu/" title="Next Post: Cygwin & Wine & Ruby 记录">Cygwin & Wine & Ruby 记录 &raquo;</a>
@@ -528,17 +517,18 @@ var duoshuoQuery = {short_name:"colalife"};
 <section>  
   <h1>标签</h1>  
   <ul class="tag-cloud">  
-    <a style="font-size: 90%" href="/tags/books/">books</a>
-<a style="font-size: 90%" href="/tags/browser/">browser</a>
-<a style="font-size: 133%" href="/tags/github/">github</a>
+    <a style="font-size: 90%" href="/tags/browser/">browser</a>
+<a style="font-size: 90%" href="/tags/excel/">excel</a>
 <a style="font-size: 90%" href="/tags/hibernate/">hibernate</a>
 <a style="font-size: 90%" href="/tags/htmlparser/">htmlparser</a>
-<a style="font-size: 133%" href="/tags/java/">java</a>
-<a style="font-size: 158%" href="/tags/octopress/">octopress</a>
+<a style="font-size: 90%" href="/tags/httpclient/">httpclient</a>
+<a style="font-size: 90%" href="/tags/java/">java</a>
+<a style="font-size: 90%" href="/tags/jsoup/">jsoup</a>
+<a style="font-size: 133%" href="/tags/octopress/">octopress</a>
+<a style="font-size: 133%" href="/tags/ruby/">ruby</a>
 <a style="font-size: 90%" href="/tags/sessionfactory/">sessionfactory</a>
 <a style="font-size: 90%" href="/tags/spring-test/">spring-test</a>
 <a style="font-size: 90%" href="/tags/svn/">svn</a>
-<a style="font-size: 90%" href="/tags/web/">web</a>
 <a style="font-size: 90%" href="/tags/shu-ju-ku/">数据库</a>
 <a style="font-size: 90%" href="/tags/shi-jian-guan-li/">时间管理</a>
 <a style="font-size: 90%" href="/tags/zui-hou-qi-xian/">最后期限</a>
@@ -546,7 +536,6 @@ var duoshuoQuery = {short_name:"colalife"};
 <a style="font-size: 90%" href="/tags/guan-li-gong-zuo/">管理工作</a>
 <a style="font-size: 90%" href="/tags/she-ji-mo-shi/">设计模式</a>
 <a style="font-size: 210%" href="/tags/sui-bi/">随笔</a>
-<a style="font-size: 90%" href="/tags/mian-shi-ti/">面试题</a>
 <a style="font-size: 90%" href="/tags/xiang-mu-guan-li/">项目管理</a>
 
   </ul>  
@@ -576,7 +565,7 @@ var duoshuoQuery = {short_name:"colalife"};
       </li>
     
       <li class="post">
-        <a href="/blog/2013/01/01/exceldao-chu-gong-ju-lei/">Excel导出工具类</a>
+        <a href="/blog/2013/01/01/excel-dao-chu-gong-ju-lei/">Excel导出工具类</a>
       </li>
     
       <li class="post">
@@ -602,8 +591,8 @@ var duoshuoQuery = {short_name:"colalife"};
   <ul id="categories"> 
     <li class='category'><a href='/blog/categories/hibernate/'>hibernate (1)</a></li>
 <li class='category'><a href='/blog/categories/java/'>java (6)</a></li>
+<li class='category'><a href='/blog/categories/linux/'>linux (1)</a></li>
 <li class='category'><a href='/blog/categories/mongodb/'>mongodb (1)</a></li>
-<li class='category'><a href='/blog/categories/octopress/'>octopress (2)</a></li>
 <li class='category'><a href='/blog/categories/tomcat/'>tomcat (1)</a></li>
 <li class='category'><a href='/blog/categories/web/'>web (2)</a></li>
 <li class='category'><a href='/blog/categories/dai-ma/'>代码 (3)</a></li>

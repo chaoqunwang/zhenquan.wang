@@ -1,10 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://www.wangchaoqun.com/blog/2004/01/09/tags-test/</loc>
-        <lastmod>2014-01-22T11:37:17+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://www.wangchaoqun.com/blog/2006/08/08/bin-fen-1/</loc>
         <lastmod>2014-01-22T11:37:17+08:00</lastmod>
     </url>
@@ -32,7 +28,7 @@
         <loc>
             http://www.wangchaoqun.com/blog/2008/04/30/zhuan-ruan-jian-she-ji-de-qi-da-yuan-ze/
         </loc>
-        <lastmod>2014-01-22T11:37:17+08:00</lastmod>
+        <lastmod>2014-01-22T15:04:47+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.wangchaoqun.com/blog/2008/07/02/bin-fen-3/</loc>
@@ -101,16 +97,16 @@
         <lastmod>2014-01-22T11:37:17+08:00</lastmod>
     </url>
     <url>
-        <loc>http://www.wangchaoqun.com/blog/2013/01/01/exceldao-chu-gong-ju-lei/</loc>
+        <loc>http://www.wangchaoqun.com/blog/2013/01/01/excel-dao-chu-gong-ju-lei/</loc>
         <lastmod>2014-01-22T11:37:17+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.wangchaoqun.com/blog/2013/01/07/an-zhuang-git-create-octopress-blog/</loc>
-        <lastmod>2014-01-22T11:37:17+08:00</lastmod>
+        <lastmod>2014-01-22T15:06:04+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.wangchaoqun.com/blog/2013/01/16/cygwin-and-wine-and-ruby-ji-lu/</loc>
-        <lastmod>2014-01-22T11:37:17+08:00</lastmod>
+        <lastmod>2014-01-22T14:55:41+08:00</lastmod>
     </url>
     <url>
         <loc>
@@ -138,11 +134,11 @@
     </url>
     <url>
         <loc>http://www.wangchaoqun.com/blog/archives/</loc>
-        <lastmod>2014-01-22T11:37:17+08:00</lastmod>
+        <lastmod>2014-01-22T15:06:04+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.wangchaoqun.com/</loc>
-        <lastmod>2014-01-22T11:37:17+08:00</lastmod>
+        <lastmod>2014-01-22T15:06:04+08:00</lastmod>
     </url>
     <url>
         <loc>http://www.wangchaoqun.com/robots.txt</loc>
