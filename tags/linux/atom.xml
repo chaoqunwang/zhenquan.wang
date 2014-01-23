@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: linux | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/tags/linux/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-01-23T18:09:14+08:00</updated>
+  <updated>2014-01-23T18:12:16+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -194,6 +194,14 @@ close
 bye
 !
 echo &ldquo;============== mysql upload ends at $NEW_TIMESTAMP ==============&rdquo;
+<code>
+4. 添加计划任务
+</code>
+crontab -e</p>
+
+<h1>every day at 00m</h1>
+
+<p>00 * * * * /bin/bash /usr/local/mongo/cmd/mongo_backup.sh
 ```</p>
 ]]></content>
   </entry>

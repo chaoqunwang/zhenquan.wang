@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-01-23T18:09:14+08:00</updated>
+  <updated>2014-01-23T18:12:16+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -659,6 +659,19 @@
 </span><span class='line'>bye
 </span><span class='line'>!
 </span><span class='line'>echo "============== mysql upload ends at $NEW_TIMESTAMP =============="</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>添加计划任务</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>crontab -e
+</span><span class='line'>#every day at 00m
+</span><span class='line'>00 * * * * /bin/bash /usr/local/mongo/cmd/mongo_backup.sh</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
