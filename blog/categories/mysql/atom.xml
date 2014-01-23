@@ -4,7 +4,7 @@
   <title><![CDATA[分类：mysql | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-01-23T18:12:16+08:00</updated>
+  <updated>2014-01-23T18:13:36+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -194,9 +194,11 @@ close
 bye
 !
 echo &ldquo;============== mysql upload ends at $NEW_TIMESTAMP ==============&rdquo;
-<code>
-4. 添加计划任务
-</code>
+```</p>
+
+<h2>4. 添加计划任务</h2>
+
+<p>```
 crontab -e</p>
 
 <h1>every day at 00m</h1>

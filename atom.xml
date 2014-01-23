@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-01-23T18:12:16+08:00</updated>
+  <updated>2014-01-23T18:13:36+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -661,10 +661,7 @@
 </span><span class='line'>echo "============== mysql upload ends at $NEW_TIMESTAMP =============="</span></code></pre></td></tr></table></div></figure>
 
 
-<ol>
-<li>添加计划任务</li>
-</ol>
-
+<h2>4. 添加计划任务</h2>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
