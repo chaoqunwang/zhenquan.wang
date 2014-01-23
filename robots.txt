@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://colalife.com/sitemap.xml 
+Sitemap: http://wangchaoqun.com/sitemap.xml 
