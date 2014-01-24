@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-01-24T11:51:44+08:00</updated>
+  <updated>2014-01-24T11:55:52+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -1048,10 +1048,9 @@ Liquid error: incompatible encoding regexp match (ascii-8bit regexp with utf-8 s
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake install  </span></code></pre></td></tr></table></div></figure>
 
 
-<p>
-//if error: rake aborted!<br/>
+<blockquote><p>//if error: rake aborted!<br/>
 //You have already activated rake 10.1.0, but your Gemfile requires rake 0.9.2.2.
-delete your Gemfile.lock and edit the version of rake specified in your Gemfile to 10.1. Job done</p>
+delete your Gemfile.lock and edit the version of rake specified in your Gemfile to 10.1. Job done</p></blockquote>
 
 <h2>通过_config.yml来配置博客  </h2>
 
@@ -1182,9 +1181,7 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 </span><span class='line'>rake new_post["new blog"]  </span></code></pre></td></tr></table></div></figure>
 
 
-<p></p>
-
-<h2>another pc</h2>
+<blockquote><h2>another pc</h2></blockquote>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
