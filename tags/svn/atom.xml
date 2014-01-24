@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: svn | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/tags/svn/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-01-23T18:13:36+08:00</updated>
+  <updated>2014-01-24T11:50:34+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[本地搭建SVN服务器及配置]]></title>
-    <link href="http://wangchaoqun.com/blog/2008/10/23/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi/"/>
+    <link href="http://wangchaoqun.com/blog/2008/10/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi.html/"/>
     <updated>2008-10-23T12:50:35+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2008/10/23/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi</id>
+    <id>http://wangchaoqun.com/blog/2008/10/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi</id>
     <content type="html"><![CDATA[<h4>1. 创建SVN数据库</h4>
 
 <p><code>

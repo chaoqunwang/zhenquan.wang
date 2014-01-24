@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: java | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/tags/java/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-01-23T18:13:36+08:00</updated>
+  <updated>2014-01-24T11:50:34+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[9种排序算法的java实现]]></title>
-    <link href="http://wangchaoqun.com/blog/2010/08/09/jiu-zhong-pai-xu-suan-fa-de-javashi-xian/"/>
+    <link href="http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-javashi-xian.html/"/>
     <updated>2010-08-09T13:09:09+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2010/08/09/jiu-zhong-pai-xu-suan-fa-de-javashi-xian</id>
+    <id>http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-javashi-xian</id>
     <content type="html"><![CDATA[<p>使用枚举类型存入各算法和接口实现，main方法打印排序后的数组，也可以加入nanotime、currentTimeMillis测试效率，但可能数组太小不明显</p>
 
 <p><code>java

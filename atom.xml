@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-01-23T18:13:36+08:00</updated>
+  <updated>2014-01-24T11:50:34+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[转]Code Kata：编码套路]]></title>
-    <link href="http://wangchaoqun.com/blog/2013/12/03/zhuan-code-kata-bian-ma-tao-lu/"/>
+    <link href="http://wangchaoqun.com/blog/2013/12/zhuan-code-kata-bian-ma-tao-lu.html/"/>
     <updated>2013-12-03T10:39:05+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2013/12/03/zhuan-code-kata-bian-ma-tao-lu</id>
+    <id>http://wangchaoqun.com/blog/2013/12/zhuan-code-kata-bian-ma-tao-lu</id>
     <content type="html"><![CDATA[<p><a href="http://blog.csdn.net/happydeer/article/details/17023229" target="_blank">来自happydeer</a><br/>
 [正文]
 最近，我大量阅读了Steve Yegge的文章。其中有一篇叫“Practicing Programming”（练习编程），写成于2005年，读后令我惊讶不已：</p>
@@ -94,14 +94,22 @@
 <p>   2.积极参与著名的开源项目。所有的高谈阔论听起来都很好，但是，你是一个大话王还是一名实干家呢？别光说不练，这个非常重要，因为人们会用你的行动来衡量你，而不是你的言论。努力在公众面前留下些实实在在有用的东西吧，到时候你就可以说，“我在那个项目中出过力。”</p>
 
 <p>当你能编写精彩的代码、并且能用精彩的言辞向世人解释那些代码时，到那时候，我会觉得你已经掌握了最牛的编码套路！</p>
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2013/12/zhuan-code-kata-bian-ma-tao-lu.html/'>http://wangchaoqun.com/blog/2013/12/zhuan-code-kata-bian-ma-tao-lu.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[MongoDB replSet集群和shard分片]]></title>
-    <link href="http://wangchaoqun.com/blog/2013/11/17/mongodb-replsetji-qun-he-shardfen-pian/"/>
+    <link href="http://wangchaoqun.com/blog/2013/11/mongodb-replsetji-qun-he-shardfen-pian.html/"/>
     <updated>2013-11-17T16:11:35+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2013/11/17/mongodb-replsetji-qun-he-shardfen-pian</id>
+    <id>http://wangchaoqun.com/blog/2013/11/mongodb-replsetji-qun-he-shardfen-pian</id>
     <content type="html"><![CDATA[<p>mongodb的集群有两种：1.主从(master, slave)  2.副本集(Replica Set)<br/>
 区别是副本集没有固定的&#8221;主节点&#8221;, 有一个活跃节点(primary)和  一个或多个备份节点(secondary), 而且可以在活跃节点有问题时自动切换（仲裁\选举方式）<br/>
 本文内容的结果是：建立2个分片，每个分片3个备份节点（端口1000x,2000x），2个选举节点（端口10000,20000），1个路由(端口7701，想选7000被占了)，3个config节点(端口660x，想选6000也被占了)，总共12个<!--more--></p>
@@ -360,14 +368,22 @@
 <p><a href="http://blog.sina.com.cn/s/blog_498e79cc0101115v.html">http://blog.sina.com.cn/s/blog_498e79cc0101115v.html</a>
 <a href="http://www.cnblogs.com/huangxincheng/archive/2012/03/04/2379755.html">http://www.cnblogs.com/huangxincheng/archive/2012/03/04/2379755.html</a>
 <a href="http://www.cnblogs.com/refactor/archive/2012/08/13/2600140.html">http://www.cnblogs.com/refactor/archive/2012/08/13/2600140.html</a></p>
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2013/11/mongodb-replsetji-qun-he-shardfen-pian.html/'>http://wangchaoqun.com/blog/2013/11/mongodb-replsetji-qun-he-shardfen-pian.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Mongodb, Mysql导出备份至ftp]]></title>
-    <link href="http://wangchaoqun.com/blog/2013/11/03/mongodb-he-mysql-dao-chu-bei-fen-bing-shang-chuan-zhi-ftp/"/>
+    <link href="http://wangchaoqun.com/blog/2013/11/mongodb-he-mysql-dao-chu-bei-fen-bing-shang-chuan-zhi-ftp.html/"/>
     <updated>2013-11-03T17:10:32+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2013/11/03/mongodb-he-mysql-dao-chu-bei-fen-bing-shang-chuan-zhi-ftp</id>
+    <id>http://wangchaoqun.com/blog/2013/11/mongodb-he-mysql-dao-chu-bei-fen-bing-shang-chuan-zhi-ftp</id>
     <content type="html"><![CDATA[<p>前提是mongodb和mysql已经安装使用，先安装vsftp，配置完成后，在编写shell脚本，使用计划任务执行<br/>
 1. 安装vsftp</p>
 
@@ -670,14 +686,22 @@
 </span><span class='line'>#every day at 00m
 </span><span class='line'>00 * * * * /bin/bash /usr/local/mongo/cmd/mongo_backup.sh</span></code></pre></td></tr></table></div></figure>
 
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2013/11/mongodb-he-mysql-dao-chu-bei-fen-bing-shang-chuan-zhi-ftp.html/'>http://wangchaoqun.com/blog/2013/11/mongodb-he-mysql-dao-chu-bei-fen-bing-shang-chuan-zhi-ftp.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[[转]Tomcat 生产服务器性能优化]]></title>
-    <link href="http://wangchaoqun.com/blog/2013/07/25/zhuan-tomcat-sheng-chan-fu-wu-qi-xing-neng-you-hua/"/>
+    <link href="http://wangchaoqun.com/blog/2013/07/zhuan-tomcat-sheng-chan-fu-wu-qi-xing-neng-you-hua.html/"/>
     <updated>2013-07-25T10:08:06+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2013/07/25/zhuan-tomcat-sheng-chan-fu-wu-qi-xing-neng-you-hua</id>
+    <id>http://wangchaoqun.com/blog/2013/07/zhuan-tomcat-sheng-chan-fu-wu-qi-xing-neng-you-hua</id>
     <content type="html"><![CDATA[<p>tomcat优化+eclipse优化之类的文章网上有很多，这个收藏当作就手的工具。<br/>
 <a href="http://www.oschina.net/translate/tomcat-performance-tuning" target="_blank">来自oschina</a>  : 参与翻译(4人)：Garfielt, Lesus, MtrS, 大志darcy<br/>
 [正文]考虑一下这种场景，你开发了一个应用，它有十分优秀的布局设计，最新的特性以及其它的优秀特点。但是在性能这方面欠缺，不管这个应用如何都会遭到客户拒绝。客户总是期望它们的应用应该有更好的性能。如果你在产品中使用了Tomcat服务器，那么这篇文章就会给你几方面来提升Tomcat服务器的性能。<!--more--><br/>
@@ -778,14 +802,22 @@
 一般情况下HTTPS请求会比HTTP请求慢。如果你想要更好的安全性，即使慢一点我们还是要选择HTTPS。</p>
 
 <p>就这么多啦。在这篇文章里，我教给了大家一些提高Tomcat服务器性能的方法。如果你觉得这篇文章有用，或者你对提高Tomcat服务器性能有别的看法，请不要忘记留下宝贵的评论。祝你今天编程愉快！</p>
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2013/07/zhuan-tomcat-sheng-chan-fu-wu-qi-xing-neng-you-hua.html/'>http://wangchaoqun.com/blog/2013/07/zhuan-tomcat-sheng-chan-fu-wu-qi-xing-neng-you-hua.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Cygwin & Wine & Ruby 记录]]></title>
-    <link href="http://wangchaoqun.com/blog/2013/01/16/cygwin-and-wine-and-ruby-ji-lu/"/>
+    <link href="http://wangchaoqun.com/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu.html/"/>
     <updated>2013-01-16T16:03:36+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2013/01/16/cygwin-and-wine-and-ruby-ji-lu</id>
+    <id>http://wangchaoqun.com/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu</id>
     <content type="html"><![CDATA[<p>cygwin是一个在windows平台上运行的unix模拟环境, wine则可以安装在Linux，再对应到Windows相应的函数来调用DLL以运行Windows程序。这两个就是利器，windows下不想用虚拟机（占用资源还挺多）或双系统，就可以用用cygwin；服务器上想搞点exe的东西就安装个wine。至于ruby，是因为octopress要用，开个虚拟机写博客很不爽，windows下折腾安装配置，却中文编码没解决，还是cygwin搞定。<!--more--></p>
 
 <h2>cygwin的安装</h2>
@@ -935,14 +967,22 @@ Liquid error: incompatible encoding regexp match (ascii-8bit regexp with utf-8 s
 <p>category_list_tag.rb中很多地方用到了ruby的正则表达式，而ruby的正则表达式在匹配的时候，默认是按照“代码源文件”的编码格式(在这里是ascii)进行匹配的，而如果blog是utf-8编码的话就会出现上述错误。有两种解决办法：
 1. 将category_list_tag.rb转成utf-8格式。<br/>
 2. 更改category_list_tag.rb中所有的正则表达式声明，加上u选项（u的意思就是以utf-8编码格式来进行匹配）。例如，若原正则表达式是/regexp/, 则改成/regexp/u。</p>
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu.html/'>http://wangchaoqun.com/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[安装git, 建立Octopress博客]]></title>
-    <link href="http://wangchaoqun.com/blog/2013/01/07/an-zhuang-git-create-octopress-blog/"/>
+    <link href="http://wangchaoqun.com/blog/2013/01/an-zhuang-git-create-octopress-blog.html/"/>
     <updated>2013-01-07T14:34:24+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2013/01/07/an-zhuang-git-create-octopress-blog</id>
+    <id>http://wangchaoqun.com/blog/2013/01/an-zhuang-git-create-octopress-blog</id>
     <content type="html"><![CDATA[<p>本文参考了若干网络日志（谢过~）, 配置个人博客后整理而成</p>
 
 <h2>安装git  </h2>
@@ -1239,14 +1279,22 @@ filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.
   <code>category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase.to_url</code>，
 然后rake generate  rake preview<br/>
 done！</p>
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2013/01/an-zhuang-git-create-octopress-blog.html/'>http://wangchaoqun.com/blog/2013/01/an-zhuang-git-create-octopress-blog.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Excel导出工具类]]></title>
-    <link href="http://wangchaoqun.com/blog/2013/01/01/excel-dao-chu-gong-ju-lei/"/>
+    <link href="http://wangchaoqun.com/blog/2013/01/excel-dao-chu-gong-ju-lei.html/"/>
     <updated>2013-01-01T16:32:42+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2013/01/01/excel-dao-chu-gong-ju-lei</id>
+    <id>http://wangchaoqun.com/blog/2013/01/excel-dao-chu-gong-ju-lei</id>
     <content type="html"><![CDATA[<p>前端使用jquery easyui，datagrid添加导出按钮（另外的js逻辑）即可将当前页或所有页数据(支持查询条件的导出)导出到excel，支持office excel 2003和2007+;<br/>
 使用apache poi（+ooxml）实现，主要代码片段如下：</p>
 
@@ -2053,14 +2101,22 @@ done！</p>
 </span><span class='line'><span class="p">};</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2013/01/excel-dao-chu-gong-ju-lei.html/'>http://wangchaoqun.com/blog/2013/01/excel-dao-chu-gong-ju-lei.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Htmlparser和httpclient解析页面并下载]]></title>
-    <link href="http://wangchaoqun.com/blog/2012/12/18/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai/"/>
+    <link href="http://wangchaoqun.com/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai.html/"/>
     <updated>2012-12-18T03:05:41+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2012/12/18/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai</id>
+    <id>http://wangchaoqun.com/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai</id>
     <content type="html"><![CDATA[<p>如果你想抓取某个网页（如新浪、csdn之类）获取最新资讯列表，或者到某个站点下载文件、图片之类，就需要html解析例如htmlparser,jsoup之类的jar包，下载可用httpclient。如果想更高效率可以搞线程池，抓取解析线程和下载线程，类似消费者和生产者模型（此处不涉及，仅演示使用），代码如下：</p>
 
 <!--more-->
@@ -2203,14 +2259,22 @@ done！</p>
 
 
 
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai.html/'>http://wangchaoqun.com/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[[转]深入理解浏览器兼容性模式]]></title>
-    <link href="http://wangchaoqun.com/blog/2012/11/02/zhuan-shen-ru-li-jie-liu-lan-qi-jian-rong-xing-mo-shi/"/>
+    <link href="http://wangchaoqun.com/blog/2012/11/zhuan-shen-ru-li-jie-liu-lan-qi-jian-rong-xing-mo-shi.html/"/>
     <updated>2012-11-02T01:27:53+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2012/11/02/zhuan-shen-ru-li-jie-liu-lan-qi-jian-rong-xing-mo-shi</id>
+    <id>http://wangchaoqun.com/blog/2012/11/zhuan-shen-ru-li-jie-liu-lan-qi-jian-rong-xing-mo-shi</id>
     <content type="html"><![CDATA[<p>web开发人员遇到浏览器兼容简直就是噩梦，尤其各种ie内核的浏览器，还有搜狗、360等；这篇文章讲得比较详细，转了<a href="http://www.ituring.com.cn/article/15231" target="_blank">来自图灵社区</a><br/>
 正文 &mdash;&mdash;<br/>
 关于各种浏览器模式，网上已经有许多文档和资料了，但是很少有能够完全将几个概念阐述清楚的。大部分的资料稍显过时，有些内容可能已经不再适用了。本文中笔者将尽可能将几个概念阐述清楚，并去掉一些过时的内容，仅保留必要的干货。<!--more--></p>
@@ -2455,14 +2519,22 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 <p>服务器端只能通过浏览器模式所标识的版本来确定客户端浏览器的版本，如果你将浏览器模式标识为IE9，但文档模式选择为IE7标准的话，就可能会有问题。不过这还要看服务器端是否有针对不同浏览器的处理策略，如果服务器端并未对不同浏览器的输出做差异化处理的话，那么这两个模式选项不同就不会有问题。</p>
 
 <p><em>小结</em>： 如果服务器端对不同浏览器的输出做了差异化处理，那么浏览器模式和文档模式不一致就可能产生问题。</p>
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2012/11/zhuan-shen-ru-li-jie-liu-lan-qi-jian-rong-xing-mo-shi.html/'>http://wangchaoqun.com/blog/2012/11/zhuan-shen-ru-li-jie-liu-lan-qi-jian-rong-xing-mo-shi.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[测试Hibernate动态添加实体类]]></title>
-    <link href="http://wangchaoqun.com/blog/2012/09/28/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei/"/>
+    <link href="http://wangchaoqun.com/blog/2012/09/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei.html/"/>
     <updated>2012-09-28T07:54:33+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2012/09/28/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei</id>
+    <id>http://wangchaoqun.com/blog/2012/09/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei</id>
     <content type="html"><![CDATA[<p>大家知道通过hibernate cfg或和spring集成的配置里，可用packagesToScan或mapping*之类声明实体类；但有需求可能要在某个项目中编码式加载实体类（例如某个不常用的或特定用户的实体类，并未事先配置），然后进行增删改查操作。下面代码配合spring test framework做了测试（注：hibernate升级到了4.3.final，与4.2有不同，spring3或4测试通过）：<!--more--></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -2551,14 +2623,22 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2012/09/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei.html/'>http://wangchaoqun.com/blog/2012/09/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[关于公司技术管理工作的几点思考]]></title>
-    <link href="http://wangchaoqun.com/blog/2011/04/14/guan-yu-gong-si-ji-zhu-guan-li-gong-zuo-de-ji-dian-si-kao/"/>
+    <link href="http://wangchaoqun.com/blog/2011/04/guan-yu-gong-si-ji-zhu-guan-li-gong-zuo-de-ji-dian-si-kao.html/"/>
     <updated>2011-04-14T15:06:42+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2011/04/14/guan-yu-gong-si-ji-zhu-guan-li-gong-zuo-de-ji-dian-si-kao</id>
+    <id>http://wangchaoqun.com/blog/2011/04/guan-yu-gong-si-ji-zhu-guan-li-gong-zuo-de-ji-dian-si-kao</id>
     <content type="html"><![CDATA[<p>一. 关于文档规范</p>
 
 <p>文档规范化正在形成的过程中，具体标准根据项目大小、要求、进度等不同而不同。开发人员写文档的能力向来是个短板，多看多借鉴国标、成熟的开发过程以及其他公司的文档，明白知道各文档所应涵盖的内容，学会并提高文档书写水平，是文档规范化的前提。在此基础之上，再召开会议讨论制定文档规范化模板，制定公司特色的文档体系才是可行的。<!--more--></p>
@@ -2604,14 +2684,22 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 3、成本和质量相关，需要我们在项目开发工作中重视项目工作的成本和项目完成的质量。</p>
 
 <p>新的一年里，公司面临新的机遇和新的挑战，亟需深耕行业，形成自己的业务体系和战略布局，中级管理层人员更要提高业务和管理能力，为公司发展做出贡献。</p>
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2011/04/guan-yu-gong-si-ji-zhu-guan-li-gong-zuo-de-ji-dian-si-kao.html/'>http://wangchaoqun.com/blog/2011/04/guan-yu-gong-si-ji-zhu-guan-li-gong-zuo-de-ji-dian-si-kao.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[9种排序算法的java实现]]></title>
-    <link href="http://wangchaoqun.com/blog/2010/08/09/jiu-zhong-pai-xu-suan-fa-de-javashi-xian/"/>
+    <link href="http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-javashi-xian.html/"/>
     <updated>2010-08-09T13:09:09+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2010/08/09/jiu-zhong-pai-xu-suan-fa-de-javashi-xian</id>
+    <id>http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-javashi-xian</id>
     <content type="html"><![CDATA[<p>使用枚举类型存入各算法和接口实现，main方法打印排序后的数组，也可以加入nanotime、currentTimeMillis测试效率，但可能数组太小不明显</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -3472,14 +3560,22 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-javashi-xian.html/'>http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-javashi-xian.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[宁静（二）]]></title>
-    <link href="http://wangchaoqun.com/blog/2009/07/09/ning-jing-2/"/>
+    <link href="http://wangchaoqun.com/blog/2009/07/ning-jing-2.html/"/>
     <updated>2009-07-09T14:40:21+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2009/07/09/ning-jing-2</id>
+    <id>http://wangchaoqun.com/blog/2009/07/ning-jing-2</id>
     <content type="html"><![CDATA[<p>我已经开始喜欢这种感觉了，
 晚上，
 关了门，关了灯，一个人，
@@ -3550,14 +3646,22 @@ oh,my God，真是美妙！</p>
 它却能刮起一阵心灵风暴，
 让我们拥有不可战胜的力量，
 哦，这充满爱的语言，真是美妙！</p>
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2009/07/ning-jing-2.html/'>http://wangchaoqun.com/blog/2009/07/ning-jing-2.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[宁静（一）]]></title>
-    <link href="http://wangchaoqun.com/blog/2009/07/05/ning-jing-1/"/>
+    <link href="http://wangchaoqun.com/blog/2009/07/ning-jing-1.html/"/>
     <updated>2009-07-05T15:11:10+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2009/07/05/ning-jing-1</id>
+    <id>http://wangchaoqun.com/blog/2009/07/ning-jing-1</id>
     <content type="html"><![CDATA[<p>现在是周五的晚上，已经十点半了，我想睡觉，可是，要求如此却也不能如愿：房间隔音效果不太好，这倒问题不大，但兄弟姐妹们着实很喜欢聊天，唱歌，喧嚣……好几次我是睡了又起，看会书，等等再睡，这次就写点东西吧 &ndash; 是为记。</p>
 
 <p>我一直觉得，在人生的不同阶段，对于人生的认识多少都会有所改变，在我们的童年，基本上没有谁会考虑生死；青春少年时，思想萌动，恰如“独上西楼，为赋新诗强说愁”，其实我们的那点阅历和体验简直如西湖里的单细胞生物般微不足道，更多时候脑袋里充斥着青春期的躁动、叛逆……对于生命，有过多少真正的思考呢？<!--more--><br/>
@@ -3577,14 +3681,22 @@ oh,my God，真是美妙！</p>
 <p>是不是这些东西太虚了，一点都不实用？是啊，有些事情就是务虚的，当然还是务实的更多，比如谈处事交际的、谈成功励志的各类技巧，于此完全不在一个层面。思考这些，认识这些，或去探究人生的意义，或去去建立你自己的精神体系、价值体系，比如塑造什么样的灵魂，能否企及永恒，有什么样的生命状态，怎样才能幸福，如何面对苦难……等等逐一展开。为什么不去想？果真懒得动脑，懒得思考？我说还是那句话：未经审视的生活是毫无意义的。</p>
 
 <p>一些想法，写完睡觉，不知所云——Colalife。</p>
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2009/07/ning-jing-1.html/'>http://wangchaoqun.com/blog/2009/07/ning-jing-1.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[本地搭建SVN服务器及配置]]></title>
-    <link href="http://wangchaoqun.com/blog/2008/10/23/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi/"/>
+    <link href="http://wangchaoqun.com/blog/2008/10/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi.html/"/>
     <updated>2008-10-23T12:50:35+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2008/10/23/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi</id>
+    <id>http://wangchaoqun.com/blog/2008/10/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi</id>
     <content type="html"><![CDATA[<h4>1. 创建SVN数据库</h4>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -3643,14 +3755,22 @@ oh,my God，真是美妙！</p>
 
 
 
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2008/10/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi.html/'>http://wangchaoqun.com/blog/2008/10/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[何以如此]]></title>
-    <link href="http://wangchaoqun.com/blog/2008/10/12/he-yi-ru-ci/"/>
+    <link href="http://wangchaoqun.com/blog/2008/10/he-yi-ru-ci.html/"/>
     <updated>2008-10-12T19:16:27+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2008/10/12/he-yi-ru-ci</id>
+    <id>http://wangchaoqun.com/blog/2008/10/he-yi-ru-ci</id>
     <content type="html"><![CDATA[<p>乌云未散，夜雨不止</p>
 
 <p>还是没有什么；</p>
@@ -3675,15 +3795,22 @@ oh,my God，真是美妙！</p>
 
 <p>依然</p>
 
-<p>我的灵魂，宁静清澈</p>
+<p>我的灵魂，宁静清澈<p class='post-footer'></p>
+
+<pre><code>        原文地址：
+        &lt;a href='http://wangchaoqun.com/blog/2008/10/he-yi-ru-ci.html/'&gt;http://wangchaoqun.com/blog/2008/10/he-yi-ru-ci.html/&lt;/a&gt;&lt;br/&gt;
+        &amp;nbsp;written by &amp;nbsp;&lt;a href='http://wangchaoqun.com'&gt;wang chaoqun&lt;/a&gt;
+        &amp;nbsp;posted at &amp;nbsp;&lt;a href='http://wangchaoqun.com'&gt;http://wangchaoqun.com&lt;/a&gt;
+        &lt;/p&gt;
+</code></pre>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[《时间管理》读书笔记]]></title>
-    <link href="http://wangchaoqun.com/blog/2008/09/23/shi-jian-guan-li-zhi-du-shu-bi-ji/"/>
+    <link href="http://wangchaoqun.com/blog/2008/09/shi-jian-guan-li-zhi-du-shu-bi-ji.html/"/>
     <updated>2008-09-23T18:44:23+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2008/09/23/shi-jian-guan-li-zhi-du-shu-bi-ji</id>
+    <id>http://wangchaoqun.com/blog/2008/09/shi-jian-guan-li-zhi-du-shu-bi-ji</id>
     <content type="html"><![CDATA[<p style=""text-align: center""><table style=""margin-top: 16px; width: 440px; height: 107px"" cellspacing=""0"" cellpadding=""0"" width=""440"" border=""0"">    <tbody>        <tr>            <td style=""text-align: center"">【原 书 名】 <a target=""_blank"" href=""http://www.amazon.com/Management-System-Administrators-Thomas-Limoncelli/dp/0596007833/ref=pd_bbs_sr_1/102-0116773-7214567?ie=UTF8&amp;s=books&amp;qid=1190013340&amp;sr=1-1""><font color=""#012c83"">Time Management for System Administrators </font></a></td>        </tr>        <tr>            <td style=""text-align: center"">【原出版社】 <a target=""_blank"" href=""http://www.china-pub.com/search/power_search/power_search.asp?key1=O'Reilly+Media%2c+Inc.""><font color=""#012c83"">O&#8217;Reilly Media, Inc. </font></a></td>        </tr>        <tr>            <td style=""text-align: center"">【作 者】<font color=""#012c83"">Thomas A. Limoncelli <span>[同作者作品]</span></font> <font color=""#012c83"">[作译者介绍]</font></td>        </tr>        <tr>            <td style=""text-align: center"">【译 者】 <font color=""#012c83"">O&rsquo;Reilly[同译者作品]</font> <font color=""#012c83"">Taiwan公司</font></td>        </tr>        <tr>            <td style=""text-align: center"">【出 版 社】&nbsp;东南大学出版社 &nbsp;&nbsp;&nbsp;&nbsp;【书 号】 9787564109059</td>        </tr>    </tbody></table></p>
 
 
@@ -3782,14 +3909,22 @@ oh,my God，真是美妙！</p>
 
 <p><span style=""font-size: medium"">&nbsp;</span></p>
 
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2008/09/shi-jian-guan-li-zhi-du-shu-bi-ji.html/'>http://wangchaoqun.com/blog/2008/09/shi-jian-guan-li-zhi-du-shu-bi-ji.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[《最后期限》读书笔记]]></title>
-    <link href="http://wangchaoqun.com/blog/2008/09/16/zui-hou-qi-xian-zhi-du-shu-bi-ji/"/>
+    <link href="http://wangchaoqun.com/blog/2008/09/zui-hou-qi-xian-zhi-du-shu-bi-ji.html/"/>
     <updated>2008-09-16T13:49:44+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2008/09/16/zui-hou-qi-xian-zhi-du-shu-bi-ji</id>
+    <id>http://wangchaoqun.com/blog/2008/09/zui-hou-qi-xian-zhi-du-shu-bi-ji</id>
     <content type="html"><![CDATA[<p>优质管理的四大要素</p>
 
 
@@ -3849,14 +3984,22 @@ oh,my God，真是美妙！</p>
 
 <p>　　将你关于完成工作过程的直觉建模<br />　　在同事的交流中使用这些模型，以便交流、提炼关于项目运转的思想<br />　　用模型来模拟项目的结果<br />　　根据实际的结果来调整模型</p>
 
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2008/09/zui-hou-qi-xian-zhi-du-shu-bi-ji.html/'>http://wangchaoqun.com/blog/2008/09/zui-hou-qi-xian-zhi-du-shu-bi-ji.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[SQL Server 2005的安装和JDBC连接方法]]></title>
-    <link href="http://wangchaoqun.com/blog/2008/08/11/sql-server-2005-de-an-zhuang-he-jdbc-lian-jie-fang-fa/"/>
+    <link href="http://wangchaoqun.com/blog/2008/08/sql-server-2005-de-an-zhuang-he-jdbc-lian-jie-fang-fa.html/"/>
     <updated>2008-08-11T13:29:34+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2008/08/11/sql-server-2005-de-an-zhuang-he-jdbc-lian-jie-fang-fa</id>
+    <id>http://wangchaoqun.com/blog/2008/08/sql-server-2005-de-an-zhuang-he-jdbc-lian-jie-fang-fa</id>
     <content type="html"><![CDATA[<p>本文先介绍Windows XP SP2/SP3 下Microsoft SQL Server 2005 的安装及有关问题的解决方法，然后介绍Eclipse3.2 / 3.3 或 MyEclipse6.0 / 6.5 进行JDBC连接SQL Server 2005数据库的方法。</p>
 
 
@@ -3976,14 +4119,22 @@ oh,my God，真是美妙！</p>
 
 <p>（全文完&mdash;&mdash;By ColaLife<a target=""_blank"" href=""http://www.colalife.com""><span style=""color: #ffffff"">[http://www.colalife.com]</span></a>）</p>
 
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2008/08/sql-server-2005-de-an-zhuang-he-jdbc-lian-jie-fang-fa.html/'>http://wangchaoqun.com/blog/2008/08/sql-server-2005-de-an-zhuang-he-jdbc-lian-jie-fang-fa.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[缤纷（三）]]></title>
-    <link href="http://wangchaoqun.com/blog/2008/07/02/bin-fen-3/"/>
+    <link href="http://wangchaoqun.com/blog/2008/07/bin-fen-3.html/"/>
     <updated>2008-07-02T07:49:30+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2008/07/02/bin-fen-3</id>
+    <id>http://wangchaoqun.com/blog/2008/07/bin-fen-3</id>
     <content type="html"><![CDATA[<p>昨日的一切历历在目，现实却是弹指一挥间四年大学生活已然结束。现在想写些什么，还是不知所云了。期间有缤纷（一），缤纷（二），就作为缤纷三部曲，这个应是缤纷三部曲的完结篇了。­</p>
 
 <p>离别总是很伤人，泪水和抽泣声，还有紧紧的拥抱，道一声再见了亲爱的同学，再见了我们的宿舍，再见了我的大学！一切都注定会尘封在记忆里。我不愿意刚刚离别就翻看纪念册，让它尘封，在一年两年十年二十年之后，这一切又将是真真切切，想念着你带给我的点点滴滴，不管是好的，坏的，悲伤的或快乐的，因为我知道一切都已过去了，一切都还在我的心里，恍惚中故地重游，怅然。­<!--more--></p>
@@ -4007,6 +4158,14 @@ oh,my God，真是美妙！</p>
 <p>做真我很需要勇气，这些都给了我勇气，也都是我鼓励自己的话语，但是我还不够强大。曾经有好友说“你不要把自己想的如神一般，要去拯救地球似的”。我洗耳恭听，但我不能违背我的心，我也做不到。你说我理想化，或者是爱幻想不切实际，种种言论都不能让我信服，不过你有确定的一点，那就是我会用生命去捍卫你说话的权利。去包容，去宽容，但是绝不会见惯不惯了那些邪恶与低俗，那其实是“哀莫大于心死”。­</p>
 
 <p>我希望，我们能够橡树一样地生长，将根更有力地伸向深处，深入邪恶，同时更加亲切地去拥抱天堂，以宽广的枝叶吸收天堂之光……我们更加勇敢，我们更加坚忍，我们更加单纯，我们更加愉快，我们愈来愈接近光明，我们以此为荣！­</p>
+
+<p class='post-footer'>
+            原文地址：
+            <a href='http://wangchaoqun.com/blog/2008/07/bin-fen-3.html/'>http://wangchaoqun.com/blog/2008/07/bin-fen-3.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
+            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
+            </p>
+
 ]]></content>
   </entry>
   
