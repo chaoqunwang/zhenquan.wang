@@ -81,12 +81,12 @@ $(document).bind('DOMNodeInserted', function(event) {
 <ul class="main-navigation" style="font-weight: bold;">
   <li><a href="/">首页</a></li> 
   <li><a href="/blog/archives">文章列表</a></li> 
-  <li><a href="/blog/categories/dai-ma/">代码</a></li>
+  <li><a href="/blog/categories/tech/">技术</a></li>
   <li><a href="/blog/categories/du-shu/">读书</a></li> 
   <li><a href="/blog/categories/zhi-ye/">职业</a></li>
   <li><a href="/blog/categories/sheng-huo/">生活</a></li>
   <li><a href="/blog/categories/qi-ta/">其他</a></li>
-  <li><a href="/tags/">标签</a></li>
+  <li><a href="/tags/">标签云</a></li>
   <li><a href="/comments/">留言板</a></li>
 </ul>
 
@@ -380,26 +380,36 @@ $(document).bind('DOMNodeInserted', function(event) {
 <section>  
   <h1>标签</h1>  
   <ul class="tag-cloud">  
-    <a style="padding: 3px;font-size: 90%" href="/tags/browser/">browser</a>
-<a style="padding: 3px;font-size: 90%" href="/tags/excel/">excel</a>
-<a style="padding: 3px;font-size: 90%" href="/tags/hibernate/">hibernate</a>
-<a style="padding: 3px;font-size: 90%" href="/tags/htmlparser/">htmlparser</a>
-<a style="padding: 3px;font-size: 90%" href="/tags/httpclient/">httpclient</a>
-<a style="padding: 3px;font-size: 90%" href="/tags/java/">java</a>
-<a style="padding: 3px;font-size: 90%" href="/tags/jsoup/">jsoup</a>
-<a style="padding: 3px;font-size: 133%" href="/tags/linux/">linux</a>
-<a style="padding: 3px;font-size: 133%" href="/tags/mongodb/">mongodb</a>
-<a style="padding: 3px;font-size: 133%" href="/tags/octopress/">octopress</a>
-<a style="padding: 3px;font-size: 133%" href="/tags/ruby/">ruby</a>
-<a style="padding: 3px;font-size: 90%" href="/tags/sessionfactory/">sessionfactory</a>
-<a style="padding: 3px;font-size: 90%" href="/tags/spring-test/">spring-test</a>
-<a style="padding: 3px;font-size: 90%" href="/tags/svn/">svn</a>
-<a style="padding: 3px;font-size: 90%" href="/tags/shi-jian-guan-li/">时间管理</a>
-<a style="padding: 3px;font-size: 90%" href="/tags/zui-hou-qi-xian/">最后期限</a>
-<a style="padding: 3px;font-size: 90%" href="/tags/suan-fa/">算法</a>
-<a style="padding: 3px;font-size: 90%" href="/tags/guan-li-gong-zuo/">管理工作</a>
+    <a style="padding: 3px;font-size: 100%" href="/tags/books/">books</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/browser/">browser</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/cygwin/">cygwin</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/excel/">excel</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/git/">git</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/github/">github</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/hibernate/">hibernate</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/htmlparser/">htmlparser</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/httpclient/">httpclient</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/java/">java</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/jsoup/">jsoup</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/jvm/">jvm</a>
+<a style="padding: 3px;font-size: 139%" href="/tags/linux/">linux</a>
+<a style="padding: 3px;font-size: 139%" href="/tags/mongodb/">mongodb</a>
+<a style="padding: 3px;font-size: 139%" href="/tags/octopress/">octopress</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/poi/">poi</a>
+<a style="padding: 3px;font-size: 139%" href="/tags/ruby/">ruby</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/sessionfactory/">sessionfactory</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/spring-test/">spring-test</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/svn/">svn</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/tomcat/">tomcat</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/wine/">wine</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/shu-ju-ku/">数据库</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/shi-jian-guan-li/">时间管理</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/zui-hou-qi-xian/">最后期限</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/suan-fa/">算法</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/guan-li-gong-zuo/">管理工作</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/she-ji-mo-shi/">设计模式</a>
 <a style="padding: 3px;font-size: 210%" href="/tags/sui-bi/">随笔</a>
-<a style="padding: 3px;font-size: 90%" href="/tags/xiang-mu-guan-li/">项目管理</a>
+<a style="padding: 3px;font-size: 100%" href="/tags/xiang-mu-guan-li/">项目管理</a>
 
   </ul>  
 </section>
@@ -452,13 +462,14 @@ $(document).bind('DOMNodeInserted', function(event) {
 <section> 
   <h1>文章分类</h1> 
   <ul id="categories"> 
-    <li class='category'><a href='/blog/categories/hibernate/'>hibernate (1)</a></li>
+    <li class='category'><a href='/blog/categories/ftp/'>ftp (1)</a></li>
+<li class='category'><a href='/blog/categories/hibernate/'>hibernate (1)</a></li>
 <li class='category'><a href='/blog/categories/java/'>java (6)</a></li>
 <li class='category'><a href='/blog/categories/linux/'>linux (2)</a></li>
 <li class='category'><a href='/blog/categories/mongodb/'>mongodb (2)</a></li>
 <li class='category'><a href='/blog/categories/mysql/'>mysql (1)</a></li>
+<li class='category'><a href='/blog/categories/tech/'>tech (15)</a></li>
 <li class='category'><a href='/blog/categories/tomcat/'>tomcat (1)</a></li>
-<li class='category'><a href='/blog/categories/vsftp/'>vsftp (1)</a></li>
 <li class='category'><a href='/blog/categories/web/'>web (2)</a></li>
 <li class='category'><a href='/blog/categories/dai-ma/'>代码 (3)</a></li>
 <li class='category'><a href='/blog/categories/qi-ta/'>其他 (1)</a></li>

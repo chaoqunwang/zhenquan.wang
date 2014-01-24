@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[文章分类：vsftp | 超群的博客]]></title>
-  <link href="http://wangchaoqun.com/blog/categories/vsftp/atom.xml" rel="self"/>
+  <title><![CDATA[文章分类：ftp | 超群的博客]]></title>
+  <link href="http://wangchaoqun.com/blog/categories/ftp/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-01-24T11:55:52+08:00</updated>
+  <updated>2014-01-24T15:33:27+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>

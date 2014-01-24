@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-01-24T11:55:52+08:00</updated>
+  <updated>2014-01-24T15:33:27+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -1048,9 +1048,10 @@ Liquid error: incompatible encoding regexp match (ascii-8bit regexp with utf-8 s
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake install  </span></code></pre></td></tr></table></div></figure>
 
 
-<blockquote><p>//if error: rake aborted!<br/>
+<p>
+//if error: rake aborted!<br/>
 //You have already activated rake 10.1.0, but your Gemfile requires rake 0.9.2.2.
-delete your Gemfile.lock and edit the version of rake specified in your Gemfile to 10.1. Job done</p></blockquote>
+delete your Gemfile.lock and edit the version of rake specified in your Gemfile to 10.1. Job done</p>
 
 <h2>通过_config.yml来配置博客  </h2>
 
@@ -1181,7 +1182,9 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 </span><span class='line'>rake new_post["new blog"]  </span></code></pre></td></tr></table></div></figure>
 
 
-<blockquote><h2>another pc</h2></blockquote>
+<p></p>
+
+<h2>another pc</h2>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1243,13 +1246,14 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 </pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
 </span><span class='line'>  &lt;h1&gt;文章分类&lt;/h1&gt;
 </span><span class='line'>  &lt;ul id="categories"&gt;
-</span><span class='line'>    <li class='category'><a href='http://wangchaoqun.com/blog/categories/hibernate/'>hibernate (1)</a></li>
+</span><span class='line'>    <li class='category'><a href='http://wangchaoqun.com/blog/categories/ftp/'>ftp (1)</a></li>
+<li class='category'><a href='http://wangchaoqun.com/blog/categories/hibernate/'>hibernate (1)</a></li>
 <li class='category'><a href='http://wangchaoqun.com/blog/categories/java/'>java (6)</a></li>
 <li class='category'><a href='http://wangchaoqun.com/blog/categories/linux/'>linux (2)</a></li>
 <li class='category'><a href='http://wangchaoqun.com/blog/categories/mongodb/'>mongodb (2)</a></li>
 <li class='category'><a href='http://wangchaoqun.com/blog/categories/mysql/'>mysql (1)</a></li>
+<li class='category'><a href='http://wangchaoqun.com/blog/categories/tech/'>tech (15)</a></li>
 <li class='category'><a href='http://wangchaoqun.com/blog/categories/tomcat/'>tomcat (1)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/vsftp/'>vsftp (1)</a></li>
 <li class='category'><a href='http://wangchaoqun.com/blog/categories/web/'>web (2)</a></li>
 <li class='category'><a href='http://wangchaoqun.com/blog/categories/dai-ma/'>代码 (3)</a></li>
 <li class='category'><a href='http://wangchaoqun.com/blog/categories/qi-ta/'>其他 (1)</a></li>
