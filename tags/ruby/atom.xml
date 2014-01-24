@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: ruby | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/tags/ruby/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-01-24T11:50:34+08:00</updated>
+  <updated>2014-01-24T11:55:05+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -246,7 +246,15 @@ git remote add origin git@github.com:username/username.github.com.git
 
 <p>在source/_layouts/post.html尾部添加如下代码：<br/>
 ```<br/>
-<br/>
+{% if site.duoshuo_show_comment_count==true and page.comments==true %}
+<section id="comment"></p>
+
+<h1>发表评论</h1>
+
+
+<p>{% include post/duoshuo.html %}
+</section>
+{% endif %}<br/>
 ```</p>
 
 <p>创建source/_includes/post/duoshuo.html文件，将从多说获得的代码放入其中。<br/>
@@ -328,22 +336,7 @@ end</p>
   <h1>文章分类</h1>
   <ul id="categories"></p>
 
-<pre><code><li class='category'><a href='/blog/categories/hibernate/'>hibernate (1)</a></li>
-<li class='category'><a href='/blog/categories/java/'>java (6)</a></li>
-<li class='category'><a href='/blog/categories/linux/'>linux (2)</a></li>
-<li class='category'><a href='/blog/categories/mongodb/'>mongodb (2)</a></li>
-<li class='category'><a href='/blog/categories/mysql/'>mysql (1)</a></li>
-<li class='category'><a href='/blog/categories/tomcat/'>tomcat (1)</a></li>
-<li class='category'><a href='/blog/categories/vsftp/'>vsftp (1)</a></li>
-<li class='category'><a href='/blog/categories/web/'>web (2)</a></li>
-<li class='category'><a href='/blog/categories/dai-ma/'>代码 (3)</a></li>
-<li class='category'><a href='/blog/categories/qi-ta/'>其他 (1)</a></li>
-<li class='category'><a href='/blog/categories/sheng-huo/'>生活 (7)</a></li>
-<li class='category'><a href='/blog/categories/suan-fa/'>算法 (1)</a></li>
-<li class='category'><a href='/blog/categories/zhi-ye/'>职业 (2)</a></li>
-<li class='category'><a href='/blog/categories/she-ji-mo-shi/'>设计模式 (1)</a></li>
-<li class='category'><a href='/blog/categories/du-shu/'>读书 (3)</a></li>
-
+<pre><code>{% category_list %}
 </code></pre>
 
 <p>  </ul>
