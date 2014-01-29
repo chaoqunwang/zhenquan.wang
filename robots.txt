@@ -1,4 +1,3 @@
 User-agent: *
-Disallow: 
-
+Allow: /wangchaoqun.com/*
 Sitemap: http://wangchaoqun.com/sitemap.xml 
