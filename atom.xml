@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-11T11:54:45+08:00</updated>
+  <updated>2014-02-11T15:06:36+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -95,12 +95,11 @@
 
 <p>当你能编写精彩的代码、并且能用精彩的言辞向世人解释那些代码时，到那时候，我会觉得你已经掌握了最牛的编码套路！</p>
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2013/12/zhuan-code-kata-bian-ma-tao-lu.html/'>http://wangchaoqun.com/blog/2013/12/zhuan-code-kata-bian-ma-tao-lu.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -369,12 +368,11 @@
 <a href="http://www.cnblogs.com/huangxincheng/archive/2012/03/04/2379755.html">http://www.cnblogs.com/huangxincheng/archive/2012/03/04/2379755.html</a>
 <a href="http://www.cnblogs.com/refactor/archive/2012/08/13/2600140.html">http://www.cnblogs.com/refactor/archive/2012/08/13/2600140.html</a></p>
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2013/11/mongodb-replsetji-qun-he-shardfen-pian.html/'>http://wangchaoqun.com/blog/2013/11/mongodb-replsetji-qun-he-shardfen-pian.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -687,12 +685,11 @@
 </span><span class='line'>00 * * * * /bin/bash /usr/local/mongo/cmd/mongo_backup.sh</span></code></pre></td></tr></table></div></figure>
 
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2013/11/mongodb-he-mysql-dao-chu-bei-fen-bing-shang-chuan-zhi-ftp.html/'>http://wangchaoqun.com/blog/2013/11/mongodb-he-mysql-dao-chu-bei-fen-bing-shang-chuan-zhi-ftp.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -803,12 +800,11 @@
 
 <p>就这么多啦。在这篇文章里，我教给了大家一些提高Tomcat服务器性能的方法。如果你觉得这篇文章有用，或者你对提高Tomcat服务器性能有别的看法，请不要忘记留下宝贵的评论。祝你今天编程愉快！</p>
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2013/07/zhuan-tomcat-sheng-chan-fu-wu-qi-xing-neng-you-hua.html/'>http://wangchaoqun.com/blog/2013/07/zhuan-tomcat-sheng-chan-fu-wu-qi-xing-neng-you-hua.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -968,12 +964,11 @@ Liquid error: incompatible encoding regexp match (ascii-8bit regexp with utf-8 s
 1. 将category_list_tag.rb转成utf-8格式。<br/>
 2. 更改category_list_tag.rb中所有的正则表达式声明，加上u选项（u的意思就是以utf-8编码格式来进行匹配）。例如，若原正则表达式是/regexp/, 则改成/regexp/u。</p>
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu.html/'>http://wangchaoqun.com/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -1282,12 +1277,11 @@ filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.
 然后rake generate  rake preview<br/>
 done！</p>
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2013/01/an-zhuang-git-create-octopress-blog.html/'>http://wangchaoqun.com/blog/2013/01/an-zhuang-git-create-octopress-blog.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -2104,12 +2098,11 @@ done！</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2013/01/excel-dao-chu-gong-ju-lei.html/'>http://wangchaoqun.com/blog/2013/01/excel-dao-chu-gong-ju-lei.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -2262,12 +2255,11 @@ done！</p>
 
 
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai.html/'>http://wangchaoqun.com/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -2522,12 +2514,11 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 
 <p><em>小结</em>： 如果服务器端对不同浏览器的输出做了差异化处理，那么浏览器模式和文档模式不一致就可能产生问题。</p>
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2012/11/zhuan-shen-ru-li-jie-liu-lan-qi-jian-rong-xing-mo-shi.html/'>http://wangchaoqun.com/blog/2012/11/zhuan-shen-ru-li-jie-liu-lan-qi-jian-rong-xing-mo-shi.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -2626,12 +2617,11 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2012/09/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei.html/'>http://wangchaoqun.com/blog/2012/09/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -2687,12 +2677,11 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 
 <p>新的一年里，公司面临新的机遇和新的挑战，亟需深耕行业，形成自己的业务体系和战略布局，中级管理层人员更要提高业务和管理能力，为公司发展做出贡献。</p>
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2011/04/guan-yu-gong-si-ji-zhu-guan-li-gong-zuo-de-ji-dian-si-kao.html/'>http://wangchaoqun.com/blog/2011/04/guan-yu-gong-si-ji-zhu-guan-li-gong-zuo-de-ji-dian-si-kao.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -3563,12 +3552,11 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-javashi-xian.html/'>http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-javashi-xian.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -3649,12 +3637,11 @@ oh,my God，真是美妙！</p>
 让我们拥有不可战胜的力量，
 哦，这充满爱的语言，真是美妙！</p>
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2009/07/ning-jing-2.html/'>http://wangchaoqun.com/blog/2009/07/ning-jing-2.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -3684,12 +3671,11 @@ oh,my God，真是美妙！</p>
 
 <p>一些想法，写完睡觉，不知所云——Colalife。</p>
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2009/07/ning-jing-1.html/'>http://wangchaoqun.com/blog/2009/07/ning-jing-1.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -3758,12 +3744,11 @@ oh,my God，真是美妙！</p>
 
 
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2008/10/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi.html/'>http://wangchaoqun.com/blog/2008/10/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -3797,13 +3782,12 @@ oh,my God，真是美妙！</p>
 
 <p>依然</p>
 
-<p>我的灵魂，宁静清澈<p class='post-footer'></p>
+<p>我的灵魂，宁静清澈<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'></p>
 
-<pre><code>        原文地址：
+<pre><code>        &amp;nbsp;原文地址：
         &lt;a href='http://wangchaoqun.com/blog/2008/10/he-yi-ru-ci.html/'&gt;http://wangchaoqun.com/blog/2008/10/he-yi-ru-ci.html/&lt;/a&gt;&lt;br/&gt;
-        &amp;nbsp;written by &amp;nbsp;&lt;a href='http://wangchaoqun.com'&gt;wang chaoqun&lt;/a&gt;
-        &amp;nbsp;posted at &amp;nbsp;&lt;a href='http://wangchaoqun.com'&gt;http://wangchaoqun.com&lt;/a&gt;
-        &lt;/p&gt;
+        &amp;nbsp;written by &amp;nbsp;&lt;a href='http://wangchaoqun.com'&gt;wang chaoqun&lt;/a&gt; &amp;nbsp;posted at &amp;nbsp;&lt;a href='http://wangchaoqun.com'&gt;http://wangchaoqun.com&lt;/a&gt;&lt;br/&gt;
+        &amp;nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | &lt;a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'&gt;Creative Commons BY-NC-ND 3.0&lt;/a&gt;&lt;/p&gt;
 </code></pre>
 ]]></content>
   </entry>
@@ -3912,12 +3896,11 @@ oh,my God，真是美妙！</p>
 <p><span style=""font-size: medium"">&nbsp;</span></p>
 
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2008/09/shi-jian-guan-li-zhi-du-shu-bi-ji.html/'>http://wangchaoqun.com/blog/2008/09/shi-jian-guan-li-zhi-du-shu-bi-ji.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -3987,12 +3970,11 @@ oh,my God，真是美妙！</p>
 <p>　　将你关于完成工作过程的直觉建模<br />　　在同事的交流中使用这些模型，以便交流、提炼关于项目运转的思想<br />　　用模型来模拟项目的结果<br />　　根据实际的结果来调整模型</p>
 
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2008/09/zui-hou-qi-xian-zhi-du-shu-bi-ji.html/'>http://wangchaoqun.com/blog/2008/09/zui-hou-qi-xian-zhi-du-shu-bi-ji.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -4151,12 +4133,11 @@ oh,my God，真是美妙！</p>
 <a href="http://blog.zhangjianfeng.com/article/743">http://blog.zhangjianfeng.com/article/743</a>  <br/>
 另外从这里：<a href="http://www.danga.com/words/%E5%A4%A7%E5%AE%B6%E5%8F%AF%E4%BB%A5%E6%89%BE%E5%88%B0%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E7%8E%B0%E5%9C%A8LiveJournal%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BB%8B%E7%BB%8D%E3%80%82">http://www.danga.com/words/%E5%A4%A7%E5%AE%B6%E5%8F%AF%E4%BB%A5%E6%89%BE%E5%88%B0%E6%9B%B4%E5%A4%9A%E5%85%B3%E4%BA%8E%E7%8E%B0%E5%9C%A8LiveJournal%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BB%8B%E7%BB%8D%E3%80%82</a></p>
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2008/09/zhuan-da-xing-wang-zhan-jia-gou-yan-bian-he-zhi-shi-ti-xi.html/'>http://wangchaoqun.com/blog/2008/09/zhuan-da-xing-wang-zhan-jia-gou-yan-bian-he-zhi-shi-ti-xi.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
@@ -4286,12 +4267,11 @@ oh,my God，真是美妙！</p>
 <p>（全文完&mdash;&mdash;By ColaLife<a target=""_blank"" href=""http://www.colalife.com""><span style=""color: #ffffff"">[http://www.colalife.com]</span></a>）</p>
 
 
-<p class='post-footer'>
-            原文地址：
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2008/08/sql-server-2005-de-an-zhuang-he-jdbc-lian-jie-fang-fa.html/'>http://wangchaoqun.com/blog/2008/08/sql-server-2005-de-an-zhuang-he-jdbc-lian-jie-fang-fa.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a>
-            &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a>
-            </p>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
 ]]></content>
   </entry>
