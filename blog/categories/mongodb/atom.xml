@@ -4,7 +4,7 @@
   <title><![CDATA[文章分类：mongodb | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/blog/categories/mongodb/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-19T10:32:04+08:00</updated>
+  <updated>2014-02-24T18:24:26+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -389,6 +389,410 @@ crontab -e</p>
 <h1>every day at 00m</h1>
 
 <p>00 * * * * /bin/bash /usr/local/mongo/cmd/mongo_backup.sh
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MongoDB常用命令和操作总结]]></title>
+    <link href="http://wangchaoqun.com/blog/2013/05/mongodbchang-yong-ming-ling-he-cao-zuo-zong-jie.html/"/>
+    <updated>2013-05-24T16:29:59+08:00</updated>
+    <id>http://wangchaoqun.com/blog/2013/05/mongodbchang-yong-ming-ling-he-cao-zuo-zong-jie</id>
+    <content type="html"><![CDATA[<p>做个总结，涉及到mongodb的常用命令、java client查询、spring data mongodb的使用，group，map/reduce等</p>
+
+<h4>关闭服务</h4>
+
+<p><code>
+use admin
+db.shutdownServer()
+</code></p>
+
+<h4>加锁</h4>
+
+<p><code>
+use admin
+db.runCommand({"fsync":1,"lock":1})
+</code><!--more--></p>
+
+<h4>解锁</h4>
+
+<p><code>
+use admin
+db.$cmd.sys.unlock.findOne()
+db.currentOp()    
+{"inprog":[]}
+</code></p>
+
+<h4>导出和导入</h4>
+
+<p><code>
+mongodump -h 192.168.0.100:27017 -d mydb -o B:\mongo\dump
+mongorestore -h 127.0.0.1:27017 --directoryperdb B:\mongo\dump
+</code></p>
+
+<h4>用户</h4>
+
+<p><code>
+use admin
+db.addUser('name','pwd')
+db.system.users.find()
+db.auth('name','pwd')
+db.removeUser('name')
+</code></p>
+
+<h4>数据库</h4>
+
+<p><code>
+db.copyDatabase('projectDB1', 'projectDB2')
+db.projectDB1.drop()
+db.dropDatabase()
+</code></p>
+
+<h4>增删改</h4>
+
+<p><code>
+db.mycollection.inser,save,update...
+</code></p>
+
+<h4>索引</h4>
+
+<p><code>
+db.user.ensureIndex({firstname: 1, lastname: 1}, {unique: true});
+db.user.dropIndex('address.post_1')
+</code></p>
+
+<h4>查询</h4>
+
+<p><code>
+db.mycollection.find,findOne,distinct.sort({'createTime',-1}).skip(3).limit(10)
+db.user.insert({"name":"cq","age":28,"address":{"province":100,"city":101}})
+db.user.find({"_id":ObjectId("52f830f3aab82981150db455")})
+db.user.find({"address":{"province":100,"city":101}})  # one record
+db.user.find({"address":{"city":101,"province":100}})  # nothing
+db.user.find({"address.city":101,"address.province":100})  # one record
+</code>
+注意：key的顺序,因为MongoDB使用BSON的二进制数据格式<br/>
+注意：limit的值例如为-5的话等同于5，为0则返回全部，汗<br/>
+<code>
+db.user.find({creationTime:{$gt:1300000000000, $lte:1310000000000});
+</code>
+使用where可做运算<br/>
+<code>
+db.reply.find({$where: "this.upCount+this.downCount&lt;1"});
+db.reply.find("this.upCount+this.downCount&lt;1");
+</code></p>
+
+<h4>返回和排除字段</h4>
+
+<p><code>
+db.user.find({"name":"cq"}, {age:1, address:0});
+count
+db.topic.find().skip(10).limit(5).count(); # 所有的记录数量
+</code><br/>
+要返回限制的记录数量，要使用count(true)或count(非0)
+<code>
+db.topic.find().skip(10).limit(5).count(true);
+</code></p>
+
+<h4>dbref关联</h4>
+
+<p>多查一<br/>
+```</p>
+
+<blockquote><p>db.reply.findOne({creator:&ldquo;wy&rdquo;}, {creator:1,topic:1})
+{</p>
+
+<pre><code>    "_id" : ObjectId("52d3ae720b6316a72bb31c45"),
+    "creator" : "wy",
+    "topic" : DBRef("topic", ObjectId("52cf620a0b6307f6a0d44450"))
+</code></pre>
+
+<p>}
+db.reply.findOne({creator:&ldquo;wy&rdquo;}).topic
+DBRef(&ldquo;topic&rdquo;, ObjectId(&ldquo;52cf620a0b6307f6a0d44450&rdquo;))
+db.reply.findOne({creator:&ldquo;wy&rdquo;}).topic.fetch()
+{</p>
+
+<pre><code>    "_id" : ObjectId("52cf620a0b6307f6a0d44450"),
+    "content" : "xxx",
+    "createtime" : NumberLong("1389322762932"),
+    "creator" : "zzz"
+    ...
+</code></pre>
+
+<p>}
+```</p></blockquote>
+
+<p>一查多<br/>
+```</p>
+
+<blockquote><p>topic=db.reply.findOne({creator:&ldquo;wy&rdquo;}).topic
+DBRef(&ldquo;topic&rdquo;, ObjectId(&ldquo;52cf620a0b6307f6a0d44450&rdquo;))
+db.reply.find({&ldquo;topic&rdquo;:topic}).count()
+2
+topic=db.reply.findOne({creator:&ldquo;wy&rdquo;}).topic
+DBRef(&ldquo;topic&rdquo;, ObjectId(&ldquo;52cf620a0b6307f6a0d44450&rdquo;))
+db.reply.find({&ldquo;topic.$id&rdquo;:topic.$id}).count()
+2
+topic=db.reply.findOne({creator:&ldquo;wy&rdquo;}).topic.fetch()
+{</p>
+
+<pre><code>    "_id" : ObjectId("52cf620a0b6307f6a0d44450"),
+    "content" : "xxx",
+    "createtime" : NumberLong("1389322762932"),
+    "creator" : "zzz"
+    ...
+</code></pre>
+
+<p>}
+db.reply.find({&ldquo;topic.$id&rdquo;:topic._id}).count()
+2
+```</p>
+
+<h4>spring data mongodb</h4>
+
+<p>```
+Criteria cri = Criteria.where(&ldquo;topic.$id&rdquo;).is(new ObjectId(&ldquo;52d8f8950b6316a72bb31c7c&rdquo;));
+Reply reply = mongoTemplate.findOne(Query.query(cri), Reply.class);</p></blockquote>
+
+<p>cri.andOperator(Criteria.where(&ldquo;passedtime&rdquo;).gt(fromTime), Criteria.where(&ldquo;passedtime&rdquo;).lt(toTime));
+// 错误的：Criteria.where(&ldquo;passedtime&rdquo;).gt(fromTime).and(&ldquo;passedtime&rdquo;).lt(toTime)
+```</p>
+
+<h4>java client 可以这样：</h4>
+
+<p>```
+String total = &ldquo;this.upCount+this.downCount &lt; &rdquo; + minCount;
+BasicDBObject query = new BasicDBObject(&ldquo;$where&rdquo;, total);
+query.append(&ldquo;passedtime&rdquo;, new BasicDBObject(&ldquo;$gt&rdquo;, fromTime).append(&ldquo;$lt&rdquo;, toTime));
+// TODO query.append(other conditions);</p>
+
+<p>// 返回字段
+BasicDBObject keys = new BasicDBObject();
+keys.put(&ldquo;_id&rdquo;, 1);
+keys.put(&ldquo;creator&rdquo;, 1);</p>
+
+<p>MongoClient mongoClient = new MongoClient(new ServerAddress(&ldquo;localhost&rdquo;, 27017));
+DB db = mongo.getDB(&ldquo;mydb&rdquo;);
+DBCollection collection = db.getCollection(&ldquo;test&rdquo;);</p>
+
+<p>long count = collection.count(query);
+DBCursor cursor = collection.find(query, keys).limit(size);
+for (int i = 0; i &lt; size; i++) {</p>
+
+<pre><code>DBObject e = cursor.next();
+String topicId = e.get("_id").toString();
+// TODO
+</code></pre>
+
+<p>}
+```</p>
+
+<h4>group</h4>
+
+<p>topic : reply = one to many，按topic(或发布者)分组统计回复数
+shell:
+```</p>
+
+<blockquote><p>db.reply.group({ &ldquo;key&rdquo; : { &ldquo;topic&rdquo; : 1} , &ldquo;$reduce&rdquo; : &ldquo;function(doc, prev) {
+ prev.total += 1; }&rdquo; , &ldquo;initial&rdquo; : {&ldquo;total&rdquo; : 0}})
+```</p></blockquote>
+
+<p>spring-data-mongodb:
+```
+Criteria cri = Criteria.where(&ldquo;createtime&rdquo;).gt(1380000000000L);// 时间条件
+GroupBy groupBy = GroupBy</p>
+
+<pre><code>    .key("topic").initialDocument("{total: 0 }")
+    .reduceFunction("function(doc, prev) { prev.total += 1; }");
+</code></pre>
+
+<p>String collection = mongoTemplate.getCollectionName(Reply.class);
+GroupByResults<Reply> replys = mongoTemplate.group(cri, collection, groupBy, Reply.class);
+```</p>
+
+<p>java client:
+<code>
+public GroupCommand(DBCollection inputCollection, DBObject keys, DBObject condition, DBObject initial, String reduce, String finalize)
+DBCollection collection = mongoTemplate.getCollection("reply");
+collection.group(...);
+</code></p>
+
+<h4>map/reduce</h4>
+
+<p>场景：展示发帖或回帖的时间趋势图，或者说按整点显示此小时内的发帖数和回帖数，展示成折线图
+创建时间保存的是number long，即date.getTime()的值，key要转成小时，使用new Date(y,m,d,h,0,0,0)</p>
+
+<p>spring-data-mongodb:
+```
+String mapFunction = &ldquo;function () { var key=new Date(new Date(this.createtime).getFullYear(),&rdquo;</p>
+
+<pre><code>    + "new Date(this.createtime).getMonth(), new Date(this.createtime).getDate(),"
+    + "new Date(this.createtime).getHours(), 0, 0, 0).getTime(); "
+    + "emit( key, { hour:key, count:1 } ); }";
+</code></pre>
+
+<p>String reduceFunction = &ldquo;function (key, values) { &rdquo;</p>
+
+<pre><code>    + " var total = 0;" 
+    + " for (var i=0; i&lt;values.length; i++) { "
+    + "     total += values[i].count; "
+    + " }" 
+    + " return { hour:key, count:total }; "
+    + "}";
+</code></pre>
+
+<p>MapReduceResults<Reply> results = mongoTemplate.mapReduce(</p>
+
+<pre><code>    new Query(cri), collectionName, mapFunction,
+    reduceFunction, Reply.class);
+</code></pre>
+
+<p>List<Reply> replys = Lists.newArrayList(results);
+for (Replys reply : replys) {</p>
+
+<pre><code>ReplyStat value = reply.getValue();
+System.out.println(value.getHour() + " : " + value.getCount());
+</code></pre>
+
+<p>}
+```</p>
+
+<p>需要注意的是：结果存在reply的value字段里，是为了后面构造map好处理；场景不一样的话，先使用shell看看结果
+```
+private ReplyStat value;
+class ReplyStat {</p>
+
+<pre><code>private Long hour;
+private Long count;
+</code></pre>
+
+<p>```</p>
+
+<p>shell:
+```
+db.runCommand({ mapreduce: &ldquo;reply&rdquo;,
+ map : function Map() {</p>
+
+<pre><code>var key=new Date(new Date(this.createtime).getFullYear(), 
+    new Date(this.createtime).getMonth(), 
+    new Date(this.createtime).getDate(),
+    new Date(this.createtime).getHours(), 0, 0, 0).getTime(); 
+emit( key, { hour:key, count:1 } );
+</code></pre>
+
+<p>},
+ reduce : function Reduce(key, values) {</p>
+
+<pre><code>var total = 0;  
+for (var i=0; i&lt;values.length; i++) {
+    total += values[i].count;   
+}   
+return { hour:key, count:total };
+</code></pre>
+
+<p>},
+ finalize : function Finalize(key, reduced) {</p>
+
+<pre><code>return reduced;
+</code></pre>
+
+<p>},
+ query : { &ldquo;type&rdquo; : 1, &ldquo;$and&rdquo; : [</p>
+
+<pre><code>{ "createtime" : { "$gt" : NumberLong("1370000000000") } }, 
+{ "createtime" : { "$lt" : NumberLong("1380000000000") } }] 
+</code></pre>
+
+<p>},
+ out : { inline : 1 }
+});
+```</p>
+
+<p>======result======
+```
+{</p>
+
+<pre><code>    "results" : [
+            {
+                    "_id" : 1376881200000,
+                    "value" : {
+                            "hour" : 1376881200000,
+                            "count" : 2
+                    }
+            },
+            {
+                    "_id" : 1376884800000,
+                    "value" : {
+                            "hour" : 1376884800000,
+                            "count" : 5
+                    }
+            },
+            ...
+            {
+                    "_id" : 1379404800000,
+                    "value" : {
+                            "hour" : 1379404800000,
+                            "count" : 27
+                    }
+            }
+    ],
+    "timeMillis" : 24,
+    "counts" : {
+            "input" : 263,
+            "emit" : 263,
+            "reduce" : 35,
+            "output" : 43
+    },
+    "ok" : 1
+</code></pre>
+
+<p>}
+```</p>
+
+<p>如果emit修改成
+<code>
+emit( key, {count:1} );
+</code>
+reduce里
+<code>
+return {count:total};
+</code>
+结果就会是：
+```
+{</p>
+
+<pre><code>    "results" : [
+            {
+                    "_id" : 1376881200000,
+                    "value" : {
+                            "count" : 2
+                    }
+            },
+            {
+                    "_id" : 1376884800000,
+                    "value" : {
+                            "count" : 5
+                    }
+            },
+            {
+                    "_id" : 1376888400000,
+                    "value" : {
+                            "count" : 8
+                    }
+            }
+    ],
+    "timeMillis" : 22,
+    "counts" : {
+            "input" : 263,
+            "emit" : 263,
+            "reduce" : 35,
+            "output" : 43
+    },
+    "ok" : 1
+</code></pre>
+
+<p>}
 ```</p>
 ]]></content>
   </entry>

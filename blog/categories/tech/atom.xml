@@ -4,7 +4,7 @@
   <title><![CDATA[文章分类：tech | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-19T10:32:04+08:00</updated>
+  <updated>2014-02-24T18:24:26+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -566,122 +566,406 @@ compressableMimeType="text/html,text/xml,text/plain,application/octet-stream" /&
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Cygwin & Wine & Ruby 记录]]></title>
-    <link href="http://wangchaoqun.com/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu.html/"/>
-    <updated>2013-01-16T16:03:36+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu</id>
-    <content type="html"><![CDATA[<p>cygwin是一个在windows平台上运行的unix模拟环境, wine则可以安装在Linux，再对应到Windows相应的函数来调用DLL以运行Windows程序。这两个就是利器，windows下不想用虚拟机（占用资源还挺多）或双系统，就可以用用cygwin；服务器上想搞点exe的东西就安装个wine。至于ruby，是因为octopress要用，开个虚拟机写博客很不爽，windows下折腾安装配置，却中文编码没解决，还是cygwin搞定。<!--more--></p>
+    <title type="html"><![CDATA[MongoDB常用命令和操作总结]]></title>
+    <link href="http://wangchaoqun.com/blog/2013/05/mongodbchang-yong-ming-ling-he-cao-zuo-zong-jie.html/"/>
+    <updated>2013-05-24T16:29:59+08:00</updated>
+    <id>http://wangchaoqun.com/blog/2013/05/mongodbchang-yong-ming-ling-he-cao-zuo-zong-jie</id>
+    <content type="html"><![CDATA[<p>做个总结，涉及到mongodb的常用命令、java client查询、spring data mongodb的使用，group，map/reduce等</p>
 
-<h2>cygwin的安装</h2>
+<h4>关闭服务</h4>
 
-<p>官网下载setup-x86_64.exe，运行，下一步，到download site选第一个163的镜像，速度快些；下一步到select packages页面，不选不点，直接下一步，会下载安装默认配置的相关包；安装完默认，重新运行setup，选择要用的包，比如下面这些基本需要：
-<a href="http://blog.developwithpassion.com/2012/03/30/installing-rvm-with-cygwin-on-windows/">摘录自blog.developwithpassion.com</a><br/>
+<p><code>
+use admin
+db.shutdownServer()
+</code></p>
+
+<h4>加锁</h4>
+
+<p><code>
+use admin
+db.runCommand({"fsync":1,"lock":1})
+</code><!--more--></p>
+
+<h4>解锁</h4>
+
+<p><code>
+use admin
+db.$cmd.sys.unlock.findOne()
+db.currentOp()    
+{"inprog":[]}
+</code></p>
+
+<h4>导出和导入</h4>
+
+<p><code>
+mongodump -h 192.168.0.100:27017 -d mydb -o B:\mongo\dump
+mongorestore -h 127.0.0.1:27017 --directoryperdb B:\mongo\dump
+</code></p>
+
+<h4>用户</h4>
+
+<p><code>
+use admin
+db.addUser('name','pwd')
+db.system.users.find()
+db.auth('name','pwd')
+db.removeUser('name')
+</code></p>
+
+<h4>数据库</h4>
+
+<p><code>
+db.copyDatabase('projectDB1', 'projectDB2')
+db.projectDB1.drop()
+db.dropDatabase()
+</code></p>
+
+<h4>增删改</h4>
+
+<p><code>
+db.mycollection.inser,save,update...
+</code></p>
+
+<h4>索引</h4>
+
+<p><code>
+db.user.ensureIndex({firstname: 1, lastname: 1}, {unique: true});
+db.user.dropIndex('address.post_1')
+</code></p>
+
+<h4>查询</h4>
+
+<p><code>
+db.mycollection.find,findOne,distinct.sort({'createTime',-1}).skip(3).limit(10)
+db.user.insert({"name":"cq","age":28,"address":{"province":100,"city":101}})
+db.user.find({"_id":ObjectId("52f830f3aab82981150db455")})
+db.user.find({"address":{"province":100,"city":101}})  # one record
+db.user.find({"address":{"city":101,"province":100}})  # nothing
+db.user.find({"address.city":101,"address.province":100})  # one record
+</code>
+注意：key的顺序,因为MongoDB使用BSON的二进制数据格式<br/>
+注意：limit的值例如为-5的话等同于5，为0则返回全部，汗<br/>
+<code>
+db.user.find({creationTime:{$gt:1300000000000, $lte:1310000000000});
+</code>
+使用where可做运算<br/>
+<code>
+db.reply.find({$where: "this.upCount+this.downCount&lt;1"});
+db.reply.find("this.upCount+this.downCount&lt;1");
+</code></p>
+
+<h4>返回和排除字段</h4>
+
+<p><code>
+db.user.find({"name":"cq"}, {age:1, address:0});
+count
+db.topic.find().skip(10).limit(5).count(); # 所有的记录数量
+</code><br/>
+要返回限制的记录数量，要使用count(true)或count(非0)
+<code>
+db.topic.find().skip(10).limit(5).count(true);
+</code></p>
+
+<h4>dbref关联</h4>
+
+<p>多查一<br/>
+```</p>
+
+<blockquote><p>db.reply.findOne({creator:&ldquo;wy&rdquo;}, {creator:1,topic:1})
+{</p>
+
+<pre><code>    "_id" : ObjectId("52d3ae720b6316a72bb31c45"),
+    "creator" : "wy",
+    "topic" : DBRef("topic", ObjectId("52cf620a0b6307f6a0d44450"))
+</code></pre>
+
+<p>}
+db.reply.findOne({creator:&ldquo;wy&rdquo;}).topic
+DBRef(&ldquo;topic&rdquo;, ObjectId(&ldquo;52cf620a0b6307f6a0d44450&rdquo;))
+db.reply.findOne({creator:&ldquo;wy&rdquo;}).topic.fetch()
+{</p>
+
+<pre><code>    "_id" : ObjectId("52cf620a0b6307f6a0d44450"),
+    "content" : "xxx",
+    "createtime" : NumberLong("1389322762932"),
+    "creator" : "zzz"
+    ...
+</code></pre>
+
+<p>}
+```</p></blockquote>
+
+<p>一查多<br/>
+```</p>
+
+<blockquote><p>topic=db.reply.findOne({creator:&ldquo;wy&rdquo;}).topic
+DBRef(&ldquo;topic&rdquo;, ObjectId(&ldquo;52cf620a0b6307f6a0d44450&rdquo;))
+db.reply.find({&ldquo;topic&rdquo;:topic}).count()
+2
+topic=db.reply.findOne({creator:&ldquo;wy&rdquo;}).topic
+DBRef(&ldquo;topic&rdquo;, ObjectId(&ldquo;52cf620a0b6307f6a0d44450&rdquo;))
+db.reply.find({&ldquo;topic.$id&rdquo;:topic.$id}).count()
+2
+topic=db.reply.findOne({creator:&ldquo;wy&rdquo;}).topic.fetch()
+{</p>
+
+<pre><code>    "_id" : ObjectId("52cf620a0b6307f6a0d44450"),
+    "content" : "xxx",
+    "createtime" : NumberLong("1389322762932"),
+    "creator" : "zzz"
+    ...
+</code></pre>
+
+<p>}
+db.reply.find({&ldquo;topic.$id&rdquo;:topic._id}).count()
+2
+```</p>
+
+<h4>spring data mongodb</h4>
+
+<p>```
+Criteria cri = Criteria.where(&ldquo;topic.$id&rdquo;).is(new ObjectId(&ldquo;52d8f8950b6316a72bb31c7c&rdquo;));
+Reply reply = mongoTemplate.findOne(Query.query(cri), Reply.class);</p></blockquote>
+
+<p>cri.andOperator(Criteria.where(&ldquo;passedtime&rdquo;).gt(fromTime), Criteria.where(&ldquo;passedtime&rdquo;).lt(toTime));
+// 错误的：Criteria.where(&ldquo;passedtime&rdquo;).gt(fromTime).and(&ldquo;passedtime&rdquo;).lt(toTime)
+```</p>
+
+<h4>java client 可以这样：</h4>
+
+<p>```
+String total = &ldquo;this.upCount+this.downCount &lt; &rdquo; + minCount;
+BasicDBObject query = new BasicDBObject(&ldquo;$where&rdquo;, total);
+query.append(&ldquo;passedtime&rdquo;, new BasicDBObject(&ldquo;$gt&rdquo;, fromTime).append(&ldquo;$lt&rdquo;, toTime));
+// TODO query.append(other conditions);</p>
+
+<p>// 返回字段
+BasicDBObject keys = new BasicDBObject();
+keys.put(&ldquo;_id&rdquo;, 1);
+keys.put(&ldquo;creator&rdquo;, 1);</p>
+
+<p>MongoClient mongoClient = new MongoClient(new ServerAddress(&ldquo;localhost&rdquo;, 27017));
+DB db = mongo.getDB(&ldquo;mydb&rdquo;);
+DBCollection collection = db.getCollection(&ldquo;test&rdquo;);</p>
+
+<p>long count = collection.count(query);
+DBCursor cursor = collection.find(query, keys).limit(size);
+for (int i = 0; i &lt; size; i++) {</p>
+
+<pre><code>DBObject e = cursor.next();
+String topicId = e.get("_id").toString();
+// TODO
+</code></pre>
+
+<p>}
+```</p>
+
+<h4>group</h4>
+
+<p>topic : reply = one to many，按topic(或发布者)分组统计回复数
+shell:
+```</p>
+
+<blockquote><p>db.reply.group({ &ldquo;key&rdquo; : { &ldquo;topic&rdquo; : 1} , &ldquo;$reduce&rdquo; : &ldquo;function(doc, prev) {
+ prev.total += 1; }&rdquo; , &ldquo;initial&rdquo; : {&ldquo;total&rdquo; : 0}})
+```</p></blockquote>
+
+<p>spring-data-mongodb:
 ```
-Archive</p>
+Criteria cri = Criteria.where(&ldquo;createtime&rdquo;).gt(1380000000000L);// 时间条件
+GroupBy groupBy = GroupBy</p>
 
-<pre><code>unzip – Unzipping zip files  
+<pre><code>    .key("topic").initialDocument("{total: 0 }")
+    .reduceFunction("function(doc, prev) { prev.total += 1; }");
 </code></pre>
 
-<p>Net</p>
+<p>String collection = mongoTemplate.getCollectionName(Reply.class);
+GroupByResults<Reply> replys = mongoTemplate.group(cri, collection, groupBy, Reply.class);
+```</p>
 
-<pre><code>openssl – bin and sources
-openssh – Only if you are not going to compile openssh yourself
-curl – download internet resources
+<p>java client:
+<code>
+public GroupCommand(DBCollection inputCollection, DBObject keys, DBObject condition, DBObject initial, String reduce, String finalize)
+DBCollection collection = mongoTemplate.getCollection("reply");
+collection.group(...);
+</code></p>
+
+<h4>map/reduce</h4>
+
+<p>场景：展示发帖或回帖的时间趋势图，或者说按整点显示此小时内的发帖数和回帖数，展示成折线图
+创建时间保存的是number long，即date.getTime()的值，key要转成小时，使用new Date(y,m,d,h,0,0,0)</p>
+
+<p>spring-data-mongodb:
+```
+String mapFunction = &ldquo;function () { var key=new Date(new Date(this.createtime).getFullYear(),&rdquo;</p>
+
+<pre><code>    + "new Date(this.createtime).getMonth(), new Date(this.createtime).getDate(),"
+    + "new Date(this.createtime).getHours(), 0, 0, 0).getTime(); "
+    + "emit( key, { hour:key, count:1 } ); }";
 </code></pre>
 
-<p>Devl</p>
+<p>String reduceFunction = &ldquo;function (key, values) { &rdquo;</p>
 
-<pre><code>colorgcc
-gcc
-gcc-core – compiler
-git
-git-completion
-git-gui
-git-svn
-gitk
-libtool – Shared library generation tool. You’ll need it when trying to compile rubies
-libncurses-devel – Used when compiling several other tools I use
-make
-mercurial
-openssl-devel – Required for compiling openssh (not necessarily required for rvm, but I always install it to compile openssh myself)
-readline
-Libs
-zlib
-zlib-devel
+<pre><code>    + " var total = 0;" 
+    + " for (var i=0; i&lt;values.length; i++) { "
+    + "     total += values[i].count; "
+    + " }" 
+    + " return { hour:key, count:total }; "
+    + "}";
 </code></pre>
 
-<p>Utils</p>
+<p>MapReduceResults<Reply> results = mongoTemplate.mapReduce(</p>
 
-<pre><code>ncurses – Enabling better handling of terminal
-patch – Apply a diff file to an original.
+<pre><code>    new Query(cri), collectionName, mapFunction,
+    reduceFunction, Reply.class);
+</code></pre>
+
+<p>List<Reply> replys = Lists.newArrayList(results);
+for (Replys reply : replys) {</p>
+
+<pre><code>ReplyStat value = reply.getValue();
+System.out.println(value.getHour() + " : " + value.getCount());
+</code></pre>
+
+<p>}
+```</p>
+
+<p>需要注意的是：结果存在reply的value字段里，是为了后面构造map好处理；场景不一样的话，先使用shell看看结果
+```
+private ReplyStat value;
+class ReplyStat {</p>
+
+<pre><code>private Long hour;
+private Long count;
 </code></pre>
 
 <p>```</p>
 
-<h2>wine的安装，centos6.x</h2>
+<p>shell:
+```
+db.runCommand({ mapreduce: &ldquo;reply&rdquo;,
+ map : function Map() {</p>
 
-<p><code>
-wget http://mirrors.sohu.com/fedora-epel/6/i386/epel-release-6-8.noarch.rpm
-rpm -ivh epel-release-6-8.noarch.rpm
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
-yum makecache
-yum install wine
-</code>
-安装完成后，应用程序（application）->wine->wine configure稍作配置，也可能会提示download gecko，install 完成即可
-把windows/system32下的MFC42.dll   msxml.dll    msvcp60.dll   riched20.dll    riched32.dll 这几个文件复制到 ~/.wine/drive_c/windows/system32里，再输入命令：winecfg<br/>
-安装exe，英文系统会有中文乱码情况
+<pre><code>var key=new Date(new Date(this.createtime).getFullYear(), 
+    new Date(this.createtime).getMonth(), 
+    new Date(this.createtime).getDate(),
+    new Date(this.createtime).getHours(), 0, 0, 0).getTime(); 
+emit( key, { hour:key, count:1 } );
+</code></pre>
+
+<p>},
+ reduce : function Reduce(key, values) {</p>
+
+<pre><code>var total = 0;  
+for (var i=0; i&lt;values.length; i++) {
+    total += values[i].count;   
+}   
+return { hour:key, count:total };
+</code></pre>
+
+<p>},
+ finalize : function Finalize(key, reduced) {</p>
+
+<pre><code>return reduced;
+</code></pre>
+
+<p>},
+ query : { &ldquo;type&rdquo; : 1, &ldquo;$and&rdquo; : [</p>
+
+<pre><code>{ "createtime" : { "$gt" : NumberLong("1370000000000") } }, 
+{ "createtime" : { "$lt" : NumberLong("1380000000000") } }] 
+</code></pre>
+
+<p>},
+ out : { inline : 1 }
+});
+```</p>
+
+<p>======result======
+```
+{</p>
+
+<pre><code>    "results" : [
+            {
+                    "_id" : 1376881200000,
+                    "value" : {
+                            "hour" : 1376881200000,
+                            "count" : 2
+                    }
+            },
+            {
+                    "_id" : 1376884800000,
+                    "value" : {
+                            "hour" : 1376884800000,
+                            "count" : 5
+                    }
+            },
+            ...
+            {
+                    "_id" : 1379404800000,
+                    "value" : {
+                            "hour" : 1379404800000,
+                            "count" : 27
+                    }
+            }
+    ],
+    "timeMillis" : 24,
+    "counts" : {
+            "input" : 263,
+            "emit" : 263,
+            "reduce" : 35,
+            "output" : 43
+    },
+    "ok" : 1
+</code></pre>
+
+<p>}
+```</p>
+
+<p>如果emit修改成
 <code>
-wine whatever.exe
-</code></p>
-
-<h2>安装Ruby</h2>
-
-<p>我虚拟了两个centos，一个用make install安装并配置octopress环境，另一个同样方法却不成功，后来用rvm可行，不用yum install ruby 是因为版本过低。</p>
-
-<h4>RVM安装：</h4>
-
-<p><code>
-curl -L https://get.rvm.io | bash -s stable --ruby
+emit( key, {count:1} );
 </code>
+reduce里
 <code>
-ruby --version
-</code>显示版本即成功</p>
-
-<h4>make install：</h4>
-
-<p><code>
-wget ftp://ftp.ruby-lang.org//pub/ruby/2.1/ruby-2.1.0.tar.gz
-tar -zxvf ruby-2.1.0.tar.gz
-cd ruby-2.1.0
-./configure --prefix=/usr/local/ruby
-make
-make test
-make install  
-</code></p>
-
-<h4>windows7下简直是个悲剧：</h4>
-
-<p>下载rubyinstaller安装，devkit解压，然后cmd下
-cdd到DevKit path<br/>
-<code>
-ruby dk.rb init
-ruby dk.rb review
-ruby dk.rb install
+return {count:total};
 </code>
-出现utf-8错误，使用chcp 1252，再进行上三句，done<br/>
-然后配置octopress环境，英文下rake成功，有中文（比如文章分类、标签带中文的）不成;<br/>
-<a href="http://txgcwm.github.io/">摘录自txgcwm.github.io</a></p>
+结果就会是：
+```
+{</p>
 
-<blockquote><p>在实际使用（rake generate/rake preview）的时候，若blog整体采用了非ascii码的编码格式（比如utf-8）就会出现类似这样的错误：<br/>
-Liquid error: incompatible encoding regexp match (ascii-8bit regexp with utf-8 string)<br/>
-其实是由于插件文件plugins/category_list_tag.rb本身是ascii编码所致:
-<code>
-$ chardet category_list_tag.rb
-category_list_tag.rb: ascii (confidence: 1.00)
-</code>
-category_list_tag.rb中很多地方用到了ruby的正则表达式，而ruby的正则表达式在匹配的时候，默认是按照“代码源文件”的编码格式(在这里是ascii)进行匹配的，而如果blog是utf-8编码的话就会出现上述错误。有两种解决办法：
-1. 将category_list_tag.rb转成utf-8格式。<br/>
-2. 更改category_list_tag.rb中所有的正则表达式声明，加上u选项（u的意思就是以utf-8编码格式来进行匹配）。例如，若原正则表达式是/regexp/, 则改成/regexp/u。</p></blockquote>
+<pre><code>    "results" : [
+            {
+                    "_id" : 1376881200000,
+                    "value" : {
+                            "count" : 2
+                    }
+            },
+            {
+                    "_id" : 1376884800000,
+                    "value" : {
+                            "count" : 5
+                    }
+            },
+            {
+                    "_id" : 1376888400000,
+                    "value" : {
+                            "count" : 8
+                    }
+            }
+    ],
+    "timeMillis" : 22,
+    "counts" : {
+            "input" : 263,
+            "emit" : 263,
+            "reduce" : 35,
+            "output" : 43
+    },
+    "ok" : 1
+</code></pre>
+
+<p>}
+```</p>
 ]]></content>
   </entry>
   
