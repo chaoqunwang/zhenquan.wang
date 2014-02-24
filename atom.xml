@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-24T18:28:34+08:00</updated>
+  <updated>2014-02-24T18:35:40+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -811,9 +811,9 @@
   
   <entry>
     <title type="html"><![CDATA[MongoDB常用命令和操作总结]]></title>
-    <link href="http://wangchaoqun.com/blog/2013/05/mongodbchang-yong-ming-ling-he-cao-zuo-zong-jie.html/"/>
+    <link href="http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie.html/"/>
     <updated>2013-05-24T16:29:59+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2013/05/mongodbchang-yong-ming-ling-he-cao-zuo-zong-jie</id>
+    <id>http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie</id>
     <content type="html"><![CDATA[<p>做个总结，涉及到mongodb的常用命令、java client查询、spring data mongodb的使用，group，map/reduce等</p>
 
 <h3>关闭服务</h3>
@@ -1021,7 +1021,7 @@
 </span><span class='line'>2</span></code></pre></td></tr></table></div></figure>
 
 
-<h3>spring data mongodb</h3>
+<h4>spring data mongodb</h4>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1035,7 +1035,7 @@
 </span><span class='line'>// 错误的：Criteria.where("passedtime").gt(fromTime).and("passedtime").lt(toTime)</span></code></pre></td></tr></table></div></figure>
 
 
-<h3>java client 可以这样：</h3>
+<h4>java client 可以这样：</h4>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1381,7 +1381,7 @@ shell:</p>
 
 <p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
             &nbsp;原文地址：
-            <a href='http://wangchaoqun.com/blog/2013/05/mongodbchang-yong-ming-ling-he-cao-zuo-zong-jie.html/'>http://wangchaoqun.com/blog/2013/05/mongodbchang-yong-ming-ling-he-cao-zuo-zong-jie.html/</a><br/>
+            <a href='http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie.html/'>http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie.html/</a><br/>
             &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
             &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 

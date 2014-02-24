@@ -4,7 +4,7 @@
   <title><![CDATA[文章分类：tech | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-24T18:28:34+08:00</updated>
+  <updated>2014-02-24T18:35:40+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -567,9 +567,9 @@ compressableMimeType="text/html,text/xml,text/plain,application/octet-stream" /&
   
   <entry>
     <title type="html"><![CDATA[MongoDB常用命令和操作总结]]></title>
-    <link href="http://wangchaoqun.com/blog/2013/05/mongodbchang-yong-ming-ling-he-cao-zuo-zong-jie.html/"/>
+    <link href="http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie.html/"/>
     <updated>2013-05-24T16:29:59+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2013/05/mongodbchang-yong-ming-ling-he-cao-zuo-zong-jie</id>
+    <id>http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie</id>
     <content type="html"><![CDATA[<p>做个总结，涉及到mongodb的常用命令、java client查询、spring data mongodb的使用，group，map/reduce等</p>
 
 <h3>关闭服务</h3>
@@ -721,7 +721,7 @@ db.reply.find({&ldquo;topic.$id&rdquo;:topic._id}).count()
 2
 ```</p>
 
-<h3>spring data mongodb</h3>
+<h4>spring data mongodb</h4>
 
 <p>```
 Criteria cri = Criteria.where(&ldquo;topic.$id&rdquo;).is(new ObjectId(&ldquo;52d8f8950b6316a72bb31c7c&rdquo;));
@@ -731,7 +731,7 @@ Reply reply = mongoTemplate.findOne(Query.query(cri), Reply.class);</p></blockqu
 // 错误的：Criteria.where(&ldquo;passedtime&rdquo;).gt(fromTime).and(&ldquo;passedtime&rdquo;).lt(toTime)
 ```</p>
 
-<h3>java client 可以这样：</h3>
+<h4>java client 可以这样：</h4>
 
 <p>```
 String total = &ldquo;this.upCount+this.downCount &lt; &rdquo; + minCount;
