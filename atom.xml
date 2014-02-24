@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-24T18:24:26+08:00</updated>
+  <updated>2014-02-24T18:28:34+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -816,7 +816,7 @@
     <id>http://wangchaoqun.com/blog/2013/05/mongodbchang-yong-ming-ling-he-cao-zuo-zong-jie</id>
     <content type="html"><![CDATA[<p>做个总结，涉及到mongodb的常用命令、java client查询、spring data mongodb的使用，group，map/reduce等</p>
 
-<h4>关闭服务</h4>
+<h3>关闭服务</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -824,7 +824,7 @@
 </span><span class='line'>db.shutdownServer()</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>加锁</h4>
+<h3>加锁</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -835,7 +835,7 @@
 <!--more-->
 
 
-<h4>解锁</h4>
+<h3>解锁</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -847,7 +847,7 @@
 </span><span class='line'>{"inprog":[]}</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>导出和导入</h4>
+<h3>导出和导入</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -855,7 +855,7 @@
 </span><span class='line'>mongorestore -h 127.0.0.1:27017 --directoryperdb B:\mongo\dump</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>用户</h4>
+<h3>用户</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -869,7 +869,7 @@
 </span><span class='line'>db.removeUser('name')</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>数据库</h4>
+<h3>数据库</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -879,13 +879,13 @@
 </span><span class='line'>db.dropDatabase()</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>增删改</h4>
+<h3>增删改</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>db.mycollection.inser,save,update...</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>索引</h4>
+<h3>索引</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -893,7 +893,7 @@
 </span><span class='line'>db.user.dropIndex('address.post_1')</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>查询</h4>
+<h3>查询</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -924,7 +924,7 @@
 </span><span class='line'>db.reply.find("this.upCount+this.downCount&lt;1");</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>返回和排除字段</h4>
+<h3>返回和排除字段</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -941,7 +941,7 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>db.topic.find().skip(10).limit(5).count(true);</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>dbref关联</h4>
+<h3>dbref关联</h3>
 
 <p>多查一</p>
 
@@ -1021,7 +1021,7 @@
 </span><span class='line'>2</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>spring data mongodb</h4>
+<h3>spring data mongodb</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1035,7 +1035,7 @@
 </span><span class='line'>// 错误的：Criteria.where("passedtime").gt(fromTime).and("passedtime").lt(toTime)</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>java client 可以这样：</h4>
+<h3>java client 可以这样：</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1081,7 +1081,7 @@
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>group</h4>
+<h3>group</h3>
 
 <p>topic : reply = one to many，按topic(或发布者)分组统计回复数
 shell:</p>
@@ -1118,7 +1118,7 @@ shell:</p>
 </span><span class='line'>collection.group(...);</span></code></pre></td></tr></table></div></figure>
 
 
-<h4>map/reduce</h4>
+<h3>map/reduce</h3>
 
 <p>场景：展示发帖或回帖的时间趋势图，或者说按整点显示此小时内的发帖数和回帖数，展示成折线图
 创建时间保存的是number long，即date.getTime()的值，key要转成小时，使用new Date(y,m,d,h,0,0,0)</p>
@@ -1567,7 +1567,7 @@ Liquid error: incompatible encoding regexp match (ascii-8bit regexp with utf-8 s
 </span><span class='line'>git --version</span></code></pre></td></tr></table></div></figure>
 
 
-<blockquote></blockquote>
+<p></p>
 
 <!--more-->
 

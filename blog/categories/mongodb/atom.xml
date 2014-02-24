@@ -4,7 +4,7 @@
   <title><![CDATA[文章分类：mongodb | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/blog/categories/mongodb/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-24T18:24:26+08:00</updated>
+  <updated>2014-02-24T18:28:34+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -400,21 +400,21 @@ crontab -e</p>
     <id>http://wangchaoqun.com/blog/2013/05/mongodbchang-yong-ming-ling-he-cao-zuo-zong-jie</id>
     <content type="html"><![CDATA[<p>做个总结，涉及到mongodb的常用命令、java client查询、spring data mongodb的使用，group，map/reduce等</p>
 
-<h4>关闭服务</h4>
+<h3>关闭服务</h3>
 
 <p><code>
 use admin
 db.shutdownServer()
 </code></p>
 
-<h4>加锁</h4>
+<h3>加锁</h3>
 
 <p><code>
 use admin
 db.runCommand({"fsync":1,"lock":1})
 </code><!--more--></p>
 
-<h4>解锁</h4>
+<h3>解锁</h3>
 
 <p><code>
 use admin
@@ -423,14 +423,14 @@ db.currentOp()
 {"inprog":[]}
 </code></p>
 
-<h4>导出和导入</h4>
+<h3>导出和导入</h3>
 
 <p><code>
 mongodump -h 192.168.0.100:27017 -d mydb -o B:\mongo\dump
 mongorestore -h 127.0.0.1:27017 --directoryperdb B:\mongo\dump
 </code></p>
 
-<h4>用户</h4>
+<h3>用户</h3>
 
 <p><code>
 use admin
@@ -440,7 +440,7 @@ db.auth('name','pwd')
 db.removeUser('name')
 </code></p>
 
-<h4>数据库</h4>
+<h3>数据库</h3>
 
 <p><code>
 db.copyDatabase('projectDB1', 'projectDB2')
@@ -448,20 +448,20 @@ db.projectDB1.drop()
 db.dropDatabase()
 </code></p>
 
-<h4>增删改</h4>
+<h3>增删改</h3>
 
 <p><code>
 db.mycollection.inser,save,update...
 </code></p>
 
-<h4>索引</h4>
+<h3>索引</h3>
 
 <p><code>
 db.user.ensureIndex({firstname: 1, lastname: 1}, {unique: true});
 db.user.dropIndex('address.post_1')
 </code></p>
 
-<h4>查询</h4>
+<h3>查询</h3>
 
 <p><code>
 db.mycollection.find,findOne,distinct.sort({'createTime',-1}).skip(3).limit(10)
@@ -482,7 +482,7 @@ db.reply.find({$where: "this.upCount+this.downCount&lt;1"});
 db.reply.find("this.upCount+this.downCount&lt;1");
 </code></p>
 
-<h4>返回和排除字段</h4>
+<h3>返回和排除字段</h3>
 
 <p><code>
 db.user.find({"name":"cq"}, {age:1, address:0});
@@ -494,7 +494,7 @@ db.topic.find().skip(10).limit(5).count(); # 所有的记录数量
 db.topic.find().skip(10).limit(5).count(true);
 </code></p>
 
-<h4>dbref关联</h4>
+<h3>dbref关联</h3>
 
 <p>多查一<br/>
 ```</p>
@@ -549,7 +549,7 @@ db.reply.find({&ldquo;topic.$id&rdquo;:topic._id}).count()
 2
 ```</p>
 
-<h4>spring data mongodb</h4>
+<h3>spring data mongodb</h3>
 
 <p>```
 Criteria cri = Criteria.where(&ldquo;topic.$id&rdquo;).is(new ObjectId(&ldquo;52d8f8950b6316a72bb31c7c&rdquo;));
@@ -559,7 +559,7 @@ Reply reply = mongoTemplate.findOne(Query.query(cri), Reply.class);</p></blockqu
 // 错误的：Criteria.where(&ldquo;passedtime&rdquo;).gt(fromTime).and(&ldquo;passedtime&rdquo;).lt(toTime)
 ```</p>
 
-<h4>java client 可以这样：</h4>
+<h3>java client 可以这样：</h3>
 
 <p>```
 String total = &ldquo;this.upCount+this.downCount &lt; &rdquo; + minCount;
@@ -588,7 +588,7 @@ String topicId = e.get("_id").toString();
 <p>}
 ```</p>
 
-<h4>group</h4>
+<h3>group</h3>
 
 <p>topic : reply = one to many，按topic(或发布者)分组统计回复数
 shell:
@@ -618,7 +618,7 @@ DBCollection collection = mongoTemplate.getCollection("reply");
 collection.group(...);
 </code></p>
 
-<h4>map/reduce</h4>
+<h3>map/reduce</h3>
 
 <p>场景：展示发帖或回帖的时间趋势图，或者说按整点显示此小时内的发帖数和回帖数，展示成折线图
 创建时间保存的是number long，即date.getTime()的值，key要转成小时，使用new Date(y,m,d,h,0,0,0)</p>
