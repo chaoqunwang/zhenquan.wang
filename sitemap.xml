@@ -38,7 +38,7 @@
         <loc>
             http://wangchaoqun.com/blog/2008/08/sql-server-2005-de-an-zhuang-he-jdbc-lian-jie-fang-fa.html/
         </loc>
-        <lastmod>2014-02-25T10:24:53+08:00</lastmod>
+        <lastmod>2014-02-25T17:25:42+08:00</lastmod>
     </url>
     <url>
         <loc>
@@ -120,9 +120,21 @@
     </url>
     <url>
         <loc>
-            http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie.html/
+            http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-1.html/
         </loc>
-        <lastmod>2014-02-25T09:29:11+08:00</lastmod>
+        <lastmod>2014-02-25T17:18:39+08:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-2.html/
+        </loc>
+        <lastmod>2014-02-25T17:23:35+08:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://wangchaoqun.com/blog/2013/05/mongodb-aggregation-framework-zong-jie.html/
+        </loc>
+        <lastmod>2014-02-25T17:21:01+08:00</lastmod>
     </url>
     <url>
         <loc>
@@ -156,7 +168,7 @@
     </url>
     <url>
         <loc>http://wangchaoqun.com/blog/archives/</loc>
-        <lastmod>2014-02-25T10:44:33+08:00</lastmod>
+        <lastmod>2014-02-25T17:25:42+08:00</lastmod>
     </url>
     <url>
         <loc>http://wangchaoqun.com/comments/</loc>
@@ -164,7 +176,7 @@
     </url>
     <url>
         <loc>http://wangchaoqun.com/</loc>
-        <lastmod>2014-02-25T10:44:33+08:00</lastmod>
+        <lastmod>2014-02-25T17:25:42+08:00</lastmod>
     </url>
     <url>
         <loc>http://wangchaoqun.com/robots.txt</loc>

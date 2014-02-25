@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>MongoDB常用命令和操作总结 - 超群的博客</title>
+  <title>MongoDB常用命令和操作总结2 - 超群的博客</title>
   <meta name="author" content="wang chaoqun">
 
   
-  <meta name="description" content="mongodb mapreduce 常用命令 spring-data">
-  <meta name="keywords" content="mongodb mapreduce 常用命令 spring-data">
+  <meta name="description" content="mongodb map-reduce 常用命令 spring-data aggregation">
+  <meta name="keywords" content="mongodb map-reduce 常用命令 spring-data aggregation">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link id="currentUrl" rel="canonical" href="http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie.html/">
+  <link id="currentUrl" rel="canonical" href="http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-2.html/">
   <link href="/favicon.png" rel="icon">
   <!--<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">-->
   <link href="http://bcs.duapp.com/colalife2000/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -126,7 +126,7 @@ function addBlankTargetForLinks () {
   
   <header>
     
-      <h1 class="entry-title">MongoDB常用命令和操作总结</h1>
+      <h1 class="entry-title">MongoDB常用命令和操作总结2</h1>
     
     
       <p class="meta">
@@ -142,278 +142,14 @@ function addBlankTargetForLinks () {
   
 
 
-<time datetime="2013-05-24T16:29:59+08:00" pubdate data-updated="true">2013年05月24日</time>
+<time datetime="2013-05-10T10:09:23+08:00" pubdate data-updated="true">2013年05月10日</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>做个总结，涉及到mongodb的常用命令、java client查询、spring data mongodb的使用，group，map/reduce等</p>
-
-<h3>关闭服务</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>use admin
-</span><span class='line'>db.shutdownServer()</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>加锁</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>use admin
-</span><span class='line'>db.runCommand({"fsync":1,"lock":1})</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
-
-<h3>解锁</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>use admin
-</span><span class='line'>db.$cmd.sys.unlock.findOne()
-</span><span class='line'>db.currentOp()    
-</span><span class='line'>{"inprog":[]}</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>导出和导入</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mongodump -h 192.168.0.100:27017 -d mydb -o B:\mongo\dump
-</span><span class='line'>mongorestore -h 127.0.0.1:27017 --directoryperdb B:\mongo\dump</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>用户</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>use admin
-</span><span class='line'>db.addUser('name','pwd')
-</span><span class='line'>db.system.users.find()
-</span><span class='line'>db.auth('name','pwd')
-</span><span class='line'>db.removeUser('name')</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>数据库</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>db.copyDatabase('projectDB1', 'projectDB2')
-</span><span class='line'>db.projectDB1.drop()
-</span><span class='line'>db.dropDatabase()</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>增删改</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>db.mycollection.inser,save,update...</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>索引</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>db.user.ensureIndex({firstname: 1, lastname: 1}, {unique: true});
-</span><span class='line'>db.user.dropIndex('address.post_1')</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>查询</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>db.mycollection.find,findOne,distinct.sort({'createTime',-1}).skip(3).limit(10)
-</span><span class='line'>db.user.insert({"name":"cq","age":28,"address":{"province":100,"city":101}})
-</span><span class='line'>db.user.find({"_id":ObjectId("52f830f3aab82981150db455")})
-</span><span class='line'>db.user.find({"address":{"province":100,"city":101}})  # one record
-</span><span class='line'>db.user.find({"address":{"city":101,"province":100}})  # nothing
-</span><span class='line'>db.user.find({"address.city":101,"address.province":100})  # one record</span></code></pre></td></tr></table></div></figure>
-
-
-<p>注意：key的顺序,因为MongoDB使用BSON的二进制数据格式<br/>
-注意：limit的值例如为-5的话等同于5，为0则返回全部，汗</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>db.user.find({creationTime:{$gt:1300000000000, $lte:1310000000000}); </span></code></pre></td></tr></table></div></figure>
-
-
-<p>使用where可做运算</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>db.reply.find({$where: "this.upCount+this.downCount&lt;1"}); 
-</span><span class='line'>db.reply.find("this.upCount+this.downCount&lt;1");</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>返回和排除字段</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>db.user.find({"name":"cq"}, {age:1, address:0}); 
-</span><span class='line'>count
-</span><span class='line'>db.topic.find().skip(10).limit(5).count(); # 所有的记录数量</span></code></pre></td></tr></table></div></figure>
-
-
-<p>
-要返回限制的记录数量，要使用count(true)或count(非0)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>db.topic.find().skip(10).limit(5).count(true);</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>dbref关联</h3>
-
-<p>多查一</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; db.reply.findOne({creator:"wy"}, {creator:1,topic:1})
-</span><span class='line'>{
-</span><span class='line'>        "_id" : ObjectId("52d3ae720b6316a72bb31c45"),
-</span><span class='line'>        "creator" : "wy",
-</span><span class='line'>        "topic" : DBRef("topic", ObjectId("52cf620a0b6307f6a0d44450"))
-</span><span class='line'>}
-</span><span class='line'>&gt; db.reply.findOne({creator:"wy"}).topic
-</span><span class='line'>DBRef("topic", ObjectId("52cf620a0b6307f6a0d44450"))
-</span><span class='line'>&gt; db.reply.findOne({creator:"wy"}).topic.fetch()
-</span><span class='line'>{
-</span><span class='line'>        "_id" : ObjectId("52cf620a0b6307f6a0d44450"),
-</span><span class='line'>        "content" : "xxx",
-</span><span class='line'>        "createtime" : NumberLong("1389322762932"),
-</span><span class='line'>        "creator" : "zzz"
-</span><span class='line'>      ...
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>一查多</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; topic=db.reply.findOne({creator:"wy"}).topic
-</span><span class='line'>DBRef("topic", ObjectId("52cf620a0b6307f6a0d44450"))
-</span><span class='line'>&gt; db.reply.find({"topic":topic}).count()
-</span><span class='line'>2
-</span><span class='line'>&gt; topic=db.reply.findOne({creator:"wy"}).topic
-</span><span class='line'>DBRef("topic", ObjectId("52cf620a0b6307f6a0d44450"))
-</span><span class='line'>&gt; db.reply.find({"topic.$id":topic.$id}).count()
-</span><span class='line'>2
-</span><span class='line'>&gt; topic=db.reply.findOne({creator:"wy"}).topic.fetch()
-</span><span class='line'>{
-</span><span class='line'>        "_id" : ObjectId("52cf620a0b6307f6a0d44450"),
-</span><span class='line'>        "content" : "xxx",
-</span><span class='line'>        "createtime" : NumberLong("1389322762932"),
-</span><span class='line'>        "creator" : "zzz"
-</span><span class='line'>      ...
-</span><span class='line'>}
-</span><span class='line'>&gt; db.reply.find({"topic.$id":topic._id}).count()
-</span><span class='line'>2</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>spring data mongodb</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Criteria cri = Criteria.where("topic.$id").is(new ObjectId("52d8f8950b6316a72bb31c7c"));
-</span><span class='line'>Reply reply = mongoTemplate.findOne(Query.query(cri), Reply.class);
-</span><span class='line'>
-</span><span class='line'>cri.andOperator(Criteria.where("passedtime").gt(fromTime), Criteria.where("passedtime").lt(toTime));
-</span><span class='line'>// 错误的：Criteria.where("passedtime").gt(fromTime).and("passedtime").lt(toTime)</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>java client 可以这样：</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>String total = "this.upCount+this.downCount &lt; " + minCount;
-</span><span class='line'>BasicDBObject query = new BasicDBObject("$where", total);
-</span><span class='line'>query.append("passedtime", new BasicDBObject("$gt", fromTime).append("$lt", toTime));
-</span><span class='line'>// TODO query.append(other conditions);
-</span><span class='line'>
-</span><span class='line'>// 返回字段
-</span><span class='line'>BasicDBObject keys = new BasicDBObject();
-</span><span class='line'>keys.put("_id", 1);
-</span><span class='line'>keys.put("creator", 1);
-</span><span class='line'>
-</span><span class='line'>MongoClient mongoClient = new MongoClient(new ServerAddress("localhost", 27017));
-</span><span class='line'>DB db = mongo.getDB("mydb");
-</span><span class='line'>DBCollection collection = db.getCollection("test");
-</span><span class='line'>
-</span><span class='line'>long count = collection.count(query);
-</span><span class='line'>DBCursor cursor = collection.find(query, keys).limit(size);
-</span><span class='line'>for (int i = 0; i &lt; size; i++) {
-</span><span class='line'>  DBObject e = cursor.next();
-</span><span class='line'>  String topicId = e.get("_id").toString();
-</span><span class='line'>  // TODO
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
+<div class="entry-content"><p>做个总结，涉及到mongodb的常用命令、java driver查询、spring data mongodb的使用，group，map-reduce，aggregation framework等</p>
 
 <h3>group</h3>
 
@@ -426,7 +162,8 @@ shell:</p>
 </span><span class='line'> prev.total += 1; }" , "initial" : {"total" : 0}})</span></code></pre></td></tr></table></div></figure>
 
 
-<p>spring-data-mongodb:</p>
+<p><a href=http://wangchaoqun.com title=colalife.com></a><!--more-->
+spring-data-mongodb:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -462,7 +199,7 @@ shell:</p>
 </span><span class='line'>      .reduceFunction(reduceFunction).finalizeFunction(finalizeFunction);</span></code></pre></td></tr></table></div></figure>
 
 
-<p>java client:</p>
+<p>java driver:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -472,7 +209,7 @@ shell:</p>
 </span><span class='line'>collection.group(...);</span></code></pre></td></tr></table></div></figure>
 
 
-<h3>map/reduce</h3>
+<h3>map-reduce</h3>
 
 <p>场景：展示发帖或回帖的时间趋势图，或者说按整点显示此小时内的发帖数和回帖数，展示成折线图
 创建时间保存的是number long，即date.getTime()的值，key要转成小时，使用new Date(y,m,d,h,0,0,0)</p>
@@ -735,7 +472,7 @@ shell:</p>
 
 <p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
             &nbsp;原文地址：
-            <a href='http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie.html/'>http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie.html/</a><br/>
+            <a href='http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-2.html/'>http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-2.html/</a><br/>
             &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
             &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
@@ -761,7 +498,7 @@ shell:</p>
   
 
 
-<time datetime="2013-05-24T16:29:59+08:00" pubdate data-updated="true">2013年05月24日</time>
+<time datetime="2013-05-10T10:09:23+08:00" pubdate data-updated="true">2013年05月10日</time>
       
 
 <span class="categories">
@@ -777,10 +514,10 @@ shell:</p>
 
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu.html/" title="Previous Post: Cygwin & Wine & Ruby 记录">&laquo; Cygwin & Wine & Ruby 记录</a>
+        <a class="basic-alignment left" href="/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-1.html/" title="Previous Post: MongoDB常用命令和操作总结1">&laquo; MongoDB常用命令和操作总结1</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/07/zhuan-tomcat-sheng-chan-fu-wu-qi-xing-neng-you-hua.html/" title="Next Post: [转]Tomcat 生产服务器性能优化">[转]Tomcat 生产服务器性能优化 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2013/05/mongodb-aggregation-framework-zong-jie.html/" title="Next Post: mongodb aggregation framework总结">mongodb aggregation framework总结 &raquo;</a>
       
     </p>
     
@@ -843,7 +580,8 @@ var duoshuoQuery = {short_name:"colalife"};
 <a style="padding: 3px;font-size: 100%" href="/tags/java/">java</a>
 <a style="padding: 3px;font-size: 100%" href="/tags/jsoup/">jsoup</a>
 <a style="padding: 3px;font-size: 139%" href="/tags/linux/">linux</a>
-<a style="padding: 3px;font-size: 162%" href="/tags/mongodb/">mongodb</a>
+<a style="padding: 3px;font-size: 139%" href="/tags/mapreduce/">mapreduce</a>
+<a style="padding: 3px;font-size: 191%" href="/tags/mongodb/">mongodb</a>
 <a style="padding: 3px;font-size: 139%" href="/tags/octopress/">octopress</a>
 <a style="padding: 3px;font-size: 100%" href="/tags/poi/">poi</a>
 <a style="padding: 3px;font-size: 139%" href="/tags/ruby/">ruby</a>
@@ -858,7 +596,6 @@ var duoshuoQuery = {short_name:"colalife"};
 <a style="padding: 3px;font-size: 100%" href="/tags/suan-fa/">算法</a>
 <a style="padding: 3px;font-size: 100%" href="/tags/guan-li-gong-zuo/">管理工作</a>
 <a style="padding: 3px;font-size: 139%" href="/tags/wang-zhan/">网站</a>
-<a style="padding: 3px;font-size: 100%" href="/tags/she-ji-mo-shi/">设计模式</a>
 <a style="padding: 3px;font-size: 100%" href="/tags/fu-zai-jun-heng/">负载均衡</a>
 <a style="padding: 3px;font-size: 210%" href="/tags/sui-bi/">随笔</a>
 <a style="padding: 3px;font-size: 100%" href="/tags/xiang-mu-guan-li/">项目管理</a>
@@ -887,7 +624,15 @@ var duoshuoQuery = {short_name:"colalife"};
       </li>
     
       <li class="post">
-        <a href="/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie.html/">MongoDB常用命令和操作总结</a>
+        <a href="/blog/2013/05/mongodb-aggregation-framework-zong-jie.html/">Mongodb Aggregation Framework总结</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-2.html/">MongoDB常用命令和操作总结2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-1.html/">MongoDB常用命令和操作总结1</a>
       </li>
     
       <li class="post">
@@ -902,14 +647,6 @@ var duoshuoQuery = {short_name:"colalife"};
         <a href="/blog/2013/01/excel-dao-chu-gong-ju-lei.html/">Excel导出工具类</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai.html/">Htmlparser和httpclient解析页面并下载</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/zhuan-shen-ru-li-jie-liu-lan-qi-jian-rong-xing-mo-shi.html/">[转]深入理解浏览器兼容性模式</a>
-      </li>
-    
   </ul>
 </section>
 <section> 
@@ -919,9 +656,9 @@ var duoshuoQuery = {short_name:"colalife"};
 <li class='category'><a href='/blog/categories/hibernate/'>hibernate (1)</a></li>
 <li class='category'><a href='/blog/categories/java/'>java (6)</a></li>
 <li class='category'><a href='/blog/categories/linux/'>linux (2)</a></li>
-<li class='category'><a href='/blog/categories/mongodb/'>mongodb (3)</a></li>
+<li class='category'><a href='/blog/categories/mongodb/'>mongodb (5)</a></li>
 <li class='category'><a href='/blog/categories/mysql/'>mysql (1)</a></li>
-<li class='category'><a href='/blog/categories/tech/'>tech (18)</a></li>
+<li class='category'><a href='/blog/categories/tech/'>tech (20)</a></li>
 <li class='category'><a href='/blog/categories/tomcat/'>tomcat (1)</a></li>
 <li class='category'><a href='/blog/categories/web/'>web (2)</a></li>
 <li class='category'><a href='/blog/categories/dai-ma/'>代码 (3)</a></li>

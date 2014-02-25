@@ -302,7 +302,7 @@ function addBlankTargetForLinks () {
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie.html/">MongoDB常用命令和操作总结</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/05/mongodb-aggregation-framework-zong-jie.html/">Mongodb Aggregation Framework总结</a></h1>
     
     
       <p class="meta">
@@ -318,36 +318,28 @@ function addBlankTargetForLinks () {
   
 
 
-<time datetime="2013-05-24T16:29:59+08:00" pubdate data-updated="true">2013年05月24日</time>
+<time datetime="2013-05-18T12:56:21+08:00" pubdate data-updated="true">2013年05月18日</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>做个总结，涉及到mongodb的常用命令、java client查询、spring data mongodb的使用，group，map/reduce等</p>
-
-<h3>关闭服务</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>use admin
-</span><span class='line'>db.shutdownServer()</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>加锁</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>use admin
-</span><span class='line'>db.runCommand({"fsync":1,"lock":1})</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href=http://wangchaoqun.com title=colalife.com></a></div>
+  <div class="entry-content"><p>2.2版本新特性，比group, map-reduce好，reference里有很多操作和[运算]可用<br/>
+pipeline operators:<br/>
+• $project (page 285)<br/>
+• $match (page 281)<br/>
+• $limit (page 280)<br/>
+• $skip (page 287)<br/>
+• $unwind (page 290)// 用于嵌套文档，可对数组拆解<br/>
+• $group (page 278)<br/>
+• $sort (page 287)<br/>
+• $geoNear (page 276)  <br/>
+<a href=http://wangchaoqun.com title=colalife.com></a></div>
   
   
     <footer style="text-align:right;">
-      <a rel="full-article" href="/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie.html/">&larr;点击阅读全文</a>
+      <a rel="full-article" href="/blog/2013/05/mongodb-aggregation-framework-zong-jie.html/">&larr;点击阅读全文</a>
     </footer>
   
 
@@ -359,7 +351,7 @@ function addBlankTargetForLinks () {
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu.html/">Cygwin & Wine & Ruby 记录</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-2.html/">MongoDB常用命令和操作总结2</a></h1>
     
     
       <p class="meta">
@@ -375,18 +367,31 @@ function addBlankTargetForLinks () {
   
 
 
-<time datetime="2013-01-16T16:03:36+08:00" pubdate data-updated="true">2013年01月16日</time>
+<time datetime="2013-05-10T10:09:23+08:00" pubdate data-updated="true">2013年05月10日</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>cygwin是一个在windows平台上运行的unix模拟环境, wine则可以安装在Linux，再对应到Windows相应的函数来调用DLL以运行Windows程序。这两个就是利器，windows下不想用虚拟机（占用资源还挺多）或双系统，就可以用用cygwin；服务器上想搞点exe的东西就安装个wine。至于ruby，是因为octopress要用，开个虚拟机写博客很不爽，windows下折腾安装配置，却中文编码没解决，还是cygwin搞定。<a href=http://wangchaoqun.com title=colalife.com></a></div>
+  <div class="entry-content"><p>做个总结，涉及到mongodb的常用命令、java driver查询、spring data mongodb的使用，group，map-reduce，aggregation framework等</p>
+
+<h3>group</h3>
+
+<p>topic : reply = one to many，按topic(或发布者)分组统计回复数
+shell:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; db.reply.group({ "key" : { "topic" : 1} , "$reduce" : "function(doc, prev) {
+</span><span class='line'> prev.total += 1; }" , "initial" : {"total" : 0}})</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href=http://wangchaoqun.com title=colalife.com></a></div>
   
   
     <footer style="text-align:right;">
-      <a rel="full-article" href="/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu.html/">&larr;点击阅读全文</a>
+      <a rel="full-article" href="/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-2.html/">&larr;点击阅读全文</a>
     </footer>
   
 
@@ -426,7 +431,8 @@ function addBlankTargetForLinks () {
 <a style="padding: 3px;font-size: 100%" href="/tags/java/">java</a>
 <a style="padding: 3px;font-size: 100%" href="/tags/jsoup/">jsoup</a>
 <a style="padding: 3px;font-size: 139%" href="/tags/linux/">linux</a>
-<a style="padding: 3px;font-size: 162%" href="/tags/mongodb/">mongodb</a>
+<a style="padding: 3px;font-size: 139%" href="/tags/mapreduce/">mapreduce</a>
+<a style="padding: 3px;font-size: 191%" href="/tags/mongodb/">mongodb</a>
 <a style="padding: 3px;font-size: 139%" href="/tags/octopress/">octopress</a>
 <a style="padding: 3px;font-size: 100%" href="/tags/poi/">poi</a>
 <a style="padding: 3px;font-size: 139%" href="/tags/ruby/">ruby</a>
@@ -441,7 +447,6 @@ function addBlankTargetForLinks () {
 <a style="padding: 3px;font-size: 100%" href="/tags/suan-fa/">算法</a>
 <a style="padding: 3px;font-size: 100%" href="/tags/guan-li-gong-zuo/">管理工作</a>
 <a style="padding: 3px;font-size: 139%" href="/tags/wang-zhan/">网站</a>
-<a style="padding: 3px;font-size: 100%" href="/tags/she-ji-mo-shi/">设计模式</a>
 <a style="padding: 3px;font-size: 100%" href="/tags/fu-zai-jun-heng/">负载均衡</a>
 <a style="padding: 3px;font-size: 210%" href="/tags/sui-bi/">随笔</a>
 <a style="padding: 3px;font-size: 100%" href="/tags/xiang-mu-guan-li/">项目管理</a>
@@ -470,7 +475,15 @@ function addBlankTargetForLinks () {
       </li>
     
       <li class="post">
-        <a href="/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie.html/">MongoDB常用命令和操作总结</a>
+        <a href="/blog/2013/05/mongodb-aggregation-framework-zong-jie.html/">Mongodb Aggregation Framework总结</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-2.html/">MongoDB常用命令和操作总结2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-1.html/">MongoDB常用命令和操作总结1</a>
       </li>
     
       <li class="post">
@@ -485,14 +498,6 @@ function addBlankTargetForLinks () {
         <a href="/blog/2013/01/excel-dao-chu-gong-ju-lei.html/">Excel导出工具类</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai.html/">Htmlparser和httpclient解析页面并下载</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/11/zhuan-shen-ru-li-jie-liu-lan-qi-jian-rong-xing-mo-shi.html/">[转]深入理解浏览器兼容性模式</a>
-      </li>
-    
   </ul>
 </section>
 <section> 
@@ -502,9 +507,9 @@ function addBlankTargetForLinks () {
 <li class='category'><a href='/blog/categories/hibernate/'>hibernate (1)</a></li>
 <li class='category'><a href='/blog/categories/java/'>java (6)</a></li>
 <li class='category'><a href='/blog/categories/linux/'>linux (2)</a></li>
-<li class='category'><a href='/blog/categories/mongodb/'>mongodb (3)</a></li>
+<li class='category'><a href='/blog/categories/mongodb/'>mongodb (5)</a></li>
 <li class='category'><a href='/blog/categories/mysql/'>mysql (1)</a></li>
-<li class='category'><a href='/blog/categories/tech/'>tech (18)</a></li>
+<li class='category'><a href='/blog/categories/tech/'>tech (20)</a></li>
 <li class='category'><a href='/blog/categories/tomcat/'>tomcat (1)</a></li>
 <li class='category'><a href='/blog/categories/web/'>web (2)</a></li>
 <li class='category'><a href='/blog/categories/dai-ma/'>代码 (3)</a></li>
