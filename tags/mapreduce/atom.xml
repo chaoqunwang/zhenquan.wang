@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: mapreduce | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/tags/mapreduce/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-24T18:35:40+08:00</updated>
+  <updated>2014-02-25T10:30:52+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -230,6 +230,27 @@ GroupBy groupBy = GroupBy</p>
 <p>String collection = mongoTemplate.getCollectionName(Reply.class);
 GroupByResults<Reply> replys = mongoTemplate.group(cri, collection, groupBy, Reply.class);
 ```</p>
+
+<p>另一个例子：统计提问的回复（有内容的和简单赞踩），按权重计算热度
+```
+String reduceFunction = &ldquo;function(doc, out) { if (doc.content) { out.contentCount += 1;} &rdquo;</p>
+
+<pre><code>    + "else { out.simpleCount += 1; }; out.topic = doc.topic}";
+</code></pre>
+
+<p>String finalizeFunction = &ldquo;function(out) { out.rankScore = out.simpleCount * &rdquo; + ratio</p>
+
+<pre><code>    + " + out.contentCount * (" + (10 - ratio) + ") } ";
+</code></pre>
+
+<p>GroupBy groupBy = GroupBy</p>
+
+<pre><code>    .keyFunction("function(doc) { return { topic: doc.topic }; }")
+    .initialDocument("{contentCount: 0, simpleCount: 0 }")
+    .reduceFunction(reduceFunction).finalizeFunction(finalizeFunction);
+</code></pre>
+
+<p>```</p>
 
 <p>java client:
 <code>

@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-24T18:35:40+08:00</updated>
+  <updated>2014-02-25T10:30:52+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -22,7 +22,7 @@
 [正文]
 最近，我大量阅读了Steve Yegge的文章。其中有一篇叫“Practicing Programming”（练习编程），写成于2005年，读后令我惊讶不已：</p>
 
-<p>与你所相信的恰恰相反，单纯地每天埋头于工作并不能算是真正意义上的锻炼——参加会议并不能锻炼你的人际交往能力；回复邮件并不能提高你的打字水平。你必须定期留出时间，集中锻炼，这样才能把事情做得更好。<!--more--></p>
+<p>与你所相信的恰恰相反，单纯地每天埋头于工作并不能算是真正意义上的锻炼——参加会议并不能锻炼你的人际交往能力；回复邮件并不能提高你的打字水平。你必须定期留出时间，集中锻炼，这样才能把事情做得更好。<a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
 
 <p>我认识很多杰出的程序员——这是在亚马逊工作最好的额外“福利”之一。如果仔细观察他们，你会发现他们时时都在锻炼。他们已经很优秀了，但他们仍然不忘锻炼。他们锻炼的方法林林总总，而我在这篇文章中只会介绍其中的几种。</p>
 
@@ -111,7 +111,7 @@
     <id>http://wangchaoqun.com/blog/2013/11/mongodb-replsetji-qun-he-shardfen-pian</id>
     <content type="html"><![CDATA[<p>mongodb的集群有两种：1.主从(master, slave)  2.副本集(Replica Set)<br/>
 区别是副本集没有固定的&#8221;主节点&#8221;, 有一个活跃节点(primary)和  一个或多个备份节点(secondary), 而且可以在活跃节点有问题时自动切换（仲裁\选举方式）<br/>
-本文内容的结果是：建立2个分片，每个分片3个备份节点（端口1000x,2000x），2个选举节点（端口10000,20000），1个路由(端口7701，想选7000被占了)，3个config节点(端口660x，想选6000也被占了)，总共12个<!--more--></p>
+本文内容的结果是：建立2个分片，每个分片3个备份节点（端口1000x,2000x），2个选举节点（端口10000,20000），1个路由(端口7701，想选7000被占了)，3个config节点(端口660x，想选6000也被占了)，总共12个<a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
 
 <h4>1. MongoDB集群</h4>
 
@@ -391,10 +391,8 @@
 </span><span class='line'>yum -y install vsftpd</span></code></pre></td></tr></table></div></figure>
 
 
-<!--more-->
-
-
-<p>设置开机启动</p>
+<p><a href=http://wangchaoqun.com title=colalife.com></a><!--more-->
+设置开机启动</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>chkconfig vsftpd on</span></code></pre></td></tr></table></div></figure>
@@ -701,7 +699,7 @@
     <id>http://wangchaoqun.com/blog/2013/07/zhuan-tomcat-sheng-chan-fu-wu-qi-xing-neng-you-hua</id>
     <content type="html"><![CDATA[<p>tomcat优化+eclipse优化之类的文章网上有很多，这个收藏当作就手的工具。<br/>
 <a href="http://www.oschina.net/translate/tomcat-performance-tuning" target="_blank">来自oschina</a>  : 参与翻译(4人)：Garfielt, Lesus, MtrS, 大志darcy<br/>
-[正文]考虑一下这种场景，你开发了一个应用，它有十分优秀的布局设计，最新的特性以及其它的优秀特点。但是在性能这方面欠缺，不管这个应用如何都会遭到客户拒绝。客户总是期望它们的应用应该有更好的性能。如果你在产品中使用了Tomcat服务器，那么这篇文章就会给你几方面来提升Tomcat服务器的性能。<!--more--><br/>
+[正文]考虑一下这种场景，你开发了一个应用，它有十分优秀的布局设计，最新的特性以及其它的优秀特点。但是在性能这方面欠缺，不管这个应用如何都会遭到客户拒绝。客户总是期望它们的应用应该有更好的性能。如果你在产品中使用了Tomcat服务器，那么这篇文章就会给你几方面来提升Tomcat服务器的性能。<a href=http://wangchaoqun.com title=colalife.com></a><!--more--><br/>
 感谢ITWorld article给本文提供资源。经过沉思我已经知道了和早期版本相比最新的Tomcat提供更好的性能和稳定性。所以一直使用最新的Tomcat版本。现在本文使用下面几步来提高Tomcat服务器的性能。
 1. 增加JVM堆内存大小
 2. 修复JRE内存泄漏
@@ -832,8 +830,7 @@
 </span><span class='line'>db.runCommand({"fsync":1,"lock":1})</span></code></pre></td></tr></table></div></figure>
 
 
-<!--more-->
-
+<p><a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
 
 <h3>解锁</h3>
 
@@ -1106,6 +1103,26 @@ shell:</p>
 </span><span class='line'>      .reduceFunction("function(doc, prev) { prev.total += 1; }");
 </span><span class='line'>String collection = mongoTemplate.getCollectionName(Reply.class);
 </span><span class='line'>GroupByResults&lt;Reply&gt; replys = mongoTemplate.group(cri, collection, groupBy, Reply.class);</span></code></pre></td></tr></table></div></figure>
+
+
+<p>另一个例子：统计提问的回复（有内容的和简单赞踩），按权重计算热度</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>String reduceFunction = "function(doc, out) { if (doc.content) { out.contentCount += 1;} "
+</span><span class='line'>      + "else { out.simpleCount += 1; }; out.topic = doc.topic}";
+</span><span class='line'>String finalizeFunction = "function(out) { out.rankScore = out.simpleCount * " + ratio
+</span><span class='line'>      + " + out.contentCount * (" + (10 - ratio) + ") } ";
+</span><span class='line'>GroupBy groupBy = GroupBy
+</span><span class='line'>      .keyFunction("function(doc) { return { topic: doc.topic }; }")
+</span><span class='line'>      .initialDocument("{contentCount: 0, simpleCount: 0 }")
+</span><span class='line'>      .reduceFunction(reduceFunction).finalizeFunction(finalizeFunction);</span></code></pre></td></tr></table></div></figure>
 
 
 <p>java client:</p>
@@ -1393,7 +1410,7 @@ shell:</p>
     <link href="http://wangchaoqun.com/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu.html/"/>
     <updated>2013-01-16T16:03:36+08:00</updated>
     <id>http://wangchaoqun.com/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu</id>
-    <content type="html"><![CDATA[<p>cygwin是一个在windows平台上运行的unix模拟环境, wine则可以安装在Linux，再对应到Windows相应的函数来调用DLL以运行Windows程序。这两个就是利器，windows下不想用虚拟机（占用资源还挺多）或双系统，就可以用用cygwin；服务器上想搞点exe的东西就安装个wine。至于ruby，是因为octopress要用，开个虚拟机写博客很不爽，windows下折腾安装配置，却中文编码没解决，还是cygwin搞定。<!--more--></p>
+    <content type="html"><![CDATA[<p>cygwin是一个在windows平台上运行的unix模拟环境, wine则可以安装在Linux，再对应到Windows相应的函数来调用DLL以运行Windows程序。这两个就是利器，windows下不想用虚拟机（占用资源还挺多）或双系统，就可以用用cygwin；服务器上想搞点exe的东西就安装个wine。至于ruby，是因为octopress要用，开个虚拟机写博客很不爽，windows下折腾安装配置，却中文编码没解决，还是cygwin搞定。<a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
 
 <h2>cygwin的安装</h2>
 
@@ -1567,12 +1584,9 @@ Liquid error: incompatible encoding regexp match (ascii-8bit regexp with utf-8 s
 </span><span class='line'>git --version</span></code></pre></td></tr></table></div></figure>
 
 
-<p></p>
-
-<!--more-->
-
-
-<p>在本机使用git创建SSH Key</p>
+<p>
+<a href=http://wangchaoqun.com title=colalife.com></a><!--more-->
+在本机使用git创建SSH Key</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1871,10 +1885,8 @@ done！</p>
     <updated>2013-01-01T16:32:42+08:00</updated>
     <id>http://wangchaoqun.com/blog/2013/01/excel-dao-chu-gong-ju-lei</id>
     <content type="html"><![CDATA[<p>前端使用jquery easyui，datagrid添加导出按钮（另外的js逻辑）即可将当前页或所有页数据(支持查询条件的导出)导出到excel，支持office excel 2003和2007+;<br/>
-使用apache poi（+ooxml）实现，主要代码片段如下：</p>
-
-<!--more-->
-
+使用apache poi（+ooxml）实现，主要代码片段如下：<br/>
+<a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -2691,10 +2703,8 @@ done！</p>
     <link href="http://wangchaoqun.com/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai.html/"/>
     <updated>2012-12-18T03:05:41+08:00</updated>
     <id>http://wangchaoqun.com/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai</id>
-    <content type="html"><![CDATA[<p>如果你想抓取某个网页（如新浪、csdn之类）获取最新资讯列表，或者到某个站点下载文件、图片之类，就需要html解析例如htmlparser,jsoup之类的jar包，下载可用httpclient。如果想更高效率可以搞线程池，抓取解析线程和下载线程，类似消费者和生产者模型（此处不涉及，仅演示使用），代码如下：</p>
-
-<!--more-->
-
+    <content type="html"><![CDATA[<p>如果你想抓取某个网页（如新浪、csdn之类）获取最新资讯列表，或者到某个站点下载文件、图片之类，就需要html解析例如htmlparser,jsoup之类的jar包，下载可用httpclient。如果想更高效率可以搞线程池，抓取解析线程和下载线程，类似消费者和生产者模型（此处不涉及，仅演示使用），代码如下：<br/>
+<a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -2850,7 +2860,7 @@ done！</p>
     <id>http://wangchaoqun.com/blog/2012/11/zhuan-shen-ru-li-jie-liu-lan-qi-jian-rong-xing-mo-shi</id>
     <content type="html"><![CDATA[<p>web开发人员遇到浏览器兼容简直就是噩梦，尤其各种ie内核的浏览器，还有搜狗、360等；这篇文章讲得比较详细，转了<a href="http://www.ituring.com.cn/article/15231" target="_blank">来自图灵社区</a><br/>
 正文 &mdash;&mdash;<br/>
-关于各种浏览器模式，网上已经有许多文档和资料了，但是很少有能够完全将几个概念阐述清楚的。大部分的资料稍显过时，有些内容可能已经不再适用了。本文中笔者将尽可能将几个概念阐述清楚，并去掉一些过时的内容，仅保留必要的干货。<!--more--></p>
+关于各种浏览器模式，网上已经有许多文档和资料了，但是很少有能够完全将几个概念阐述清楚的。大部分的资料稍显过时，有些内容可能已经不再适用了。本文中笔者将尽可能将几个概念阐述清楚，并去掉一些过时的内容，仅保留必要的干货。<a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
 
 <p>想必你一定知道浏览器有个标准（Standards）模式和一个怪异（Quirks）模式，或许你还听说过有个“准标准（Almost Standards）”模式。而当你打开 Internet Explorer 的时候，又看到了什么浏览器模式、文档模式，还有什么兼容性视图等等&hellip;</p>
 
@@ -3107,7 +3117,7 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
     <link href="http://wangchaoqun.com/blog/2012/09/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei.html/"/>
     <updated>2012-09-28T07:54:33+08:00</updated>
     <id>http://wangchaoqun.com/blog/2012/09/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei</id>
-    <content type="html"><![CDATA[<p>大家知道通过hibernate cfg或和spring集成的配置里，可用packagesToScan或mapping*之类声明实体类；但有需求可能要在某个项目中编码式加载实体类（例如某个不常用的或特定用户的实体类，并未事先配置），然后进行增删改查操作。下面代码配合spring test framework做了测试（注：hibernate升级到了4.3.final，与4.2有不同，spring3或4测试通过）：<!--more--></p>
+    <content type="html"><![CDATA[<p>大家知道通过hibernate cfg或和spring集成的配置里，可用packagesToScan或mapping*之类声明实体类；但有需求可能要在某个项目中编码式加载实体类（例如某个不常用的或特定用户的实体类，并未事先配置），然后进行增删改查操作。下面代码配合spring test framework做了测试（注：hibernate升级到了4.3.final，与4.2有不同，spring3或4测试通过）：<a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3212,7 +3222,7 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
     <id>http://wangchaoqun.com/blog/2011/04/guan-yu-gong-si-ji-zhu-guan-li-gong-zuo-de-ji-dian-si-kao</id>
     <content type="html"><![CDATA[<p>一. 关于文档规范</p>
 
-<p>文档规范化正在形成的过程中，具体标准根据项目大小、要求、进度等不同而不同。开发人员写文档的能力向来是个短板，多看多借鉴国标、成熟的开发过程以及其他公司的文档，明白知道各文档所应涵盖的内容，学会并提高文档书写水平，是文档规范化的前提。在此基础之上，再召开会议讨论制定文档规范化模板，制定公司特色的文档体系才是可行的。<!--more--></p>
+<p>文档规范化正在形成的过程中，具体标准根据项目大小、要求、进度等不同而不同。开发人员写文档的能力向来是个短板，多看多借鉴国标、成熟的开发过程以及其他公司的文档，明白知道各文档所应涵盖的内容，学会并提高文档书写水平，是文档规范化的前提。在此基础之上，再召开会议讨论制定文档规范化模板，制定公司特色的文档体系才是可行的。<a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
 
 <p>二.    关于需求理解、分析设计</p>
 
@@ -3289,8 +3299,7 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 </span></code></pre></td></tr></table></div></figure>
 
 
-<!--more-->
-
+<p><a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -4147,7 +4156,7 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
     <id>http://wangchaoqun.com/blog/2010/04/zhuan-da-xing-gao-xing-neng-wang-zhan-de-shi-xiang-gui-ze</id>
     <content type="html"><![CDATA[<p>[转]<a href="http://www.programmer.com.cn/2854/">作者：Steve Mushero 译者：侯伯薇</a><br/>
 在我们公司ChinaNetCloud，见过多种不同类型的网站和系统，有好也有差。其中有些系统拥有良好的服务器/网络架构，并且进行了合理的调整和监控 ；然而一般的系统都会有安全和性能上的问题，不能良好运行，也无法变得更流行。<br/>
-在中国，开源的LAMP栈是最流行的网络架构，它使用PHP开发，运行在Apache服务器上，以MySQL作为数据库，所有这些都运行在Linux上。它是个可靠的平台，运行良好，是现在全球最流行的Internet系统架构。然而，我们很难对其规模进行正确的扩展并保持安全性，因为每个应用层都有其自身的问题、缺陷和最佳实践。我们的工作就是帮助企业用最低的操作成本来创建并运行高性能的、可伸缩的、安全的系统，因此对于这类问题我们有很丰富的经验。<!--more--><br/>
+在中国，开源的LAMP栈是最流行的网络架构，它使用PHP开发，运行在Apache服务器上，以MySQL作为数据库，所有这些都运行在Linux上。它是个可靠的平台，运行良好，是现在全球最流行的Internet系统架构。然而，我们很难对其规模进行正确的扩展并保持安全性，因为每个应用层都有其自身的问题、缺陷和最佳实践。我们的工作就是帮助企业用最低的操作成本来创建并运行高性能的、可伸缩的、安全的系统，因此对于这类问题我们有很丰富的经验。<a href=http://wangchaoqun.com title=colalife.com></a><!--more--><br/>
 当前的实际情况是，很多网站都是由开发人员快速而廉价地创建，通常没有任何IT人员或者经理，只是由程序员来管理系统。造成的结果是，虽然花费很低的成本网站就可以开始运行，但是当拥有大量用户、需要扩展规模的时候，通常就会面临真正的问题。毕竟，中国拥有三亿八千万的Internet用户，如果其中的0.01%访问这个站点，就很容易引发25万~50万的页面访问量。这些问题在各个级别上都会产生，下面总结的规则是对最一般的问题进行概述，并且说明为什么这些规则如此重要，以及最好采用什么方法来修正它们。遵循这些建议的站点会提高它的可伸缩性、安全性以及操作上的稳定性。<br/>
 <img style="text-align:center;" title="大型网站的十项规则" src="http://www.programmer.com.cn/wp-content/uploads/2010/04/大型网站的十项规则.gif"></p>
 
@@ -4242,13 +4251,13 @@ Steve Mushero，ChinaNetCloud公司联合创始人、CEO兼CTO，拥有全球20�
 <p>生活是多少新鲜，
 我的心里充满了好奇，
 如太阳朝升夕落，每天都是新的，
-哦，拥抱激情，真是美妙！<!--more--></p>
+哦，拥抱激情，真是美妙！</p>
 
 <p>站在不高的山头，
 看远处绿树舞动，
 动物奔跑，鸟儿飞翔，
 还有太阳、云朵和天空，
-大自然啊，真是美妙！</p>
+大自然啊，真是美妙！<a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
 
 <p>我们有生命，我们有思想，
 我们生在一个美丽的星球，
@@ -4321,7 +4330,7 @@ oh,my God，真是美妙！</p>
     <id>http://wangchaoqun.com/blog/2009/07/ning-jing-1</id>
     <content type="html"><![CDATA[<p>现在是周五的晚上，已经十点半了，我想睡觉，可是，要求如此却也不能如愿：房间隔音效果不太好，这倒问题不大，但兄弟姐妹们着实很喜欢聊天，唱歌，喧嚣……好几次我是睡了又起，看会书，等等再睡，这次就写点东西吧 &ndash; 是为记。</p>
 
-<p>我一直觉得，在人生的不同阶段，对于人生的认识多少都会有所改变，在我们的童年，基本上没有谁会考虑生死；青春少年时，思想萌动，恰如“独上西楼，为赋新诗强说愁”，其实我们的那点阅历和体验简直如西湖里的单细胞生物般微不足道，更多时候脑袋里充斥着青春期的躁动、叛逆……对于生命，有过多少真正的思考呢？<!--more--><br/>
+<p>我一直觉得，在人生的不同阶段，对于人生的认识多少都会有所改变，在我们的童年，基本上没有谁会考虑生死；青春少年时，思想萌动，恰如“独上西楼，为赋新诗强说愁”，其实我们的那点阅历和体验简直如西湖里的单细胞生物般微不足道，更多时候脑袋里充斥着青春期的躁动、叛逆……对于生命，有过多少真正的思考呢？<a href=http://wangchaoqun.com title=colalife.com></a><!--more--><br/>
 人生美丽的花季雨季，于我而言，已变得遥远而又模糊，竟没有多少记忆了，好像那时候时间很快，仅有的印象是我在上学，我在学习，无他。很快的，到了大学，这是几乎所有人都认为是人生最美好的一段时光，我的感受是自由，无论是世事还是人际，你都是你自己。这个时候，大家心中都有了自己的人生意义，区别只在于思考的深度罢了。那时候，我晚上经常坐到洞门山的石头上，仰面看星空，看云月，再看看灯光点缀的校园，偶尔也思考着这些生死的或人生的问题，没什么特别的意义，只是给自己找到个答案，而且自己还很满意。如今，解答这些问题已然无从着落，想想之前的念头和答案是多么幼稚了。</p>
 
 <p>去探究人生的真理，无过于探究人生的意义，只是这个命题太大了。对此，也许有人会说：你想这些干什么？但是我同意苏格拉底所说：未经审视的生活是毫无意义的，或者用周国平的话说，对意义的寻求是人的最基本的需要，如果我们找寻不到，则会感到精神空虚，是为“存在的空虚”，如果可望不可即，则会有挫折之感，是为“存在的挫折”。如果说我相信他们，试问，我怎能不去思考它？</p>
@@ -4365,10 +4374,8 @@ oh,my God，真是美妙！</p>
  db目录就是所有版本控制的数据文件；
  hooks目录放置hook脚本文件的目录；
  locks用来放置Subversion文件库锁定数据的目录，用来追踪存取文件库的客户端；
- format文件是一个文本文件，里面只放了一个整数，表示当前文件库配置的版本号；</p>
-
-<!--more-->
-
+ format文件是一个文本文件，里面只放了一个整数，表示当前文件库配置的版本号；
+<a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
 
 <h4>2. 创建服务</h4>
 
@@ -4432,7 +4439,7 @@ oh,my God，真是美妙！</p>
 
 <p>虚空袭来</p>
 
-<p>在今夜，无声无息；<!--more--></p>
+<p>在今夜，无声无息；<a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
 
 <p>可怖的黑暗之穴</p>
 
@@ -4469,8 +4476,7 @@ oh,my God，真是美妙！</p>
     <content type="html"><![CDATA[<p style=""text-align: center""><table style=""margin-top: 16px; width: 440px; height: 107px"" cellspacing=""0"" cellpadding=""0"" width=""440"" border=""0"">    <tbody>        <tr>            <td style=""text-align: center"">【原 书 名】 <a target=""_blank"" href=""http://www.amazon.com/Management-System-Administrators-Thomas-Limoncelli/dp/0596007833/ref=pd_bbs_sr_1/102-0116773-7214567?ie=UTF8&amp;s=books&amp;qid=1190013340&amp;sr=1-1""><font color=""#012c83"">Time Management for System Administrators </font></a></td>        </tr>        <tr>            <td style=""text-align: center"">【原出版社】 <a target=""_blank"" href=""http://www.china-pub.com/search/power_search/power_search.asp?key1=O'Reilly+Media%2c+Inc.""><font color=""#012c83"">O&#8217;Reilly Media, Inc. </font></a></td>        </tr>        <tr>            <td style=""text-align: center"">【作 者】<font color=""#012c83"">Thomas A. Limoncelli <span>[同作者作品]</span></font> <font color=""#012c83"">[作译者介绍]</font></td>        </tr>        <tr>            <td style=""text-align: center"">【译 者】 <font color=""#012c83"">O&rsquo;Reilly[同译者作品]</font> <font color=""#012c83"">Taiwan公司</font></td>        </tr>        <tr>            <td style=""text-align: center"">【出 版 社】&nbsp;东南大学出版社 &nbsp;&nbsp;&nbsp;&nbsp;【书 号】 9787564109059</td>        </tr>    </tbody></table></p>
 
 
-<!--more-->
-
+<p><a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
 
 <p><span style=""font-size: small"">第一章 时间管理原则</span></p>
 
@@ -4585,59 +4591,7 @@ oh,my God，真是美妙！</p>
 <p>&nbsp;&nbsp; &nbsp;选择正确的人<br />&nbsp;&nbsp;&nbsp; 为他们分配正确的工作<br />&nbsp;&nbsp;&nbsp; 保持他们的积极性<br />&nbsp;&nbsp;&nbsp; 帮助团队凝聚起来并保持团队的凝聚力<br />&nbsp;&nbsp;&nbsp; (其他一切都只是&ldquo;文案&rdquo;)</p>
 
 
-<!--more-->
-
-
-<p>安全和变化</p>
-
-
-<p>&nbsp;&nbsp;&nbsp; 除非感到安全，否则人们就不能去迎接变化 <br />&nbsp;&nbsp;&nbsp; 在所有成功的工程中(以及在绝大多数其他有价值的工作中)，变化都是基本的要素之一 <br />&nbsp;&nbsp;&nbsp; 安全感的缺乏会让人们反对变化 <br />&nbsp;&nbsp;&nbsp; 逃避风险是致命的，因为这会让你也得不到与风险同在的利益<br />&nbsp;&nbsp;&nbsp; 人们可能会因为来自客观世界的直接的恐吓而觉得没有安全感，但是如果察觉到管理者可能滥用权力来惩罚自己，他们也会觉得没有安全感</p>
-
-
-<p>负面效应</p>
-
-
-<p>　　威胁不是提高业绩最好的方法<br />　　如果分配的时间一开始就不够，不管威胁有多么吓人，工作也无法按时完成<br />　　更糟糕的是，如果目标没有实现，你就必须兑现你的威胁</p>
-
-
-<p>管理者必需的身体部位</p>
-
-
-<p>　　管理涉及到心、肠胃、灵魂和鼻子<br />　　因此&hellip;&hellip;用心来领导，相信你的肠胃(相信你的预感)，构筑团队的灵魂，训练一个能嗅出谎言的鼻子</p>
-
-
-<p>招聘过程</p>
-
-
-<p>　　用指挥战争来作为管理的一个比喻：在战役开始的时候，管理者真正的工作已经完成了</p>
-
-
-<p>　　面试和招聘<br />　　招聘涉及到所有与管理相关的身体部位：心、灵魂、鼻子和肠胃(但是主要是肠胃)<br />　　&nbsp;&nbsp;&nbsp; 不要试图单独去招聘&mdash;&mdash;两副肠胃远比一副肠胃的两倍要好<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 对于新的雇员，让他们承担与以前曾经成功过的同样难度的项目，把有挑战性的目标推迟到下一次<br />　　征求提示：你最希望雇的那个人可能还知道其他很好的人选<br />　　多听，少说<br />　　如果先把材料整理好，那么所有的事情都会进行得更好</p>
-
-
-<p>生产力的提高</p>
-
-
-<p>　　没有&ldquo;短期生产力提高&rdquo;这样的东西<br />　　生产力的提高是来自长期投资的<br />　　任何承诺立刻见效的东西都很可能是江湖游医所卖的万灵油</p>
-
-
-<p>风险控制</p>
-
-
-<p>　　通过控制风险来管理项目<br />　　为每个项目创建并维护风险统计表<br />　　跟踪根源性的风险，而不只是最后那讨厌的结果<br />　　评估每种风险具体化的概率和可能造成的开销<br />　　对于每种风险，预测标志其具体化的早期征兆<br />　　任命一个风险控制官，这个人不应该维护组织内部&ldquo;我能行&rdquo;的态度<br />　　建立简单的(可能是匿名的)通道，让坏消息能传递到高层</p>
-
-
-<p>防止失败</p>
-
-
-<p>　　壮士断腕<br />　　控制住失败比优化成功更能提高你全面的成绩<br />　　要有闯劲，尽早取消失败的工作<br />　　除非必要，否则就不要自己去凝聚一个团队：出去找一个已经成型的团队来用<br />　　保持好的团队在一起(只要他们自己愿意)，以帮助你的继任者避免团队凝聚得慢或者不能凝聚的问题<br />　　把凝聚在一起的团队&mdash;&mdash;准备好、并且也愿意接受新的工作&mdash;&mdash;作为项目的收获之一<br />　　项目开始时浪费的一天和最后阶段浪费的一天对项目造成的伤害是同等的<br />　　有无数种方法可以浪费一天的时间&hellip;&hellip;但是没有任何一种方法可以拿回一天的时间</p>
-
-
-<p>开发过程的建模和模拟</p>
-
-
-<p>　　将你关于完成工作过程的直觉建模<br />　　在同事的交流中使用这些模型，以便交流、提炼关于项目运转的思想<br />　　用模型来模拟项目的结果<br />　　根据实际的结果来调整模型</p>
-
+<p><a href=http://wangchaoqun.com title=colalife.com></a><!--more--><p>安全和变化</p><p>&nbsp;&nbsp;&nbsp; 除非感到安全，否则人们就不能去迎接变化 <br />&nbsp;&nbsp;&nbsp; 在所有成功的工程中(以及在绝大多数其他有价值的工作中)，变化都是基本的要素之一 <br />&nbsp;&nbsp;&nbsp; 安全感的缺乏会让人们反对变化 <br />&nbsp;&nbsp;&nbsp; 逃避风险是致命的，因为这会让你也得不到与风险同在的利益<br />&nbsp;&nbsp;&nbsp; 人们可能会因为来自客观世界的直接的恐吓而觉得没有安全感，但是如果察觉到管理者可能滥用权力来惩罚自己，他们也会觉得没有安全感</p><p>负面效应</p><p>　　威胁不是提高业绩最好的方法<br />　　如果分配的时间一开始就不够，不管威胁有多么吓人，工作也无法按时完成<br />　　更糟糕的是，如果目标没有实现，你就必须兑现你的威胁</p><p>管理者必需的身体部位</p><p>　　管理涉及到心、肠胃、灵魂和鼻子<br />　　因此&hellip;&hellip;用心来领导，相信你的肠胃(相信你的预感)，构筑团队的灵魂，训练一个能嗅出谎言的鼻子</p><p>招聘过程</p><p>　　用指挥战争来作为管理的一个比喻：在战役开始的时候，管理者真正的工作已经完成了</p><p>　　面试和招聘<br />　　招聘涉及到所有与管理相关的身体部位：心、灵魂、鼻子和肠胃(但是主要是肠胃)<br />　　&nbsp;&nbsp;&nbsp; 不要试图单独去招聘&mdash;&mdash;两副肠胃远比一副肠胃的两倍要好<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 对于新的雇员，让他们承担与以前曾经成功过的同样难度的项目，把有挑战性的目标推迟到下一次<br />　　征求提示：你最希望雇的那个人可能还知道其他很好的人选<br />　　多听，少说<br />　　如果先把材料整理好，那么所有的事情都会进行得更好</p><p>生产力的提高</p><p>　　没有&ldquo;短期生产力提高&rdquo;这样的东西<br />　　生产力的提高是来自长期投资的<br />　　任何承诺立刻见效的东西都很可能是江湖游医所卖的万灵油</p><p>风险控制</p><p>　　通过控制风险来管理项目<br />　　为每个项目创建并维护风险统计表<br />　　跟踪根源性的风险，而不只是最后那讨厌的结果<br />　　评估每种风险具体化的概率和可能造成的开销<br />　　对于每种风险，预测标志其具体化的早期征兆<br />　　任命一个风险控制官，这个人不应该维护组织内部&ldquo;我能行&rdquo;的态度<br />　　建立简单的(可能是匿名的)通道，让坏消息能传递到高层</p><p>防止失败</p><p>　　壮士断腕<br />　　控制住失败比优化成功更能提高你全面的成绩<br />　　要有闯劲，尽早取消失败的工作<br />　　除非必要，否则就不要自己去凝聚一个团队：出去找一个已经成型的团队来用<br />　　保持好的团队在一起(只要他们自己愿意)，以帮助你的继任者避免团队凝聚得慢或者不能凝聚的问题<br />　　把凝聚在一起的团队&mdash;&mdash;准备好、并且也愿意接受新的工作&mdash;&mdash;作为项目的收获之一<br />　　项目开始时浪费的一天和最后阶段浪费的一天对项目造成的伤害是同等的<br />　　有无数种方法可以浪费一天的时间&hellip;&hellip;但是没有任何一种方法可以拿回一天的时间</p><p>开发过程的建模和模拟</p><p>　　将你关于完成工作过程的直觉建模<br />　　在同事的交流中使用这些模型，以便交流、提炼关于项目运转的思想<br />　　用模型来模拟项目的结果<br />　　根据实际的结果来调整模型</p></p>
 
 <p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
             &nbsp;原文地址：

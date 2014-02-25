@@ -167,8 +167,7 @@ function addBlankTargetForLinks () {
 </span><span class='line'>db.runCommand({"fsync":1,"lock":1})</span></code></pre></td></tr></table></div></figure>
 
 
-<!--more-->
-
+<p><a href=http://wangchaoqun.com title=colalife.com></a><!--more--></p>
 
 <h3>解锁</h3>
 
@@ -441,6 +440,26 @@ shell:</p>
 </span><span class='line'>      .reduceFunction("function(doc, prev) { prev.total += 1; }");
 </span><span class='line'>String collection = mongoTemplate.getCollectionName(Reply.class);
 </span><span class='line'>GroupByResults&lt;Reply&gt; replys = mongoTemplate.group(cri, collection, groupBy, Reply.class);</span></code></pre></td></tr></table></div></figure>
+
+
+<p>另一个例子：统计提问的回复（有内容的和简单赞踩），按权重计算热度</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>String reduceFunction = "function(doc, out) { if (doc.content) { out.contentCount += 1;} "
+</span><span class='line'>      + "else { out.simpleCount += 1; }; out.topic = doc.topic}";
+</span><span class='line'>String finalizeFunction = "function(out) { out.rankScore = out.simpleCount * " + ratio
+</span><span class='line'>      + " + out.contentCount * (" + (10 - ratio) + ") } ";
+</span><span class='line'>GroupBy groupBy = GroupBy
+</span><span class='line'>      .keyFunction("function(doc) { return { topic: doc.topic }; }")
+</span><span class='line'>      .initialDocument("{contentCount: 0, simpleCount: 0 }")
+</span><span class='line'>      .reduceFunction(reduceFunction).finalizeFunction(finalizeFunction);</span></code></pre></td></tr></table></div></figure>
 
 
 <p>java client:</p>
