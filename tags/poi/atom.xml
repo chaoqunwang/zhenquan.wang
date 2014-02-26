@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: poi | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/tags/poi/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-25T17:27:00+08:00</updated>
+  <updated>2014-02-26T15:10:58+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -168,8 +168,13 @@ public static Workbook getExcel(List&lt;?&gt; data, String sheetName, String[] f
     }
     return workbook;
 }
+</code></pre>
 
-/**
+<p><code>
+标签：[技术](/blog/categories/tech)  
+</code> java</p>
+
+<pre><code>/**
  * excel导出时用到的方法，直接调用
  */
 public static void setResponseForExcel(HttpServletResponse response) {

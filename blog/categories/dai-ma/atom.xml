@@ -4,7 +4,7 @@
   <title><![CDATA[文章分类：代码 | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/blog/categories/dai-ma/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-25T17:27:00+08:00</updated>
+  <updated>2014-02-26T15:10:58+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -168,8 +168,13 @@ public static Workbook getExcel(List&lt;?&gt; data, String sheetName, String[] f
     }
     return workbook;
 }
+</code></pre>
 
-/**
+<p><code>
+标签：[技术](/blog/categories/tech)  
+</code> java</p>
+
+<pre><code>/**
  * excel导出时用到的方法，直接调用
  */
 public static void setResponseForExcel(HttpServletResponse response) {
@@ -465,7 +470,7 @@ return json;
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Htmlparser和httpclient解析页面并下载]]></title>
+    <title type="html"><![CDATA[Htmlparser,jsoup和httpclient解析页面并下载]]></title>
     <link href="http://wangchaoqun.com/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai.html/"/>
     <updated>2012-12-18T03:05:41+08:00</updated>
     <id>http://wangchaoqun.com/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai</id>
@@ -504,7 +509,8 @@ private static void add(Set&lt;String&gt; result, NodeList nodes) {
 }
 </code></pre>
 
-<p>```</p>
+<p>```
+标签：<a href="/blog/categories/java/">java</a></p>
 
 <h2>httpclient 下载  </h2>
 
@@ -551,14 +557,72 @@ private static void download(String url, String fileName) {
 </code></pre>
 
 <p>```</p>
+
+<h3>【更新】使用jsoup和4.3的httpclient（用的fluent的jar）</h3>
+
+<p>``` java</p>
+
+<pre><code>private static void initHttpClient() {
+    int timeoutSeconds = 10;
+    int poolSize = 20;
+    RequestConfig config = RequestConfig.custom()
+            .setSocketTimeout(timeoutSeconds * 1000)
+            .setConnectTimeout(timeoutSeconds * 1000).build();
+    httpClient = HttpClientBuilder.create().setMaxConnTotal(poolSize)
+            .setMaxConnPerRoute(poolSize).setDefaultRequestConfig(config)
+            .build();
+}
+
+/**
+ * 根据URL获得所有的html信息
+ */
+public static String getContent(String url) {
+    String content = "";
+    Executor executor = Executor.newInstance(httpClient);
+    try {
+        HttpResponse response = executor.execute(Request.Get(url))
+                .returnResponse();
+        int status = response.getStatusLine().getStatusCode();
+        if (status &gt;= HttpStatus.SC_BAD_REQUEST) {
+            logger.error("error:" + status + ":" + url);
+        } else {
+            HttpEntity entity = response.getEntity();
+            content = EntityUtils.toString(entity);
+            logger.info("ok   :" + status + ":" + url);
+        }
+    } catch (Exception e) {
+        logger.error(e.getMessage() + "\n" + url);
+    }
+    return content;
+}
+</code></pre>
+
+<p>```
+jsoup获取<a href="/">本博客</a>文章标题和链接</p>
+
+<p>``` java</p>
+
+<pre><code>    String html = getContent("http://wangchaoqun.com/blog/archives/");
+    html = new String(html.getBytes("ISO-8859-1"), "UTF-8");
+    if (StringUtils.isNotBlank(html)) {
+        Document doc = Jsoup.parse(html);
+        Elements hrefs = doc.select("div#blog-archives&gt;article&gt;h1&gt;a");
+        for (Element each : hrefs) {
+            titles.add(each.text());
+            links.add(each.attr("href"));
+        }
+    }
+</code></pre>
+
+<p>```</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[9种排序算法的java实现]]></title>
-    <link href="http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-javashi-xian.html/"/>
+    <link href="http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-java-shi-xian.html/"/>
     <updated>2010-08-09T13:09:09+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-javashi-xian</id>
+    <id>http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-java-shi-xian</id>
     <content type="html"><![CDATA[<p>使用枚举类型存入各算法和接口实现，main方法打印排序后的数组，也可以加入nanotime、currentTimeMillis测试效率，但可能数组太小不明显</p>
 
 <p><code>java
@@ -600,7 +664,10 @@ public static void print(int[] data) {
 
 <p>}</p>
 
-<p>/<em>*
+<p><code>
+标签：[算法](/blog/categories/suan-fa/)  
+</code>
+/<em>*
  * 插入排序算法
  </em>/
 class InsertSort implements Sort {</p>

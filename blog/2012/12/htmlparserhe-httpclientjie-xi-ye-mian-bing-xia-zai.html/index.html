@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Htmlparser和httpclient解析页面并下载 - 超群的博客</title>
+  <title>Htmlparser,jsoup和httpclient解析页面并下载 - 超群的博客</title>
   <meta name="author" content="wang chaoqun">
 
   
-  <meta name="description" content="超群的博客, 生活记录, 技术博客, wang chaoqun, colalife.com, wangchaoqun.com, wangchaoqun.cn">
+  <meta name="description" content="htmlparser,jsoup和httpclient解析页面并下载">
   <meta name="keywords" content="htmlparser jsoup httpclient">
 
   <!-- http://t.co/dKP3o1e -->
@@ -126,7 +126,7 @@ function addBlankTargetForLinks () {
   
   <header>
     
-      <h1 class="entry-title">Htmlparser和httpclient解析页面并下载</h1>
+      <h1 class="entry-title">Htmlparser,jsoup和httpclient解析页面并下载</h1>
     
     
       <p class="meta">
@@ -207,6 +207,8 @@ function addBlankTargetForLinks () {
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>标签：<a href="/blog/categories/java/">java</a></p>
+
 <h2>httpclient 下载  </h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -285,6 +287,102 @@ function addBlankTargetForLinks () {
 </span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>【更新】使用jsoup和4.3的httpclient（用的fluent的jar）</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">initHttpClient</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">timeoutSeconds</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">poolSize</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">RequestConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">RequestConfig</span><span class="o">.</span><span class="na">custom</span><span class="o">()</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">setSocketTimeout</span><span class="o">(</span><span class="n">timeoutSeconds</span> <span class="o">*</span> <span class="mi">1000</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">setConnectTimeout</span><span class="o">(</span><span class="n">timeoutSeconds</span> <span class="o">*</span> <span class="mi">1000</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">httpClient</span> <span class="o">=</span> <span class="n">HttpClientBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">().</span><span class="na">setMaxConnTotal</span><span class="o">(</span><span class="n">poolSize</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">setMaxConnPerRoute</span><span class="o">(</span><span class="n">poolSize</span><span class="o">).</span><span class="na">setDefaultRequestConfig</span><span class="o">(</span><span class="n">config</span><span class="o">)</span>
+</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 根据URL获得所有的html信息</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getContent</span><span class="o">(</span><span class="n">String</span> <span class="n">url</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">String</span> <span class="n">content</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+</span><span class='line'>  <span class="n">Executor</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="n">httpClient</span><span class="o">);</span>
+</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">HttpResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="n">Request</span><span class="o">.</span><span class="na">Get</span><span class="o">(</span><span class="n">url</span><span class="o">))</span>
+</span><span class='line'>              <span class="o">.</span><span class="na">returnResponse</span><span class="o">();</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">status</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getStatusLine</span><span class="o">().</span><span class="na">getStatusCode</span><span class="o">();</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">status</span> <span class="o">&gt;=</span> <span class="n">HttpStatus</span><span class="o">.</span><span class="na">SC_BAD_REQUEST</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">logger</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&quot;error:&quot;</span> <span class="o">+</span> <span class="n">status</span> <span class="o">+</span> <span class="s">&quot;:&quot;</span> <span class="o">+</span> <span class="n">url</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">HttpEntity</span> <span class="n">entity</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getEntity</span><span class="o">();</span>
+</span><span class='line'>          <span class="n">content</span> <span class="o">=</span> <span class="n">EntityUtils</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">entity</span><span class="o">);</span>
+</span><span class='line'>          <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&quot;ok   :&quot;</span> <span class="o">+</span> <span class="n">status</span> <span class="o">+</span> <span class="s">&quot;:&quot;</span> <span class="o">+</span> <span class="n">url</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">logger</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot;\n&quot;</span> <span class="o">+</span> <span class="n">url</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">content</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>jsoup获取<a href="/">本博客</a>文章标题和链接</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'> <span class="n">String</span> <span class="n">html</span> <span class="o">=</span> <span class="n">getContent</span><span class="o">(</span><span class="s">&quot;http://wangchaoqun.com/blog/archives/&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">html</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">html</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">&quot;ISO-8859-1&quot;</span><span class="o">),</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="k">if</span> <span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">isNotBlank</span><span class="o">(</span><span class="n">html</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">Document</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Jsoup</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">html</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">Elements</span> <span class="n">hrefs</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="s">&quot;div#blog-archives&gt;article&gt;h1&gt;a&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="n">Element</span> <span class="n">each</span> <span class="o">:</span> <span class="n">hrefs</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">titles</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">each</span><span class="o">.</span><span class="na">text</span><span class="o">());</span>
+</span><span class='line'>          <span class="n">links</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">each</span><span class="o">.</span><span class="na">attr</span><span class="o">(</span><span class="s">&quot;href&quot;</span><span class="o">));</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

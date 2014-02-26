@@ -244,7 +244,8 @@ function addBlankTargetForLinks () {
 
 
 <p>注意：key的顺序,因为MongoDB使用BSON的二进制数据格式<br/>
-注意：limit的值例如为-5的话等同于5，为0则返回全部，汗</p>
+注意：limit的值例如为-5的话等同于5，为0则返回全部，汗<br/>
+标签：<a href="/blog/categories/tech">技术</a></p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>db.user.find({creationTime:{$gt:1300000000000, $lte:1310000000000}); </span></code></pre></td></tr></table></div></figure>
@@ -279,7 +280,7 @@ function addBlankTargetForLinks () {
 
 <p>多查一</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -295,29 +296,30 @@ function addBlankTargetForLinks () {
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; db.reply.findOne({creator:"wy"}, {creator:1,topic:1})
-</span><span class='line'>{
-</span><span class='line'>        "_id" : ObjectId("52d3ae720b6316a72bb31c45"),
-</span><span class='line'>        "creator" : "wy",
-</span><span class='line'>        "topic" : DBRef("topic", ObjectId("52cf620a0b6307f6a0d44450"))
-</span><span class='line'>}
-</span><span class='line'>&gt; db.reply.findOne({creator:"wy"}).topic
-</span><span class='line'>DBRef("topic", ObjectId("52cf620a0b6307f6a0d44450"))
-</span><span class='line'>&gt; db.reply.findOne({creator:"wy"}).topic.fetch()
-</span><span class='line'>{
-</span><span class='line'>        "_id" : ObjectId("52cf620a0b6307f6a0d44450"),
-</span><span class='line'>        "content" : "xxx",
-</span><span class='line'>        "createtime" : NumberLong("1389322762932"),
-</span><span class='line'>        "creator" : "zzz"
-</span><span class='line'>      ...
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">reply</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="nx">creator</span><span class="o">:</span><span class="s2">&quot;wy&quot;</span><span class="p">},</span> <span class="p">{</span><span class="nx">creator</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="nx">topic</span><span class="o">:</span><span class="mi">1</span><span class="p">})</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>        <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="nx">ObjectId</span><span class="p">(</span><span class="s2">&quot;52d3ae720b6316a72bb31c45&quot;</span><span class="p">),</span>
+</span><span class='line'>        <span class="s2">&quot;creator&quot;</span> <span class="o">:</span> <span class="s2">&quot;wy&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="s2">&quot;topic&quot;</span> <span class="o">:</span> <span class="nx">DBRef</span><span class="p">(</span><span class="s2">&quot;topic&quot;</span><span class="p">,</span> <span class="nx">ObjectId</span><span class="p">(</span><span class="s2">&quot;52cf620a0b6307f6a0d44450&quot;</span><span class="p">))</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">reply</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="nx">creator</span><span class="o">:</span><span class="s2">&quot;wy&quot;</span><span class="p">}).</span><span class="nx">topic</span>
+</span><span class='line'><span class="nx">DBRef</span><span class="p">(</span><span class="s2">&quot;topic&quot;</span><span class="p">,</span> <span class="nx">ObjectId</span><span class="p">(</span><span class="s2">&quot;52cf620a0b6307f6a0d44450&quot;</span><span class="p">))</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">reply</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="nx">creator</span><span class="o">:</span><span class="s2">&quot;wy&quot;</span><span class="p">}).</span><span class="nx">topic</span><span class="p">.</span><span class="nx">fetch</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>        <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="nx">ObjectId</span><span class="p">(</span><span class="s2">&quot;52cf620a0b6307f6a0d44450&quot;</span><span class="p">),</span>
+</span><span class='line'>        <span class="s2">&quot;content&quot;</span> <span class="o">:</span> <span class="s2">&quot;xxx&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="s2">&quot;createtime&quot;</span> <span class="o">:</span> <span class="nx">NumberLong</span><span class="p">(</span><span class="s2">&quot;1389322762932&quot;</span><span class="p">),</span>
+</span><span class='line'>        <span class="s2">&quot;creator&quot;</span> <span class="o">:</span> <span class="s2">&quot;zzz&quot;</span>
+</span><span class='line'>      <span class="p">...</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p></p>
 
 <p>一查多</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -335,43 +337,45 @@ function addBlankTargetForLinks () {
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; topic=db.reply.findOne({creator:"wy"}).topic
-</span><span class='line'>DBRef("topic", ObjectId("52cf620a0b6307f6a0d44450"))
-</span><span class='line'>&gt; db.reply.find({"topic":topic}).count()
-</span><span class='line'>2
-</span><span class='line'>&gt; topic=db.reply.findOne({creator:"wy"}).topic
-</span><span class='line'>DBRef("topic", ObjectId("52cf620a0b6307f6a0d44450"))
-</span><span class='line'>&gt; db.reply.find({"topic.$id":topic.$id}).count()
-</span><span class='line'>2
-</span><span class='line'>&gt; topic=db.reply.findOne({creator:"wy"}).topic.fetch()
-</span><span class='line'>{
-</span><span class='line'>        "_id" : ObjectId("52cf620a0b6307f6a0d44450"),
-</span><span class='line'>        "content" : "xxx",
-</span><span class='line'>        "createtime" : NumberLong("1389322762932"),
-</span><span class='line'>        "creator" : "zzz"
-</span><span class='line'>      ...
-</span><span class='line'>}
-</span><span class='line'>&gt; db.reply.find({"topic.$id":topic._id}).count()
-</span><span class='line'>2</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&gt;</span> <span class="nx">topic</span><span class="o">=</span><span class="nx">db</span><span class="p">.</span><span class="nx">reply</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="nx">creator</span><span class="o">:</span><span class="s2">&quot;wy&quot;</span><span class="p">}).</span><span class="nx">topic</span>
+</span><span class='line'><span class="nx">DBRef</span><span class="p">(</span><span class="s2">&quot;topic&quot;</span><span class="p">,</span> <span class="nx">ObjectId</span><span class="p">(</span><span class="s2">&quot;52cf620a0b6307f6a0d44450&quot;</span><span class="p">))</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">reply</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;topic&quot;</span><span class="o">:</span><span class="nx">topic</span><span class="p">}).</span><span class="nx">count</span><span class="p">()</span>
+</span><span class='line'><span class="mi">2</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="nx">topic</span><span class="o">=</span><span class="nx">db</span><span class="p">.</span><span class="nx">reply</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="nx">creator</span><span class="o">:</span><span class="s2">&quot;wy&quot;</span><span class="p">}).</span><span class="nx">topic</span>
+</span><span class='line'><span class="nx">DBRef</span><span class="p">(</span><span class="s2">&quot;topic&quot;</span><span class="p">,</span> <span class="nx">ObjectId</span><span class="p">(</span><span class="s2">&quot;52cf620a0b6307f6a0d44450&quot;</span><span class="p">))</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">reply</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;topic.$id&quot;</span><span class="o">:</span><span class="nx">topic</span><span class="p">.</span><span class="nx">$id</span><span class="p">}).</span><span class="nx">count</span><span class="p">()</span>
+</span><span class='line'><span class="mi">2</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="nx">topic</span><span class="o">=</span><span class="nx">db</span><span class="p">.</span><span class="nx">reply</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="nx">creator</span><span class="o">:</span><span class="s2">&quot;wy&quot;</span><span class="p">}).</span><span class="nx">topic</span><span class="p">.</span><span class="nx">fetch</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>        <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="nx">ObjectId</span><span class="p">(</span><span class="s2">&quot;52cf620a0b6307f6a0d44450&quot;</span><span class="p">),</span>
+</span><span class='line'>        <span class="s2">&quot;content&quot;</span> <span class="o">:</span> <span class="s2">&quot;xxx&quot;</span><span class="p">,</span>
+</span><span class='line'>        <span class="s2">&quot;createtime&quot;</span> <span class="o">:</span> <span class="nx">NumberLong</span><span class="p">(</span><span class="s2">&quot;1389322762932&quot;</span><span class="p">),</span>
+</span><span class='line'>        <span class="s2">&quot;creator&quot;</span> <span class="o">:</span> <span class="s2">&quot;zzz&quot;</span>
+</span><span class='line'>      <span class="p">...</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">reply</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;topic.$id&quot;</span><span class="o">:</span><span class="nx">topic</span><span class="p">.</span><span class="nx">_id</span><span class="p">}).</span><span class="nx">count</span><span class="p">()</span>
+</span><span class='line'><span class="mi">2</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>spring data mongodb</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Criteria cri = Criteria.where("topic.$id").is(new ObjectId("52d8f8950b6316a72bb31c7c"));
-</span><span class='line'>Reply reply = mongoTemplate.findOne(Query.query(cri), Reply.class);
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Criteria</span> <span class="n">cri</span> <span class="o">=</span> <span class="n">Criteria</span><span class="o">.</span><span class="na">where</span><span class="o">(</span><span class="s">&quot;topic.$id&quot;</span><span class="o">).</span><span class="na">is</span><span class="o">(</span><span class="k">new</span> <span class="n">ObjectId</span><span class="o">(</span><span class="s">&quot;52d8f8950b6316a72bb31c7c&quot;</span><span class="o">));</span>
+</span><span class='line'><span class="n">Reply</span> <span class="n">reply</span> <span class="o">=</span> <span class="n">mongoTemplate</span><span class="o">.</span><span class="na">findOne</span><span class="o">(</span><span class="n">Query</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="n">cri</span><span class="o">),</span> <span class="n">Reply</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
 </span><span class='line'>
-</span><span class='line'>cri.andOperator(Criteria.where("passedtime").gt(fromTime), Criteria.where("passedtime").lt(toTime));
-</span><span class='line'>// 错误的：Criteria.where("passedtime").gt(fromTime).and("passedtime").lt(toTime)</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="n">cri</span><span class="o">.</span><span class="na">andOperator</span><span class="o">(</span><span class="n">Criteria</span><span class="o">.</span><span class="na">where</span><span class="o">(</span><span class="s">&quot;passedtime&quot;</span><span class="o">).</span><span class="na">gt</span><span class="o">(</span><span class="n">fromTime</span><span class="o">),</span> <span class="n">Criteria</span><span class="o">.</span><span class="na">where</span><span class="o">(</span><span class="s">&quot;passedtime&quot;</span><span class="o">).</span><span class="na">lt</span><span class="o">(</span><span class="n">toTime</span><span class="o">));</span>
+</span><span class='line'><span class="c1">// 错误的：Criteria.where(&quot;passedtime&quot;).gt(fromTime).and(&quot;passedtime&quot;).lt(toTime)</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h4>java driver 可以这样：</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -392,27 +396,28 @@ function addBlankTargetForLinks () {
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>String total = "this.upCount+this.downCount &lt; " + minCount;
-</span><span class='line'>BasicDBObject query = new BasicDBObject("$where", total);
-</span><span class='line'>query.append("passedtime", new BasicDBObject("$gt", fromTime).append("$lt", toTime));
-</span><span class='line'>// TODO query.append(other conditions);
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">total</span> <span class="o">=</span> <span class="s">&quot;this.upCount+this.downCount &lt; &quot;</span> <span class="o">+</span> <span class="n">minCount</span><span class="o">;</span>
+</span><span class='line'><span class="n">BasicDBObject</span> <span class="n">query</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BasicDBObject</span><span class="o">(</span><span class="s">&quot;$where&quot;</span><span class="o">,</span> <span class="n">total</span><span class="o">);</span>
+</span><span class='line'><span class="n">query</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;passedtime&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">BasicDBObject</span><span class="o">(</span><span class="s">&quot;$gt&quot;</span><span class="o">,</span> <span class="n">fromTime</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;$lt&quot;</span><span class="o">,</span> <span class="n">toTime</span><span class="o">));</span>
+</span><span class='line'><span class="c1">// TODO query.append(other conditions);</span>
 </span><span class='line'>
-</span><span class='line'>// 返回字段
-</span><span class='line'>BasicDBObject keys = new BasicDBObject();
-</span><span class='line'>keys.put("_id", 1);
-</span><span class='line'>keys.put("creator", 1);
+</span><span class='line'><span class="c1">// 返回字段</span>
+</span><span class='line'><span class="n">BasicDBObject</span> <span class="n">keys</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BasicDBObject</span><span class="o">();</span>
+</span><span class='line'><span class="n">keys</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;_id&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</span><span class='line'><span class="n">keys</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;creator&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
 </span><span class='line'>
-</span><span class='line'>MongoClient mongoClient = new MongoClient(new ServerAddress("localhost", 27017));
-</span><span class='line'>DB db = mongo.getDB("mydb");
-</span><span class='line'>DBCollection collection = db.getCollection("test");
+</span><span class='line'><span class="n">MongoClient</span> <span class="n">mongoClient</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MongoClient</span><span class="o">(</span><span class="k">new</span> <span class="n">ServerAddress</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">,</span> <span class="mi">27017</span><span class="o">));</span>
+</span><span class='line'><span class="n">DB</span> <span class="n">db</span> <span class="o">=</span> <span class="n">mongo</span><span class="o">.</span><span class="na">getDB</span><span class="o">(</span><span class="s">&quot;mydb&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="n">DBCollection</span> <span class="n">collection</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="na">getCollection</span><span class="o">(</span><span class="s">&quot;test&quot;</span><span class="o">);</span>
 </span><span class='line'>
-</span><span class='line'>long count = collection.count(query);
-</span><span class='line'>DBCursor cursor = collection.find(query, keys).limit(size);
-</span><span class='line'>for (int i = 0; i &lt; size; i++) {
-</span><span class='line'>  DBObject e = cursor.next();
-</span><span class='line'>  String topicId = e.get("_id").toString();
-</span><span class='line'>  // TODO
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="kt">long</span> <span class="n">count</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="na">count</span><span class="o">(</span><span class="n">query</span><span class="o">);</span>
+</span><span class='line'><span class="n">DBCursor</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">query</span><span class="o">,</span> <span class="n">keys</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="n">size</span><span class="o">);</span>
+</span><span class='line'><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">DBObject</span> <span class="n">e</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+</span><span class='line'>  <span class="n">String</span> <span class="n">topicId</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;_id&quot;</span><span class="o">).</span><span class="na">toString</span><span class="o">();</span>
+</span><span class='line'>  <span class="c1">// TODO</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 

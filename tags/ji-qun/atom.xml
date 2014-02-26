@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: 集群 | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/tags/ji-qun/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-25T17:27:00+08:00</updated>
+  <updated>2014-02-26T15:10:58+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -96,9 +96,9 @@ db.getMongo().setSlaveOk();
 <p>[摘录]基本思想就是将集合切分成小块，这些块分散到若干片里面，每个片只负责总数据的一部分；应用程序不必知道
 哪片对应哪些数据，甚至不需要知道数据已经被拆分了，所以在分片之前要运行一个路由进程，进程名mongos，这个路由器知道
 所有数据的存放位置，所以应用可以连接它来正常发送请求；对应用来说，它仅知道连接了一个普通的mongod；路由器知道和片的
-对应关系，能够转发请求到正确的片上；如果请求有了回应，路由器将其收集起来回送给应用。</p>
-
-<p>所以，<strong>在下面的分片完成后</strong>，上面spring data mongodb的集群配置就要<strong>改回单一mongo的，注意要连接的是mongos，不是原来那个</strong></p>
+对应关系，能够转发请求到正确的片上；如果请求有了回应，路由器将其收集起来回送给应用。<br/>
+标签：<a href="/blog/categories/mongodb">mongodb</a><br/>
+所以，<strong>在下面的分片完成后</strong>，上面spring data mongodb的集群配置就要<strong>改回单一mongo的，注意要连接的是mongos，不是原来那个</strong></p>
 
 <p>好了，这里要有路由节点和config节点<br/>
 开启<strong>config服务器</strong>（我配了3个，为了测试有节点挂掉的情况，这只是第1个），使用参数或config文件启动

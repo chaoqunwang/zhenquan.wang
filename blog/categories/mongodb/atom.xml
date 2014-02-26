@@ -4,7 +4,7 @@
   <title><![CDATA[文章分类：mongodb | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/blog/categories/mongodb/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-25T17:27:00+08:00</updated>
+  <updated>2014-02-26T15:10:58+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -96,9 +96,9 @@ db.getMongo().setSlaveOk();
 <p>[摘录]基本思想就是将集合切分成小块，这些块分散到若干片里面，每个片只负责总数据的一部分；应用程序不必知道
 哪片对应哪些数据，甚至不需要知道数据已经被拆分了，所以在分片之前要运行一个路由进程，进程名mongos，这个路由器知道
 所有数据的存放位置，所以应用可以连接它来正常发送请求；对应用来说，它仅知道连接了一个普通的mongod；路由器知道和片的
-对应关系，能够转发请求到正确的片上；如果请求有了回应，路由器将其收集起来回送给应用。</p>
-
-<p>所以，<strong>在下面的分片完成后</strong>，上面spring data mongodb的集群配置就要<strong>改回单一mongo的，注意要连接的是mongos，不是原来那个</strong></p>
+对应关系，能够转发请求到正确的片上；如果请求有了回应，路由器将其收集起来回送给应用。<br/>
+标签：<a href="/blog/categories/mongodb">mongodb</a><br/>
+所以，<strong>在下面的分片完成后</strong>，上面spring data mongodb的集群配置就要<strong>改回单一mongo的，注意要连接的是mongos，不是原来那个</strong></p>
 
 <p>好了，这里要有路由节点和config节点<br/>
 开启<strong>config服务器</strong>（我配了3个，为了测试有节点挂掉的情况，这只是第1个），使用参数或config文件启动
@@ -333,7 +333,8 @@ close
 bye
 !
 echo &ldquo;============== $MONGO_DB backup ends at $NEW_TIMESTAMP ==============&rdquo;
-```</p>
+```<br/>
+标签：<a href="/blog/categories/tech">技术</a></p>
 
 <h2>3. mysql导出、压缩、上传脚本  </h2>
 
@@ -425,7 +426,7 @@ join No direct corresponding operator; however, the $unwind (page 290) operator 
 somewhat similar functionality, but with fields embedded within the document.</p>
 
 <p>场景: 比如按省份城市统计发帖数目，比如按人统计发帖排名：<br/>
-```
+``` javascript
 db.topic.aggregate(
 { $match: { createtime : { $gt:1370000000000 } } },
 { $group : {</p>
@@ -468,10 +469,10 @@ total : { $add : ["$upCount", "$downCount"]}
 </code></pre>
 
 <p>}
-```</p>
-
-<p>java driver 官方示例：<br/>
-```
+<code>
+标签：[mongodb](/blog/categories/mongodb)  
+java driver 官方示例：  
+</code> java
 // create our pipeline operations, first with the $match
 DBObject match = new BasicDBObject(&ldquo;$match&rdquo;, new BasicDBObject(&ldquo;type&rdquo;, &ldquo;airfare&rdquo;) );</p>
 
@@ -493,7 +494,7 @@ AggregationOutput output = collection.aggregate( match, project, group );
 <p>spring data mongodb，@since 1.3，注意升级<br/>
 官方例子是对城市人口做统计，group两次（对第一次group的结果再group）<br/>
 好处在于对结果进行了封装，返回List，注意ZipInfoStats嵌套City，使用nested和bind:<br/>
-```<br/>
+``` java
 class ZipInfo {</p>
 
 <pre><code>String id;
@@ -547,7 +548,7 @@ ZipInfoStats firstZipInfoStats = result.getMappedResults().get(0);
 ```</p>
 
 <p>对应的shell即是：<br/>
-```
+``` javascript
 db.zipcodes.aggregate(
 { $group:</p>
 
@@ -603,7 +604,7 @@ shell:
 
 
 <p>spring-data-mongodb:
-```
+``` java
 Criteria cri = Criteria.where(&ldquo;createtime&rdquo;).gt(1380000000000L);// 时间条件
 GroupBy groupBy = GroupBy</p>
 
@@ -616,7 +617,7 @@ GroupByResults<Reply> replys = mongoTemplate.group(cri, collection, groupBy, Rep
 ```</p>
 
 <p>另一个例子：统计提问的回复（有内容的和简单赞踩），按权重计算热度
-```
+``` java
 String reduceFunction = &ldquo;function(doc, out) { if (doc.content) { out.contentCount += 1;} &rdquo;</p>
 
 <pre><code>    + "else { out.simpleCount += 1; }; out.topic = doc.topic}";
@@ -637,7 +638,7 @@ String reduceFunction = &ldquo;function(doc, out) { if (doc.content) { out.conte
 <p>```</p>
 
 <p>java driver:
-<code>
+<code>java
 public GroupCommand(DBCollection inputCollection, DBObject keys, DBObject condition, DBObject initial, String reduce, String finalize)
 DBCollection collection = mongoTemplate.getCollection("reply");
 collection.group(...);
@@ -646,10 +647,10 @@ collection.group(...);
 <h3>map-reduce</h3>
 
 <p>场景：展示发帖或回帖的时间趋势图，或者说按整点显示此小时内的发帖数和回帖数，展示成折线图
-创建时间保存的是number long，即date.getTime()的值，key要转成小时，使用new Date(y,m,d,h,0,0,0)</p>
-
-<p>spring-data-mongodb:
-```
+创建时间保存的是number long，即date.getTime()的值，key要转成小时，使用new Date(y,m,d,h,0,0,0)<br/>
+标签：<a href="/blog/categories/mongodb">mongodb</a><br/>
+spring-data-mongodb:
+``` java
 String mapFunction = &ldquo;function () { var key=new Date(new Date(this.createtime).getFullYear(),&rdquo;</p>
 
 <pre><code>    + "new Date(this.createtime).getMonth(), new Date(this.createtime).getDate(),"
@@ -684,7 +685,7 @@ System.out.println(value.getHour() + " : " + value.getCount());
 ```</p>
 
 <p>需要注意的是：结果存在reply的value字段里，是为了后面构造map好处理；场景不一样的话，先使用shell看看结果
-```
+``` java
 private ReplyStat value;
 class ReplyStat {</p>
 
@@ -695,7 +696,7 @@ private Long count;
 <p>```</p>
 
 <p>shell:
-```
+``` javascript
 db.runCommand({ mapreduce: &ldquo;reply&rdquo;,
  map : function Map() {</p>
 
@@ -735,7 +736,7 @@ return { hour:key, count:total };
 ```</p>
 
 <p>======result======
-```
+``` javascript
 {</p>
 
 <pre><code>    "results" : [
@@ -784,7 +785,7 @@ reduce里
 return {count:total};
 </code>
 结果就会是：
-```
+``` javascript
 {</p>
 
 <pre><code>    "results" : [
@@ -902,6 +903,7 @@ db.user.find({"address.city":101,"address.province":100})  # one record
 </code>
 注意：key的顺序,因为MongoDB使用BSON的二进制数据格式<br/>
 注意：limit的值例如为-5的话等同于5，为0则返回全部，汗<br/>
+标签：<a href="/blog/categories/tech">技术</a><br/>
 <code>
 db.user.find({creationTime:{$gt:1300000000000, $lte:1310000000000});
 </code>
@@ -926,7 +928,7 @@ db.topic.find().skip(10).limit(5).count(true);
 <h3>dbref关联</h3>
 
 <p>多查一<br/>
-```</p>
+``` javascript</p>
 
 <blockquote><p>db.reply.findOne({creator:&ldquo;wy&rdquo;}, {creator:1,topic:1})
 {</p>
@@ -953,7 +955,7 @@ db.reply.findOne({creator:&ldquo;wy&rdquo;}).topic.fetch()
 ```</p></blockquote>
 
 <p>一查多<br/>
-```</p>
+``` javascript</p>
 
 <blockquote><p>topic=db.reply.findOne({creator:&ldquo;wy&rdquo;}).topic
 DBRef(&ldquo;topic&rdquo;, ObjectId(&ldquo;52cf620a0b6307f6a0d44450&rdquo;))
@@ -980,7 +982,7 @@ db.reply.find({&ldquo;topic.$id&rdquo;:topic._id}).count()
 
 <h4>spring data mongodb</h4>
 
-<p>```
+<p>``` java
 Criteria cri = Criteria.where(&ldquo;topic.$id&rdquo;).is(new ObjectId(&ldquo;52d8f8950b6316a72bb31c7c&rdquo;));
 Reply reply = mongoTemplate.findOne(Query.query(cri), Reply.class);</p></blockquote>
 
@@ -990,7 +992,7 @@ Reply reply = mongoTemplate.findOne(Query.query(cri), Reply.class);</p></blockqu
 
 <h4>java driver 可以这样：</h4>
 
-<p>```
+<p>``` java
 String total = &ldquo;this.upCount+this.downCount &lt; &rdquo; + minCount;
 BasicDBObject query = new BasicDBObject(&ldquo;$where&rdquo;, total);
 query.append(&ldquo;passedtime&rdquo;, new BasicDBObject(&ldquo;$gt&rdquo;, fromTime).append(&ldquo;$lt&rdquo;, toTime));

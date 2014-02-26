@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: wine | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/tags/wine/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-25T17:27:00+08:00</updated>
+  <updated>2014-02-26T15:10:58+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -117,6 +117,7 @@ ruby dk.rb review
 ruby dk.rb install
 </code>
 出现utf-8错误，使用chcp 1252，再进行上三句，done<br/>
+标签：<a href="/blog/categories/tech">技术</a><br/>
 然后配置octopress环境，英文下rake成功，有中文（比如文章分类、标签带中文的）不成;<br/>
 <a href="http://txgcwm.github.io/">摘录自txgcwm.github.io</a></p>
 

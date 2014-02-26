@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: aggregation | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/tags/aggregation/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-25T17:27:00+08:00</updated>
+  <updated>2014-02-26T15:10:58+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -45,7 +45,7 @@ join No direct corresponding operator; however, the $unwind (page 290) operator 
 somewhat similar functionality, but with fields embedded within the document.</p>
 
 <p>场景: 比如按省份城市统计发帖数目，比如按人统计发帖排名：<br/>
-```
+``` javascript
 db.topic.aggregate(
 { $match: { createtime : { $gt:1370000000000 } } },
 { $group : {</p>
@@ -88,10 +88,10 @@ total : { $add : ["$upCount", "$downCount"]}
 </code></pre>
 
 <p>}
-```</p>
-
-<p>java driver 官方示例：<br/>
-```
+<code>
+标签：[mongodb](/blog/categories/mongodb)  
+java driver 官方示例：  
+</code> java
 // create our pipeline operations, first with the $match
 DBObject match = new BasicDBObject(&ldquo;$match&rdquo;, new BasicDBObject(&ldquo;type&rdquo;, &ldquo;airfare&rdquo;) );</p>
 
@@ -113,7 +113,7 @@ AggregationOutput output = collection.aggregate( match, project, group );
 <p>spring data mongodb，@since 1.3，注意升级<br/>
 官方例子是对城市人口做统计，group两次（对第一次group的结果再group）<br/>
 好处在于对结果进行了封装，返回List，注意ZipInfoStats嵌套City，使用nested和bind:<br/>
-```<br/>
+``` java
 class ZipInfo {</p>
 
 <pre><code>String id;
@@ -167,7 +167,7 @@ ZipInfoStats firstZipInfoStats = result.getMappedResults().get(0);
 ```</p>
 
 <p>对应的shell即是：<br/>
-```
+``` javascript
 db.zipcodes.aggregate(
 { $group:</p>
 
