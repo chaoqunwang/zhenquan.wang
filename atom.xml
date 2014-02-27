@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-26T15:26:22+08:00</updated>
+  <updated>2014-02-27T09:45:41+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -1995,7 +1995,7 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 </span><span class='line'>rake preview  </span></code></pre></td></tr></table></div></figure>
 
 
-<blockquote></blockquote>
+<p></p>
 
 <p>然后在浏览器中打开<a href="http://localhost:4000">http://localhost:4000</a></p>
 
