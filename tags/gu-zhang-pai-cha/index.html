@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>超群的博客</title>
+  <title>Tag: 故障排查 - 超群的博客</title>
   <meta name="author" content="wang chaoqun">
 
   
-  <meta name="description" content="超群的博客, 生活记录, 技术博客, wang chaoqun, colalife.com, wangchaoqun.com, wangchaoqun.cn">
+  <meta name="description" content="Tag: 故障排查">
   <meta name="keywords" content="超群的博客, 生活记录, 技术博客, 开源技术, 大数据, 云计算, 移动互联网以及java, web, mobile, android, ios, linux, tomcat, httpd, browser, internet, media, sql, news">
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link id="currentUrl" rel="canonical" href="http://wangchaoqun.com/blog/page/2/index.html">
+  <link id="currentUrl" rel="canonical" href="http://wangchaoqun.comtags/gu-zhang-pai-cha/index.html">
   <link href="/favicon.png" rel="icon">
   <!--<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">-->
   <link href="http://bcs.duapp.com/colalife2000/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -121,290 +121,61 @@ function addBlankTargetForLinks () {
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article role="article">
+<!--
   
-  
-  
-    <article>
-      
   <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-1.html/">MongoDB常用命令和操作总结1</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-09T16:29:59+08:00" pubdate data-updated="true">2013年05月09日</time>
-        
-      </p>
+    <h1 class="entry-title">Tag: 故障排查</h1>
     
   </header>
+  
+-->
+  <div id="blog-archives" class="tag">
 
 
-  <div class="entry-content"><p>做个总结，涉及到mongodb的常用命令、java driver查询、spring data mongodb的使用，group，map-reduce，aggregation framework等</p>
 
-<h3>关闭服务</h3>
+  
+  <h2>2012</h2>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>use admin
-</span><span class='line'>db.shutdownServer()</span></code></pre></td></tr></table></div></figure>
+<article>
+  
+<h1><a href="/blog/2012/05/zhuan-xian-shang-ying-yong-gu-zhang-pai-cha.html/">[转]线上应用故障排查</a></h1>
+<time datetime="2012-05-18T10:05:48+08:00" pubdate><span class='month'>May</span> <span class='day'>18</span> <span class='year'>2012</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/tech/'>tech</a></span>
+</footer>
 
 
-<h3>加锁</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>use admin
-</span><span class='line'>db.runCommand({"fsync":1,"lock":1})</span></code></pre></td></tr></table></div></figure>
-
+</article>
 
 </div>
-  
-  
-    <footer style="text-align:right;">
-      <a rel="full-article" href="/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-1.html/">&larr;点击阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu.html/">Cygwin & Wine & Ruby 记录</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
 
   
+</article>
+<!-- duoshuo -->
 
+<section id="comment">
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"colalife"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = 'http://static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- Duoshuo Comment END -->
 
-<time datetime="2013-01-16T16:03:36+08:00" pubdate data-updated="true">2013年01月16日</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>cygwin是一个在windows平台上运行的unix模拟环境, wine则可以安装在Linux，再对应到Windows相应的函数来调用DLL以运行Windows程序。这两个就是利器，windows下不想用虚拟机（占用资源还挺多）或双系统，就可以用用cygwin；服务器上想搞点exe的东西就安装个wine。至于ruby，是因为octopress要用，开个虚拟机写博客很不爽，windows下折腾安装配置，却中文编码没解决，还是cygwin搞定。</div>
-  
-  
-    <footer style="text-align:right;">
-      <a rel="full-article" href="/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu.html/">&larr;点击阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/an-zhuang-git-create-octopress-blog.html/">安装git, 建立Octopress博客</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-07T14:34:24+08:00" pubdate data-updated="true">2013年01月07日</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>本文参考了若干网络日志（谢过~）, 配置个人博客后整理而成</p>
-
-<h2>安装git  </h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>yum -y install git
-</span><span class='line'>git --version</span></code></pre></td></tr></table></div></figure>
-
-
-<blockquote></blockquote>
+</section>
 
 </div>
-  
-  
-    <footer style="text-align:right;">
-      <a rel="full-article" href="/blog/2013/01/an-zhuang-git-create-octopress-blog.html/">&larr;点击阅读全文</a>
-    </footer>
-  
 
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/excel-dao-chu-gong-ju-lei.html/">Excel导出工具类</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-01T16:32:42+08:00" pubdate data-updated="true">2013年01月01日</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>前端使用jquery easyui，datagrid添加导出按钮（另外的js逻辑）即可将当前页或所有页数据(支持查询条件的导出)导出到excel，支持office excel 2003和2007+;<br/>
-使用apache poi（+ooxml）实现，主要代码片段如下：</p>
-
-</div>
-  
-  
-    <footer style="text-align:right;">
-      <a rel="full-article" href="/blog/2013/01/excel-dao-chu-gong-ju-lei.html/">&larr;点击阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai.html/">Htmlparser,jsoup和httpclient解析页面并下载</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-18T03:05:41+08:00" pubdate data-updated="true">2012年12月18日</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>如果你想抓取某个网页（如新浪、csdn之类）获取最新资讯列表，或者到某个站点下载文件、图片之类，就需要html解析例如htmlparser,jsoup之类的jar包，下载可用httpclient。如果想更高效率可以搞线程池，抓取解析线程和下载线程，类似消费者和生产者模型（此处不涉及，仅演示使用），代码如下：</p>
-
-</div>
-  
-  
-    <footer style="text-align:right;">
-      <a rel="full-article" href="/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai.html/">&larr;点击阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/11/zhuan-shen-ru-li-jie-liu-lan-qi-jian-rong-xing-mo-shi.html/">[转]深入理解浏览器兼容性模式</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-02T01:27:53+08:00" pubdate data-updated="true">2012年11月02日</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>web开发人员遇到浏览器兼容简直就是噩梦，尤其各种ie内核的浏览器，还有搜狗、360等；这篇文章讲得比较详细，转了<a href="http://www.ituring.com.cn/article/15231" target="_blank">来自图灵社区</a><br/>
-正文 &mdash;&mdash;<br/>
-关于各种浏览器模式，网上已经有许多文档和资料了，但是很少有能够完全将几个概念阐述清楚的。大部分的资料稍显过时，有些内容可能已经不再适用了。本文中笔者将尽可能将几个概念阐述清楚，并去掉一些过时的内容，仅保留必要的干货。</div>
-  
-  
-    <footer style="text-align:right;">
-      <a rel="full-article" href="/blog/2012/11/zhuan-shen-ru-li-jie-liu-lan-qi-jian-rong-xing-mo-shi.html/">&larr;点击阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/3/">&larr; 前一页</a>
-    
-    <a href="/blog/archives">文章列表</a>
-    
-    <a class="next" href="/">后一页 &rarr;</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -521,82 +292,10 @@ function addBlankTargetForLinks () {
  
   </ul> 
 </section>
-<section>
-<h1>最新评论</h1>
-<ul class="ds-recent-comments" data-num-items="8" data-show-avatars="0" data-show-time="0" data-show-title="0" data-show-admin="0" data-excerpt-length="38"></ul>
-
-<!--多说js加载开始，一个页面只需要加载一次 -->
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"colalife"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = 'http://static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script>
-<!--多说js加载结束，一个页面只需要加载一次 -->
-
-
-</section>
-
-
-
-
-<section>
-<h1>友情链接</h1>
-<ul>
-        <li>
-        <a href="http://colalife.com/">colalife</a>
-        </li>
-        <li>
-        <a href="http://codecloud.net/">codecloud</a>
-        </li>
-        <li>
-        <a href="http://blog.jobbole.com/">伯乐在线</a>
-        </li>
-        <li>
-        <a href="http://www.csdn.net/">CSDN</a>
-        </li>
-        <li>
-        <a href="http://www.cnblogs.com/">博客园</a>
-        </li>
-        <li>
-        <a href="http://coolshell.cn/">CoolShell</a>
-        </li>
-        <li>
-        <a href="http://dongxicheng.org/">董的博客</a>
-        </li>
-        <li>
-        <a href="http://bluedavy.me/">bluedavy</a>
-        </li>
-        <li>
-        <a href="http://dbanotes.net/">Fenng</a>
-        </li>
-        <li>
-        <a href="http://kenwublog.com/">Ken Wu&#8217;s Blog</a>
-        </li>
-        <li>
-        <a href="http://jinnianshilongnian.iteye.com/">开涛的博客</a>
-        </li>
-        <li>
-        <a href=""></a>
-        </li>
-        <li>
-        <a href=""></a>
-        </li>
-        <li>
-        <a href=""></a>
-        </li>
-        <li>
-        <a href=""></a>
-        </li>
-</ul>
-</section>
 
   
 </aside>
+
 
     </div>
   </div>

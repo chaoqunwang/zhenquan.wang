@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-27T09:45:41+08:00</updated>
+  <updated>2014-02-28T14:51:29+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -353,8 +353,7 @@
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
-<p>
-通过printShardingStatus命令查看mongodb的数据分片情况</p>
+<blockquote><p>通过printShardingStatus命令查看mongodb的数据分片情况</p></blockquote>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>db.printShardingStatus();</span></code></pre></td></tr></table></div></figure>
@@ -1912,7 +1911,7 @@ Liquid error: incompatible encoding regexp match (ascii-8bit regexp with utf-8 s
 </span><span class='line'>git --version</span></code></pre></td></tr></table></div></figure>
 
 
-<p></p>
+<blockquote></blockquote>
 
 <!--more-->
 
@@ -2169,11 +2168,11 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 </span><span class='line'>  &lt;ul id="categories"&gt;
 </span><span class='line'>    <li class='category'><a href='http://wangchaoqun.com/blog/categories/ftp/'>ftp (1)</a></li>
 <li class='category'><a href='http://wangchaoqun.com/blog/categories/hibernate/'>hibernate (1)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/java/'>java (6)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/linux/'>linux (2)</a></li>
+<li class='category'><a href='http://wangchaoqun.com/blog/categories/java/'>java (7)</a></li>
+<li class='category'><a href='http://wangchaoqun.com/blog/categories/linux/'>linux (3)</a></li>
 <li class='category'><a href='http://wangchaoqun.com/blog/categories/mongodb/'>mongodb (5)</a></li>
 <li class='category'><a href='http://wangchaoqun.com/blog/categories/mysql/'>mysql (1)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/tech/'>tech (20)</a></li>
+<li class='category'><a href='http://wangchaoqun.com/blog/categories/tech/'>tech (21)</a></li>
 <li class='category'><a href='http://wangchaoqun.com/blog/categories/tomcat/'>tomcat (1)</a></li>
 <li class='category'><a href='http://wangchaoqun.com/blog/categories/web/'>web (2)</a></li>
 <li class='category'><a href='http://wangchaoqun.com/blog/categories/dai-ma/'>代码 (3)</a></li>
@@ -3658,6 +3657,29 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[[转]线上应用故障排查]]></title>
+    <link href="http://wangchaoqun.com/blog/2012/05/zhuan-xian-shang-ying-yong-gu-zhang-pai-cha.html/"/>
+    <updated>2012-05-18T10:05:48+08:00</updated>
+    <id>http://wangchaoqun.com/blog/2012/05/zhuan-xian-shang-ying-yong-gu-zhang-pai-cha</id>
+    <content type="html"><![CDATA[<p><a href="http://www.blogjava.net/hankchen/archive/2012/05/09/377738.html" target="_blank">来自hankchen</a><br/>
+<a href="http://www.blogjava.net/hankchen/archive/2012/05/09/377735.html" target="_blank">线上应用故障排查之一：高CPU占用</a><br/>
+<a href="http://www.blogjava.net/hankchen/archive/2012/05/09/377736.html" target="_blank">线上应用故障排查之二：高内存占用</a></p>
+
+<!--more-->
+
+
+<p><a href='http://wangchaoqun.com' style='color:black;text-decoration:none;'>wang chaoqun</a></p>
+
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
+            <a href='http://wangchaoqun.com/blog/2012/05/zhuan-xian-shang-ying-yong-gu-zhang-pai-cha.html/'>http://wangchaoqun.com/blog/2012/05/zhuan-xian-shang-ying-yong-gu-zhang-pai-cha.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[关于公司技术管理工作的几点思考]]></title>
     <link href="http://wangchaoqun.com/blog/2011/04/guan-yu-gong-si-ji-zhu-guan-li-gong-zuo-de-ji-dian-si-kao.html/"/>
     <updated>2011-04-14T15:06:42+08:00</updated>
@@ -4878,46 +4900,6 @@ oh,my God，真是美妙！</p>
 <p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
             &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2008/10/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi.html/'>http://wangchaoqun.com/blog/2008/10/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
-            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[何以如此]]></title>
-    <link href="http://wangchaoqun.com/blog/2008/10/he-yi-ru-ci.html/"/>
-    <updated>2008-10-12T19:16:27+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2008/10/he-yi-ru-ci</id>
-    <content type="html"><![CDATA[<p>乌云未散，夜雨不止</p>
-
-<p>还是没有什么；</p>
-
-<p>虚空袭来</p>
-
-<p>在今夜，无声无息；<!--more--><a href='http://wangchaoqun.com' style='color:black;text-decoration:none;'>wang chaoqun</a></p>
-
-<p>可怖的黑暗之穴</p>
-
-<p>狰狞如死海狂风</p>
-
-<p>吞噬一切，这般美妙；</p>
-
-<p>来吧</p>
-
-<p>给我光亮</p>
-
-<p>在我所指</p>
-
-<p>犀利的闪电，撕开大幕；</p>
-
-<p>依然</p>
-
-<p>我的灵魂，宁静清澈</p>
-
-<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
-            &nbsp;原文地址：
-            <a href='http://wangchaoqun.com/blog/2008/10/he-yi-ru-ci.html/'>http://wangchaoqun.com/blog/2008/10/he-yi-ru-ci.html/</a><br/>
             &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
             &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 

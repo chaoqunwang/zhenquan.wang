@@ -4,7 +4,7 @@
   <title><![CDATA[文章分类：linux | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-02-27T09:45:41+08:00</updated>
+  <updated>2014-02-28T14:51:29+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -327,6 +327,22 @@ category_list_tag.rb: ascii (confidence: 1.00)
 category_list_tag.rb中很多地方用到了ruby的正则表达式，而ruby的正则表达式在匹配的时候，默认是按照“代码源文件”的编码格式(在这里是ascii)进行匹配的，而如果blog是utf-8编码的话就会出现上述错误。有两种解决办法：
 1. 将category_list_tag.rb转成utf-8格式。<br/>
 2. 更改category_list_tag.rb中所有的正则表达式声明，加上u选项（u的意思就是以utf-8编码格式来进行匹配）。例如，若原正则表达式是/regexp/, 则改成/regexp/u。</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[转]线上应用故障排查]]></title>
+    <link href="http://wangchaoqun.com/blog/2012/05/zhuan-xian-shang-ying-yong-gu-zhang-pai-cha.html/"/>
+    <updated>2012-05-18T10:05:48+08:00</updated>
+    <id>http://wangchaoqun.com/blog/2012/05/zhuan-xian-shang-ying-yong-gu-zhang-pai-cha</id>
+    <content type="html"><![CDATA[<p><a href="http://www.blogjava.net/hankchen/archive/2012/05/09/377738.html" target="_blank">来自hankchen</a><br/>
+<a href="http://www.blogjava.net/hankchen/archive/2012/05/09/377735.html" target="_blank">线上应用故障排查之一：高CPU占用</a><br/>
+<a href="http://www.blogjava.net/hankchen/archive/2012/05/09/377736.html" target="_blank">线上应用故障排查之二：高内存占用</a></p>
+
+<!--more-->
+
+
+
 ]]></content>
   </entry>
   
