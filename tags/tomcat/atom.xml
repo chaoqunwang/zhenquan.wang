@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: tomcat | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/tags/tomcat/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-03-03T15:37:38+08:00</updated>
+  <updated>2014-03-03T15:54:28+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -98,9 +98,10 @@ compressableMimeType="text/html,text/xml,text/plain,application/octet-stream" /&
 每当开机时，Tomcat服务器应当自动地重启。
 一般情况下HTTPS请求会比HTTP请求慢。如果你想要更好的安全性，即使慢一点我们还是要选择HTTPS。</p>
 
-<p>就这么多啦。在这篇文章里，我教给了大家一些提高Tomcat服务器性能的方法。如果你觉得这篇文章有用，或者你对提高Tomcat服务器性能有别的看法，请不要忘记留下宝贵的评论。祝你今天编程愉快！
-全文完<br/>
-另附资料 <a href="http://blog.csdn.net/itmagic_jack/article/details/6290239">转：Tomcat Server.xml配置文件</a></p>
+<p>就这么多啦。在这篇文章里，我教给了大家一些提高Tomcat服务器性能的方法。如果你觉得这篇文章有用，或者你对提高Tomcat服务器性能有别的看法，请不要忘记留下宝贵的评论。祝你今天编程愉快！<br/>
+全文完</p>
+
+<p>另附tomcat5.5-6.0 server.xml参数说明：<a href="http://blog.csdn.net/itmagic_jack/article/details/6290239">转：Tomcat Server.xml配置文件</a></p>
 ]]></content>
   </entry>
   
