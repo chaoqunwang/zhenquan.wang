@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: mongodb | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/tags/mongodb/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-03-05T09:39:31+08:00</updated>
+  <updated>2014-03-06T10:53:46+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -906,6 +906,12 @@ db.user.find({"address.city":101,"address.province":100})  # one record
 标签：<a href="/blog/categories/tech">技术</a><br/>
 <code>
 db.user.find({creationTime:{$gt:1300000000000, $lte:1310000000000});
+</code>
+$elemMatch:前2个不对，匹配数组查询要用第3个<br/>
+<code>
+db.blog.find({"comments.name": "foo", "comments.content": "bar"});
+db.blog.find({"comments": {"name": "foo", "content": "bar"}});
+db.blog.find({"comments":{"$elemMatch":{"name":"joke", "content":"bad good ugly"}}});
 </code>
 使用where可做运算<br/>
 <code>

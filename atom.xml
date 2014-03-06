@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-03-05T09:39:31+08:00</updated>
+  <updated>2014-03-06T10:53:46+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -189,10 +189,9 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>mongorestore -h 127.0.0.1:10001 --directoryperdb b:\mongo\dump</span></code></pre></td></tr></table></div></figure>
 
 
-<p>
-<strong>注意</strong>：关于节点的读写操作
+<blockquote><p><strong>注意</strong>：关于节点的读写操作
 在primary节点中添加数据: db.xxxx.insert
-如果在secondary备份节点查询，会出现错误:</p>
+如果在secondary备份节点查询，会出现错误:</p></blockquote>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>error: { "$err" : "not master and slaveok=false", "code" : 13435 }</span></code></pre></td></tr></table></div></figure>
@@ -1554,6 +1553,16 @@ spring-data-mongodb:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>db.user.find({creationTime:{$gt:1300000000000, $lte:1310000000000}); </span></code></pre></td></tr></table></div></figure>
+
+
+<p>$elemMatch:前2个不对，匹配数组查询要用第3个</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>db.blog.find({"comments.name": "foo", "comments.content": "bar"});
+</span><span class='line'>db.blog.find({"comments": {"name": "foo", "content": "bar"}});
+</span><span class='line'>db.blog.find({"comments":{"$elemMatch":{"name":"joke", "content":"bad good ugly"}}});</span></code></pre></td></tr></table></div></figure>
 
 
 <p>使用where可做运算</p>

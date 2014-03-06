@@ -238,10 +238,9 @@ function addBlankTargetForLinks () {
 </pre></td><td class='code'><pre><code class=''><span class='line'>mongorestore -h 127.0.0.1:10001 --directoryperdb b:\mongo\dump</span></code></pre></td></tr></table></div></figure>
 
 
-<p>
-<strong>注意</strong>：关于节点的读写操作
+<blockquote><p><strong>注意</strong>：关于节点的读写操作
 在primary节点中添加数据: db.xxxx.insert
-如果在secondary备份节点查询，会出现错误:</p>
+如果在secondary备份节点查询，会出现错误:</p></blockquote>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>error: { "$err" : "not master and slaveok=false", "code" : 13435 }</span></code></pre></td></tr></table></div></figure>
