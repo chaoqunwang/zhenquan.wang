@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-03-11T10:18:17+08:00</updated>
+  <updated>2014-03-17T07:33:13+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -353,8 +353,7 @@
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
-<p>
-通过printShardingStatus命令查看mongodb的数据分片情况</p>
+<blockquote><p>通过printShardingStatus命令查看mongodb的数据分片情况</p></blockquote>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>db.printShardingStatus();</span></code></pre></td></tr></table></div></figure>
@@ -2181,23 +2180,23 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 </pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt;
 </span><span class='line'>  &lt;h1&gt;文章分类&lt;/h1&gt;
 </span><span class='line'>  &lt;ul id="categories"&gt;
-</span><span class='line'>    <li class='category'><a href='http://wangchaoqun.com/blog/categories/ftp/'>ftp (1)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/hibernate/'>hibernate (1)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/java/'>java (7)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/linux/'>linux (3)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/mongodb/'>mongodb (5)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/mysql/'>mysql (1)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/tech/'>tech (21)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/tomcat/'>tomcat (1)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/web/'>web (2)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/dai-ma/'>代码 (3)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/qi-ta/'>其他 (1)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/jia-gou/'>架构 (2)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/sheng-huo/'>生活 (7)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/suan-fa/'>算法 (1)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/zhi-ye/'>职业 (2)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/she-ji-mo-shi/'>设计模式 (1)</a></li>
-<li class='category'><a href='http://wangchaoqun.com/blog/categories/du-shu/'>读书 (3)</a></li>
+</span><span class='line'>    <li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/ftp/'>ftp (1)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/hibernate/'>hibernate (1)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/java/'>java (7)</a></li>
+<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/linux/'>linux (3)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/mongodb/'>mongodb (5)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/mysql/'>mysql (1)</a></li>
+<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/tech/'>tech (21)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/tomcat/'>tomcat (1)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/web/'>web (2)</a></li>
+<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/dai-ma/'>代码 (3)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/qi-ta/'>其他 (1)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/jia-gou/'>架构 (2)</a></li>
+<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/sheng-huo/'>生活 (7)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/suan-fa/'>算法 (1)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/zhi-ye/'>职业 (2)</a></li>
+<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/she-ji-mo-shi/'>设计模式 (1)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/du-shu/'>读书 (3)</a>
 
 </span><span class='line'>  &lt;/ul&gt;
 </span><span class='line'>&lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
@@ -3570,9 +3569,9 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
   
   <entry>
     <title type="html"><![CDATA[测试Hibernate动态添加实体类]]></title>
-    <link href="http://wangchaoqun.com/blog/2012/09/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei.html/"/>
+    <link href="http://wangchaoqun.com/blog/2012/09/ce-shi-hibernate-dong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei.html/"/>
     <updated>2012-09-28T07:54:33+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2012/09/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei</id>
+    <id>http://wangchaoqun.com/blog/2012/09/ce-shi-hibernate-dong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei</id>
     <content type="html"><![CDATA[<p>大家知道通过hibernate cfg或和spring集成的配置里，可用packagesToScan或mapping*之类声明实体类；但有需求可能要在某个项目中编码式加载实体类（例如某个不常用的或特定用户的实体类，并未事先配置），然后进行增删改查操作。下面代码配合spring test framework做了测试（注：hibernate升级到了4.3.final，与4.2有不同，spring3或4测试通过）：<!--more--><a href='http://wangchaoqun.com' style='color:black;text-decoration:none;'>wang chaoqun</a></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -3664,7 +3663,7 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 
 <p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
             &nbsp;原文地址：
-            <a href='http://wangchaoqun.com/blog/2012/09/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei.html/'>http://wangchaoqun.com/blog/2012/09/ce-shi-hibernatedong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei.html/</a><br/>
+            <a href='http://wangchaoqun.com/blog/2012/09/ce-shi-hibernate-dong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei.html/'>http://wangchaoqun.com/blog/2012/09/ce-shi-hibernate-dong-tai-tian-jia-wei-pei-zhi-de-shi-ti-lei.html/</a><br/>
             &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
             &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
@@ -3759,11 +3758,16 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[9种排序算法的java实现]]></title>
-    <link href="http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-java-shi-xian.html/"/>
+    <title type="html"><![CDATA[常用排序算法的java实现]]></title>
+    <link href="http://wangchaoqun.com/blog/2010/08/chang-yong-pai-xu-suan-fa-de-java-shi-xian.html/"/>
     <updated>2010-08-09T13:09:09+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-java-shi-xian</id>
-    <content type="html"><![CDATA[<p>使用枚举类型存入各算法和接口实现，main方法打印排序后的数组，也可以加入nanotime、currentTimeMillis测试效率，但可能数组太小不明显</p>
+    <id>http://wangchaoqun.com/blog/2010/08/chang-yong-pai-xu-suan-fa-de-java-shi-xian</id>
+    <content type="html"><![CDATA[<p>分类 &ndash; 插入排序：直接插入排序，希尔排序
+&ndash; 交换排序：冒泡排序，快速排序
+&ndash; 选择排序：简单选择排序，堆排序
+&ndash; 归并排序<br/>
+时间复杂度：简单排序如插入、冒泡、选择是O(n²)，高级如快速、归并、堆是O(nlgn)<br/>
+本类使用枚举存入各算法和接口实现，main方法打印排序后的数组</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3771,14 +3775,12 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">comcolalife</span><span class="o">.</span><span class="na">demo</span><span class="o">.</span><span class="na">sort</span><span class="o">;</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
-</span><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * 冒择入希快(快改进)归(归改进)堆：9种排序算法的java实现</span>
-</span><span class='line'><span class="cm"> * @author wangchaoqun</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 排序算法接口</span>
 </span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SortTest</span> <span class="o">{</span>
+</span><span class='line'><span class="kd">interface</span> <span class="nc">Sort</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -3808,29 +3810,73 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>  <span class="kt">int</span><span class="o">[]</span> <span class="n">original</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">21</span><span class="o">,</span> <span class="mi">43</span><span class="o">,</span> <span class="mi">29</span><span class="o">,</span> <span class="mi">53</span> <span class="o">};</span>
-</span><span class='line'>  <span class="c1">// 执行排序算法</span>
-</span><span class='line'>  <span class="k">for</span> <span class="o">(</span><span class="n">Sorts</span> <span class="n">each</span> <span class="o">:</span> <span class="n">Sorts</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">each</span><span class="o">.</span><span class="na">name</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot;   &quot;</span><span class="o">);</span>
-</span><span class='line'>      <span class="kt">int</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">original</span><span class="o">,</span> <span class="n">original</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">each</span><span class="o">.</span><span class="na">impl</span><span class="o">().</span><span class="na">sort</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">print</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="c1">// java.util.Arrays类使用调优的快速排序法</span>
-</span><span class='line'>  <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">original</span><span class="o">);</span>
-</span><span class='line'>  <span class="n">print</span><span class="o">(</span><span class="n">original</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 排序算法枚举</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">enum</span> <span class="n">Sorts</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">INSERT</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">new</span> <span class="nf">InsertSort</span><span class="o">().</span><span class="na">sort</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">},</span>
+</span><span class='line'>  <span class="n">BUBBLE</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">new</span> <span class="nf">BubbleSort</span><span class="o">().</span><span class="na">sort</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">},</span>
+</span><span class='line'>  <span class="n">SELECT</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">new</span> <span class="nf">SelectionSort</span><span class="o">().</span><span class="na">sort</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">},</span>
+</span><span class='line'>  <span class="n">SHELL</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">new</span> <span class="nf">ShellSort</span><span class="o">().</span><span class="na">sort</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">},</span>
+</span><span class='line'>  <span class="n">QUICK</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">new</span> <span class="nf">QuickSort</span><span class="o">().</span><span class="na">sort</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">},</span>
+</span><span class='line'>  <span class="n">MERGE</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">new</span> <span class="nf">MergeSort</span><span class="o">().</span><span class="na">sort</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">},</span>
+</span><span class='line'>  <span class="n">HEAP</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">new</span> <span class="nf">HeapSort</span><span class="o">().</span><span class="na">sort</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">};</span>
 </span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">each</span> <span class="o">:</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">each</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
-</span><span class='line'><span class="o">}</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">);</span>
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p></p>
 
 <p>标签：<a href="http://wangchaoqun.com/blog/categories/suan-fa/">算法</a></p>
 
@@ -4036,207 +4082,13 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 <span class='line-number'>200</span>
 <span class='line-number'>201</span>
 <span class='line-number'>202</span>
-<span class='line-number'>203</span>
-<span class='line-number'>204</span>
-<span class='line-number'>205</span>
-<span class='line-number'>206</span>
-<span class='line-number'>207</span>
-<span class='line-number'>208</span>
-<span class='line-number'>209</span>
-<span class='line-number'>210</span>
-<span class='line-number'>211</span>
-<span class='line-number'>212</span>
-<span class='line-number'>213</span>
-<span class='line-number'>214</span>
-<span class='line-number'>215</span>
-<span class='line-number'>216</span>
-<span class='line-number'>217</span>
-<span class='line-number'>218</span>
-<span class='line-number'>219</span>
-<span class='line-number'>220</span>
-<span class='line-number'>221</span>
-<span class='line-number'>222</span>
-<span class='line-number'>223</span>
-<span class='line-number'>224</span>
-<span class='line-number'>225</span>
-<span class='line-number'>226</span>
-<span class='line-number'>227</span>
-<span class='line-number'>228</span>
-<span class='line-number'>229</span>
-<span class='line-number'>230</span>
-<span class='line-number'>231</span>
-<span class='line-number'>232</span>
-<span class='line-number'>233</span>
-<span class='line-number'>234</span>
-<span class='line-number'>235</span>
-<span class='line-number'>236</span>
-<span class='line-number'>237</span>
-<span class='line-number'>238</span>
-<span class='line-number'>239</span>
-<span class='line-number'>240</span>
-<span class='line-number'>241</span>
-<span class='line-number'>242</span>
-<span class='line-number'>243</span>
-<span class='line-number'>244</span>
-<span class='line-number'>245</span>
-<span class='line-number'>246</span>
-<span class='line-number'>247</span>
-<span class='line-number'>248</span>
-<span class='line-number'>249</span>
-<span class='line-number'>250</span>
-<span class='line-number'>251</span>
-<span class='line-number'>252</span>
-<span class='line-number'>253</span>
-<span class='line-number'>254</span>
-<span class='line-number'>255</span>
-<span class='line-number'>256</span>
-<span class='line-number'>257</span>
-<span class='line-number'>258</span>
-<span class='line-number'>259</span>
-<span class='line-number'>260</span>
-<span class='line-number'>261</span>
-<span class='line-number'>262</span>
-<span class='line-number'>263</span>
-<span class='line-number'>264</span>
-<span class='line-number'>265</span>
-<span class='line-number'>266</span>
-<span class='line-number'>267</span>
-<span class='line-number'>268</span>
-<span class='line-number'>269</span>
-<span class='line-number'>270</span>
-<span class='line-number'>271</span>
-<span class='line-number'>272</span>
-<span class='line-number'>273</span>
-<span class='line-number'>274</span>
-<span class='line-number'>275</span>
-<span class='line-number'>276</span>
-<span class='line-number'>277</span>
-<span class='line-number'>278</span>
-<span class='line-number'>279</span>
-<span class='line-number'>280</span>
-<span class='line-number'>281</span>
-<span class='line-number'>282</span>
-<span class='line-number'>283</span>
-<span class='line-number'>284</span>
-<span class='line-number'>285</span>
-<span class='line-number'>286</span>
-<span class='line-number'>287</span>
-<span class='line-number'>288</span>
-<span class='line-number'>289</span>
-<span class='line-number'>290</span>
-<span class='line-number'>291</span>
-<span class='line-number'>292</span>
-<span class='line-number'>293</span>
-<span class='line-number'>294</span>
-<span class='line-number'>295</span>
-<span class='line-number'>296</span>
-<span class='line-number'>297</span>
-<span class='line-number'>298</span>
-<span class='line-number'>299</span>
-<span class='line-number'>300</span>
-<span class='line-number'>301</span>
-<span class='line-number'>302</span>
-<span class='line-number'>303</span>
-<span class='line-number'>304</span>
-<span class='line-number'>305</span>
-<span class='line-number'>306</span>
-<span class='line-number'>307</span>
-<span class='line-number'>308</span>
-<span class='line-number'>309</span>
-<span class='line-number'>310</span>
-<span class='line-number'>311</span>
-<span class='line-number'>312</span>
-<span class='line-number'>313</span>
-<span class='line-number'>314</span>
-<span class='line-number'>315</span>
-<span class='line-number'>316</span>
-<span class='line-number'>317</span>
-<span class='line-number'>318</span>
-<span class='line-number'>319</span>
-<span class='line-number'>320</span>
-<span class='line-number'>321</span>
-<span class='line-number'>322</span>
-<span class='line-number'>323</span>
-<span class='line-number'>324</span>
-<span class='line-number'>325</span>
-<span class='line-number'>326</span>
-<span class='line-number'>327</span>
-<span class='line-number'>328</span>
-<span class='line-number'>329</span>
-<span class='line-number'>330</span>
-<span class='line-number'>331</span>
-<span class='line-number'>332</span>
-<span class='line-number'>333</span>
-<span class='line-number'>334</span>
-<span class='line-number'>335</span>
-<span class='line-number'>336</span>
-<span class='line-number'>337</span>
-<span class='line-number'>338</span>
-<span class='line-number'>339</span>
-<span class='line-number'>340</span>
-<span class='line-number'>341</span>
-<span class='line-number'>342</span>
-<span class='line-number'>343</span>
-<span class='line-number'>344</span>
-<span class='line-number'>345</span>
-<span class='line-number'>346</span>
-<span class='line-number'>347</span>
-<span class='line-number'>348</span>
-<span class='line-number'>349</span>
-<span class='line-number'>350</span>
-<span class='line-number'>351</span>
-<span class='line-number'>352</span>
-<span class='line-number'>353</span>
-<span class='line-number'>354</span>
-<span class='line-number'>355</span>
-<span class='line-number'>356</span>
-<span class='line-number'>357</span>
-<span class='line-number'>358</span>
-<span class='line-number'>359</span>
-<span class='line-number'>360</span>
-<span class='line-number'>361</span>
-<span class='line-number'>362</span>
-<span class='line-number'>363</span>
-<span class='line-number'>364</span>
-<span class='line-number'>365</span>
-<span class='line-number'>366</span>
-<span class='line-number'>367</span>
-<span class='line-number'>368</span>
-<span class='line-number'>369</span>
-<span class='line-number'>370</span>
-<span class='line-number'>371</span>
-<span class='line-number'>372</span>
-<span class='line-number'>373</span>
-<span class='line-number'>374</span>
-<span class='line-number'>375</span>
-<span class='line-number'>376</span>
-<span class='line-number'>377</span>
-<span class='line-number'>378</span>
-<span class='line-number'>379</span>
-<span class='line-number'>380</span>
-<span class='line-number'>381</span>
-<span class='line-number'>382</span>
-<span class='line-number'>383</span>
-<span class='line-number'>384</span>
-<span class='line-number'>385</span>
-<span class='line-number'>386</span>
-<span class='line-number'>387</span>
-<span class='line-number'>388</span>
-<span class='line-number'>389</span>
-<span class='line-number'>390</span>
-<span class='line-number'>391</span>
-<span class='line-number'>392</span>
-<span class='line-number'>393</span>
-<span class='line-number'>394</span>
-<span class='line-number'>395</span>
-<span class='line-number'>396</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
 </span><span class='line'><span class="cm"> * 插入排序算法</span>
 </span><span class='line'><span class="cm"> */</span>
 </span><span class='line'><span class="kd">class</span> <span class="nc">InsertSort</span> <span class="kd">implements</span> <span class="n">Sort</span> <span class="o">{</span>
 </span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="o">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">data</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]);</span> <span class="n">j</span><span class="o">--)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">data</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span> <span class="n">j</span><span class="o">--)</span> <span class="o">{</span>
 </span><span class='line'>              <span class="n">SortUtil</span><span class="o">.</span><span class="na">swap</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">j</span><span class="o">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
 </span><span class='line'>          <span class="o">}</span>
 </span><span class='line'>      <span class="o">}</span>
@@ -4292,7 +4144,7 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 </span><span class='line'>
 </span><span class='line'>  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">insertSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">inc</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">inc</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="n">inc</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="o">(</span><span class="n">j</span> <span class="o">&gt;=</span> <span class="n">inc</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">data</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">inc</span><span class="o">]);</span> <span class="n">j</span> <span class="o">-=</span> <span class="n">inc</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">inc</span> <span class="o">&amp;&amp;</span> <span class="n">data</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">inc</span><span class="o">];</span> <span class="n">j</span> <span class="o">-=</span> <span class="n">inc</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>              <span class="n">SortUtil</span><span class="o">.</span><span class="na">swap</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">j</span><span class="o">,</span> <span class="n">j</span> <span class="o">-</span> <span class="n">inc</span><span class="o">);</span>
 </span><span class='line'>          <span class="o">}</span>
 </span><span class='line'>      <span class="o">}</span>
@@ -4308,91 +4160,33 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 </span><span class='line'>      <span class="n">quickSort</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">quickSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">,</span> <span class="kt">int</span> <span class="n">first</span><span class="o">,</span> <span class="kt">int</span> <span class="n">last</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">first</span> <span class="o">&gt;=</span> <span class="n">last</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">return</span><span class="o">;</span>
-</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">quickSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">,</span> <span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">left</span> <span class="o">&gt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span><span class="o">;</span> <span class="o">}</span>
 </span><span class='line'>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">pivot</span> <span class="o">=</span> <span class="n">partition</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">first</span><span class="o">,</span> <span class="n">last</span><span class="o">,</span> <span class="n">first</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">quickSort</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">first</span><span class="o">,</span> <span class="n">pivot</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span><span class="c1">// 对左半段排序</span>
-</span><span class='line'>      <span class="n">quickSort</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">pivot</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">last</span><span class="o">);</span><span class="c1">// 对右半段排序</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">pivot</span> <span class="o">=</span> <span class="n">partition</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">quickSort</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">pivot</span><span class="o">);</span><span class="c1">// 对左半段排序</span>
+</span><span class='line'>      <span class="n">quickSort</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">pivot</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span><span class="c1">// 对右半段排序</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="kd">private</span> <span class="kt">int</span> <span class="nf">partition</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">,</span> <span class="kt">int</span> <span class="n">first</span><span class="o">,</span> <span class="kt">int</span> <span class="n">last</span><span class="o">,</span> <span class="kt">int</span> <span class="n">pivot</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">while</span> <span class="o">(</span><span class="n">data</span><span class="o">[++</span><span class="n">first</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">[</span><span class="n">pivot</span><span class="o">])</span>
-</span><span class='line'>              <span class="o">;</span>
-</span><span class='line'>          <span class="k">while</span> <span class="o">(</span><span class="n">data</span><span class="o">[--</span><span class="n">last</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">data</span><span class="o">[</span><span class="n">pivot</span><span class="o">])</span>
-</span><span class='line'>              <span class="o">;</span>
-</span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">first</span> <span class="o">&gt;=</span> <span class="n">last</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>              <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kt">int</span> <span class="nf">partition</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">,</span> <span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">pivot</span> <span class="o">=</span> <span class="n">data</span><span class="o">[</span><span class="n">left</span><span class="o">];</span>
+</span><span class='line'>      <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="o">&amp;&amp;</span> <span class="n">data</span><span class="o">[</span><span class="n">right</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">pivot</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>              <span class="n">right</span><span class="o">--;</span>
 </span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>          <span class="n">SortUtil</span><span class="o">.</span><span class="na">swap</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">first</span><span class="o">,</span> <span class="n">last</span><span class="o">);</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      <span class="n">SortUtil</span><span class="o">.</span><span class="na">swap</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">last</span><span class="o">,</span> <span class="n">pivot</span><span class="o">);</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">last</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * 改进的快速排序算法</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="kd">class</span> <span class="nc">ImprovedQuickSort</span> <span class="kd">implements</span> <span class="n">Sort</span> <span class="o">{</span>
-</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">MAX_STACK_SIZE</span> <span class="o">=</span> <span class="mi">4096</span><span class="o">;</span>
-</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">THRESHOLD</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kt">int</span><span class="o">[]</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">MAX_STACK_SIZE</span><span class="o">];</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">top</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">pivot</span><span class="o">;</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">pivotIndex</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">r</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="n">stack</span><span class="o">[++</span><span class="n">top</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class='line'>      <span class="n">stack</span><span class="o">[++</span><span class="n">top</span><span class="o">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="k">while</span> <span class="o">(</span><span class="n">top</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">stack</span><span class="o">[</span><span class="n">top</span><span class="o">--];</span>
-</span><span class='line'>          <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">stack</span><span class="o">[</span><span class="n">top</span><span class="o">--];</span>
-</span><span class='line'>
-</span><span class='line'>          <span class="n">pivotIndex</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-</span><span class='line'>          <span class="n">pivot</span> <span class="o">=</span> <span class="n">data</span><span class="o">[</span><span class="n">pivotIndex</span><span class="o">];</span>
-</span><span class='line'>
-</span><span class='line'>          <span class="n">SortUtil</span><span class="o">.</span><span class="na">swap</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">pivotIndex</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>          <span class="c1">// partition</span>
-</span><span class='line'>          <span class="n">l</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>          <span class="n">r</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
-</span><span class='line'>          <span class="k">do</span> <span class="o">{</span>
-</span><span class='line'>              <span class="k">while</span> <span class="o">(</span><span class="n">data</span><span class="o">[++</span><span class="n">l</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="o">)</span>
-</span><span class='line'>                  <span class="o">;</span>
-</span><span class='line'>              <span class="k">while</span> <span class="o">((</span><span class="n">r</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">data</span><span class="o">[--</span><span class="n">r</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">pivot</span><span class="o">))</span>
-</span><span class='line'>                  <span class="o">;</span>
-</span><span class='line'>              <span class="n">SortUtil</span><span class="o">.</span><span class="na">swap</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span>
-</span><span class='line'>          <span class="o">}</span> <span class="k">while</span> <span class="o">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">r</span><span class="o">);</span>
-</span><span class='line'>          <span class="n">SortUtil</span><span class="o">.</span><span class="na">swap</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span>
-</span><span class='line'>          <span class="n">SortUtil</span><span class="o">.</span><span class="na">swap</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>          <span class="k">if</span> <span class="o">((</span><span class="n">l</span> <span class="o">-</span> <span class="n">i</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">THRESHOLD</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>              <span class="n">stack</span><span class="o">[++</span><span class="n">top</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-</span><span class='line'>              <span class="n">stack</span><span class="o">[++</span><span class="n">top</span><span class="o">]</span> <span class="o">=</span> <span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>              <span class="n">SortUtil</span><span class="o">.</span><span class="na">swap</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
 </span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>          <span class="k">if</span> <span class="o">((</span><span class="n">j</span> <span class="o">-</span> <span class="n">l</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">THRESHOLD</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>              <span class="n">stack</span><span class="o">[++</span><span class="n">top</span><span class="o">]</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>              <span class="n">stack</span><span class="o">[++</span><span class="n">top</span><span class="o">]</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="o">&amp;&amp;</span> <span class="n">data</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>              <span class="n">left</span><span class="o">++;</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>              <span class="n">SortUtil</span><span class="o">.</span><span class="na">swap</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
 </span><span class='line'>          <span class="o">}</span>
 </span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      <span class="n">insertSort</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">insertSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="o">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">data</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]);</span> <span class="n">j</span><span class="o">--)</span> <span class="o">{</span>
-</span><span class='line'>              <span class="n">SortUtil</span><span class="o">.</span><span class="na">swap</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">j</span><span class="o">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
-</span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">left</span><span class="o">;</span>
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">}</span>
@@ -4407,9 +4201,7 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">mergeSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">temp</span><span class="o">,</span> <span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">return</span><span class="o">;</span>
-</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span><span class="o">;</span> <span class="o">}</span>
 </span><span class='line'>      <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
 </span><span class='line'>      <span class="n">mergeSort</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">temp</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">mid</span><span class="o">);</span>
 </span><span class='line'>      <span class="n">mergeSort</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">temp</span><span class="o">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
@@ -4434,69 +4226,13 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 </span><span class='line'><span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * 改进的归并排序算法</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="kd">class</span> <span class="nc">ImprovedMergeSort</span> <span class="kd">implements</span> <span class="n">Sort</span> <span class="o">{</span>
-</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">THRESHOLD</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kt">int</span><span class="o">[]</span> <span class="n">temp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
-</span><span class='line'>      <span class="n">mergeSort</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">temp</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">mergeSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">temp</span><span class="o">,</span> <span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">,</span> <span class="n">k</span><span class="o">;</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">return</span><span class="o">;</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      <span class="k">if</span> <span class="o">((</span><span class="n">mid</span> <span class="o">-</span> <span class="n">left</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="n">THRESHOLD</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">mergeSort</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">temp</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">mid</span><span class="o">);</span>
-</span><span class='line'>      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">insertSort</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">mid</span> <span class="o">-</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      <span class="k">if</span> <span class="o">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">mid</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">THRESHOLD</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">mergeSort</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">temp</span><span class="o">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
-</span><span class='line'>      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">insertSort</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">right</span> <span class="o">-</span> <span class="n">mid</span><span class="o">);</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">left</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">mid</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">temp</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">right</span> <span class="o">-</span> <span class="n">mid</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">temp</span><span class="o">[</span><span class="n">right</span> <span class="o">-</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">mid</span><span class="o">];</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">left</span><span class="o">];</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">right</span><span class="o">];</span>
-</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">left</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">right</span><span class="o">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">left</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>              <span class="n">data</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">i</span><span class="o">++];</span>
-</span><span class='line'>              <span class="n">a</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-</span><span class='line'>          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>              <span class="n">data</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">j</span><span class="o">--];</span>
-</span><span class='line'>              <span class="n">b</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
-</span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">insertSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">len</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">start</span> <span class="o">+</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="o">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="n">start</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">data</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span> <span class="n">j</span><span class="o">--)</span> <span class="o">{</span>
-</span><span class='line'>              <span class="n">SortUtil</span><span class="o">.</span><span class="na">swap</span><span class="o">(</span><span class="n">data</span><span class="o">,</span> <span class="n">j</span><span class="o">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
-</span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="cm">/**</span>
 </span><span class='line'><span class="cm"> * 堆排序算法</span>
 </span><span class='line'><span class="cm"> */</span>
 </span><span class='line'><span class="kd">class</span> <span class="nc">HeapSort</span> <span class="kd">implements</span> <span class="n">Sort</span> <span class="o">{</span>
 </span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>      <span class="n">MaxHeap</span> <span class="n">h</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MaxHeap</span><span class="o">();</span>
 </span><span class='line'>      <span class="n">h</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
-</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">:</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>          <span class="n">h</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
 </span><span class='line'>      <span class="o">}</span>
 </span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">arraycopy</span><span class="o">(</span><span class="n">h</span><span class="o">.</span><span class="na">queue</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="n">data</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
@@ -4505,8 +4241,8 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 </span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">MaxHeap</span> <span class="o">{</span>
 </span><span class='line'>      <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>          <span class="k">this</span><span class="o">.</span><span class="na">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">data</span><span class="o">.</span><span class="na">length</span> <span class="o">+</span> <span class="mi">1</span><span class="o">];</span>
-</span><span class='line'>          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>              <span class="n">queue</span><span class="o">[++</span><span class="n">size</span><span class="o">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class='line'>          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">element</span> <span class="o">:</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>              <span class="n">queue</span><span class="o">[++</span><span class="n">size</span><span class="o">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">;</span>
 </span><span class='line'>              <span class="n">fixUp</span><span class="o">(</span><span class="n">size</span><span class="o">);</span>
 </span><span class='line'>          <span class="o">}</span>
 </span><span class='line'>      <span class="o">}</span>
@@ -4537,79 +4273,40 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 </span><span class='line'>      <span class="kd">private</span> <span class="kt">void</span> <span class="nf">fixUp</span><span class="o">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>          <span class="k">while</span> <span class="o">(</span><span class="n">k</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>              <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">k</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>              <span class="k">if</span> <span class="o">(</span><span class="n">queue</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">queue</span><span class="o">[</span><span class="n">k</span><span class="o">])</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="k">break</span><span class="o">;</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>              <span class="n">SortUtil</span><span class="o">.</span><span class="na">swap</span><span class="o">(</span><span class="n">queue</span><span class="o">,</span> <span class="n">j</span><span class="o">,</span> <span class="n">k</span><span class="o">);</span>
-</span><span class='line'>              <span class="n">k</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
+</span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">queue</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">queue</span><span class="o">[</span><span class="n">k</span><span class="o">])</span> <span class="o">{</span>
+</span><span class='line'>              <span class="k">break</span><span class="o">;</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>          <span class="n">SortUtil</span><span class="o">.</span><span class="na">swap</span><span class="o">(</span><span class="n">queue</span><span class="o">,</span> <span class="n">j</span><span class="o">,</span> <span class="n">k</span><span class="o">);</span>
+</span><span class='line'>          <span class="n">k</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
 </span><span class='line'>          <span class="o">}</span>
 </span><span class='line'>      <span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * 排序算法接口</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="kd">interface</span> <span class="nc">Sort</span> <span class="o">{</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm"> * 排序算法枚举</span>
-</span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="kd">enum</span> <span class="n">Sorts</span> <span class="o">{</span>
-</span><span class='line'>  <span class="n">INSERT</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kd">public</span> <span class="n">Sort</span> <span class="nf">impl</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">return</span> <span class="k">new</span> <span class="nf">InsertSort</span><span class="o">();</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">},</span>
-</span><span class='line'>  <span class="n">BUBBLE</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kd">public</span> <span class="n">Sort</span> <span class="nf">impl</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">return</span> <span class="k">new</span> <span class="nf">BubbleSort</span><span class="o">();</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">},</span>
-</span><span class='line'>  <span class="n">SELECTION</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kd">public</span> <span class="n">Sort</span> <span class="nf">impl</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">return</span> <span class="k">new</span> <span class="nf">SelectionSort</span><span class="o">();</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">},</span>
-</span><span class='line'>  <span class="n">SHELL</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kd">public</span> <span class="n">Sort</span> <span class="nf">impl</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">return</span> <span class="k">new</span> <span class="nf">ShellSort</span><span class="o">();</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">},</span>
-</span><span class='line'>  <span class="n">QUICK</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kd">public</span> <span class="n">Sort</span> <span class="nf">impl</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">return</span> <span class="k">new</span> <span class="nf">QuickSort</span><span class="o">();</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">},</span>
-</span><span class='line'>  <span class="n">IMPROVED_QUICK</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kd">public</span> <span class="n">Sort</span> <span class="nf">impl</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">return</span> <span class="k">new</span> <span class="nf">ImprovedQuickSort</span><span class="o">();</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">},</span>
-</span><span class='line'>  <span class="n">MERGE</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kd">public</span> <span class="n">Sort</span> <span class="nf">impl</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">return</span> <span class="k">new</span> <span class="nf">MergeSort</span><span class="o">();</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">},</span>
-</span><span class='line'>  <span class="n">IMPROVED_MERGE</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kd">public</span> <span class="n">Sort</span> <span class="nf">impl</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">return</span> <span class="k">new</span> <span class="nf">ImprovedMergeSort</span><span class="o">();</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">},</span>
-</span><span class='line'>  <span class="n">HEAP</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kd">public</span> <span class="n">Sort</span> <span class="nf">impl</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">return</span> <span class="k">new</span> <span class="nf">HeapSort</span><span class="o">();</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">};</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">Sort</span> <span class="nf">impl</span><span class="o">();</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="cm">/**</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
 </span><span class='line'><span class="cm"> * 排序算法工具类</span>
 </span><span class='line'><span class="cm"> */</span>
 </span><span class='line'><span class="kd">class</span> <span class="nc">SortUtil</span> <span class="o">{</span>
@@ -4618,7 +4315,7 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 </span><span class='line'>      <span class="n">data</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
 </span><span class='line'>      <span class="n">data</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
 </span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  
+</span><span class='line'>
 </span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">each</span> <span class="o">:</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">each</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">);</span>
@@ -4629,9 +4326,62 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
 </span></code></pre></td></tr></table></div></figure>
 
 
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 冒择入希快归堆：常用排序算法</span>
+</span><span class='line'><span class="cm"> * @author wangchaoqun</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SortTest</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kt">int</span><span class="o">[]</span> <span class="n">origin</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">17</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">21</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">33</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">53</span> <span class="o">};</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;origin:  &quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">SortUtil</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">origin</span><span class="o">);</span>
+</span><span class='line'>      <span class="c1">// 执行排序算法</span>
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="n">Sorts</span> <span class="n">each</span> <span class="o">:</span> <span class="n">Sorts</span><span class="o">.</span><span class="na">values</span><span class="o">())</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">each</span><span class="o">.</span><span class="na">name</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot;:  &quot;</span><span class="o">);</span>
+</span><span class='line'>          <span class="kt">int</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">origin</span><span class="o">,</span> <span class="n">origin</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+</span><span class='line'>          <span class="n">each</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+</span><span class='line'>          <span class="n">SortUtil</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="c1">// api使用经过调优的快速排序</span>
+</span><span class='line'>      <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">origin</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;jdkApi:  &quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">SortUtil</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">origin</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 <p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
             &nbsp;原文地址：
-            <a href='http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-java-shi-xian.html/'>http://wangchaoqun.com/blog/2010/08/jiu-zhong-pai-xu-suan-fa-de-java-shi-xian.html/</a><br/>
+            <a href='http://wangchaoqun.com/blog/2010/08/chang-yong-pai-xu-suan-fa-de-java-shi-xian.html/'>http://wangchaoqun.com/blog/2010/08/chang-yong-pai-xu-suan-fa-de-java-shi-xian.html/</a><br/>
             &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
             &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
