@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-03-17T07:41:37+08:00</updated>
+  <updated>2014-03-17T11:47:16+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -2183,21 +2183,22 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 </span><span class='line'>  &lt;ul id="categories"&gt;
 </span><span class='line'>    <li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/ftp/'>ftp (1)</a>
 <a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/hibernate/'>hibernate (1)</a>
-<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/java/'>java (7)</a></li>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/java/'>java (8)</a></li>
 <li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/linux/'>linux (3)</a>
 <a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/mongodb/'>mongodb (5)</a>
 <a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/mysql/'>mysql (1)</a></li>
-<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/tech/'>tech (21)</a>
+<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/tech/'>tech (22)</a>
 <a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/tomcat/'>tomcat (1)</a>
 <a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/web/'>web (2)</a></li>
 <li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/dai-ma/'>代码 (3)</a>
 <a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/qi-ta/'>其他 (1)</a>
-<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/jia-gou/'>架构 (2)</a></li>
-<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/sheng-huo/'>生活 (7)</a>
-<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/suan-fa/'>算法 (1)</a>
-<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/zhi-ye/'>职业 (2)</a></li>
-<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/she-ji-mo-shi/'>设计模式 (1)</a>
-<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/du-shu/'>读书 (3)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/duo-xian-cheng/'>多线程 (1)</a></li>
+<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/jia-gou/'>架构 (2)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/sheng-huo/'>生活 (7)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/suan-fa/'>算法 (1)</a></li>
+<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/zhi-ye/'>职业 (2)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/she-ji-mo-shi/'>设计模式 (1)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/du-shu/'>读书 (3)</a></li>
 
 </span><span class='line'>  &lt;/ul&gt;
 </span><span class='line'>&lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
@@ -3759,6 +3760,274 @@ UA:Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/5.0; SLCC2; .NET C
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[多线程Synchronized同步总结]]></title>
+    <link href="http://wangchaoqun.com/blog/2011/03/duo-xian-cheng-synchronized-tong-bu-zong-jie.html/"/>
+    <updated>2011-03-17T11:03:31+08:00</updated>
+    <id>http://wangchaoqun.com/blog/2011/03/duo-xian-cheng-synchronized-tong-bu-zong-jie</id>
+    <content type="html"><![CDATA[<p>synchronized 关键字，代表这个方法加锁，相当于不管哪一个线程（例如线程A），运行到这个方法时，都要检查有没有其它线程B（或者C、 D等）正在用这个方法，有的话要等正在使用synchronized方法的线程B（或者C 、D）运行完这个方法后再运行此线程A；没有的话，直接运行。<br/>
+它可以用来同步方法，代码块；可以用在方法声明（静态方法、非静态方法），也可以传参；
+对象锁需要注意是否会造成一个方法执行，其他方法也要等待的情况（将整个对象都上锁，而不允许其他线程短暂地使用对象中其他同步方法来访问共享资源），所以要注意锁的不同</p>
+
+<!--more-->
+
+
+<p><a href='http://wangchaoqun.com' style='color:black;text-decoration:none;'>wang chaoqun</a><br/>
+1、同步的静态方法，影响类内</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="o">...</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="err">等同于</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">synchronized</span><span class="o">(</span><span class="n">ThisClazz</span><span class="o">.</span><span class="na">class</span><span class="o">){</span>
+</span><span class='line'>      <span class="o">...</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="err">或者</span>
+</span><span class='line'><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">lock</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">synchronized</span><span class="o">(</span><span class="n">lock</span><span class="o">){</span>
+</span><span class='line'>      <span class="o">...</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2、同步的非静态方法，影响实例内</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="o">...</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="err">等同于</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">synchronized</span><span class="o">(</span><span class="k">this</span><span class="o">){</span>
+</span><span class='line'>      <span class="o">...</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="err">或者</span>
+</span><span class='line'><span class="kd">private</span> <span class="n">String</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="kd">public</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">synchronized</span><span class="o">(</span><span class="n">lock</span><span class="o">){</span>
+</span><span class='line'>      <span class="o">...</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>标签：<a href="http://wangchaoqun.com/blog/categories/duo-xian-cheng/">多线程</a><br/>
+测试示例：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SynThreadTest</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">String</span> <span class="n">methodName</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="n">String</span> <span class="n">sync1</span> <span class="o">=</span> <span class="s">&quot;111&quot;</span><span class="o">;</span><span class="c1">// 不同于 new String(&quot;&quot;);</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">sync2</span> <span class="o">=</span> <span class="s">&quot;222&quot;</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="n">String</span> <span class="n">sync3</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> <span class="o">+</span> <span class="k">new</span> <span class="n">Random</span><span class="o">().</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">method1</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">method</span><span class="o">(</span><span class="s">&quot;syn非静态的method1方法，实例内非静态syn方法互斥&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">method2</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">method</span><span class="o">(</span><span class="s">&quot;syn非静态的method2方法，实例内非静态syn方法互斥&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">method3</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">method</span><span class="o">(</span><span class="s">&quot;syn静态的method3方法，类级别静态syn方法互斥&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">method4</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">method</span><span class="o">(</span><span class="s">&quot;syn静态的method4方法，类级别静态syn方法互斥&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">method5</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">method</span><span class="o">(</span><span class="s">&quot;---非静态的method5方法，非syn无锁&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">method6</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">method</span><span class="o">(</span><span class="s">&quot;---静态的method6方法，非syn无锁&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">method7</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">synchronized</span> <span class="o">(</span><span class="n">sync2</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">method</span><span class="o">(</span><span class="s">&quot;method7方法，类级别静态相同syn obj互斥&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">method8</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">synchronized</span> <span class="o">(</span><span class="k">this</span> <span class="o">+</span> <span class="s">&quot;123&quot;</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">method</span><span class="o">(</span><span class="s">&quot;method8方法，不同实例不同syn obj&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">method9</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">synchronized</span> <span class="o">(</span><span class="n">sync1</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">method</span><span class="o">(</span><span class="s">&quot;非静态的method9方法，不同实例相同syn obj&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">method10</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">synchronized</span> <span class="o">(</span><span class="n">sync3</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">method</span><span class="o">(</span><span class="s">&quot;method10方法，不同实例不同syn obj&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">getClass</span><span class="o">().</span><span class="na">getMethod</span><span class="o">(</span><span class="n">methodName</span><span class="o">).</span><span class="na">invoke</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">SynThreadTest</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SynThreadTest</span><span class="o">();</span>
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">t1</span><span class="o">.</span><span class="na">methodName</span> <span class="o">=</span> <span class="s">&quot;method&quot;</span> <span class="o">+</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+</span><span class='line'>          <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="n">t1</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+</span><span class='line'>          <span class="n">sleep</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">SynThreadTest</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SynThreadTest</span><span class="o">();</span>
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">t2</span><span class="o">.</span><span class="na">methodName</span> <span class="o">=</span> <span class="s">&quot;method&quot;</span> <span class="o">+</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+</span><span class='line'>          <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="n">t2</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+</span><span class='line'>          <span class="n">sleep</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
+            <a href='http://wangchaoqun.com/blog/2011/03/duo-xian-cheng-synchronized-tong-bu-zong-jie.html/'>http://wangchaoqun.com/blog/2011/03/duo-xian-cheng-synchronized-tong-bu-zong-jie.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[常用排序算法的java实现]]></title>
     <link href="http://wangchaoqun.com/blog/2010/08/chang-yong-pai-xu-suan-fa-de-java-shi-xian.html/"/>
     <updated>2010-08-09T13:09:09+08:00</updated>
@@ -4613,81 +4882,6 @@ oh,my God，真是美妙！</p>
 <p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
             &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2009/07/ning-jing-1.html/'>http://wangchaoqun.com/blog/2009/07/ning-jing-1.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
-            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[本地搭建SVN服务器及配置]]></title>
-    <link href="http://wangchaoqun.com/blog/2008/10/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi.html/"/>
-    <updated>2008-10-23T12:50:35+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2008/10/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi</id>
-    <content type="html"><![CDATA[<h4>1. 创建SVN数据库</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>svnadmin create D:\svn</span></code></pre></td></tr></table></div></figure>
-
-
-<p>说明：
- repository创建完毕后会在目录下生成若干个文件和文件夹，
- dav目录是提供给Apache与mod_dav_svn使用的目录，让它们存储内部数据；
- db目录就是所有版本控制的数据文件；
- hooks目录放置hook脚本文件的目录；
- locks用来放置Subversion文件库锁定数据的目录，用来追踪存取文件库的客户端；
- format文件是一个文本文件，里面只放了一个整数，表示当前文件库配置的版本号；</p>
-
-<!--more-->
-
-
-<p><a href='http://wangchaoqun.com' style='color:black;text-decoration:none;'>wang chaoqun</a></p>
-
-<h4>2. 创建服务</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sc create svnservice binpath= "D:\Subversion\bin\svnserve.exe --service -r D:\svn" displayname= "SVNService" depend= Tcpip</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>3. 删除服务</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sc delete svnservice</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<h4>4. 启动服务/停止服务</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>net start svnservice</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>net stop svnservice</span></code></pre></td></tr></table></div></figure>
-
-
-<p>也可以在运行里输入 services.msc 找到名称为“svnservice”的服务 手动启动或停止</p>
-
-<h4>5. 导入工程</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>svn import E:\workspace\myproject\ svn://localhost/svn -m "initial import" --username admin --password mypassword</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<h4>6. 导出工程</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>svn co svn://localhost/server --username admin --password mypassword</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
-            &nbsp;原文地址：
-            <a href='http://wangchaoqun.com/blog/2008/10/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi.html/'>http://wangchaoqun.com/blog/2008/10/ben-di-da-jian-svnfu-wu-qi-ji-pei-zhi.html/</a><br/>
             &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
             &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 

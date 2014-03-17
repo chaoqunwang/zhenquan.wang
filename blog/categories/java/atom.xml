@@ -4,7 +4,7 @@
   <title><![CDATA[文章分类：java | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-03-17T07:41:37+08:00</updated>
+  <updated>2014-03-17T11:47:16+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -691,350 +691,159 @@ public void sessionFactoryAndFactoryBean() throws ClassNotFoundException {
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[常用排序算法的java实现]]></title>
-    <link href="http://wangchaoqun.com/blog/2010/08/chang-yong-pai-xu-suan-fa-de-java-shi-xian.html/"/>
-    <updated>2010-08-09T13:09:09+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2010/08/chang-yong-pai-xu-suan-fa-de-java-shi-xian</id>
-    <content type="html"><![CDATA[<p>分类 &ndash; 插入排序：直接插入排序，希尔排序
-&ndash; 交换排序：冒泡排序，快速排序
-&ndash; 选择排序：简单选择排序，堆排序
-&ndash; 归并排序<br/>
-时间复杂度：简单排序如插入、冒泡、选择是O(n²)，高级如快速、归并、堆是O(nlgn)<br/>
-本类使用枚举存入各算法和接口实现，main方法打印排序后的数组<br/>
-```java
-/<em>*
- * 排序算法接口
- </em>/
-interface Sort {</p>
-
-<pre><code>public void sort(int[] data);
-</code></pre>
-
-<p>}</p>
-
-<p>```</p>
+    <title type="html"><![CDATA[多线程Synchronized同步总结]]></title>
+    <link href="http://wangchaoqun.com/blog/2011/03/duo-xian-cheng-synchronized-tong-bu-zong-jie.html/"/>
+    <updated>2011-03-17T11:03:31+08:00</updated>
+    <id>http://wangchaoqun.com/blog/2011/03/duo-xian-cheng-synchronized-tong-bu-zong-jie</id>
+    <content type="html"><![CDATA[<p>synchronized 关键字，代表这个方法加锁，相当于不管哪一个线程（例如线程A），运行到这个方法时，都要检查有没有其它线程B（或者C、 D等）正在用这个方法，有的话要等正在使用synchronized方法的线程B（或者C 、D）运行完这个方法后再运行此线程A；没有的话，直接运行。<br/>
+它可以用来同步方法，代码块；可以用在方法声明（静态方法、非静态方法），也可以传参；
+对象锁需要注意是否会造成一个方法执行，其他方法也要等待的情况（将整个对象都上锁，而不允许其他线程短暂地使用对象中其他同步方法来访问共享资源），所以要注意锁的不同</p>
 
 <!--more-->
 
 
-<p></p>
+<p>1、同步的静态方法，影响类内<br/>
+```java
+public static synchronized void method() {</p>
 
-<p>```java
-/<em>*
- * 排序算法枚举
- </em>/
-enum Sorts {</p>
-
-<pre><code>INSERT() {
-    public void sort(int[] data) {
-        new InsertSort().sort(data);
-    }
-},
-BUBBLE() {
-    public void sort(int[] data) {
-        new BubbleSort().sort(data);
-    }
-},
-SELECT() {
-    public void sort(int[] data) {
-        new SelectionSort().sort(data);
-    }
-},
-SHELL() {
-    public void sort(int[] data) {
-        new ShellSort().sort(data);
-    }
-},
-QUICK() {
-    public void sort(int[] data) {
-        new QuickSort().sort(data);
-    }
-},
-MERGE() {
-    public void sort(int[] data) {
-        new MergeSort().sort(data);
-    }
-},
-HEAP() {
-    public void sort(int[] data) {
-        new HeapSort().sort(data);
-    }
-};
-
-public abstract void sort(int[] data);
+<pre><code>...
 </code></pre>
 
 <p>}
-```</p>
+等同于
+public static void method() {</p>
 
-<p>标签：<a href="/blog/categories/suan-fa/">算法</a></p>
-
-<p>```java
-/<em>*
- * 插入排序算法
- </em>/
-class InsertSort implements Sort {</p>
-
-<pre><code>public void sort(int[] data) {
-    for (int i = 1; i &lt; data.length; i++) {
-        for (int j = i; j &gt; 0 &amp;&amp; data[j] &lt; data[j - 1]; j--) {
-            SortUtil.swap(data, j, j - 1);
-        }
-    }
+<pre><code>synchronized(ThisClazz.class){
+    ...
 }
 </code></pre>
 
-<p>}</p>
+<p>}
+或者
+private static final String lock = &ldquo;&rdquo;;
+public static void method() {</p>
 
-<p>/<em>*
- * 冒泡排序算法
- </em>/
-class BubbleSort implements Sort {</p>
-
-<pre><code>public void sort(int[] data) {
-    for (int i = 0; i &lt; data.length; i++) {
-        for (int j = data.length - 1; j &gt; i; j--) {
-            if (data[j] &lt; data[j - 1]) {
-                SortUtil.swap(data, j, j - 1);
-            }
-        }
-    }
-}
-</code></pre>
-
-<p>}</p>
-
-<p>/<em>*
- * 选择排序算法
- </em>/
-class SelectionSort implements Sort {</p>
-
-<pre><code>public void sort(int[] data) {
-    for (int i = 0; i &lt; data.length; i++) {
-        int lowIndex = i;
-        for (int j = data.length - 1; j &gt; i; j--) {
-            if (data[j] &lt; data[lowIndex]) {
-                lowIndex = j;
-            }
-        }
-        SortUtil.swap(data, i, lowIndex);
-    }
-}
-</code></pre>
-
-<p>}</p>
-
-<p>/<em>*
- * 希尔排序算法
- </em>/
-class ShellSort implements Sort {</p>
-
-<pre><code>public void sort(int[] data) {
-    for (int i = data.length / 2; i &gt; 2; i /= 2) {
-        for (int j = 0; j &lt; i; j++) {
-            insertSort(data, j, i);
-        }
-    }
-    insertSort(data, 0, 1);
-}
-
-private void insertSort(int[] data, int start, int inc) {
-    for (int i = start + inc; i &lt; data.length; i += inc) {
-        for (int j = i; j &gt;= inc &amp;&amp; data[j] &lt; data[j - inc]; j -= inc) {
-            SortUtil.swap(data, j, j - inc);
-        }
-    }
-}
-</code></pre>
-
-<p>}</p>
-
-<p>/<em>*
- * 快速排序算法
- </em>/
-class QuickSort implements Sort {</p>
-
-<pre><code>public void sort(int[] data) {
-    quickSort(data, 0, data.length - 1);
-}
-
-private void quickSort(int[] data, int left, int right) {
-    if (left &gt;= right) { return; }
-
-    int pivot = partition(data, left, right);
-    quickSort(data, left, pivot);// 对左半段排序
-    quickSort(data, pivot + 1, right);// 对右半段排序
-
-}
-
-private int partition(int[] data, int left, int right) {
-    int pivot = data[left];
-    while (left &lt; right) {
-        while (left &lt; right &amp;&amp; data[right] &gt; pivot) {
-            right--;
-        }
-        if (left &lt; right) {
-            SortUtil.swap(data, left, right);
-        }
-
-        while (left &lt; right &amp;&amp; data[left] &lt; pivot) {
-            left++;
-        }
-        if (left &lt; right) {
-            SortUtil.swap(data, left, right);
-        }
-    }
-    return left;
-}
-</code></pre>
-
-<p>}</p>
-
-<p>/<em>*
- * 归并排序算法
- </em>/
-class MergeSort implements Sort {</p>
-
-<pre><code>public void sort(int[] data) {
-    int[] temp = new int[data.length];
-    mergeSort(data, temp, 0, data.length - 1);
-}
-
-private void mergeSort(int[] data, int[] temp, int left, int right) {
-    if (left == right) { return; }
-    int mid = (left + right) / 2;
-    mergeSort(data, temp, left, mid);
-    mergeSort(data, temp, mid + 1, right);
-    for (int i = left; i &lt;= right; i++) {
-        temp = Arrays.copyOf(data, data.length);
-    }
-    int i1 = left;
-    int i2 = mid + 1;
-    for (int cur = left; cur &lt;= right; cur++) {
-        if (i1 == mid + 1) {
-            data[cur] = temp[i2++];
-        } else if (i2 &gt; right) {
-            data[cur] = temp[i1++];
-        } else if (temp[i1] &lt; temp[i2]) {
-            data[cur] = temp[i1++];
-        } else {
-            data[cur] = temp[i2++];
-        }
-    }
-}
-</code></pre>
-
-<p>}</p>
-
-<p>/<em>*
- * 堆排序算法
- </em>/
-class HeapSort implements Sort {</p>
-
-<pre><code>public void sort(int[] data) {
-    MaxHeap h = new MaxHeap();
-    h.init(data);
-    for (int i : data) {
-        h.remove();
-    }
-    System.arraycopy(h.queue, 1, data, 0, data.length);
-}
-
-private static class MaxHeap {
-    void init(int[] data) {
-        this.queue = new int[data.length + 1];
-        for (int element : data) {
-            queue[++size] = element;
-            fixUp(size);
-        }
-    }
-
-    private int size = 0;
-    private int[] queue;
-
-    public void remove() {
-        SortUtil.swap(queue, 1, size--);
-        fixDown(1);
-    }
-
-    // fixdown
-    private void fixDown(int k) {
-        int j;
-        while ((j = k &lt;&lt; 1) &lt;= size) {
-            if (j &lt; size &amp;&amp; queue[j] &lt; queue[j + 1]) {
-                j++;
-            }
-            if (queue[k] &gt; queue[j]) { // 不用交换
-                break;
-            }
-            SortUtil.swap(queue, j, k);
-            k = j;
-        }
-    }
-
-    private void fixUp(int k) {
-        while (k &gt; 1) {
-            int j = k &gt;&gt; 1;
-        if (queue[j] &gt; queue[k]) {
-            break;
-        }
-        SortUtil.swap(queue, j, k);
-        k = j;
-        }
-    }
-
+<pre><code>synchronized(lock){
+    ...
 }
 </code></pre>
 
 <p>}
 ```</p>
 
-<p>```java
-/<em>*
- * 排序算法工具类
- </em>/
-class SortUtil {</p>
+<p>2、同步的非静态方法，影响实例内<br/>
+```java
+public synchronized void method() {</p>
 
-<pre><code>public static void swap(int[] data, int i, int j) {
-    int temp = data[i];
-    data[i] = data[j];
-    data[j] = temp;
+<pre><code>...
+</code></pre>
+
+<p>}
+等同于
+public void method() {</p>
+
+<pre><code>synchronized(this){
+    ...
+}
+</code></pre>
+
+<p>}
+或者
+private String lock = new String(&ldquo;&rdquo;);
+public void method() {</p>
+
+<pre><code>synchronized(lock){
+    ...
+}
+</code></pre>
+
+<p>}
+<code>
+标签：[多线程](/blog/categories/duo-xian-cheng/)  
+测试示例：  
+</code>java
+public class SynThreadTest extends Thread {</p>
+
+<pre><code>public String methodName;
+private String sync1 = "111";// 不同于 new String("");
+private static String sync2 = "222";
+private String sync3 = "" + new Random().nextInt(1000);
+
+public static void method(String s) {
+    System.out.println(s);
+    while (true) {
+        ;
+    }
 }
 
-public static void print(int[] data) {
-    for (int each : data) {
-        System.out.print(each + " ");
+public synchronized void method1() {
+    method("syn非静态的method1方法，实例内非静态syn方法互斥");
+}
+
+public synchronized void method2() {
+    method("syn非静态的method2方法，实例内非静态syn方法互斥");
+}
+
+public static synchronized void method3() {
+    method("syn静态的method3方法，类级别静态syn方法互斥");
+}
+
+public static synchronized void method4() {
+    method("syn静态的method4方法，类级别静态syn方法互斥");
+}
+
+public void method5() {
+    method("---非静态的method5方法，非syn无锁");
+}
+
+public static void method6() {
+    method("---静态的method6方法，非syn无锁");
+}
+
+public static void method7() {
+    synchronized (sync2) {
+        method("method7方法，类级别静态相同syn obj互斥");
+    }
+}
+
+public void method8() {
+    synchronized (this + "123") {
+        method("method8方法，不同实例不同syn obj");
+    }
+}
+
+public void method9() {
+    synchronized (sync1) {
+        method("非静态的method9方法，不同实例相同syn obj");
+    }
+}
+
+public void method10() {
+    synchronized (sync3) {
+        method("method10方法，不同实例不同syn obj");
+    }
+}
+
+public void run() {
+    try {
+        getClass().getMethod(methodName).invoke(this);
+    } catch (Exception e) {}
+}
+
+public static void main(String[] args) throws Exception {
+    SynThreadTest t1 = new SynThreadTest();
+    for (int i = 1; i &lt;= 10; i++) {
+        t1.methodName = "method" + String.valueOf(i);
+        new Thread(t1).start();
+        sleep(100);
     }
     System.out.println();
-}
-</code></pre>
-
-<p>}</p>
-
-<p>```</p>
-
-<p>```java
-/<em>*
- * 冒择入希快归堆：常用排序算法
- * @author wangchaoqun
- </em>/
-public class SortTest {</p>
-
-<pre><code>public static void main(String[] args) {
-    int[] origin = { 2, 17, 3, 1, 10, 4, 8, 5, 21, 6, 33, 9, 53 };
-    System.out.print("origin:   ");
-    SortUtil.print(origin);
-    // 执行排序算法
-    for (Sorts each : Sorts.values()) {
-        System.out.print(each.name() + ":   ");
-        int[] data = Arrays.copyOf(origin, origin.length);
-        each.sort(data);
-        SortUtil.print(data);
+    SynThreadTest t2 = new SynThreadTest();
+    for (int i = 1; i &lt;= 10; i++) {
+        t2.methodName = "method" + String.valueOf(i);
+        new Thread(t2).start();
+        sleep(100);
     }
-    // api使用经过调优的快速排序
-    Arrays.sort(origin);
-    System.out.print("jdkApi:   ");
-    SortUtil.print(origin);
 }
 </code></pre>
 
