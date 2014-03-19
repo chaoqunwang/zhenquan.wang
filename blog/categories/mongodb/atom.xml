@@ -4,7 +4,7 @@
   <title><![CDATA[文章分类：mongodb | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/blog/categories/mongodb/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-03-17T11:47:16+08:00</updated>
+  <updated>2014-03-19T11:26:30+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -399,7 +399,7 @@ crontab -e</p>
     <link href="http://wangchaoqun.com/blog/2013/05/mongodb-aggregation-framework-zong-jie.html/"/>
     <updated>2013-05-18T12:56:21+08:00</updated>
     <id>http://wangchaoqun.com/blog/2013/05/mongodb-aggregation-framework-zong-jie</id>
-    <content type="html"><![CDATA[<p>2.2版本新特性，比group, map-reduce好，reference里有很多操作和[运算]可用<br/>
+    <content type="html"><![CDATA[<p>2.2版本新特性，比group, MapReduce简单强大，reference里有很多操作和[运算]可用<br/>
 pipeline operators:<br/>
 • $project (page 285)<br/>
 • $match (page 281)<br/>
@@ -588,7 +588,7 @@ db.zipcodes.aggregate(
     <link href="http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-2.html/"/>
     <updated>2013-05-10T10:09:23+08:00</updated>
     <id>http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-2</id>
-    <content type="html"><![CDATA[<p>做个总结，涉及到mongodb的常用命令、java driver查询、spring data mongodb的使用，group，map-reduce，aggregation framework等</p>
+    <content type="html"><![CDATA[<p>做个总结，涉及到mongodb的常用命令、java driver查询、spring data mongodb的使用，group，MapReduce，aggregation framework等</p>
 
 <h3>group</h3>
 
@@ -644,7 +644,7 @@ DBCollection collection = mongoTemplate.getCollection("reply");
 collection.group(...);
 </code></p>
 
-<h3>map-reduce</h3>
+<h3>MapReduce</h3>
 
 <p>场景：展示发帖或回帖的时间趋势图，或者说按整点显示此小时内的发帖数和回帖数，展示成折线图
 创建时间保存的是number long，即date.getTime()的值，key要转成小时，使用new Date(y,m,d,h,0,0,0)<br/>

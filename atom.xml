@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-03-17T11:47:16+08:00</updated>
+  <updated>2014-03-19T11:26:30+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -820,7 +820,7 @@
     <link href="http://wangchaoqun.com/blog/2013/05/mongodb-aggregation-framework-zong-jie.html/"/>
     <updated>2013-05-18T12:56:21+08:00</updated>
     <id>http://wangchaoqun.com/blog/2013/05/mongodb-aggregation-framework-zong-jie</id>
-    <content type="html"><![CDATA[<p>2.2版本新特性，比group, map-reduce好，reference里有很多操作和[运算]可用<br/>
+    <content type="html"><![CDATA[<p>2.2版本新特性，比group, MapReduce简单强大，reference里有很多操作和[运算]可用<br/>
 pipeline operators:<br/>
 • $project (page 285)<br/>
 • $match (page 281)<br/>
@@ -1103,7 +1103,7 @@ java driver 官方示例：</p>
     <link href="http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-2.html/"/>
     <updated>2013-05-10T10:09:23+08:00</updated>
     <id>http://wangchaoqun.com/blog/2013/05/mongodb-chang-yong-ming-ling-he-cao-zuo-zong-jie-2</id>
-    <content type="html"><![CDATA[<p>做个总结，涉及到mongodb的常用命令、java driver查询、spring data mongodb的使用，group，map-reduce，aggregation framework等</p>
+    <content type="html"><![CDATA[<p>做个总结，涉及到mongodb的常用命令、java driver查询、spring data mongodb的使用，group，MapReduce，aggregation framework等</p>
 
 <h3>group</h3>
 
@@ -1169,7 +1169,7 @@ spring-data-mongodb:</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>map-reduce</h3>
+<h3>MapReduce</h3>
 
 <p>场景：展示发帖或回帖的时间趋势图，或者说按整点显示此小时内的发帖数和回帖数，展示成折线图
 创建时间保存的是number long，即date.getTime()的值，key要转成小时，使用new Date(y,m,d,h,0,0,0)<br/>
@@ -1747,6 +1747,270 @@ spring-data-mongodb:</p>
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[Mongodb数据模型设计总结]]></title>
+    <link href="http://wangchaoqun.com/blog/2013/03/mongodb-shu-ju-mo-xing-she-ji-zong-jie.html/"/>
+    <updated>2013-03-19T15:01:33+08:00</updated>
+    <id>http://wangchaoqun.com/blog/2013/03/mongodb-shu-ju-mo-xing-she-ji-zong-jie</id>
+    <content type="html"><![CDATA[<p>mongoDb的表设计(Schema design)不同于关系型数据库如oracle，mysql，但基本的设计原则依然一致，因为其灵活性，所以可以快速的改善现有设计以适应新的需求</p>
+
+<p>设计需要权衡应用的需求，数据库各项性能指标，数据的获取模式；设计时一直要考虑应用如何使用数据如查询、更新、处理、索引、分片，还要考虑数据自身的内在结构</p>
+
+<p>对照关系型数据库理解几个概念:<br/>
+表：table  vs  collection<br/>
+行：view/row(s)   vs json document<br/>
+索引：index  vs index<br/>
+关联：join vs    embedding &amp; linking across documents<br/>
+分片：partition  vs shard</p>
+
+<!--more-->
+
+
+<p><a href='http://wangchaoqun.com' style='color:black;text-decoration:none;'>wang chaoqun</a></p>
+
+<h2>最佳实践  </h2>
+
+<p>1、顶级对象，一般使用独立的collection，区别于嵌入<br/>
+2、线性明细对象如订单里的订单项，一般使用嵌入<br/>
+3、包含关系的对象通常使用嵌入<br/>
+4、多对多的关系通常采用引用，dbref<br/>
+5、只有少量数据的可以单独作为一个collection，这样可以快速缓存到应用服务器内存<br/>
+6、嵌入对象比顶级对象难引用，至少现在还不能对它使用dbref<br/>
+7、嵌入对象的获取有时候会比较难，例如各科分数嵌入到学生对象，从所有学生中获取前100个高分，不嵌入会更简单<br/>
+8、如果嵌入对象数量很多，可以限制其大小<br/>
+9、性能存在问题（应是查询的性能），使用嵌入</p>
+
+<p>标签：<a href="http://wangchaoqun.com/blog/categories/mongodb">mongodb</a></p>
+
+<h2>用例</h2>
+
+<h4>产品信息：</h4>
+
+<p>如cd,dvd，shipping里有包装尺寸，pricing里有折扣，details有属性或标签之类使用数组（数量不定，也不会很多），尤其像尺寸和属性，mongodb的灵活的优势就显现出来了，rdbms要么加预留字段，tag_1,tag_2之类，要么就得分出个表使用关联</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>sku: "00e8da9b",
+</span><span class='line'>type: "Audio Album",
+</span><span class='line'>title: "A Love Supreme",
+</span><span class='line'>description: "by John Coltrane",
+</span><span class='line'>asin: "B0000A118M",
+</span><span class='line'>shipping: {
+</span><span class='line'>  weight: 6,
+</span><span class='line'>  dimensions: {
+</span><span class='line'>      width: 10,
+</span><span class='line'>      height: 10,
+</span><span class='line'>      depth: 1
+</span><span class='line'>  }
+</span><span class='line'>},
+</span><span class='line'>pricing: {
+</span><span class='line'>  list: 1200,
+</span><span class='line'>  retail: 1100,
+</span><span class='line'>  savings: 100,
+</span><span class='line'>  pct_savings: 8
+</span><span class='line'>},
+</span><span class='line'>details: {
+</span><span class='line'>  title: "A Love Supreme [Original Recording Reissued]",
+</span><span class='line'>  artist: "John Coltrane",
+</span><span class='line'>  genre: [ "Jazz", "General" ],
+</span><span class='line'>  tracks: [
+</span><span class='line'>      "A Love Supreme Part I: Acknowledgement",
+</span><span class='line'>      "A Love Supreme Part II - Resolution",
+</span><span class='line'>      "A Love Supreme, Part III: Pursuance",
+</span><span class='line'>      "A Love Supreme, Part IV-Psalm"
+</span><span class='line'>  ]
+</span><span class='line'>}
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>内容管理系统</h4>
+
+<p>页面内容（不经常变化的如联系我们，关于之类），新闻文章（标题，摘要，内容，作者，时间，栏目&hellip;），图片（相册或分类，标签，描述，时间，甚至图片文件）</p>
+
+<h4>Basic Page</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  _id: ObjectId(...),
+</span><span class='line'>  nonce: ObjectId(...),
+</span><span class='line'>  metadata: {
+</span><span class='line'>      type: ’basic-page’
+</span><span class='line'>      section: ’my-photos’,
+</span><span class='line'>      slug: ’about’,
+</span><span class='line'>      title: ’About Us’,
+</span><span class='line'>      created: ISODate(...),
+</span><span class='line'>      author: { _id: ObjectId(...), name: ’Rick’ },
+</span><span class='line'>      tags: [ ... ],
+</span><span class='line'>      detail: { 
+</span><span class='line'>          text: ’# About Us\n...’ 
+</span><span class='line'>      }
+</span><span class='line'>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>photo</h4>
+
+<p>文件可以保存在数据库，使用BSON对象，但最大不能超过16MB，所以大的文件可以采用GridFS将数据存储在两个collection如这里是cms.assets.files保存基础数据，cms.assets.chunks保存文件数据；<br/>
+cms.assets.files：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>  _id: ObjectId(...),
+</span><span class='line'>  length: 123...,
+</span><span class='line'>  chunkSize: 262144,
+</span><span class='line'>  uploadDate: ISODate(...),
+</span><span class='line'>  contentType: ’image/jpeg’,
+</span><span class='line'>  md5: ’ba49a...’,
+</span><span class='line'>  metadata: {
+</span><span class='line'>      nonce: ObjectId(...),
+</span><span class='line'>      slug: ’2012-03-invisible-bicycle’,
+</span><span class='line'>      type: ’photo’,
+</span><span class='line'>      section: ’my-album’,
+</span><span class='line'>      title: ’Kitteh’,
+</span><span class='line'>      created: ISODate(...),
+</span><span class='line'>      author: { 
+</span><span class='line'>          _id: ObjectId(...), 
+</span><span class='line'>          name: ’Jared’ 
+</span><span class='line'>      },
+</span><span class='line'>      tags: [ ... ],
+</span><span class='line'>      detail: {
+</span><span class='line'>          filename: ’kitteh_invisible_bike.jpg’,
+</span><span class='line'>          resolution: [ 1600, 1600 ], 
+</span><span class='line'>          ... 
+</span><span class='line'>      }
+</span><span class='line'>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>an example of the GridFS interface in Java</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">// returns default GridFS bucket (i.e. &quot;fs&quot; collection)</span>
+</span><span class='line'><span class="n">GridFS</span> <span class="n">myFS</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GridFS</span><span class="o">(</span><span class="n">myDatabase</span><span class="o">);</span>
+</span><span class='line'><span class="c1">// saves the file to &quot;fs&quot; GridFS bucket</span>
+</span><span class='line'><span class="n">myFS</span><span class="o">.</span><span class="na">createFile</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&quot;/tmp/largething.mpg&quot;</span><span class="o">));</span>
+</span><span class='line'><span class="n">Optionally</span><span class="o">,</span> <span class="n">interfaces</span> <span class="n">may</span> <span class="n">support</span> <span class="n">other</span> <span class="n">additional</span> <span class="n">GridFS</span> <span class="n">buckets</span> <span class="n">as</span> <span class="n">in</span> <span class="n">the</span> <span class="n">following</span> <span class="nl">example:</span>
+</span><span class='line'><span class="c1">// returns GridFS bucket named &quot;contracts&quot;</span>
+</span><span class='line'><span class="n">GridFS</span> <span class="n">myContracts</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GridFS</span><span class="o">(</span><span class="n">myDatabase</span><span class="o">,</span> <span class="s">&quot;contracts&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="c1">// retrieve GridFS object &quot;smithco&quot;</span>
+</span><span class='line'><span class="n">GridFSDBFile</span> <span class="n">file</span> <span class="o">=</span> <span class="n">myContracts</span><span class="o">.</span><span class="na">findOne</span><span class="o">(</span><span class="s">&quot;smithco&quot;</span><span class="o">);</span>
+</span><span class='line'><span class="c1">// saves the GridFS file to the file system</span>
+</span><span class='line'><span class="n">file</span><span class="o">.</span><span class="na">writeTo</span><span class="o">(</span><span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&quot;/tmp/smithco.pdf&quot;</span><span class="o">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>标签：<a href="http://wangchaoqun.com/blog/categories/tech">技术</a></p>
+
+<h4>用户评论</h4>
+
+<p>有多种实现，平铺式？盖楼式？分页？选择哪种就要看具体需求了；如果未来想切换，成本很高<br/>
+1、独立collection<br/>
+2、嵌入，数量要限制<br/>
+3、不嵌入，桶式存储（每个文档存储N个comments数组，page,count）</p>
+
+<p>也要注意评论里的用户信息，考虑冗余用户id,昵称和头像还是使用dbref关联，区别在于前者性能好些但信息更新比如头像，之前的评论显示的头像就不一致了</p>
+
+<h2>资料  </h2>
+
+<p>官方手册<br/>
+<a href="http://docs.mongodb.org/manual/">http://docs.mongodb.org/manual/</a></p>
+
+<p>官方模式设计文档，有单独pdf，包含一对一，一对多，多对多，树状结构，原子操作，gridFS&hellip;
+<a href="http://docs.mongodb.org/manual/data-modeling/">http://docs.mongodb.org/manual/data-modeling/</a></p>
+
+<p>Schema Design Basics &ndash; MongoSF Presentation (May 2011)
+<a href="http://www.10gen.com/video/mongosf2011/schemabasics">http://www.10gen.com/video/mongosf2011/schemabasics</a></p>
+
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
+            <a href='http://wangchaoqun.com/blog/2013/03/mongodb-shu-ju-mo-xing-she-ji-zong-jie.html/'>http://wangchaoqun.com/blog/2013/03/mongodb-shu-ju-mo-xing-she-ji-zong-jie.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Cygwin & Wine & Ruby 记录]]></title>
     <link href="http://wangchaoqun.com/blog/2013/01/cygwin-and-wine-and-ruby-ji-lu.html/"/>
     <updated>2013-01-16T16:03:36+08:00</updated>
@@ -2185,9 +2449,9 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 <a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/hibernate/'>hibernate (1)</a>
 <a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/java/'>java (8)</a></li>
 <li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/linux/'>linux (3)</a>
-<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/mongodb/'>mongodb (5)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/mongodb/'>mongodb (6)</a>
 <a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/mysql/'>mysql (1)</a></li>
-<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/tech/'>tech (22)</a>
+<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/tech/'>tech (23)</a>
 <a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/tomcat/'>tomcat (1)</a>
 <a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/web/'>web (2)</a></li>
 <li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/dai-ma/'>代码 (3)</a>
@@ -4848,40 +5112,6 @@ oh,my God，真是美妙！</p>
 <p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
             &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2009/07/ning-jing-2.html/'>http://wangchaoqun.com/blog/2009/07/ning-jing-2.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
-            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[宁静（一）]]></title>
-    <link href="http://wangchaoqun.com/blog/2009/07/ning-jing-1.html/"/>
-    <updated>2009-07-05T15:11:10+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2009/07/ning-jing-1</id>
-    <content type="html"><![CDATA[<p>现在是周五的晚上，已经十点半了，我想睡觉，可是，要求如此却也不能如愿：房间隔音效果不太好，这倒问题不大，但兄弟姐妹们着实很喜欢聊天，唱歌，喧嚣……好几次我是睡了又起，看会书，等等再睡，这次就写点东西吧 &ndash; 是为记。</p>
-
-<p>我一直觉得，在人生的不同阶段，对于人生的认识多少都会有所改变，在我们的童年，基本上没有谁会考虑生死；青春少年时，思想萌动，恰如“独上西楼，为赋新诗强说愁”，其实我们的那点阅历和体验简直如西湖里的单细胞生物般微不足道，更多时候脑袋里充斥着青春期的躁动、叛逆……对于生命，有过多少真正的思考呢？<!--more--><a href='http://wangchaoqun.com' style='color:black;text-decoration:none;'>wang chaoqun</a>  <br/>
-人生美丽的花季雨季，于我而言，已变得遥远而又模糊，竟没有多少记忆了，好像那时候时间很快，仅有的印象是我在上学，我在学习，无他。很快的，到了大学，这是几乎所有人都认为是人生最美好的一段时光，我的感受是自由，无论是世事还是人际，你都是你自己。这个时候，大家心中都有了自己的人生意义，区别只在于思考的深度罢了。那时候，我晚上经常坐到洞门山的石头上，仰面看星空，看云月，再看看灯光点缀的校园，偶尔也思考着这些生死的或人生的问题，没什么特别的意义，只是给自己找到个答案，而且自己还很满意。如今，解答这些问题已然无从着落，想想之前的念头和答案是多么幼稚了。</p>
-
-<p>去探究人生的真理，无过于探究人生的意义，只是这个命题太大了。对此，也许有人会说：你想这些干什么？但是我同意苏格拉底所说：未经审视的生活是毫无意义的，或者用周国平的话说，对意义的寻求是人的最基本的需要，如果我们找寻不到，则会感到精神空虚，是为“存在的空虚”，如果可望不可即，则会有挫折之感，是为“存在的挫折”。如果说我相信他们，试问，我怎能不去思考它？</p>
-
-<p>古往今来，几乎没有人不思考人生，先哲的思想也给了我们很多启发，人有生死是个亘古不变的事情，子曰：未知生，焉知死；而与此相应西方则认为：未知死，焉知生。且不谈东西方思想文化差异，至少我们要认识生和死，才可能去探究人生的意义。而问题恰恰在于生与死：何为生，何为死？据我所知，个体的人不是横空出世，却是生于偶然，从生理上是万千精子中的一个与卵子的结合才有了你，真是奇妙；而无奈的是生你之前，几万万年月沧海桑田，无不尽去，今年今月今日有你；却人生自古谁无死，自你死后，几万万年月沧海桑田，依然尽去，与你何干？如此百年人生，与几万万年月相比何其短暂，你怎能不思考活而为何？</p>
-
-<p>佛曰：诸行无常，诸法无我，寂静涅槃，人生的虚无就在一个“空”字上，一切皆为虚幻，让众生追求无我境界，那么人生到底是不是虚幻的呢？这个问题经常让我想起《黑客帝国》这部电影，其中有关感知的论述就说：你的感觉是真实的吗？你感觉到的就存在吗？从生理上来说，感觉只是传入大脑的电流罢了。我有时会想比如说颜色，几乎所有的人都认可的红色，而实际上如果是绿色呢？在我们几十亿人，假如只有一个人看是绿色，毫无疑问我们说他是色盲，问题是如果他是对的呢？再者，如同电影里的人生活在虚拟世界，如果我们现在的世界实际上就是个虚拟世界，每个人都是上帝（但是，上帝死了，这在哲学里是毫无疑问的）操纵的，那你又作何感想？你是不是会去想到底什么是真实？到底有没有真实？到底这个世界本来的面目是什么样子？到底什么才是存在呢？关于“存在是什么”在哲学上也是个很深的问题，你有兴趣可以去读一下海德格尔《存在与时间》、萨特的《存在与虚无》。思考的翅膀可以飞的很高很远，但是在现实生活中，在有限的认知里，我们还得相信凭感官所感知的事物是真实存在的，否则我们将寸步难行。
-思考活而何为不得，其实可以去思考该怎么活的问题，“好好活着就是去做有意义的事，比如让所爱的人幸福”，但是别忘了思考意义本身是什么。</p>
-
-<p>人生是有限的，如果我们说要活的有意义就是要突破这有限而到达永恒，那么请定义永恒。你可能想到不随时间流逝而消灭就是永恒，但是你知道什么是时间吗？难道是我们无时无刻不在说的时分秒、日月年吗，请注意这些只是我们衡量时间的尺度，那被衡量的东西是什么？如果说时间是永恒的，空间是无限的，那么人的个体生命显得是多么的渺小和空幻，果真是“天地之蜉蝣，沧海之一粟”！昨日已去，明日未知，只有今日，只有当下，但是它也是转瞬即逝的，你还没来得及喊出“现在”，现在已成过去了。</p>
-
-<p>佛曰因果循环，人们常说有因有果，有果有因，换句话说，世上发生的每一件事必定都是有原因的，如没有原因，就不会有任何事情发生，是这样吗？典型的如《黑客帝国》里的那个法国人，比如我们所知的蝴蝶效应，从发生海啸可以倒推到一直不知趣的蝴蝶扇动了一下翅膀；比如《本杰明巴顿奇事》里女主角遭遇车祸，影片也是描绘了一系列原因，说如果“女乘客去拿东西，司机去喝咖啡，朋友系鞋带……”等这些恰有一个不发生，那车祸是否会发生呢？如果是因果性，那么可以说世上的一切事物都是由上帝（如果有上帝的话）安排好的，那么人也就没了自由意志，或者说我们都是有命运的，命该如此的。天哪，你不觉得荒谬吗？但是换个角度思考，你怎么知道海啸的发生这个事实是因为蝴蝶扇动了一下翅膀这个事实而导致的呢？也就是说，你知道蝴蝶扇动了翅膀，发生了海啸这两个事实，可是你看到它们的因果关系了吗？你看到的只是它们相继出现的关系，从这种关系你能推断出因果关系吗？其实，所谓因果关系只不过是我们习惯性的联想，至于事实上是否存在，我们永远也无法知道。即使你天天看到太阳升起，你也不能据此断定说因为你天天看到太阳升起，所以明天早上太阳一定升起。所谓因果关系是一事实必然导致另一事实的关系，可是观察和实验总是有限的，经验只能说明过去，不能说明未来，从经验中不能得出永远有效的必然判断。这样一来，如果因果关系都不存在，何谈因、果呢？还是那句话，思考虽如此，回到现实生活，我们还是到处把握着原因与结果。</p>
-
-<p>是不是这些东西太虚了，一点都不实用？是啊，有些事情就是务虚的，当然还是务实的更多，比如谈处事交际的、谈成功励志的各类技巧，于此完全不在一个层面。思考这些，认识这些，或去探究人生的意义，或去去建立你自己的精神体系、价值体系，比如塑造什么样的灵魂，能否企及永恒，有什么样的生命状态，怎样才能幸福，如何面对苦难……等等逐一展开。为什么不去想？果真懒得动脑，懒得思考？我说还是那句话：未经审视的生活是毫无意义的。</p>
-
-<p>一些想法，写完睡觉，不知所云——Colalife。</p>
-
-<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
-            &nbsp;原文地址：
-            <a href='http://wangchaoqun.com/blog/2009/07/ning-jing-1.html/'>http://wangchaoqun.com/blog/2009/07/ning-jing-1.html/</a><br/>
             &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
             &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
