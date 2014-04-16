@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: aggregation | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/tags/aggregation/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-04-16T11:54:08+08:00</updated>
+  <updated>2014-04-16T13:33:23+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -27,10 +27,7 @@ pipeline operators:<br/>
 • $unwind (page 290)// 用于嵌套文档，可对数组拆解<br/>
 • $group (page 278)<br/>
 • $sort (page 287)<br/>
-• $geoNear (page 276)</p>
-
-<!--more-->
-
+• $geoNear (page 276)    <!--more--></p>
 
 <p>和SQL的对应关系：<br/>
 WHERE $match (page 281)<br/>

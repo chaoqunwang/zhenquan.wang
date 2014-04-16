@@ -4,7 +4,7 @@
   <title><![CDATA[文章分类：代码 | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/blog/categories/dai-ma/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-04-16T11:54:08+08:00</updated>
+  <updated>2014-04-16T13:33:23+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -19,12 +19,8 @@
     <updated>2013-01-01T16:32:42+08:00</updated>
     <id>http://wangchaoqun.com/blog/2013/01/excel-dao-chu-gong-ju-lei</id>
     <content type="html"><![CDATA[<p>前端使用jquery easyui，datagrid添加导出按钮（另外的js逻辑）即可将当前页或所有页数据(支持查询条件的导出)导出到excel，支持office excel 2003和2007+;<br/>
-使用apache poi（+ooxml）实现，主要代码片段如下：</p>
-
-<!--more-->
-
-
-<p>```java
+使用apache poi（+ooxml）实现，主要代码片段如下：  <!--more-->
+```java
 package com.colalife.core.util.excel;</p>
 
 <p>public class ExcelExportUtil {</p>
@@ -474,12 +470,8 @@ return json;
     <link href="http://wangchaoqun.com/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai.html/"/>
     <updated>2012-12-18T03:05:41+08:00</updated>
     <id>http://wangchaoqun.com/blog/2012/12/htmlparserhe-httpclientjie-xi-ye-mian-bing-xia-zai</id>
-    <content type="html"><![CDATA[<p>如果你想抓取某个网页（如新浪、csdn之类）获取最新资讯列表，或者到某个站点下载文件、图片之类，就需要html解析例如htmlparser,jsoup之类的jar包，下载可用httpclient。如果想更高效率可以搞线程池，抓取解析线程和下载线程，类似消费者和生产者模型（此处不涉及，仅演示使用），代码如下：</p>
-
-<!--more-->
-
-
-<p>```java</p>
+    <content type="html"><![CDATA[<p>如果你想抓取某个网页（如新浪、csdn之类）获取最新资讯列表，或者到某个站点下载文件、图片之类，就需要html解析例如htmlparser,jsoup之类的jar包，下载可用httpclient。如果想更高效率可以搞线程池，抓取解析线程和下载线程，类似消费者和生产者模型（此处不涉及，仅演示使用），代码如下：  <!--more-->
+```java</p>
 
 <pre><code>public static Set&lt;String&gt; digLinks(String address) throws Exception {
     Set&lt;String&gt; result = new HashSet&lt;String&gt;();

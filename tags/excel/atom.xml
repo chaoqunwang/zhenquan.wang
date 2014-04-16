@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: excel | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/tags/excel/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-04-16T11:54:08+08:00</updated>
+  <updated>2014-04-16T13:33:23+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -19,12 +19,8 @@
     <updated>2013-01-01T16:32:42+08:00</updated>
     <id>http://wangchaoqun.com/blog/2013/01/excel-dao-chu-gong-ju-lei</id>
     <content type="html"><![CDATA[<p>前端使用jquery easyui，datagrid添加导出按钮（另外的js逻辑）即可将当前页或所有页数据(支持查询条件的导出)导出到excel，支持office excel 2003和2007+;<br/>
-使用apache poi（+ooxml）实现，主要代码片段如下：</p>
-
-<!--more-->
-
-
-<p>```java
+使用apache poi（+ooxml）实现，主要代码片段如下：  <!--more-->
+```java
 package com.colalife.core.util.excel;</p>
 
 <p>public class ExcelExportUtil {</p>
