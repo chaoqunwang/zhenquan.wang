@@ -4,7 +4,7 @@
   <title><![CDATA[超群的博客]]></title>
   <link href="http://wangchaoqun.com/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-03-19T11:26:30+08:00</updated>
+  <updated>2014-04-16T11:54:08+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -12,6 +12,333 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spring Cache之Ehcache和Memcached]]></title>
+    <link href="http://wangchaoqun.com/blog/2014/04/spring-cache-zhi-ehcache-he-memcached.html/"/>
+    <updated>2014-04-15T14:52:05+08:00</updated>
+    <id>http://wangchaoqun.com/blog/2014/04/spring-cache-zhi-ehcache-he-memcached</id>
+    <content type="html"><![CDATA[<p>spring框架从3.1版本开始提供了缓存支持：在spring-context.jar里的org.springframework.cache包，以及spring-context-support.jar里的org.springframework.cache包；而且提供了基于ConcurrentHashMap、JCacheCache、EhCache、GuavaCache的实现。这里我们先看下基于EhCache的使用，然后考虑集成Memcached；版本：spring3.2和spring4，EhCache2.7，spyMemcached2.8；内容还涉及HashMap、LinkedHashMap、synchronizedMap、ConcurrentHashMap、ReentrantLock……<br/>
+<a href="http://docs.spring.io/spring/docs/4.0.x/spring-framework-reference/html/cache.html">查阅spring 4.0.x reference</a></p>
+
+<!--more-->
+
+
+<p><a href='http://wangchaoqun.com' style='color:black;text-decoration:none;'>wang chaoqun</a></p>
+
+<h2>一、EhCache配置  </h2>
+
+<h3>1. 添加相关jar，添加ehcache.xml</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;ehcache</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+</span><span class='line'>    <span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;ehcache.xsd&quot;</span> <span class="na">updateCheck=</span><span class="s">&quot;true&quot;</span>
+</span><span class='line'>  <span class="na">monitoring=</span><span class="s">&quot;autodetect&quot;</span> <span class="na">dynamicConfig=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;diskStore</span> <span class="na">path=</span><span class="s">&quot;java.io.tmpdir&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;defaultCache</span> <span class="na">maxElementsInMemory=</span><span class="s">&quot;10000&quot;</span> <span class="na">maxElementsOnDisk=</span><span class="s">&quot;100000&quot;</span>
+</span><span class='line'>      <span class="na">eternal=</span><span class="s">&quot;false&quot;</span> <span class="na">timeToIdleSeconds=</span><span class="s">&quot;120&quot;</span> <span class="na">timeToLiveSeconds=</span><span class="s">&quot;120&quot;</span> <span class="na">overflowToDisk=</span><span class="s">&quot;true&quot;</span>
+</span><span class='line'>      <span class="na">diskPersistent=</span><span class="s">&quot;false&quot;</span> <span class="na">diskExpiryThreadIntervalSeconds=</span><span class="s">&quot;120&quot;</span> <span class="na">memoryStoreEvictionPolicy=</span><span class="s">&quot;LRU&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;cache</span> <span class="na">name=</span><span class="s">&quot;notice_cache&quot;</span> <span class="na">maxElementsInMemory=</span><span class="s">&quot;10000&quot;</span> <span class="na">maxElementsOnDisk=</span><span class="s">&quot;100000&quot;</span>
+</span><span class='line'>      <span class="na">eternal=</span><span class="s">&quot;true&quot;</span> <span class="na">overflowToDisk=</span><span class="s">&quot;true&quot;</span> <span class="na">diskSpoolBufferSizeMB=</span><span class="s">&quot;50&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ehcache&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>属性意义基本明确，这里我配置了一个名称是notice_cache的cache节点，其他的可以按此添加。</p>
+
+<h3>2. spring-cache.xml</h3>
+
+<p>配置cacheManager和cacheManagerFactory，并将ehcache.xml配入即可</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">xmlns:cache=</span><span class="s">&quot;http://www.springframework.org/schema/cache&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:p=</span><span class="s">&quot;http://www.springframework.org/schema/p&quot;</span>
+</span><span class='line'>  <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd</span>
+</span><span class='line'><span class="s">      http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.2.xsd&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;cache:annotation-driven</span> <span class="na">cache-manager=</span><span class="s">&quot;cacheManager&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;cacheManager&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.cache.ehcache.EhCacheCacheManager&quot;</span>
+</span><span class='line'>      <span class="na">p:cacheManager-ref=</span><span class="s">&quot;cacheManagerFactory&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;cacheManagerFactory&quot;</span> <span class="na">class=</span><span class="s">&quot;org.springframework.cache.ehcache.EhCacheManagerFactoryBean&quot;</span>
+</span><span class='line'>      <span class="na">p:configLocation=</span><span class="s">&quot;classpath:ehcache.xml&quot;</span> <span class="na">p:shared=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/beans&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>3. @Cacheable\@CacheEvict\@CachePut\@Caching&hellip;</h3>
+
+<p>注解加在相应方法上，支持spel，详细参见文档<a href="http://docs.spring.io/spring/docs/4.0.x/spring-framework-reference/html/cache.html">查阅spring 4.0.x reference</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Cacheable</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;notice_cache&quot;</span><span class="o">,</span> <span class="n">key</span> <span class="o">=</span> <span class="s">&quot;&#39;notice&#39;+#id&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="kd">public</span> <span class="n">Notice</span> <span class="nf">get</span><span class="o">(</span><span class="n">String</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">noticeDao</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nd">@Cacheable</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;notice_cache&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Notice</span><span class="o">&gt;</span> <span class="nf">search</span><span class="o">(</span><span class="n">String</span> <span class="n">keywords</span><span class="o">,</span> <span class="n">Date</span> <span class="n">fromTime</span><span class="o">,</span> <span class="n">Date</span> <span class="n">toTime</span><span class="o">,</span> <span class="n">Integer</span><span class="o">[]</span> <span class="n">status</span><span class="o">,</span> <span class="n">Page</span> <span class="n">page</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="c1">//...</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>至此配置完了，run一下，报错：没有序列化，好吧</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Notice</span> <span class="kd">implements</span> <span class="n">Serializable</span> <span class="o">{</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>标签：<a href="http://wangchaoqun.com/blog/categories/tech">技术</a></p>
+
+<p>这样ehcache集成完了，get方法对同一条记录只从数据库查询一次，cache是成功的，但search方法却一直读库，这里没有设置cache的key，设置的话如果是固定的，那么每次结果集都一样，不会更新；文档说不设key，将使用默认key生成器DefaultKeyGenerator：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DefaultKeyGenerator</span> <span class="kd">implements</span> <span class="n">KeyGenerator</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">NO_PARAM_KEY</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">NULL_PARAM_KEY</span> <span class="o">=</span> <span class="mi">53</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">generate</span><span class="o">(</span><span class="n">Object</span> <span class="n">target</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">...</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="o">(</span><span class="n">params</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">NULL_PARAM_KEY</span> <span class="o">:</span> <span class="n">params</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="n">NO_PARAM_KEY</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">hashCode</span> <span class="o">=</span> <span class="mi">17</span><span class="o">;</span>
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="n">Object</span> <span class="n">object</span> <span class="o">:</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">hashCode</span> <span class="o">=</span> <span class="mi">31</span> <span class="o">*</span> <span class="n">hashCode</span> <span class="o">+</span> <span class="o">(</span><span class="n">object</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">NULL_PARAM_KEY</span> <span class="o">:</span> <span class="n">object</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">hashCode</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>问题####</h4>
+
+<p>就在于object.hashCode()，看方法的参数string没问题，date没问题，Integer数组使用的就是Object类的hashCode是个内存地址，每次执行都变，要改用Arrays.hashCode(array)才不会变；当然，分页类page也要重写hashCode；顺便说下，apache的commons-lang.jar提供了EqualsBuilder、HashCodeBuilder、ToStringBuilder可用于重写各方法。</p>
+
+<h4>4. 自定义key生成器</h4>
+
+<p>解决上面问题：重写生成器（继承DefaultKeyGenerator，需要注意的是对于param是list,set,map取hashcode，其泛型类也要重写hashCode方法）并配置:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="o">&lt;</span><span class="nl">cache:</span><span class="n">annotation</span><span class="o">-</span><span class="n">driven</span> <span class="n">cache</span><span class="o">-</span><span class="n">manager</span><span class="o">=</span><span class="s">&quot;cacheManager&quot;</span> <span class="n">key</span><span class="o">-</span><span class="n">generator</span><span class="o">=</span><span class="s">&quot;keyGenerator&quot;</span><span class="o">/&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">&quot;keyGenerator&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;......CustomKeyGenerator&quot;</span> <span class="o">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomKeyGenerator</span> <span class="kd">extends</span> <span class="n">DefaultKeyGenerator</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">generate</span><span class="o">(</span><span class="n">Object</span> <span class="n">target</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">...</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">StringBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">target</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+</span><span class='line'>      <span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;.&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">method</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+</span><span class='line'>      <span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;.&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">params</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">for</span> <span class="o">(</span><span class="n">Object</span> <span class="n">each</span> <span class="o">:</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>              <span class="k">if</span> <span class="o">(</span><span class="n">each</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>                  <span class="k">if</span> <span class="o">(</span><span class="n">each</span> <span class="k">instanceof</span> <span class="n">AtomicInteger</span> <span class="o">||</span> <span class="n">each</span> <span class="k">instanceof</span> <span class="n">AtomicLong</span> <span class="o">||</span> <span class="n">each</span> <span class="k">instanceof</span> <span class="n">BigDecimal</span>
+</span><span class='line'>                          <span class="o">||</span> <span class="n">each</span> <span class="k">instanceof</span> <span class="n">BigInteger</span> <span class="o">||</span> <span class="n">each</span> <span class="k">instanceof</span> <span class="n">Byte</span> <span class="o">||</span> <span class="n">each</span> <span class="k">instanceof</span> <span class="n">Double</span>
+</span><span class='line'>                          <span class="o">||</span> <span class="n">each</span> <span class="k">instanceof</span> <span class="n">Float</span> <span class="o">||</span> <span class="n">each</span> <span class="k">instanceof</span> <span class="n">Integer</span> <span class="o">||</span> <span class="n">each</span> <span class="k">instanceof</span> <span class="n">Long</span>
+</span><span class='line'>                          <span class="o">||</span> <span class="n">each</span> <span class="k">instanceof</span> <span class="n">Short</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>                      <span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">each</span><span class="o">);</span>
+</span><span class='line'>                  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">each</span> <span class="k">instanceof</span> <span class="n">Object</span><span class="o">[])</span> <span class="o">{</span>
+</span><span class='line'>                      <span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">hashCode</span><span class="o">((</span><span class="n">Object</span><span class="o">[])</span> <span class="n">each</span><span class="o">));</span>
+</span><span class='line'>                  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>                      <span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">each</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span>
+</span><span class='line'>                  <span class="o">}</span>
+</span><span class='line'>              <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>                  <span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">NO_PARAM_KEY</span><span class="o">);</span>
+</span><span class='line'>              <span class="o">}</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">NO_PARAM_KEY</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">buffer</span><span class="o">.</span><span class="na">toString</span><span class="o">().</span><span class="na">hashCode</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>5. 添加、更新、删除</h4>
+
+<p>显然@Cacheable是缓存，@CacheEvict是擦除，@CachePut相当于擦除后再缓存，对于key是确定的很好，比如getById(id)，update(obj)，其key可以用id，obj.id；update时也可以用@CachePut，要注意update方法要返回更新后的obj，void不行。</p>
+
+<p>问题又出现了：不明确的key如何更新？例如search，当新添加一条记录后，就不能使用@CacheEvict(value=&ldquo;notice_cache&rdquo;, key=&ldquo;?&rdquo;)，因为取不到key，也不能模糊匹配；这种情况下只能使用@CacheEvict(value = &ldquo;notice_cache&rdquo;, allEntries = true)，将notice_cache所有的缓存擦除，多少有点粗糙（在后面使用memcached我实现了一种方法能够精细擦除）</p>
+
+<p>还有一个<strong>注意事项</strong>：因其使用aop的动态代理，对于内部调用无效，例如publish方法没加cache注解，内部调用update方法（加了@CachePut）更新状态值，但cache不会更新；controller调用service方法可以，controller方法也可以加，但如果参数有request，每次都变，所以没用，一般加在service方法上。</p>
+
+<h2>二、集成Memcached  </h2>
+
+<p>背景：现在的项目使用memcached做缓存，基本上是编码式的，在需要的时候，生成key，将value转为json再set到缓存，因此打算使用注解式更优雅的处理，就需要实现spring cache的相关接口和自定义一些方法</p>
+
+<h4>1. spring集成Memcached，使用spyMemcached</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&quot;memcachedClient&quot;</span> <span class="na">class=</span><span class="s">&quot;net.spy.memcached.spring.MemcachedClientFactoryBean&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;servers&quot;</span> <span class="na">value=</span><span class="s">&quot;${memcached.servers}&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;protocol&quot;</span> <span class="na">value=</span><span class="s">&quot;BINARY&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;transcoder&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&quot;net.spy.memcached.transcoders.SerializingTranscoder&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;compressionThreshold&quot;</span> <span class="na">value=</span><span class="s">&quot;${memcached.transcoder.compressionThreshold}&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/bean&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/property&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;opTimeout&quot;</span> <span class="na">value=</span><span class="s">&quot;${memcached.opTimeout}&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;timeoutExceptionThreshold&quot;</span> <span class="na">value=</span><span class="s">&quot;1998&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;hashAlg&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;value</span> <span class="na">type=</span><span class="s">&quot;net.spy.memcached.DefaultHashAlgorithm&quot;</span><span class="nt">&gt;</span>${memcached.hashAlg}<span class="nt">&lt;/value&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/property&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;locatorType&quot;</span> <span class="na">value=</span><span class="s">&quot;${memcached.locatorType}&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;failureMode&quot;</span> <span class="na">value=</span><span class="s">&quot;${memcached.failureMode}&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;useNagleAlgorithm&quot;</span> <span class="na">value=</span><span class="s">&quot;${memcached.useNagleAlgorithm}&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/bean&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>properties:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>####memcached config
+</span><span class='line'>memcached.servers=ip:port
+</span><span class='line'>memcached.protocol=BINARY
+</span><span class='line'>memcached.transcoder.compressionThreshold=1024
+</span><span class='line'>memcached.opTimeout=1000
+</span><span class='line'>memcached.timeoutExceptionThreshold=1998
+</span><span class='line'>memcached.hashAlg=KETAMA_HASH
+</span><span class='line'>memcached.locatorType=CONSISTENT
+</span><span class='line'>memcached.failureMode=Redistribute
+</span><span class='line'>memcached.useNagleAlgorithm=false
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>标签：<a href="http://wangchaoqun.com/blog/categories/tech">技术</a></p>
+
+<h4>2. 实现MemcachedCacheManager和MemcachedCache</h4>
+
+<p>参考ehcache的源码（org.springframework.cache.ehcache包里）：EhCacheCache和EhCacheCacheManager，manager用来获取cache，重写了getCache和loadCaches方法，这样配置在ehcache.xml里的cache name都会实例化成每个EhCacheCache，当执行到@Cacheable的方法上，就会调用getCache(name)获取cache，再根据key取得value；</p>
+
+<p>未完待续</p>
+
+<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
+            &nbsp;原文地址：
+            <a href='http://wangchaoqun.com/blog/2014/04/spring-cache-zhi-ehcache-he-memcached.html/'>http://wangchaoqun.com/blog/2014/04/spring-cache-zhi-ehcache-he-memcached.html/</a><br/>
+            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
+            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[转]Code Kata：编码套路]]></title>
@@ -2451,18 +2778,19 @@ delete your Gemfile.lock and edit the version of rake specified in your Gemfile 
 <li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/linux/'>linux (3)</a>
 <a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/mongodb/'>mongodb (6)</a>
 <a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/mysql/'>mysql (1)</a></li>
-<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/tech/'>tech (23)</a>
-<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/tomcat/'>tomcat (1)</a>
-<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/web/'>web (2)</a></li>
-<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/dai-ma/'>代码 (3)</a>
-<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/qi-ta/'>其他 (1)</a>
-<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/duo-xian-cheng/'>多线程 (1)</a></li>
-<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/jia-gou/'>架构 (2)</a>
-<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/sheng-huo/'>生活 (7)</a>
-<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/suan-fa/'>算法 (1)</a></li>
-<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/zhi-ye/'>职业 (2)</a>
-<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/she-ji-mo-shi/'>设计模式 (1)</a>
-<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/du-shu/'>读书 (3)</a></li>
+<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/spring-cache/'>spring-cache (1)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/tech/'>tech (24)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/tomcat/'>tomcat (1)</a></li>
+<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/web/'>web (2)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/dai-ma/'>代码 (3)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/qi-ta/'>其他 (1)</a></li>
+<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/duo-xian-cheng/'>多线程 (1)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/jia-gou/'>架构 (2)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/sheng-huo/'>生活 (7)</a></li>
+<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/suan-fa/'>算法 (1)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/zhi-ye/'>职业 (2)</a>
+<a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/she-ji-mo-shi/'>设计模式 (1)</a></li>
+<li><a style="padding: 3px;" href='http://wangchaoqun.com/blog/categories/du-shu/'>读书 (3)</a>
 
 </span><span class='line'>  &lt;/ul&gt;
 </span><span class='line'>&lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
@@ -5027,91 +5355,6 @@ Steve Mushero，ChinaNetCloud公司联合创始人、CEO兼CTO，拥有全球20�
 <p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
             &nbsp;原文地址：
             <a href='http://wangchaoqun.com/blog/2010/04/zhuan-da-xing-gao-xing-neng-wang-zhan-de-shi-xiang-gui-ze.html/'>http://wangchaoqun.com/blog/2010/04/zhuan-da-xing-gao-xing-neng-wang-zhan-de-shi-xiang-gui-ze.html/</a><br/>
-            &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
-            &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[宁静（二）]]></title>
-    <link href="http://wangchaoqun.com/blog/2009/07/ning-jing-2.html/"/>
-    <updated>2009-07-09T14:40:21+08:00</updated>
-    <id>http://wangchaoqun.com/blog/2009/07/ning-jing-2</id>
-    <content type="html"><![CDATA[<p>我已经开始喜欢这种感觉了，
-晚上，
-关了门，关了灯，一个人，
-听着音乐，享受独处，真是美妙！</p>
-
-<p>生活是多少新鲜，
-我的心里充满了好奇，
-如太阳朝升夕落，每天都是新的，
-哦，拥抱激情，真是美妙！</p>
-
-<p>站在不高的山头，
-看远处绿树舞动，
-动物奔跑，鸟儿飞翔，
-还有太阳、云朵和天空，
-大自然啊，真是美妙！<!--more--><a href='http://wangchaoqun.com' style='color:black;text-decoration:none;'>wang chaoqun</a></p>
-
-<p>我们有生命，我们有思想，
-我们生在一个美丽的星球，
-宇宙充满未知，我们困惑，
-除此之外，我们勇敢，
-锲而不舍，孜孜不倦，
-哦，去探索，真是美妙！</p>
-
-<p>活着的意义是什么？
-你发现了吗？你发现了吗？
-真正意义之所在？！
-不要止于提问，
-紧随其后的更加精彩！</p>
-
-<p>不知生，不知死，
-生亦何欢，死亦何哀，
-如此百年，吾当何为？！
-诸行无常，为之奈何？！
-oh,my God，真是美妙！</p>
-
-<p>这万物之灵长，
-何能与自己的灵魂对话，
-真正了知自我，而不迷失，
-如同太阳底下的花儿和小草，
-快乐的生长？</p>
-
-<p>我知道这个世上有人在等我，
-虽然我不知道是谁，
-哦，就是这个，
-我每天都非常快乐，真是美妙！</p>
-
-<p>金钱买不到幸福，
-我们却都在追逐金钱，
-乐此不疲！
-何不如一箪食，一瓢饮，
-居陋室，享其乐！
-哦，真是美妙！</p>
-
-<p>幸福，我是幸福的，
-不为权柄，不为金银，
-在我饿的时候可以吃，
-能爱人时亦能被人爱，
-哦，真是美妙！</p>
-
-<p>用心聆听，用心思考，
-原来熟悉的其实很陌生，
-或许你会发现有一种东西，
-它一直在这里，总是在这里！
-哦，真是美妙！</p>
-
-<p>语言是苍白的，
-一堆没有生命的字词，
-它却能刮起一阵心灵风暴，
-让我们拥有不可战胜的力量，
-哦，这充满爱的语言，真是美妙！</p>
-
-<p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
-            &nbsp;原文地址：
-            <a href='http://wangchaoqun.com/blog/2009/07/ning-jing-2.html/'>http://wangchaoqun.com/blog/2009/07/ning-jing-2.html/</a><br/>
             &nbsp;written by &nbsp;<a href='http://wangchaoqun.com'>wang chaoqun</a> &nbsp;posted at &nbsp;<a href='http://wangchaoqun.com'>http://wangchaoqun.com</a><br/>
             &nbsp;版权声明：自由转载-非商用-非衍生-保持署名 | <a href='http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh'>Creative Commons BY-NC-ND 3.0</a></p>
 
