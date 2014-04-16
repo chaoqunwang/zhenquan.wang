@@ -9,8 +9,8 @@
   <meta name="author" content="wang chaoqun">
 
   
-  <meta name="description" content="Spring Cache Ehcache Memcached LinkedHashMap">
-  <meta name="keywords" content="Spring Cache Ehcache Memcached LinkedHashMap">
+  <meta name="description" content="Spring Cache Ehcache Memcached HashMap LinkedHashMap synchronizedMap ConcurrentHashMap">
+  <meta name="keywords" content="Spring Cache Ehcache Memcached HashMap LinkedHashMap synchronizedMap ConcurrentHashMap">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -159,8 +159,10 @@ function addBlankTargetForLinks () {
   </header>
 
 
-<div class="entry-content"><p>spring框架从3.1版本开始提供了缓存支持：在spring-context.jar里的org.springframework.cache包，以及spring-context-support.jar里的org.springframework.cache包；而且提供了基于ConcurrentHashMap、JCacheCache、EhCache、GuavaCache的实现。这里我们先看下基于EhCache的使用，然后考虑集成Memcached；版本：spring3.2和spring4，EhCache2.7，spyMemcached2.8；内容还涉及HashMap、LinkedHashMap、synchronizedMap、ConcurrentHashMap、ReentrantLock……<br/>
-<a href="http://docs.spring.io/spring/docs/4.0.x/spring-framework-reference/html/cache.html">查阅spring 4.0.x reference</a><!--more--><a href='http://wangchaoqun.com' style='color:#f5f5f5;text-decoration:none;'>wang chaoqun</a></p>
+<div class="entry-content"><p>spring框架从3.1版本开始提供了缓存支持：在spring-context.jar里的org.springframework.cache包，以及spring-context-support.jar里的org.springframework.cache包；而且提供了基于ConcurrentHashMap、JCacheCache、EhCache、GuavaCache的实现。<br/>
+这里我们先看下基于EhCache的使用，然后考虑集成Memcached；版本：spring3.2和spring4，EhCache2.7，spyMemcached2.8；<br/>
+内容还涉及HashMap、LinkedHashMap、synchronizedMap、ConcurrentHashMap、ReentrantLock……  <br/>
+<a href="http://docs.spring.io/spring/docs/4.0.x/spring-framework-reference/html/cache.html">参考资料：spring framework 4.0.x reference</a><!--more--><a href='http://wangchaoqun.com' style='color:#f5f5f5;text-decoration:none;'>wang chaoqun</a></p>
 
 <h2>一、EhCache配置  </h2>
 
@@ -262,7 +264,7 @@ function addBlankTargetForLinks () {
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>标签：<a href="/blog/categories/tech">技术</a></p>
+<p>标签：<a href="/blog/categories/spring">spring</a></p>
 
 <p>这样ehcache集成完了，get方法对同一条记录只从数据库查询一次，cache是成功的，但search方法却一直读库，这里没有设置cache的key，设置的话如果是固定的，那么每次结果集都一样，不会更新；文档说不设key，将使用默认key生成器DefaultKeyGenerator：</p>
 
@@ -305,9 +307,8 @@ function addBlankTargetForLinks () {
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>问题####</h4>
-
-<p>就在于object.hashCode()，看方法的参数string没问题，date没问题，Integer数组使用的就是Object类的hashCode是个内存地址，每次执行都变，要改用Arrays.hashCode(array)才不会变；当然，分页类page也要重写hashCode；顺便说下，apache的commons-lang.jar提供了EqualsBuilder、HashCodeBuilder、ToStringBuilder可用于重写各方法。</p>
+<p><strong><em>问题</em></strong>就在于object.hashCode()，看方法的参数string没问题，date没问题，Integer数组使用的就是Object类的hashCode是个内存地址，每次执行都变，要改用Arrays.hashCode(array)才不会变；<br/>
+当然，分页类page也要重写hashCode；顺便说下，apache的commons-lang.jar提供了EqualsBuilder、HashCodeBuilder、ToStringBuilder可用于重写各方法。</p>
 
 <h4>4. 自定义key生成器</h4>
 
@@ -465,6 +466,439 @@ function addBlankTargetForLinks () {
 
 <p>参考ehcache的源码（org.springframework.cache.ehcache包里）：EhCacheCache和EhCacheCacheManager，manager用来获取cache，重写了getCache和loadCaches方法，这样配置在ehcache.xml里的cache name都会实例化成每个EhCacheCache，当执行到@Cacheable的方法上，就会调用getCache(name)获取cache，再根据key取得value；</p>
 
+<p><strong><em>MemcachedCacheManager</em></strong>：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemcachedCacheManager</span> <span class="kd">extends</span> <span class="n">AbstractCacheManager</span> <span class="o">{</span>
+</span><span class='line'>  <span class="c1">// cache集合</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">Cache</span><span class="o">&gt;</span> <span class="n">caches</span><span class="o">;</span>
+</span><span class='line'>  <span class="c1">// 注入memcachedClient（后面会有配置）</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="n">MemcachedClient</span> <span class="n">client</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">MemcachedCacheManager</span><span class="o">()</span> <span class="o">{}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">MemcachedCacheManager</span><span class="o">(</span><span class="n">MemcachedClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">client</span> <span class="o">=</span> <span class="n">client</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setClient</span><span class="o">(</span><span class="n">MemcachedClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">client</span> <span class="o">=</span> <span class="n">client</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="c1">// AbstractCacheManager不允许loadCaches返回空，所以初始化时添加一个默认cache</span>
+</span><span class='line'>  <span class="kd">protected</span> <span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Cache</span><span class="o">&gt;</span> <span class="n">loadCaches</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">caches</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">caches</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashSet</span><span class="o">&lt;</span><span class="n">Cache</span><span class="o">&gt;();</span>
+</span><span class='line'>          <span class="n">caches</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">MemcachedCache</span><span class="o">(</span><span class="s">&quot;DEFAULT_CACHE&quot;</span><span class="o">,</span> <span class="n">client</span><span class="o">));</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">caches</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// 根据名称获取cache，对应注解里的value如notice_cache，没有就创建并加入cache管理</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">Cache</span> <span class="nf">getCache</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">Cache</span> <span class="n">cache</span> <span class="o">=</span> <span class="kd">super</span><span class="o">.</span><span class="na">getCache</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">cache</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">cache</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MemcachedCache</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">client</span><span class="o">);</span>
+</span><span class='line'>          <span class="kd">super</span><span class="o">.</span><span class="na">addCache</span><span class="o">(</span><span class="n">cache</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">cache</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样应用启动时实例化manager，在执行加缓存注解的的方法时，会调用getCache(获取或新建cache)，根据缓存的key从cache中取值（没有就读库，然后将结果加入cache，下次相同的key就能取到缓存的值了）<br/>
+要写MemcachedCache实现<code>org.springframework.cache.Cache</code>接口，先来分析<strong><em>EhCacheCache</em></strong>：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EhCacheCache</span> <span class="kd">implements</span> <span class="n">Cache</span> <span class="o">{</span>
+</span><span class='line'>  <span class="c1">// 使用Ehcache的cache，来做get,put,evict...，集成memcached就要使用memcachedClient</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">final</span> <span class="n">Ehcache</span> <span class="n">cache</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="cm">/**</span>
+</span><span class='line'><span class="cm">  * Create an {@link EhCacheCache} instance.</span>
+</span><span class='line'><span class="cm">  * @param ehcache backing Ehcache instance</span>
+</span><span class='line'><span class="cm">  */</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">EhCacheCache</span><span class="o">(</span><span class="n">Ehcache</span> <span class="n">ehcache</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">Assert</span><span class="o">.</span><span class="na">notNull</span><span class="o">(</span><span class="n">ehcache</span><span class="o">,</span> <span class="s">&quot;Ehcache must not be null&quot;</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">Status</span> <span class="n">status</span> <span class="o">=</span> <span class="n">ehcache</span><span class="o">.</span><span class="na">getStatus</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">Assert</span><span class="o">.</span><span class="na">isTrue</span><span class="o">(</span><span class="n">Status</span><span class="o">.</span><span class="na">STATUS_ALIVE</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">status</span><span class="o">),</span>
+</span><span class='line'>              <span class="s">&quot;An &#39;alive&#39; Ehcache is required - current cache is &quot;</span> <span class="o">+</span> <span class="n">status</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">cache</span> <span class="o">=</span> <span class="n">ehcache</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="c1">// 也就是ehcache.xml里配置的</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">cache</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="c1">// 底层使用的cache，要改用memcachedClient</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">Ehcache</span> <span class="nf">getNativeCache</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">cache</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="c1">// 从cache取值，改用memcachedClient取值</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">ValueWrapper</span> <span class="nf">get</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">Element</span> <span class="n">element</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">cache</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">return</span> <span class="o">(</span><span class="n">element</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="k">new</span> <span class="n">SimpleValueWrapper</span><span class="o">(</span><span class="n">element</span><span class="o">.</span><span class="na">getObjectValue</span><span class="o">())</span> <span class="o">:</span> <span class="kc">null</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="c1">// 改用memcachedClient存值</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">put</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">,</span> <span class="n">Object</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">cache</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="k">new</span> <span class="n">Element</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">));</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="c1">// 擦除delete</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">evict</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">cache</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="c1">// 清空cache，这个是例如@CacheEvict(value = &quot;notice_cache&quot;, allEntries = true)时调用的</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">clear</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">cache</span><span class="o">.</span><span class="na">removeAll</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>好了，来写memcachedCache，<strong><em>问题来了</em></strong>：<br/>
+1.clear方法，spy的client没有removeAll，clear之类的方法，有个flush是全部清空，服务器N多个cache都会擦掉<br/>
+2.@CacheEvict(value = &ldquo;notice_cache&rdquo;, allEntries = true)就是用的clear，“添加个notice都要清掉其他非notice_cache缓存”就很可怕，能不能根据cache名称清除呢？
+3.上面两个实际是一个问题，memcached是key-value存储，所以要对key进行分组，采用一个集合保存key，然后将实际的key-value存入<br/>
+常用的集合数据类型如list，map，set它也支持，考虑到key的字符限制和单个value不超过1MB，使用一个set存储一个cache里所有的key能达到2万以上(看key的字节数)，使用压缩存储的更多，同时使用LRU（如LinkedHashMap，将过期的或长期不用的移除），基本满足使用<br/>
+标签：<a href="/blog/categories/memcached">memcached</a></p>
+
+<p><strong><em>MemcachedCache</em></strong>：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemcachedCache</span> <span class="kd">implements</span> <span class="n">Cache</span> <span class="o">{</span>
+</span><span class='line'>  <span class="c1">// 单个cache存储的key最大数量</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">maxElement</span> <span class="o">=</span> <span class="mi">10000</span><span class="o">;</span>
+</span><span class='line'>  <span class="c1">// 默认过期时间10天</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">expire</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="n">MemcachedClient</span> <span class="n">client</span><span class="o">;</span>
+</span><span class='line'>  <span class="c1">// 存储key的集合，使用LinkedHashMap实现</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="n">KeySet</span> <span class="n">keys</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">MemcachedCache</span><span class="o">()</span> <span class="o">{}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">MemcachedCache</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">MemcachedClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">keys</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KeySet</span><span class="o">(</span><span class="n">maxElement</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">client</span> <span class="o">=</span> <span class="n">client</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">getNativeCache</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">client</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="c1">// ckey是key+cacheName作为前缀，也是最终存入缓存的key</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">ValueWrapper</span> <span class="nf">get</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">String</span> <span class="n">ckey</span> <span class="o">=</span> <span class="n">toStringWithCacheName</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">keys</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">ckey</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">Object</span> <span class="n">value</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">ckey</span><span class="o">);</span>
+</span><span class='line'>          <span class="k">return</span> <span class="n">value</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="k">new</span> <span class="n">SimpleValueWrapper</span><span class="o">(</span><span class="n">value</span><span class="o">)</span> <span class="o">:</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="c1">// 将ckey加入key集合并将ckey-value存入缓存</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">put</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">,</span> <span class="n">Object</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">String</span> <span class="n">ckey</span> <span class="o">=</span> <span class="n">toStringWithCacheName</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">keys</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">ckey</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">client</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">ckey</span><span class="o">,</span> <span class="n">expire</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="c1">// 从keys集合清除ckey，并从缓存清除</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">evict</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">String</span> <span class="n">ckey</span> <span class="o">=</span> <span class="n">toStringWithCacheName</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">keys</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">ckey</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">client</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">ckey</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">private</span> <span class="n">String</span> <span class="nf">toStringWithCacheName</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">name</span> <span class="o">+</span> <span class="s">&quot;.&quot;</span> <span class="o">+</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="c1">// 遍历清除</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">clear</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">ckey</span> <span class="o">:</span> <span class="n">keys</span><span class="o">.</span><span class="na">keySet</span><span class="o">())</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">client</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">ckey</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="n">keys</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">MemcachedClient</span> <span class="nf">getClient</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">client</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setClient</span><span class="o">(</span><span class="n">MemcachedClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">client</span> <span class="o">=</span> <span class="n">client</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">getKeys</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">keys</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里keys也可以使用cacheName作为key存入缓存，就需要在put,evict,clear方法里使用<code>client.replace(name, expire, keys);</code>保持更新，但好像成本多了，收益不大</p>
+
+<p><strong><em>KeySet</em></strong>继承LinkedHashMap，为了使用removeEldestEntry，满了移除最旧元素，保持initSize:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">KeySet</span> <span class="kd">extends</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kt">int</span> <span class="n">max</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="nf">KeySet</span><span class="o">(</span><span class="kt">int</span> <span class="n">initSize</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">super</span><span class="o">(</span><span class="n">initSize</span><span class="o">,</span> <span class="mf">0.75</span><span class="n">F</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">max</span> <span class="o">=</span> <span class="n">initSize</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kd">super</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">removeEldestEntry</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">eldest</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nf">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="k">this</span><span class="o">.</span><span class="na">max</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>3. 线程安全</h4>
+
+<p>HashSet\HashMap都不是线程安全的，例如<a href="http://coolshell.cn/articles/9606.html">Java HashMap的死循环</a>;<br/>
+安全的如Collections.synchronizedMap和ConcurrentHashMap（不允许value为null）；<br/>
+两者的区别是锁不同：synchronizedMap使用对象锁，相当于在方法上声明synchronized；ConcurrentHashMap比较复杂，在segment上加锁，将范围控制的很小，因而并发性能就高；<br/>
+这里使用LinkedHashMap，ConcurrentHashMap不好包装，synchronizedMap效率低，不如加个ReentrantLock，或者使用读写锁ReentrantReadWriteLock(但这篇文章介绍了读写锁可能存在问题：<a href="http://skydream.iteye.com/blog/1562880">小心LinkedHashMap的get()方法</a>)：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+</span><span class='line'><span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">client</span><span class="o">.</span><span class="na">set</span><span class="o">(...);</span>
+</span><span class='line'><span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>下面是HashMap占用cpu 100% bug的代码：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MapTest</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">temp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;(</span><span class="mi">2</span><span class="o">);</span>
+</span><span class='line'>      <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+</span><span class='line'>      <span class="c1">//     final Map&lt;String, String&gt; map = new LinkedHashMap&lt;&gt;(temp);</span>
+</span><span class='line'>      <span class="c1">//     final Map&lt;String, String&gt; map = new ConcurrentHashMap&lt;&gt;(temp);</span>
+</span><span class='line'>      <span class="c1">//     final Map&lt;String, String&gt; map = Collections.synchronizedMap(temp);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">Thread</span> <span class="n">t</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>          <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>              <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>                  <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>                      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>                          <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">(),</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</span><span class='line'>                      <span class="o">}</span>
+</span><span class='line'>                  <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+</span><span class='line'>              <span class="o">}</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>      <span class="o">});</span>
+</span><span class='line'>      <span class="n">t</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span><span class='line'>      <span class="n">t</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>4. 测试Spring 4.0.x Cache</h4>
+
+<p>以上3.2.x使用正常，4.0版本改动了key生成器，所以测试下</p>
+
 <p>未完待续</p>
 
 <p class='post-footer' style='background:none repeat scroll 0pt 0pt #eee;padding: 5px;margin-top:10px;color:gray;font-size:90%;'>
@@ -500,7 +934,7 @@ function addBlankTargetForLinks () {
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/spring-cache/'>spring-cache</a>, <a class='category' href='/blog/categories/tech/'>tech</a>
+    <a class='category' href='/blog/categories/memcached/'>memcached</a>, <a class='category' href='/blog/categories/spring/'>spring</a>, <a class='category' href='/blog/categories/tech/'>tech</a>
   
 </span>
 
@@ -617,21 +1051,22 @@ Email：me@wangchaoqun.com<br><br>
 <a style="padding: 3px;" href='/blog/categories/hibernate/'>hibernate (1)</a>
 <a style="padding: 3px;" href='/blog/categories/java/'>java (8)</a></li>
 <li><a style="padding: 3px;" href='/blog/categories/linux/'>linux (3)</a>
-<a style="padding: 3px;" href='/blog/categories/mongodb/'>mongodb (6)</a>
-<a style="padding: 3px;" href='/blog/categories/mysql/'>mysql (1)</a></li>
-<li><a style="padding: 3px;" href='/blog/categories/spring-cache/'>spring-cache (1)</a>
-<a style="padding: 3px;" href='/blog/categories/tech/'>tech (24)</a>
-<a style="padding: 3px;" href='/blog/categories/tomcat/'>tomcat (1)</a></li>
-<li><a style="padding: 3px;" href='/blog/categories/web/'>web (2)</a>
-<a style="padding: 3px;" href='/blog/categories/dai-ma/'>代码 (3)</a>
-<a style="padding: 3px;" href='/blog/categories/qi-ta/'>其他 (1)</a></li>
-<li><a style="padding: 3px;" href='/blog/categories/duo-xian-cheng/'>多线程 (1)</a>
-<a style="padding: 3px;" href='/blog/categories/jia-gou/'>架构 (2)</a>
-<a style="padding: 3px;" href='/blog/categories/sheng-huo/'>生活 (7)</a></li>
-<li><a style="padding: 3px;" href='/blog/categories/suan-fa/'>算法 (1)</a>
-<a style="padding: 3px;" href='/blog/categories/zhi-ye/'>职业 (2)</a>
-<a style="padding: 3px;" href='/blog/categories/she-ji-mo-shi/'>设计模式 (1)</a></li>
-<li><a style="padding: 3px;" href='/blog/categories/du-shu/'>读书 (3)</a>
+<a style="padding: 3px;" href='/blog/categories/memcached/'>memcached (1)</a>
+<a style="padding: 3px;" href='/blog/categories/mongodb/'>mongodb (6)</a></li>
+<li><a style="padding: 3px;" href='/blog/categories/mysql/'>mysql (1)</a>
+<a style="padding: 3px;" href='/blog/categories/spring/'>spring (1)</a>
+<a style="padding: 3px;" href='/blog/categories/tech/'>tech (24)</a></li>
+<li><a style="padding: 3px;" href='/blog/categories/tomcat/'>tomcat (1)</a>
+<a style="padding: 3px;" href='/blog/categories/web/'>web (2)</a>
+<a style="padding: 3px;" href='/blog/categories/dai-ma/'>代码 (3)</a></li>
+<li><a style="padding: 3px;" href='/blog/categories/qi-ta/'>其他 (1)</a>
+<a style="padding: 3px;" href='/blog/categories/duo-xian-cheng/'>多线程 (1)</a>
+<a style="padding: 3px;" href='/blog/categories/jia-gou/'>架构 (2)</a></li>
+<li><a style="padding: 3px;" href='/blog/categories/sheng-huo/'>生活 (7)</a>
+<a style="padding: 3px;" href='/blog/categories/suan-fa/'>算法 (1)</a>
+<a style="padding: 3px;" href='/blog/categories/zhi-ye/'>职业 (2)</a></li>
+<li><a style="padding: 3px;" href='/blog/categories/she-ji-mo-shi/'>设计模式 (1)</a>
+<a style="padding: 3px;" href='/blog/categories/du-shu/'>读书 (3)</a>
  
   </ul> 
 </section>
