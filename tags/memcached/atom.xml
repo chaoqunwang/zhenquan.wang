@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Memcached | 超群的博客]]></title>
   <link href="http://wangchaoqun.com/tags/memcached/atom.xml" rel="self"/>
   <link href="http://wangchaoqun.com/"/>
-  <updated>2014-04-17T16:49:50+08:00</updated>
+  <updated>2014-04-17T16:58:12+08:00</updated>
   <id>http://wangchaoqun.com/</id>
   <author>
     <name><![CDATA[wang chaoqun]]></name>
@@ -19,7 +19,7 @@
     <updated>2014-04-15T14:52:05+08:00</updated>
     <id>http://wangchaoqun.com/blog/2014/04/spring-cache-zhi-ehcache-he-memcached</id>
     <content type="html"><![CDATA[<p>spring框架从3.1版本开始提供了缓存支持：在spring-context.jar里的org.springframework.cache包，以及spring-context-support.jar里的org.springframework.cache包；而且提供了基于ConcurrentHashMap、JCacheCache、EhCache、GuavaCache的实现。<br/>
-这里我们先看下基于EhCache的使用，然后考虑<a href="#memcached">集成Memcached</a>；版本：spring3.2和spring4，EhCache2.7，spyMemcached2.8；<br/>
+这里我们先看下基于EhCache的使用，然后考虑<a target=_self href="http://wangchaoqun.com/blog/2014/04/spring-cache-zhi-ehcache-he-memcached.html/#memcached">集成Memcached</a>；版本：spring3.2和spring4，EhCache2.7，spyMemcached2.8；<br/>
 内容还涉及HashMap、LinkedHashMap、synchronizedMap、ConcurrentHashMap、ReentrantLock……  <br/>
 <a href="http://docs.spring.io/spring/docs/4.0.x/spring-framework-reference/html/cache.html">参考资料：spring framework 4.0.x reference</a><!--more--></p>
 
@@ -314,9 +314,10 @@ public void clear() {
 ```
 好了，来写memcachedCache，<strong>问题来了</strong>：<br/>
 1.clear方法，spy的client没有removeAll，clear之类的方法，有个flush是全部清空，服务器N多个cache都会擦掉<br/>
-2.@CacheEvict(value = &ldquo;notice_cache&rdquo;, allEntries = true)就是用的clear，“添加个notice都要清掉其他非notice_cache缓存”就很可怕，能不能根据cache名称清除呢？
-3.上面两个实际是一个问题，memcached是key-value存储，所以要对key进行分组，采用一个集合保存key，然后将实际的key-value存入；如果想<strong>模糊匹配</strong>也是可行的，需要在此基础上做修改：key就得用字符串而不是字符串的hashCode了，或者自定义注解<br/>
-常用的集合数据类型如list，map，set它也支持，考虑到key的字符限制和单个value不超过1MB，使用一个set存储一个cache里所有的key能达到2万以上(看key的字节数)，使用压缩存储的更多，同时使用LRU（如LinkedHashMap，将过期的或长期不用的移除），基本满足使用<br/>
+2.@CacheEvict(value = &ldquo;notice_cache&rdquo;, allEntries = true)就是用的clear，“添加个notice都要清掉其他非notice_cache缓存”就很可怕，能不能根据cache名称清除呢？<br/>
+3.上面两个实际是一个问题，memcached是key-value存储，所以要对key进行分组，采用一个集合保存key，然后将实际的key-value存入；如果想<strong>模糊匹配</strong>也是可行的，需要在此基础上做修改：key就得用字符串而不是字符串的hashCode了，或者自定义注解</p>
+
+<p>常用的集合数据类型如list，map，set它也支持，考虑到key的字符限制和单个value不超过1MB，使用一个set存储一个cache里所有的key能达到2万以上(看key的字节数)，使用压缩存储的更多，同时使用LRU（如LinkedHashMap，将过期的或长期不用的移除），基本满足使用<br/>
 标签：<a href="/blog/categories/memcached">memcached</a></p>
 
 <p><strong>MemcachedCache</strong>：
