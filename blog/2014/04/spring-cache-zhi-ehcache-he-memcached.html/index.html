@@ -348,6 +348,8 @@ function addBlankTargetForLinks () {
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
 <span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomKeyGenerator</span> <span class="kd">extends</span> <span class="n">DefaultKeyGenerator</span> <span class="o">{</span>
 </span><span class='line'>  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">generate</span><span class="o">(</span><span class="n">Object</span> <span class="n">target</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">...</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>      <span class="n">StringBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="o">();</span>
@@ -362,6 +364,8 @@ function addBlankTargetForLinks () {
 </span><span class='line'>                      <span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">each</span><span class="o">);</span>
 </span><span class='line'>                  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">each</span> <span class="k">instanceof</span> <span class="n">Object</span><span class="o">[])</span> <span class="o">{</span>
 </span><span class='line'>                      <span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">hashCode</span><span class="o">((</span><span class="n">Object</span><span class="o">[])</span> <span class="n">each</span><span class="o">));</span> <span class="c1">// 后面会说到可替换Arrays.deepHashCode</span>
+</span><span class='line'>                  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">each</span> <span class="k">instanceof</span> <span class="n">HttpServletRequest</span> <span class="o">||</span> <span class="n">each</span> <span class="k">instanceof</span> <span class="n">HttpServletResponse</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>                      <span class="k">continue</span><span class="o">;</span>
 </span><span class='line'>                  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
 </span><span class='line'>                      <span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">each</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span> <span class="c1">// list,map,set其内的元素类型一直才好</span>
 </span><span class='line'>                  <span class="o">}</span>
@@ -494,12 +498,7 @@ function addBlankTargetForLinks () {
 <span class='line-number'>30</span>
 <span class='line-number'>31</span>
 <span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemcachedCacheManager</span> <span class="kd">extends</span> <span class="n">AbstractCacheManager</span> <span class="o">{</span>
-</span><span class='line'>  <span class="c1">// cache集合</span>
-</span><span class='line'>  <span class="kd">private</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">Cache</span><span class="o">&gt;</span> <span class="n">caches</span><span class="o">;</span>
 </span><span class='line'>  <span class="c1">// 注入memcachedClient（后面会有配置）</span>
 </span><span class='line'>  <span class="kd">private</span> <span class="n">MemcachedClient</span> <span class="n">client</span><span class="o">;</span>
 </span><span class='line'>
@@ -513,13 +512,12 @@ function addBlankTargetForLinks () {
 </span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">client</span> <span class="o">=</span> <span class="n">client</span><span class="o">;</span>
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'>  
-</span><span class='line'>  <span class="c1">// AbstractCacheManager不允许loadCaches返回空，所以初始化时添加一个默认cache</span>
+</span><span class='line'>  <span class="c1">// AbstractCacheManager.afterPropertiesSet不允许loadCaches返回空，所以覆盖掉</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterPropertiesSet</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="kd">protected</span> <span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Cache</span><span class="o">&gt;</span> <span class="n">loadCaches</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">caches</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">caches</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashSet</span><span class="o">&lt;</span><span class="n">Cache</span><span class="o">&gt;();</span>
-</span><span class='line'>          <span class="n">caches</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">MemcachedCache</span><span class="o">(</span><span class="s">&quot;DEFAULT_CACHE&quot;</span><span class="o">,</span> <span class="n">client</span><span class="o">));</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">caches</span><span class="o">;</span>
+</span><span class='line'>      <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="c1">// 根据名称获取cache，对应注解里的value如notice_cache，没有就创建并加入cache管理</span>
@@ -704,9 +702,11 @@ function addBlankTargetForLinks () {
 <span class='line-number'>69</span>
 <span class='line-number'>70</span>
 <span class='line-number'>71</span>
+<span class='line-number'>72</span>
 </pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemcachedCache</span> <span class="kd">implements</span> <span class="n">Cache</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">PRESENT</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">();</span>
 </span><span class='line'>  <span class="c1">// 单个cache存储的key最大数量</span>
-</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">maxElement</span> <span class="o">=</span> <span class="mi">10000</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">maxElements</span> <span class="o">=</span> <span class="mi">10000</span><span class="o">;</span>
 </span><span class='line'>  <span class="c1">// 默认过期时间10天</span>
 </span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">expire</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span><span class="o">;</span>
 </span><span class='line'>  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
@@ -718,8 +718,8 @@ function addBlankTargetForLinks () {
 </span><span class='line'>
 </span><span class='line'>  <span class="kd">public</span> <span class="nf">MemcachedCache</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">MemcachedClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">keys</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KeySet</span><span class="o">(</span><span class="n">maxElement</span><span class="o">);</span>
 </span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">client</span> <span class="o">=</span> <span class="n">client</span><span class="o">;</span>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">keys</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KeySet</span><span class="o">(</span><span class="n">maxElements</span><span class="o">);</span>
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
@@ -742,7 +742,7 @@ function addBlankTargetForLinks () {
 </span><span class='line'>  <span class="c1">// 将ckey加入key集合并将ckey-value存入缓存</span>
 </span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">put</span><span class="o">(</span><span class="n">Object</span> <span class="n">key</span><span class="o">,</span> <span class="n">Object</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>      <span class="n">String</span> <span class="n">ckey</span> <span class="o">=</span> <span class="n">toStringWithCacheName</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">keys</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">ckey</span><span class="o">);</span>
+</span><span class='line'>      <span class="n">keys</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">ckey</span><span class="o">,</span> <span class="n">PRESENT</span><span class="o">);</span>
 </span><span class='line'>      <span class="n">client</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">ckey</span><span class="o">,</span> <span class="n">expire</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'>  <span class="c1">// 从keys集合清除ckey，并从缓存清除</span>
@@ -800,22 +800,26 @@ function addBlankTargetForLinks () {
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">static</span> <span class="kd">class</span> <span class="nc">KeySet</span> <span class="kd">extends</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Serializable</span> <span class="o">{</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 用于存储keys，容量到达上限移除最旧的，缓存也移除</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">class</span> <span class="nc">KeySet</span> <span class="kd">extends</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="o">{</span>
 </span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
-</span><span class='line'>  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">PRESENT</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">();</span>
-</span><span class='line'>  <span class="kd">private</span> <span class="kt">int</span> <span class="n">max</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">private</span> <span class="kt">int</span> <span class="n">maxSize</span><span class="o">;</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="kd">public</span> <span class="nf">KeySet</span><span class="o">(</span><span class="kt">int</span> <span class="n">initSize</span><span class="o">)</span> <span class="o">{</span>
 </span><span class='line'>      <span class="kd">super</span><span class="o">(</span><span class="n">initSize</span><span class="o">,</span> <span class="mf">0.75</span><span class="n">F</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">max</span> <span class="o">=</span> <span class="n">initSize</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kd">super</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">PRESENT</span><span class="o">);</span>
+</span><span class='line'>      <span class="k">this</span><span class="o">.</span><span class="na">maxSize</span> <span class="o">=</span> <span class="n">initSize</span><span class="o">;</span>
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">removeEldestEntry</span><span class="o">(</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">eldest</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="nf">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="k">this</span><span class="o">.</span><span class="na">max</span><span class="o">;</span>
+</span><span class='line'>      <span class="kt">boolean</span> <span class="n">overflow</span> <span class="o">=</span> <span class="n">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="k">this</span><span class="o">.</span><span class="na">maxSize</span><span class="o">;</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">overflow</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="n">MemcachedCache</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">client</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">eldest</span><span class="o">.</span><span class="na">getKey</span><span class="o">());</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">overflow</span><span class="o">;</span>
 </span><span class='line'>  <span class="o">}</span>
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
