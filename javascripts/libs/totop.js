@@ -3,7 +3,7 @@
 
 /***********************************************
 
-* Scroll To Top Control script- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* Scroll To Top Control script- Â© Dynamic Drive DHTML code library (www.dynamicdrive.com)
 
 * Modified by www.MyBloggerTricks.com
 
@@ -24,7 +24,7 @@ var scrolltotop={
 
     setting: {startline:100, scrollto: 0, scrollduration:300, fadeduration:[500, 100]},
 
-    controlHTML: '<img src="http://bcs.duapp.com/colalife2000/images/arrow7.png"/>', //HTML for control, which is auto wrapped in DIV w/ ID="topcontrol"
+    controlHTML: '/images/arrow7.png"/>', //HTML for control, which is auto wrapped in DIV w/ ID="topcontrol"
 
     controlattrs: {offsetx:150, offsety:180}, //offset of control relative to right/ bottom of window corner
 
