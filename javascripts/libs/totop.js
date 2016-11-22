@@ -1,7 +1,3 @@
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3e37880aa6ef7afd422c8f83de58127c' type='text/javascript'%3E%3C/script%3E"));
-
-
 /***********************************************
 
 * Scroll To Top Control script- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
