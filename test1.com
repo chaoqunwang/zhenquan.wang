@@ -100,7 +100,7 @@ function addBlankTargetForLinks () {
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?797329c568be20db359cbd9ec9c534b7";
+  hm.src = "https://hm.baidu.com/hm.js?3e37880aa6ef7afd422c8f83de58127c";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
