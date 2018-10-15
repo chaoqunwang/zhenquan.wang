@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>超群的博客</title>
+  <meta name="author" content="wang chaoqun">
+  <meta name="description" content="超群的博客, 生活记录, 技术博客, wang chaoqun, colalife.com, wangchaoqun.com, wangchaoqun.cn">
+  <meta name="keywords" content="超群的博客, 生活记录, 技术博客, 开源技术, 大数据, 云计算, 移动互联网以及java, web, mobile, android, ios, linux, tomcat, httpd, browser, internet, media, sql, news">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link id="currentUrl" rel="canonical" href="http://wangchaoqun.com/index.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <!--<link href="http://bcs.duapp.com/colalife2000/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">-->
+  
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+  <!--<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">-->
+  <!--
+  <link href="http://bcs.duapp.com/colalife2000/stylesheets/PTSans.css" rel="stylesheet" type="text/css">
+  <link href="http://bcs.duapp.com/colalife2000/stylesheets/PTSerif.css" rel="stylesheet" type="text/css">  
+  -->
+  <link href="/stylesheets/PTSans.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/PTSerif.css" rel="stylesheet" type="text/css">
+  
+  <link href="/atom.xml" rel="alternate" title="超群的博客" type="application/atom+xml">
+  
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <!--<script src="http://bcs.duapp.com/colalife2000/javascripts/modernizr-2.0.js"></script>-->
+  
+  <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+  <!--<script src="//code.jquery.com/jquery-1.9.1.min.js"></script>-->
+  <!--<script src="//ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.1.min.js"></script>-->
+  <!--<script src="//libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>-->
+  <script src="http://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--<script src="http://bcs.duapp.com/colalife2000/javascripts/octopress.js" type="text/javascript"></script>-->
+  
+  <style>html{display:none;}</style>
+<script>
+	if (self == top) {
+		document.documentElement.style.display = 'block';
+	} else {
+		top.location = self.location;
+	}
+</script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+	changeBg();
+	//window.setInterval("changeBg()", 30*1000);
+	
+	var error404=$("#currentUrl").attr("href");
+	if(error404.indexOf("/404.html")!=-1){
+		window.setTimeout("document.location='/';", 5*1000);
+	}
+	
+	$(document).bind('DOMNodeInserted', function(event) {
+		addBlankTargetForLinks();
+	});
+/*
+	var wangchaoqun_com="wangchaoqun.com";
+	var wangchaoqun_cn="wangchaoqun.cn";
+	var colalife_com="colalife.com";
+	if(ref.indexOf(colalife_com)!=-1){
+	  ref=ref.replace(colalife_com, wangchaoqun_com);
+	  window.location.replace(ref);
+	} else if(ref.indexOf(wangchaoqun_cn)!=-1){
+	  ref=ref.replace(wangchaoqun_cn, wangchaoqun_com);
+	  window.location.replace(ref);
+	}
+*/
+});
+function changeBg() {
+	var dir = "/images/"
+	var image = "url("+dir+"yh"+Math.floor(Math.random()*5+1)+".jpg)";
+	$("#myheader").css({"background-image":image});
+}
+function addBlankTargetForLinks () {
+  $('a[href^="http"]').each(function(){
+      $(this).attr('target', '_blank');
+  });
+}
+</script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?3e37880aa6ef7afd422c8f83de58127c";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+	<body>
+<div class="fn_part fn_sfz mod_box_t1">
+<div class="hd">
+ <h2>在线随机数生成器</h2>
+</div>
+<div class="bd">
+<div class="mod_box_t3 fn_box">
+<div class="box_con">
+<div class="mathmod_form">
+确定产生随机数的数目，最小值和最大值：<br>
+数目：<span style="margin-left:14px"></span><input type="text" id="randomCount" value="10"><br> 最小值：<input type="text" id="randomMinimum" value="0"> 最大值：<input type="text" id="randomMaximum" value="100"><br>
+选择是否为唯一随机数：<br>
+选择：<span style="margin-left:14px"></span><select id="randomType"><option value="unique">唯一</option><option value="open">随便</option></select><br>
+点击生成产生随机数：<br>
+<center><input type="button" id="randomGenerate" value="生成" class="calc"></center>
+得到你想要的随机数！<br>
+<div id="randomNumbers" style="color: white;width:100%;line-height:36px;font-size: 28px;text-align: left;background-color: #005295;border-radius:3px; padding:5px;"><b>4998</b> <b>3898</b> <b>3186</b> <b>4468</b> <b>3971</b> <b>4513</b> <b>4825</b> <b>4688</b> <b>3183</b> <b>3169</b> <b>3876</b> <b>4543</b> <b>4332</b> <b>3736</b> <b>3824</b> <b>3719</b></div>
+<script type="text/javascript">
+
+          $(document).ready(
+            function() {
+
+              $('#randomGenerate').click(
+                function () {
+                  var test_1 = /^\d+$/.test($('#randomCount').val());
+                  var test_2 = /^\d+$/.test($('#randomMinimum').val());
+                  var test_3 = /^\d+$/.test($('#randomMaximum').val());
+                  if (
+                    test_1 != true ||
+                    test_2 != true ||
+                    test_3 != true
+                  ) {
+                    $('#randomNumbers').html('You missed something, please check the values above...');
+                  } else if (
+                    parseInt($('#randomCount').val()) < 1
+                  ) {
+                    $('#randomNumbers').html('The count value have to be at least 1...');
+                  } else if (
+                    parseInt($('#randomMinimum').val()) < 0
+                  ) {
+                    $('#randomNumbers').html('The minimum value have to be at least 0...');
+                  } else if (
+                    parseInt($('#randomMaximum').val()) < 1
+                  ) {
+                    $('#randomNumbers').html('The maximum value have to be at least 1...');
+                  } else if (
+                     parseInt($('#randomMaximum').val()) <= parseInt($('#randomMinimum').val())
+                  ) {
+                    $('#randomNumbers').html('The maximum value have to be greater then the minimum...');
+                  } else if (
+                    $('#randomType').val() == 'unique' &&
+                    parseInt($('#randomCount').val()) > ( parseInt($('#randomMaximum').val()) - parseInt($('#randomMinimum').val()) )
+                  ) {
+                    $('#randomNumbers').html('In a unique sequence: count <= ( maximum - minimum )...');
+                  } else {
+                    var mTwister = new MersenneTwister();
+                    var randomNumbers = new Array();
+                    for (
+                      var i = 0;
+                      i < parseInt($('#randomCount').val());
+                      i++
+                    ) {
+                      var number = ( Math.round( mTwister.random() * ( parseInt($('#randomMaximum').val()) - parseInt($('#randomMinimum').val()) ) ) + parseInt($('#randomMinimum').val()) );
+                      var found  = false;
+                      for (
+                        var j = 0;
+                        j < randomNumbers.length;
+                        j++
+                      ) {
+                        if (
+                          randomNumbers[j] == number
+                        ) {
+                          found = true;
+                          break;
+                        }
+                      }
+                      if (
+                        found == true &&
+                        $('#randomType').val() == 'unique'
+                      ) {
+                        i--;
+                      } else {
+                        randomNumbers[i] = number;
+                      }
+                    }
+                    $('#randomNumbers').html('');
+                    for (
+                      var i = 0;
+                      i < randomNumbers.length;
+                      i++
+                    ) {
+                      $('#randomNumbers').html($('#randomNumbers').html() + ( i == 0 ? '' : ' ' ) + '<b>' + randomNumbers[i] + '</b>');
+                    }
+                  }
+                }
+              );
+
+            }
+          );
+
+          </script>
+</div>
+</div>
+<i class="flag_tl_t3"></i>
+<i class="flag_tr_t3"></i>
+<i class="flag_bl_t3"></i>
+<i class="flag_br_t3"></i>
+</div>
+ 
+
+ 
+</div>
+
+
+
+
+</div>
+
+</body>
+</html>
