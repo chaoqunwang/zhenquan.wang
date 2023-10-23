@@ -33,6 +33,7 @@
             text-align: center;
             line-height: 38px;
             font-size: 30px;
+            font-weight: bold;
             cursor: pointer;
         }
         .num-area .num-item.selected{
@@ -109,7 +110,9 @@
     function renderNums(numList){
         var str = "";
         for(var i = 0, len = numList.length; i < len; i++){
-            str += '<div class="num-item">'+ numList[i] +'</div>'
+            var colorArr =  ["black", "red", "blue", "green"]
+            var rdm = Math.floor(Math.random() * 4) + 1;
+            str += '<div class="num-item" style="color:'+ colorArr[rdm] +'">'+ numList[i] +'</div>'
         }
         numsDom.innerHTML = str;
     }
