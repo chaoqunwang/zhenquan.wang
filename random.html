@@ -31,18 +31,15 @@
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <script src="/javascripts/random.js" type="text/javascript"></script>
   <style>html{display:none;}
-
-input.number {
-    display: inline-block;
-    width: 72px;
-    height: 20px;
-    text-align: center;
-    line-height: 20px;
-    background-repeat: no-repeat;
-    background-size: 72px 20px;
-    border: none;
-    cursor: pointer;
+input[type=number] { 
+    line-height: 27px; 
+} 
+ 
+input[type=number]::-webkit-inner-spin-button { 
+    width: 30px; 
+    height: 30px; 
 }
+
 /* button ---------------------------------------------- */
 .button {
     display: inline-block;
