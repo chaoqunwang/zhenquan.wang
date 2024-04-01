@@ -95,16 +95,15 @@ function addBlankTargetForLinks () {
 	<body>
 <div class="fn_part fn_sfz mod_box_t1">
 <div class="hd">
- <h2>在线随机数生成器</h2>
+ <h2>在线随机数生成</h2>
 </div>
 <div class="bd">
 <div class="mod_box_t3 fn_box">
 <div class="box_con">
 <div class="mathmod_form">
-确定产生随机数的数目，最小值和最大值：<br>
+填写随机数的范围和数目：<br>
+范围：<input type="number" id="randomMinimum" value="1"> ~ <input type="number" id="randomMaximum" value="100"><br>
 数目：<span style="margin-left:14px"></span><input type="number" id="randomCount" value="16"><br> 
-最小值：<input type="number" id="randomMinimum" value="1"><br>
-最大值：<input type="number" id="randomMaximum" value="100"><br>
 是否唯一不重复：<span style="margin-left:14px"></span><select id="randomType"><option value="unique">唯一</option><option value="open">有重复</option></select><br>
 <center><input type="button" id="randomGenerate" value="点击生成" class="calc"></center>
 <div id="randomNumbers" style="color: white;width:100%;line-height:36px;font-size: 28px;text-align: left;background-color: #005295;border-radius:3px; padding:5px;">这里是结果</div>
