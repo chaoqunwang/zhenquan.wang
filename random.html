@@ -37,7 +37,6 @@ input {
     height: 20px; 
 } 
 select{
-    display:block;
     line-height: 20px;
     height: 30px;
     width: 60px;
@@ -105,9 +104,8 @@ function addBlankTargetForLinks () {
 <div class="mathmod_form">
 填写随机数的范围和个数：<br>
 范围：<input type="number" id="randomMinimum" value="1"> ~ <input type="number" id="randomMaximum" value="100"><br>
-个数：<input type="number" id="randomCount" value="10">；
-是否唯一：<select id="randomType"><option value="unique">唯一</option><option value="open">有重复</option></select><br>
-<span style="margin-left:30px"></span><input type="button" id="randomGenerate" value="点击生成">
+个数：<input type="number" id="randomCount" value="10">；是否唯一：<select id="randomType"><option value="unique">唯一</option><option value="open">有重复</option></select><br>
+<span style="margin-left:30px"></span><input type="button" id="randomGenerate" value="点击生成"><br>
 <div id="randomNumbers" style="color: white;width:100%;line-height:36px;font-size: 28px;text-align: left;background-color: #005295;border-radius:3px; padding:5px;">这里是结果</div>
 <script type="text/javascript">
 
