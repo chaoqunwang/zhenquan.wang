@@ -41,42 +41,21 @@
 	    width: 80px; 
 	    height: 30px; 
 	} 
-	input[type=checkbox] {
-	  position: absolute;
-	  opacity: 0;
-	}
-	input[type=checkbox] + .checkbox-label:before {
-	  content: "";
-	  background: #f4f4f4;
-	  border-radius: 100%;
-	  border: 1px solid #b4b4b4;
-	  display: inline-block;
-	  width: 1.4em;
-	  height: 1.4em;
-	  position: relative;
-	  top: -0.2em;
-	  margin-right: 1em;
-	  vertical-align: top;
-	  cursor: pointer;
-	  text-align: center;
-	  transition: all 250ms ease;
-	}
-	input[type=checkbox]:checked + .checkbox-label:before {
-	  background-color: #3197EE;
-	  box-shadow: inset 0 0 0 4px #f4f4f4;
-	}
-	input[type=checkbox]:focus + .checkbox-label:before {
-	  outline: none;
-	  border-color: #3197EE;
-	}
-	input[type=checkbox]:disabled + .checkbox-label:before {
-	  box-shadow: inset 0 0 0 4px #f4f4f4;
-	  border-color: #b4b4b4;
-	  background: #b4b4b4;
-	}
-	input[type=checkbox] + .checkbox-label:empty:before {
-	  margin-right: 0;
-	}
+    select{
+        display:block;
+        height:32px;
+        line-height:20px;
+        font-size:14px;
+        width:240px;
+        margin:20px auto;
+    }
+    .select{appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    -o-appearance:none;
+    -khtml-appearance:none;}
+    .select::-ms-expand { display: none;}
 	  
   </style>
 <script>
@@ -137,7 +116,7 @@ function addBlankTargetForLinks () {
 填写随机数的范围和个数：<br>
 范围：<input type="number" id="randomMinimum" value="1"> ~ <input type="number" id="randomMaximum" value="100"><br>
 个数：<span style="margin-left:14px"></span><input type="number" id="randomCount" value="10">；
-是否唯一：<input type="checkbox" id="randomType" value="唯一"><br>
+是否唯一：<select id="randomType"><option value="unique">唯一</option><option value="open">有重复</option></select><br>
 <center><input type="button" id="randomGenerate" value="点击生成"></center>
 <div id="randomNumbers" style="color: white;width:100%;line-height:36px;font-size: 28px;text-align: left;background-color: #005295;border-radius:3px; padding:5px;">这里是结果</div>
 <script type="text/javascript">
