@@ -367,26 +367,11 @@ ul{
     ]);
 
     for (var key of prizes.keys()) {
-        $(".awardCard1").append('<div class="prize prize_' + key + '">' + prizes.get(key) + '</div>');
-        $(".awardCard2").append('<div class="prize prize_' + key + '">' + prizes.get(key) + '</div>');
+	$(".awardCard1").append('<div class="prize prize_' + key + '"><strong>' + prizes.get(key) + '</strong></div>');
+        $(".awardCard2").append('<div class="prize prize_' + key + '"><strong>' + prizes.get(key) + '</strong></div>');
     }
 
     $(function () {
-        //切换转盘奖品
-        $(".awardCard1").show()//显示内容
-        $(".awardCard2").hide()//隐藏内容
-        var checked = true;
-        $(".button").on("click", function() {
-            checked = !checked;
-            if (checked) {
-                $(".awardCard1").show()//显示内容
-                $(".awardCard2").hide()//隐藏内容
-            } else {
-                $(".awardCard1").hide()//显示内容
-                $(".awardCard2").show()//显示内容
-            }
-        })
-
         //确定概率
         function posibility(){
             var random = parseInt(Math.random()*1000);
