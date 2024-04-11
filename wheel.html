@@ -376,25 +376,22 @@ ul{
         //确定概率
         function posibility(){
 	    var mTwister = new MersenneTwister();
-	    var number = Math.round( mTwister.random() * 1000 );
-            alert(number);
-		
-            var random = parseInt(Math.random()*1000);
-            if(random == 1){ //  1/1000概率
+	    var random = Math.round(mTwister.random() * 100)+1;
+            if(random == 1){ //  1/100概率
                 return 1;
-            }else if( 1 < random && random <= 10 ){ // 10/1000概率
+            }else if( 1 < random && random <= 4 ){ // 3/100概率
                 return 2;
-            }else if( 10 < random && random <= 30 ){ // 20/1000概率
+            }else if( 4 < random && random <= 10 ){ // 6/100概率
                 return 3;
-            }else if( 30 < random && random <= 130 ){ // 100/1000概率
+            }else if( 10 < random && random <= 20 ){ // 10/100概率
                 return 4;
-            }else if( 130 < random && random <= 330 ){ // 200/1000概率
+            }else if( 20 < random && random <= 40 ){ // 20/100概率
                 return 5;
-            }else if( 330 < random && random <= 530 ){ // 200/1000概率
+            }else if( 40 < random && random <= 65 ){ // 25/100概率
                 return 6;
-            }else if( 530 < random && random <= 730 ){ // 200/1000概率
+            }else if( 65 < random && random <= 90 ){ // 25/100概率
                 return 7;
-		}else{ // 270/1000概率
+		}else{ // 10/100概率
                 return 8;
             }
         };
