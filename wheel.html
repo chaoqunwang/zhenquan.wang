@@ -361,6 +361,7 @@ ul{
     };
 </script>
 <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="/javascripts/random.js" type="text/javascript"></script>
 <script type="text/javascript">
     var prizes = new Map([
         ['1', '一等奖'],  ['2', '二等奖'],  ['3', '三等奖'],  ['4', '四等奖'],  ['5', '再来一次'],  ['6', '继续努力'],  ['7', '谢谢惠顾'],  ['8', '啥也没有']
@@ -374,6 +375,10 @@ ul{
     $(function () {
         //确定概率
         function posibility(){
+	    var mTwister = new MersenneTwister();
+	    var number = Math.round( mTwister.random() * 1000 );
+            alert(number);
+		
             var random = parseInt(Math.random()*1000);
             if(random == 1){ //  1/1000概率
                 return 1;
@@ -397,8 +402,8 @@ ul{
         //转盘逻辑
         var initrotate = 0;
         function handlebar() {
-		$('#pointer').css("pointer-events","none");
-		var p = posibility() ;
+	    $('#pointer').css("pointer-events","none");
+	    var p = posibility() ;
             var rotate = 360*3 + initrotate - initrotate%360 + (17 - 2*p) *22.5;
             $("#rotatein").css({
                 "-webkit-transition": "all 2s ease-out",
