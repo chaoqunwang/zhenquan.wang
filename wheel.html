@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>幸运大转盘，越转越有钱</title>
+    <title>幸运大转盘</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <style>
 html{
@@ -289,6 +289,7 @@ ul{
     background: #db34ac;
     width: 180px;
     padding: 4px 0;
+
     position: absolute;
     left: 50%;
     top: 65%;
@@ -328,29 +329,12 @@ ul{
         <div id="rotate">
             <div id="pointer"></div>
             <div id="rotatein">
-                <div class="awardCard1">
-                    <div class="prize prize_1"><strong>棒棒糖</strong><br><span>一个</span></div>
-                    <div class="prize prize_2"><strong>辣条</strong><br><span>一包</span></div>
-                    <div class="prize prize_3"><strong>任意大餐</strong><br><span>一份</span></div>
-                    <div class="prize prize_4"><strong>520元</strong><br><span>红包</span></div>
-                    <div class="prize prize_5"><strong>化妆品</strong><br><span>套装</span></div>
-                    <div class="prize prize_6"><strong>品牌包包</strong><br><span>一个</span></div>
-                    <div class="prize prize_7"><strong>apple watch</strong><br><span>手表</span></div>
-                    <div class="prize prize_8"><strong>苹果14</strong><br><span>手机一部</span></div>
-                </div>
-                <div class="awardCard2">
-                    <div class="prize prize_1"><strong>棒棒糖</strong><br><span>一个</span></div>
-                    <div class="prize prize_2"><strong>奥利奥饼干</strong><br><span>一包</span></div>
-                    <div class="prize prize_3"><strong>52元</strong><br><span>红包</span></div>
-                    <div class="prize prize_4"><strong>旋转星空灯</strong><br><span>一个</span></div>
-                    <div class="prize prize_5"><strong>艾莎公主娃娃</strong><br><span>一个</span></div>
-                    <div class="prize prize_6"><strong>奥特曼</strong><br><span>全套</span></div>
-                    <div class="prize prize_7"><strong>儿童显微镜</strong><br><span>一台</span></div>
-                    <div class="prize prize_8"><strong>儿童望远镜</strong><br><span>一台</span></div>
-                </div>
+                <div class="awardCard1"></div>
+                <div class="awardCard2"></div>
             </div>
+
         </div>
-        <div class="button"><p>切换版面</p></div>
+        <!-- <div class="button"><p>切换版面</p></div> -->
     </div>
     <div id="w-foot"></div>
     <div id="dialogbox">
@@ -378,6 +362,15 @@ ul{
 </script>
 <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
+    var prizes = new Map([
+        ['1', '特等奖'],  ['2', '一等奖'],  ['3', '二等奖'],  ['4', '三等奖'],  ['5', '幸运奖'],  ['6', '继续努力'],  ['7', '谢谢惠顾'],  ['8', '啥也没有']
+    ]);
+
+    for (var key of prizes.keys()) {
+        $(".awardCard1").append('<div class="prize prize_' + key + '">' + prizes.get(key) + '</div>');
+        $(".awardCard2").append('<div class="prize prize_' + key + '">' + prizes.get(key) + '</div>');
+    }
+
     $(function () {
         //切换转盘奖品
         $(".awardCard1").show()//显示内容
@@ -394,97 +387,34 @@ ul{
             }
         })
 
-        //raward 获奖情况
-        function raward(rotate){
-            switch (rotate){
-                case 337.5 :{
-                    if(checked){
-                        return "棒棒糖一个"
-                    }else {
-                        return "棒棒糖一个"
-                    }
-                    break;
-                }
-                case 292.5 :{
-                    if(checked){
-                        return "辣条一包"
-                    }else {
-                        return "奥利奥饼干一包"
-                    }
-                    break;
-                }
-                case 247.5 :{
-                    if(checked){
-                        return "任意大餐一份"
-                    }else {
-                        return "52元红包"
-                    }
-                    break;
-                }
-                case 202.5 :{if(checked){
-                    return "520元红包"
-                }else {
-                    return "旋转星空灯一个"
-                }
-                    break;}
-                case 157.5 :{if(checked){
-                    return "化妆品套装"
-                }else {
-                    return "艾莎公主娃娃一个"
-                }
-                    break;}
-                case 112.5 :{if(checked){
-                    return "品牌包包一个"
-                }else {
-                    return "奥特曼全套"
-                }
-                    break;}
-                case 67.5 :{ if(checked){
-                    return "apple watch手表"
-                }else {
-                    return "儿童显微镜一台"
-                }
-                    break;}
-                case 22.5 :{if(checked){
-                    return "苹果14手机一部"
-                }else {
-                    return "儿童望远镜一台"
-                }
-                    break;}
-                default : {if(checked){
-                    return "辣条一包"
-                }else {
-                    return "奥利奥饼干一包"
-                }
-                    break;}
-            }
-        }
         //确定概率
         function posibility(){
             var random = parseInt(Math.random()*1000);
             if(random == 1){ //  1/1000概率
-                return 22.5;
-            }else if( 1 < random && random <= 20 ){ // 20/1000概率
-                return 67.5;
-            }else if( 20 < random && random <= 120 ){ // 100/1000概率
-                return 112.5;
-            }else if( 120 < random && random <= 270 ){ // 150/1000概率
-                return 157.5;
-            }else if( 270 < random && random <= 420 ){ // 150/1000概率
-                return 202.5;
-            }else if( 420 < random && random <= 570){ // 150/1000概率
-                return 247.5;
-            }else if( 570 < random && random <= 770){ // 200/1000概率
-                return 292.5;
-            }else{ // 229/1000概率
-                return 337.5;
+                return 1;
+            }else if( 1 < random && random <= 10 ){ // 10/1000概率
+                return 2;
+            }else if( 10 < random && random <= 30 ){ // 20/1000概率
+                return 3;
+            }else if( 30 < random && random <= 130 ){ // 100/1000概率
+                return 4;
+            }else if( 130 < random && random <= 330 ){ // 200/1000概率
+                return 5;
+            }else if( 330 < random && random <= 530 ){ // 200/1000概率
+                return 6;
+            }else if( 530 < random && random <= 730 ){ // 200/1000概率
+                return 7;
+		}else{ // 270/1000概率
+                return 8;
             }
         };
 
         //转盘逻辑
         var initrotate = 0;
         function handlebar() {
-            var rotate = initrotate + (360 - initrotate%360) + 360 + posibility();
+		$('#pointer').css("pointer-events","none");
+		var p = posibility() ;
+            var rotate = 360*3 + initrotate - initrotate%360 + (17 - 2*p) *22.5;
             $("#rotatein").css({
                 "-webkit-transition": "all 2s ease-out",
                 "-ms-transition": "all 2s ease-out",
@@ -495,17 +425,17 @@ ul{
                 "-o-transform": "rotate("+ rotate +"deg)",
                 "transform":"rotate("+ rotate +"deg)"
             });
-            initrotate = rotate;
-            var rawartText = raward(rotate%360);
+		initrotate = rotate;
+            var rawartText = prizes.get(''+p);
             setTimeout(function () {
                 dialoginfo(rawartText);
-            },2100)
+			$('#pointer').css("pointer-events","");
+            },2000)
+		
         };
 
         //点击
-        // var timecont = 3;
         var oDialog = $("#dialogbox");
-        // $(".times").text(timecont);
         $(".closebtn ").click(function () {
             $(oDialog).removeClass("active");
             $(oDialog).find("div[class^='card']").removeClass("active");
@@ -515,19 +445,8 @@ ul{
             $(oDialog).find("div[class^='card']").removeClass("active");
         });
         $("#pointer").click(function () {
-         /*   if(timecont > 0){
-                handlebar();
-            }else if(timecont == 0){
-                flag = 3;
-                dialoginfo(flag);
-                timecont ++ ;
-            };
-            timecont -- ;
-            $(".times ").text(timecont);*/
             handlebar();
         });
-
-
 
         //dialog
         function dialoginfo(rawartText){
