@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抽奖转盘</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<style>
+html{
+    height:100%;
+    overflow: hidden;
+}
+body{
+    margin:0;
+    height:100%;
+    overflow: auto;
+    visibility: hidden;
+    font-size: .7rem;
+}
+ul{
+    list-style: none;
+    padding:0;
+}
+#wheel-wrap{
+    max-width:24rem;
+    margin:0 auto;
+    text-align: center;
+}
+#w-tit{
+    color:#fff;
+    font-size: 2rem;
+    margin:.5rem 0
+}
+#w-main{
+}
+#rotate{
+    position: relative;
+    width:16rem;
+    height:16rem;
+    margin:0 auto;
+    background: url("whimgs/wheelbg.gif") no-repeat 0 0 ;
+    -webkit-background-size:100%;
+    background-size:100%;
+}
+#rotatein{
+    position: relative;
+    top:1rem;
+    left:1rem;
+    border-radius: 50%;
+    width:14rem;
+    height:14rem;
+    background:url("whimgs/bg.png");
+    background-size: 100% 100%;
+    box-shadow: 0 0 6px #000;
+}
+.prize{
+    position: absolute;
+    top:0;
+    left:4.5rem;
+    z-index:2;
+    width:5rem;
+    height:14rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding:1rem 0;
+}
+.prize:nth-of-type(1){
+    transform: rotate(22.5deg);
+    transform-origin:50% 50%;
+
+    -ms-transform: rotate(22.5deg); 		/* IE 9 */
+    -ms-transform-origin:50% 50%;		/* IE 9 */
+
+    -webkit-transform: rotate(22.5deg);	/* Safari 和 Chrome */
+    -webkit-transform-origin:50% 50%;	/* Safari 和 Chrome */
+
+    -moz-transform: rotate(22.5deg);		/* Firefox */
+    -moz-transform-origin:50% 50%;		/* Firefox */
+
+    -o-transform: rotate(22.5deg);		/* Opera */
+    -o-transform-origin:50% 50%; /* Opera */
+}
+.prize:nth-of-type(2){
+    transform: rotate(67.5deg);
+    transform-origin:50% 50%;
+
+    -ms-transform: rotate(67.5deg); 		/* IE 9 */
+    -ms-transform-origin:50% 50%;		/* IE 9 */
+
+    -webkit-transform: rotate(67.5deg);	/* Safari 和 Chrome */
+    -webkit-transform-origin:50% 50%;	/* Safari 和 Chrome */
+
+    -moz-transform: rotate(67.5deg);		/* Firefox */
+    -moz-transform-origin:50% 50%;		/* Firefox */
+
+    -o-transform: rotate(67.5deg);		/* Opera */
+    -o-transform-origin:50% 50%; /* Opera */
+}
+.prize:nth-of-type(3){
+    transform: rotate(112.5deg);
+    transform-origin:50% 50%;
+
+    -ms-transform: rotate(112.5deg); 		/* IE 9 */
+    -ms-transform-origin:50% 50%;		/* IE 9 */
+
+    -webkit-transform: rotate(112.5deg);	/* Safari 和 Chrome */
+    -webkit-transform-origin:50% 50%;	/* Safari 和 Chrome */
+
+    -moz-transform: rotate(112.5deg);		/* Firefox */
+    -moz-transform-origin:50% 50%;		/* Firefox */
+
+    -o-transform: rotate(112.5deg);		/* Opera */
+    -o-transform-origin:50% 50%; /* Opera */
+}
+.prize:nth-of-type(4){
+    transform: rotate(157.5deg);
+    transform-origin:50% 50%;
+
+    -ms-transform: rotate(157.5deg); 		/* IE 9 */
+    -ms-transform-origin:50% 50%;		/* IE 9 */
+
+    -webkit-transform: rotate(157.5deg);	/* Safari 和 Chrome */
+    -webkit-transform-origin:50% 50%;	/* Safari 和 Chrome */
+
+    -moz-transform: rotate(157.5deg);		/* Firefox */
+    -moz-transform-origin:50% 50%;		/* Firefox */
+
+    -o-transform: rotate(157.5deg);		/* Opera */
+    -o-transform-origin:50% 50%; /* Opera */
+}
+.prize:nth-of-type(5){
+    transform: rotate(202.5deg);
+    transform-origin:50% 50%;
+
+    -ms-transform: rotate(202.5deg); 		/* IE 9 */
+    -ms-transform-origin:50% 50%;		/* IE 9 */
+
+    -webkit-transform: rotate(202.5deg);	/* Safari 和 Chrome */
+    -webkit-transform-origin:50% 50%;	/* Safari 和 Chrome */
+
+    -moz-transform: rotate(202.5deg);		/* Firefox */
+    -moz-transform-origin:50% 50%;		/* Firefox */
+
+    -o-transform: rotate(202.5deg);		/* Opera */
+    -o-transform-origin:50% 50%; /* Opera */
+}
+.prize:nth-of-type(6){
+    transform: rotate(247.5deg);
+    transform-origin:50% 50%;
+
+    -ms-transform: rotate(247.5deg); 		/* IE 9 */
+    -ms-transform-origin:50% 50%;		/* IE 9 */
+
+    -webkit-transform: rotate(247.5deg);	/* Safari 和 Chrome */
+    -webkit-transform-origin:50% 50%;	/* Safari 和 Chrome */
+
+    -moz-transform: rotate(247.5deg);		/* Firefox */
+    -moz-transform-origin:50% 50%;		/* Firefox */
+
+    -o-transform: rotate(247.5deg);		/* Opera */
+    -o-transform-origin:50% 50%; /* Opera */
+}
+.prize:nth-of-type(7){
+    transform: rotate(292.5deg);
+    transform-origin:50% 50%;
+
+    -ms-transform: rotate(292.5deg); 		/* IE 9 */
+    -ms-transform-origin:50% 50%;		/* IE 9 */
+
+    -webkit-transform: rotate(292.5deg);	/* Safari 和 Chrome */
+    -webkit-transform-origin:50% 50%;	/* Safari 和 Chrome */
+
+    -moz-transform: rotate(292.5deg);		/* Firefox */
+    -moz-transform-origin:50% 50%;		/* Firefox */
+
+    -o-transform: rotate(292.5deg);		/* Opera */
+    -o-transform-origin:50% 50%; /* Opera */
+}
+.prize:nth-of-type(8){
+    transform: rotate(337.5deg);
+    transform-origin:50% 50%;
+
+    -ms-transform: rotate(337.5deg); 		/* IE 9 */
+    -ms-transform-origin:50% 50%;		/* IE 9 */
+
+    -webkit-transform: rotate(337.5deg);	/* Safari 和 Chrome */
+    -webkit-transform-origin:50% 50%;	/* Safari 和 Chrome */
+
+    -moz-transform: rotate(337.5deg);		/* Firefox */
+    -moz-transform-origin:50% 50%;		/* Firefox */
+
+    -o-transform: rotate(337.5deg);		/* Opera */
+    -o-transform-origin:50% 50%; /* Opera */
+}
+
+#pointer{
+    position: absolute;
+    top:50%;
+    left:50%;
+    z-index:3;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width:3rem;
+    height:4rem;
+    background: url("whimgs/pointer.png") no-repeat 0 0;
+    background-size: 100% 100%;
+}
+.tiemsbox{
+    color:#eee;
+    margin:2rem 0 .5rem 0;
+    font-size: 1.1rem;
+}
+.times{
+
+}
+#rule{
+    color:#eee;
+    display: inline-block;
+    line-height: 1.1rem;
+    border-bottom:1px solid #eee;
+}
+#dialogbox{
+    display: none;
+}
+#dialogbox.active{
+    display: block;
+}
+.dialogmask{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color: rgba(0,0,0,.2);
+    z-index: 9;
+}
+.dialogcard{
+    position: absolute;
+    top:40%;
+    left:50%;
+    z-index:10;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    z-index:10;
+    width:10rem;
+    background-color: #fff;
+    text-align: left;
+    padding:1rem;
+}
+.dialogclose{
+    text-align: right;
+    height:1rem;
+}
+.dialogclose .closebtn{
+    position: absolute;
+    top:.5rem;
+    right:.5rem;
+    display: inline-block;
+    width:1rem;
+    height:1rem;
+    background:url("whimgs/btn_close_layer.png") no-repeat 0 0 ;
+    -webkit-background-size:100% 100%;
+    background-size:100% 100%;
+}
+.dialogtit{
+    font-size: 1.0rem;
+    color:green;
+    text-align: center;
+}
+#dialogbox .card1 , #dialogbox .card2 , #dialogbox .card3{
+    display: none;
+}
+#dialogbox .card1.active , #dialogbox .card2.active , #dialogbox .card3.active{
+    display:block;
+}
+#dialogbox address{
+    font-size: .6rem;
+    color:#999;
+    margin-top:4rem;
+}
+
+.button {
+    background: #db34ac;
+    width: 180px;
+    padding: 4px 0;
+
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 3px;
+}
+.button p {
+        font-family: 'Roboto';
+        text-align: center;
+        text-transform: uppercase;
+        color: #FFF;
+        user-select: none;
+    }
+
+.button :hover {
+         cursor: pointer;
+     }
+
+.button :after {
+         content: "";
+         display: block;
+         position: absolute;
+         width: 100%;
+         height: 10%;
+         border-radius: 50%;
+         background-color: darken(#f1c40f, 20%);
+         opacity: 0.4;
+         bottom: -30px;
+     }
+</style>
+
+</head>
+<body>
+<div id="wheel-wrap">
+    <div id="w-tit" style="color: #f10f0f">大转盘</div>
+    <div id="w-main">
+        <div id="rotate">
+            <div id="pointer"></div>
+            <div id="rotatein">
+                <div class="awardCard1">
+                    <div class="prize prize_1"><strong>棒棒糖</strong><br><span>一个</span></div>
+                    <div class="prize prize_2"><strong>辣条</strong><br><span>一包</span></div>
+                    <div class="prize prize_3"><strong>任意大餐</strong><br><span>一份</span></div>
+                    <div class="prize prize_4"><strong>520元</strong><br><span>红包</span></div>
+                    <div class="prize prize_5"><strong>化妆品</strong><br><span>套装</span></div>
+                    <div class="prize prize_6"><strong>品牌包包</strong><br><span>一个</span></div>
+                    <div class="prize prize_7"><strong>apple watch</strong><br><span>手表</span></div>
+                    <div class="prize prize_8"><strong>苹果14</strong><br><span>手机一部</span></div>
+                </div>
+                <div class="awardCard2">
+                    <div class="prize prize_1"><strong>棒棒糖</strong><br><span>一个</span></div>
+                    <div class="prize prize_2"><strong>奥利奥饼干</strong><br><span>一包</span></div>
+                    <div class="prize prize_3"><strong>52元</strong><br><span>红包</span></div>
+                    <div class="prize prize_4"><strong>旋转星空灯</strong><br><span>一个</span></div>
+                    <div class="prize prize_5"><strong>艾莎公主娃娃</strong><br><span>一个</span></div>
+                    <div class="prize prize_6"><strong>奥特曼</strong><br><span>全套</span></div>
+                    <div class="prize prize_7"><strong>儿童显微镜</strong><br><span>一台</span></div>
+                    <div class="prize prize_8"><strong>儿童望远镜</strong><br><span>一台</span></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="button"><p>切换版面</p></div>
+    </div>
+    <div id="w-foot"></div>
+    <div id="dialogbox">
+        <div class="dialogmask"></div>
+        <div class="dialogcard">
+            <div class="dialogclose">
+                <span class="closebtn"></span>
+            </div>
+            <div class="card1">
+                <div class="dialogtit">恭喜<span id="name"></span>获得 <br><span id="award" style="color: #864afc"></span></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    setSize();
+    window.addEventListener("resize",setSize,false);
+    function setSize(){
+        var oHtml = document.getElementsByTagName("html")[0];
+        var oBody = document.getElementsByTagName("body")[0];
+        var oWidth = window.innerWidth < 480 ? window.innerWidth : 480;
+        oHtml.style.fontSize =oWidth/18+"px";
+        oBody.style.visibility = "visible";
+    };
+</script>
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //切换转盘奖品
+        $(".awardCard1").show()//显示内容
+        $(".awardCard2").hide()//隐藏内容
+        var checked = true;
+        $(".button").on("click", function() {
+            checked = !checked;
+            if (checked) {
+                $(".awardCard1").show()//显示内容
+                $(".awardCard2").hide()//隐藏内容
+            } else {
+                $(".awardCard1").hide()//显示内容
+                $(".awardCard2").show()//显示内容
+            }
+        })
+
+        //raward 获奖情况
+        function raward(rotate){
+            switch (rotate){
+                case 337.5 :{
+                    if(checked){
+                        return "棒棒糖一个"
+                    }else {
+                        return "棒棒糖一个"
+                    }
+                    break;
+                }
+                case 292.5 :{
+                    if(checked){
+                        return "辣条一包"
+                    }else {
+                        return "奥利奥饼干一包"
+                    }
+                    break;
+                }
+                case 247.5 :{
+                    if(checked){
+                        return "任意大餐一份"
+                    }else {
+                        return "52元红包"
+                    }
+                    break;
+                }
+                case 202.5 :{if(checked){
+                    return "520元红包"
+                }else {
+                    return "旋转星空灯一个"
+                }
+                    break;}
+                case 157.5 :{if(checked){
+                    return "化妆品套装"
+                }else {
+                    return "艾莎公主娃娃一个"
+                }
+                    break;}
+                case 112.5 :{if(checked){
+                    return "品牌包包一个"
+                }else {
+                    return "奥特曼全套"
+                }
+                    break;}
+                case 67.5 :{ if(checked){
+                    return "apple watch手表"
+                }else {
+                    return "儿童显微镜一台"
+                }
+                    break;}
+                case 22.5 :{if(checked){
+                    return "苹果14手机一部"
+                }else {
+                    return "儿童望远镜一台"
+                }
+                    break;}
+                default : {if(checked){
+                    return "辣条一包"
+                }else {
+                    return "奥利奥饼干一包"
+                }
+                    break;}
+            }
+        }
+        //确定概率
+        function posibility(){
+            var random = parseInt(Math.random()*1000);
+            if(random == 1){ //  1/1000概率
+                return 22.5;
+            }else if( 1 < random && random <= 20 ){ // 20/1000概率
+                return 67.5;
+            }else if( 20 < random && random <= 120 ){ // 100/1000概率
+                return 112.5;
+            }else if( 120 < random && random <= 270 ){ // 150/1000概率
+                return 157.5;
+            }else if( 270 < random && random <= 420 ){ // 150/1000概率
+                return 202.5;
+            }else if( 420 < random && random <= 570){ // 150/1000概率
+                return 247.5;
+            }else if( 570 < random && random <= 770){ // 200/1000概率
+                return 292.5;
+            }else{ // 229/1000概率
+                return 337.5;
+            }
+        };
+
+        //转盘逻辑
+        var initrotate = 0;
+        function handlebar() {
+            var rotate = initrotate + (360 - initrotate%360) + 360 + posibility();
+            $("#rotatein").css({
+                "-webkit-transition": "all 2s ease-out",
+                "-ms-transition": "all 2s ease-out",
+                "transition":" all 2s ease-out",
+                "-webkit-transform": "rotate("+ rotate +"deg)",
+                "-moz-transform": "rotate("+ rotate +"deg)",
+                "-ms-transform": "rotate("+ rotate +"deg)",
+                "-o-transform": "rotate("+ rotate +"deg)",
+                "transform":"rotate("+ rotate +"deg)"
+            });
+            initrotate = rotate;
+            var rawartText = raward(rotate%360);
+            setTimeout(function () {
+                dialoginfo(rawartText);
+            },2100)
+        };
+
+        //点击
+        // var timecont = 3;
+        var oDialog = $("#dialogbox");
+        // $(".times").text(timecont);
+        $(".closebtn ").click(function () {
+            $(oDialog).removeClass("active");
+            $(oDialog).find("div[class^='card']").removeClass("active");
+        });
+        $(".dialogmask").click(function () {
+            $(oDialog).removeClass("active");
+            $(oDialog).find("div[class^='card']").removeClass("active");
+        });
+        $("#pointer").click(function () {
+         /*   if(timecont > 0){
+                handlebar();
+            }else if(timecont == 0){
+                flag = 3;
+                dialoginfo(flag);
+                timecont ++ ;
+            };
+            timecont -- ;
+            $(".times ").text(timecont);*/
+            handlebar();
+        });
+
+
+
+        //dialog
+        function dialoginfo(rawartText){
+            $(oDialog).find(".card1").addClass("active");
+            $(oDialog).find("#award").text(""+ rawartText +"");
+
+            $(oDialog).addClass("active");
+        };
+
+    });
+</script>
+</body>
+</html>
