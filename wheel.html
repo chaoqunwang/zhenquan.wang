@@ -383,23 +383,23 @@ ul{
     $(function () {
         //确定概率
         function posibility(){
-		 var mTwister = new MersenneTwister();
-            var random = Math.round(mTwister.random() * 99)+1;
-            if(random == 1){ //  1/100概率
+	    var mTwister = new MersenneTwister();
+            var random = Math.round(mTwister.random() * 199)+1;
+            if(random <= 2){ //  2/200概率
                 return 1;
-            }else if( 1 < random && random <= 4 ){ // 3/100概率
+            }else if( 2 < random && random <= 6 ){ // 4/200概率
                 return 2;
-            }else if( 4 < random && random <= 10 ){ // 6/100概率
+            }else if( 6 < random && random <= 14 ){ // 8/200概率
                 return 3;
-            }else if( 10 < random && random <= 20 ){ // 10/100概率
+            }else if( 14 < random && random <= 30 ){ // 16/200概率
                 return 4;
-            }else if( 20 < random && random <= 40 ){ // 20/100概率
+            }else if( 30 < random && random <= 60 ){ // 30/200概率
                 return 5;
-            }else if( 40 < random && random <= 65 ){ // 25/100概率
+            }else if( 60 < random && random <= 100 ){ // 40/200概率
                 return 6;
-            }else if( 65 < random && random <= 90 ){ // 25/100概率
+            }else if( 100 < random && random <= 150 ){ // 50/200概率
                 return 7;
-        }else{ // 10/100概率
+        }else{ // 50/200概率
                 return 8;
             }
         };
