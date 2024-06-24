@@ -414,7 +414,7 @@ select{
 		}
 		shuffle(poemResult); // 打乱顺序
 		for(var i=0;i<poemResult.length;i++){
-		    $("#tasksTable").append('<tr><td align="left">' + poemResult[i] + '</td><td align="right">' + tasks.get(''+poemResult[i]) + '</td><td></tr>');
+		    $("#tasksTable").append('<tr><td align="left" rowspan="2">' + poemResult[i] + '</td></tr>');
 		}
             $(oDialog).addClass("active");
         };
