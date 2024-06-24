@@ -374,10 +374,13 @@ select{
 		var poemResult = new Array();
 		// poems select
 		while(poemResult.length < tasksNum){
-			var e = Math.round(mTwister.random() * (poems.size-1))+1;
+			var e = Math.round(mTwister.random() * (poems.length-1))+1;
+			console.log(e)
 			var p = poems[e];
+			console.log(p)
 			if(poemResult.indexOf(p) < 0){
 			    poemResult.push(p);
+			    console.log(poemResult)
 			}
 		}
 		// task select
