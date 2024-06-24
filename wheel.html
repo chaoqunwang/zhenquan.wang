@@ -375,8 +375,9 @@ select{
 		// poems select
 		while(poemResult.length < tasksNum){
 			var e = Math.round(mTwister.random() * (poems.size-1))+1;
-			if(poemResult.indexOf(e) < 0){
-			    poemResult.push(e);
+			var p = poems[e];
+			if(poemResult.indexOf(p) < 0){
+			    poemResult.push(p);
 			}
 		}
 		// task select
