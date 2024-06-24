@@ -257,11 +257,11 @@ select{
                 <span class="closebtn"></span>
             </div> -->
             <div class="result">
-			    <div class="dialogtit">
-					恭喜获得<br>
-					<span id="award" style="color:red"></span>
-					<table id='tasksTable' align="center" style="font-size:0.9rem"></table>
-				</div>
+                <div class="dialogtit">
+                    恭喜获得<br>
+                    <span id="award" style="color:red"></span>
+                    <table id='tasksTable' align="center" style="font-size:0.9rem"></table>
+                </div>
             </div>
         </div>
     </div>
@@ -281,19 +281,19 @@ select{
 <script src="javascripts/random.js" type="text/javascript"></script>
 <script type="text/javascript">
     var poems = ['01 骆宾王《咏鹅》','02 汉乐府《江南》','03 李绅《悯农》','04 李白《古朗月行（节选）》','05 李峤《风》','06 孟浩然《春晓》','07 李白《赠汪伦》','08 李白《静夜思》','09 白居易《池上》','10 杨万里《小池》',
-		 '11 贾岛《寻隐者不遇》','12 北朝民歌《敕勒歌》','13 王之涣《登鹳雀楼》','14 李白《望庐山瀑布》','15 柳宗元《江雪》','16 王安石《梅花》','17 李白《夜宿山寺》','18 胡令能《小儿垂钓》','19 贺知章《咏柳》',
-		 '20 杨万里《晓出净慈寺送林子方》','21 白居易《赋得古原草送别》','22 杜甫《绝句》','23 高鼎《村居》','24 查慎行《舟夜书所见》','25 李白《早发白帝城》','26 李白《望天门山》','27 杜牧《山行》','28 刘禹锡《望洞庭》',
-		 '29 袁枚《所见》','30 苏轼《饮湖上初晴后雨》','31 苏轼《赠刘景文》','32 叶绍翁《夜书所见》','33 王昌龄《采莲曲》','34《司马光》','35 白居易《忆江南》','36 王安石《元日》','37 杜甫《绝句》',
-		 '38 王维《九月九日忆山东兄弟》','39 苏轼《惠崇春江晚景》','40 杜牧《清明》','41 韦应物《滁州西涧》','42 曾几《三衢道中》','43 白居易《大林寺桃花》','44《守株待兔》','45 王维《鹿柴》','46 王翰《凉州词》',
-		 '47 高适《别董大》','48 王昌龄《出塞》','49 苏轼《题西林壁》','50 刘禹锡《浪淘沙》','51 李清照《夏日绝句》','52 白居易《暮江吟》','53 李商隐《嫦娥》','54 卢钺《雪梅》','55《精卫填海》','56《王戎不取道旁李》',
-		 '57 杨万里《宿新市徐公店》','58 范成大《四时田园杂兴（其二）》','59 辛弃疾《清平乐·村居》','60 卢纶《塞下曲》','61 王冕《墨梅》','62 罗隐《蜂》','63 王昌龄《芙蓉楼送辛渐》','64 李白《独坐敬亭山》',
-		 '65 毛泽东《卜算子·咏梅》','66 李白《黄鹤楼送孟浩然之广陵》','67 张志和《渔歌子》','68 张继《枫桥夜泊》','69 林升《题临安邸》','70 陆游《示儿》','71 龚自珍《己亥杂诗》','72 朱熹《观书有感二首（其一）》',
-		 '73 朱熹《观书有感二首（其二）》','74 林杰《乞巧》','75 纳兰性德《长相思》','76 王维《山居秋暝》','77 孟郊《游子吟》','78 范成大《四时田园杂兴》','79 王维《送元二使安西》',
-		 '80 翁卷《乡村四月》','81 王之涣《凉州词》','82 陆游《秋夜将晓出篱门迎凉有感》','83 王昌龄《从军行》','84 雷震《村晚》','85 杨万里《稚子弄冰》','86 王维《鸟鸣涧》','87《自相矛盾》','88《杨氏之子》',
-		 '89 苏轼《六月二十七日望湖楼醉书》','90 朱熹《春日》','91 王安石《书胡阴先生壁》','92 杜牧《江南春》','93 贺知章《回乡偶书》','94 孟浩然《宿建德江》','95 孟浩然《过故人庄》','96 辛弃疾《西江月》',
-		 '97《伯牙鼓琴》','98 范仲淹《江上渔者》','99 于谦《石灰吟》','100 叶绍翁《游园不值》','101 郑燮《竹石》','102 王安石《泊船瓜洲》','103 杜甫《春夜喜雨》','104 汉乐府《长歌行》','105 杜甫《闻官军收河南河北》',
-		 '106 韩翃《寒食》','107 古诗十九首《迢迢牵牛星》','108 王建《十五夜望月》','109 李贺《马诗》','110 诗经·小雅《采薇》（节选）','111 王观《卜算子·送鲍浩然之浙东》','112 黄庭坚《清平乐》',
-		 '113 韩愈《早春呈水部张十八员外》','114 苏轼《浣溪沙》','115《学弈》','116《两小儿辩日》'];
+         '11 贾岛《寻隐者不遇》','12 北朝民歌《敕勒歌》','13 王之涣《登鹳雀楼》','14 李白《望庐山瀑布》','15 柳宗元《江雪》','16 王安石《梅花》','17 李白《夜宿山寺》','18 胡令能《小儿垂钓》','19 贺知章《咏柳》',
+         '20 杨万里《晓出净慈寺送林子方》','21 白居易《赋得古原草送别》','22 杜甫《绝句》','23 高鼎《村居》','24 查慎行《舟夜书所见》','25 李白《早发白帝城》','26 李白《望天门山》','27 杜牧《山行》','28 刘禹锡《望洞庭》',
+         '29 袁枚《所见》','30 苏轼《饮湖上初晴后雨》','31 苏轼《赠刘景文》','32 叶绍翁《夜书所见》','33 王昌龄《采莲曲》','34《司马光》','35 白居易《忆江南》','36 王安石《元日》','37 杜甫《绝句》',
+         '38 王维《九月九日忆山东兄弟》','39 苏轼《惠崇春江晚景》','40 杜牧《清明》','41 韦应物《滁州西涧》','42 曾几《三衢道中》','43 白居易《大林寺桃花》','44《守株待兔》','45 王维《鹿柴》','46 王翰《凉州词》',
+         '47 高适《别董大》','48 王昌龄《出塞》','49 苏轼《题西林壁》','50 刘禹锡《浪淘沙》','51 李清照《夏日绝句》','52 白居易《暮江吟》','53 李商隐《嫦娥》','54 卢钺《雪梅》','55《精卫填海》','56《王戎不取道旁李》',
+         '57 杨万里《宿新市徐公店》','58 范成大《四时田园杂兴（其二）》','59 辛弃疾《清平乐·村居》','60 卢纶《塞下曲》','61 王冕《墨梅》','62 罗隐《蜂》','63 王昌龄《芙蓉楼送辛渐》','64 李白《独坐敬亭山》',
+         '65 毛泽东《卜算子·咏梅》','66 李白《黄鹤楼送孟浩然之广陵》','67 张志和《渔歌子》','68 张继《枫桥夜泊》','69 林升《题临安邸》','70 陆游《示儿》','71 龚自珍《己亥杂诗》','72 朱熹《观书有感二首（其一）》',
+         '73 朱熹《观书有感二首（其二）》','74 林杰《乞巧》','75 纳兰性德《长相思》','76 王维《山居秋暝》','77 孟郊《游子吟》','78 范成大《四时田园杂兴》','79 王维《送元二使安西》',
+         '80 翁卷《乡村四月》','81 王之涣《凉州词》','82 陆游《秋夜将晓出篱门迎凉有感》','83 王昌龄《从军行》','84 雷震《村晚》','85 杨万里《稚子弄冰》','86 王维《鸟鸣涧》','87《自相矛盾》','88《杨氏之子》',
+         '89 苏轼《六月二十七日望湖楼醉书》','90 朱熹《春日》','91 王安石《书胡阴先生壁》','92 杜牧《江南春》','93 贺知章《回乡偶书》','94 孟浩然《宿建德江》','95 孟浩然《过故人庄》','96 辛弃疾《西江月》',
+         '97《伯牙鼓琴》','98 范仲淹《江上渔者》','99 于谦《石灰吟》','100 叶绍翁《游园不值》','101 郑燮《竹石》','102 王安石《泊船瓜洲》','103 杜甫《春夜喜雨》','104 汉乐府《长歌行》','105 杜甫《闻官军收河南河北》',
+         '106 韩翃《寒食》','107 古诗十九首《迢迢牵牛星》','108 王建《十五夜望月》','109 李贺《马诗》','110 诗经·小雅《采薇》（节选）','111 王观《卜算子·送鲍浩然之浙东》','112 黄庭坚《清平乐》',
+         '113 韩愈《早春呈水部张十八员外》','114 苏轼《浣溪沙》','115《学弈》','116《两小儿辩日》'];
     var prizes = new Map([
 	['1', '一等奖'],  ['2', '二等奖'],  ['3', '三等奖'],  ['4', '四等奖'],  ['5', '再来一次'],  ['6', '只差一点'],  ['7', '下次可能中'],  ['8', '谢谢惠顾']
     ]);
@@ -356,66 +356,63 @@ select{
         initrotate = rotate;
 	var rawartText = prizes.get(''+p);
         setTimeout(function () {
-		dialoginfo(rawartText);
-		$('#pointer').css("pointer-events","");
-		},2100)
+        dialoginfo(rawartText);
+        $('#pointer').css("pointer-events","");
+        },2100)
         };
 
         //点击
         var oDialog = $("#dialogbox");
         $("#pointer").click(function () {
            tasksNum = parseInt($('#randomCount').val())  / 3;
-            handlebar();
+           handlebar();
         });
 
         //dialog
         function dialoginfo(rawartText){
-		var mTwister = new MersenneTwister();
-		var poemResult = new Array();
-		// poems select
-		while(poemResult.length < tasksNum){
-			var e = Math.round(mTwister.random() * (poems.length-1))+1;
-			console.log(e)
-			var p = poems[e];
-			console.log(p)
-			if(poemResult.indexOf(p) < 0){
-			    poemResult.push(p);
-			    console.log(poemResult)
-			}
-		}
-		// task select
-		var result = new Array();
-		while(result.length < tasksNum){
-			var e = Math.round(mTwister.random() * (tasks1.size-1))+1;
-			if(result.indexOf(e) < 0){
-			    result.push(e);
-			}
-		}
-		while(result.length < 2*tasksNum){
-			var e = Math.round(mTwister.random() * (tasks2.size-1))+tasks1.size+1;
-			if(result.indexOf(e) < 0){
-			    result.push(e);
-			}
-		}
-		while(result.length < 3*tasksNum){
-			var e = Math.round(mTwister.random() * (tasks3.size-1))+tasks1.size+tasks2.size+1;
-			if(result.indexOf(e) < 0){
-			    result.push(e);
-			}
-		}
+        var mTwister = new MersenneTwister();
+        var poemResult = new Array();
+        // poems select
+        while(poemResult.length < 3){
+            var e = Math.round(mTwister.random() * (poems.length-1))+1;
+            var p = poems[e];
+            if(poemResult.indexOf(p) < 0){
+                poemResult.push(p);
+            }
+        }
+        // task select
+        var result = new Array();
+        while(result.length < tasksNum){
+            var e = Math.round(mTwister.random() * (tasks1.size-1))+1;
+            if(result.indexOf(e) < 0){
+                result.push(e);
+            }
+        }
+        while(result.length < 2*tasksNum){
+            var e = Math.round(mTwister.random() * (tasks2.size-1))+tasks1.size+1;
+            if(result.indexOf(e) < 0){
+                result.push(e);
+            }
+        }
+        while(result.length < 3*tasksNum){
+            var e = Math.round(mTwister.random() * (tasks3.size-1))+tasks1.size+tasks2.size+1;
+            if(result.indexOf(e) < 0){
+                result.push(e);
+            }
+        }
 
             $(oDialog).find(".result").addClass("active");
             $(oDialog).find("#award").text("--【"+ rawartText +"】--" + "\n");
 
-		$("#tasksTable").html('');
-		shuffle(result); // 打乱顺序
-		for(var i=0;i<result.length;i++){
-		    $("#tasksTable").append('<tr><td align="left">' + result[i] + '</td><td align="right">' + tasks.get(''+result[i]) + '</td><td></tr>');
-		}
-		shuffle(poemResult); // 打乱顺序
-		for(var i=0;i<poemResult.length;i++){
-		    $("#tasksTable").append('<tr><td align="left" rowspan="2">' + poemResult[i] + '</td></tr>');
-		}
+        $("#tasksTable").html('');
+        shuffle(result); // 打乱顺序
+        for(var i=0;i<result.length;i++){
+            $("#tasksTable").append('<tr><td align="left">' + result[i] + '</td><td align="right">' + tasks.get(''+result[i]) + '</td><td></tr>');
+        }
+        shuffle(poemResult); // 打乱顺序
+        for(var i=0;i<poemResult.length;i++){
+            $("#tasksTable").append('<tr><td align="left" rowspan="3">' + poemResult[i] + '</td></tr>');
+        }
             $(oDialog).addClass("active");
         };
 
@@ -424,11 +421,11 @@ select{
 	  let rdmIndex;
 	  // 从数组末尾开始，逐个交换元素位置
 	  while (curIndex !== 0) {
-		// 随机选取一个元素
-		rdmIndex = Math.floor(Math.random() * curIndex);
-		curIndex--;
-		// 交换元素位置
-		[array[curIndex], array[rdmIndex]] = [array[rdmIndex], array[curIndex]];
+        // 随机选取一个元素
+        rdmIndex = Math.floor(Math.random() * curIndex);
+        curIndex--;
+        // 交换元素位置
+        [array[curIndex], array[rdmIndex]] = [array[rdmIndex], array[curIndex]];
 	  }
 	  return array;
 	}
