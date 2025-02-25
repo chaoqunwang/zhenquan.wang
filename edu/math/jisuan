@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学训练营 by cq泰斯特</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: '微软雅黑', sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f5f7fa;
+        }
+
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 10px;
+            margin: 0 0 20px;
+        }
+
+        .question-group {
+            display: grid;
+            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        }
+
+        .question-btn {
+            padding: 15px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .question-btn.revealed {
+            background: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        #timer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 30px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        #timer:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .question-group {
+                grid-template-columns: 1fr;
+            }
+            
+            #timer {
+                bottom: 10px;
+                right: 10px;
+                padding: 12px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 653训练 -->
+    <div class="section">
+        <h2>653训练（三位数×三位数）</h2>
+        <div class="question-group" id="train653"></div>
+    </div>
+
+    <!-- 754训练 -->
+    <div class="section">
+        <h2>754训练（四位数×四位数）</h2>
+        <div class="question-group" id="train754"></div>
+    </div>
+
+    <!-- 小数训练 -->
+    <div class="section">
+        <h2>小数训练（一位小数×一位小数）</h2>
+        <div class="question-group" id="decimalTrain"></div>
+    </div>
+
+    <div id="timer">0:00</div>
+
+    <script>
+        // 生成小数（修正精度问题）
+        function randomDecimal() {
+            // 生成 1.0 到 9.9 的一位小数
+            const num = (Math.floor(Math.random() * 90) + 10) / 10; // 10-99 → 1.0-9.9
+            return num.toFixed(1);
+        }
+
+        // 创建题目按钮（修改初始显示）
+        function createQuestion(containerId, generator, count) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = ''; // 清空旧题目
+            
+            for(let i = 0; i < count; i++) {
+                const [a, b] = generator();
+                const btn = document.createElement('div');
+                btn.className = 'question-btn';
+                btn.innerHTML = `${a} × ${b}`; // 初始显示算式
+                
+                // 计算结果（修正小数精度）
+                let result;
+                if(typeof a === 'number' && a % 1 !== 0) {
+                    // 小数计算：转整数计算后还原
+                    const aInt = Math.round(a * 10);
+                    const bInt = Math.round(b * 10);
+                    result = (aInt * bInt) / 100;
+                } else {
+                    result = a * b;
+                }
+                
+                btn.onclick = () => {
+                    btn.classList.add('revealed');
+                    // 显示结果时处理小数位数
+                    const displayResult = Number.isInteger(result) ? 
+                        result : 
+                        result.toFixed(2);
+                    btn.innerHTML = `${a} × ${b} = ${displayResult}`;
+                };
+                container.appendChild(btn);
+            }
+        }
+
+        // 修改题目生成函数
+        function generate653() {
+            const a = randomInt(100, 999);
+            const b = randomInt(100, 999);
+            return [a, b];
+        }
+
+        function generate754() {
+            const a = randomInt(1000, 9999);
+            const b = randomInt(1000, 9999);
+            return [a, b];
+        }
+
+        function generateDecimal() {
+            const a = parseFloat(randomDecimal());
+            const b = parseFloat(randomDecimal());
+            return [a, b];
+        }
+
+        // 初始化所有题目
+        function initQuestions() {
+            createQuestion('train653', generate653, 5);
+            createQuestion('train754', generate754, 5);
+            createQuestion('decimalTrain', generateDecimal, 5);
+        }
+
+        // 计时器逻辑
+        let timer = 0;
+        let intervalId = null;
+        const timerElement = document.getElementById('timer');
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function updateTimer() {
+            timer++;
+            timerElement.textContent = formatTime(timer);
+        }
+
+        timerElement.onclick = () => {
+            if(intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+            } else {
+                intervalId = setInterval(updateTimer, 1000);
+            }
+        }
+
+        // 初始化
+        initQuestions();
+        intervalId = setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
