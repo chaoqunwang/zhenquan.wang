@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>诗词查询 - Learn Poetry</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+        }
+
+        body {
+            font-family: '微软雅黑', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .poem-content {
+            white-space: pre-wrap;
+            font-size: 1.1em;
+            line-height: 2;
+            text-align: center;
+            color: var(--primary-color);
+            padding: 20px;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .error {
+            color: #e74c3c;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .search-box {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 2px solid var(--secondary-color);
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>诗词查询系统</h1>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="输入诗词名称">
+            <button onclick="searchPoem()">立即查询</button>
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <script src="poems.js"></script>
+    <script>
+        // 页面加载时自动解析URL参数
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const poemName = urlParams.get('name');
+            if (poemName) {
+                document.getElementById('searchInput').value = poemName;
+                showPoem(poemName);
+            }
+        };
+
+        function showPoem(name) {
+            const poem = poemMap.get(name);
+            const resultDiv = document.getElementById('result');
+            
+            if (poem) {
+                resultDiv.innerHTML = `
+                    <h2>${name}</h2>
+                    <div class="poem-content">${poem}</div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        <p>未找到《${name}》，请检查输入是否正确</p>
+                        <p>支持查询的诗词：${Array.from(poemMap.keys()).join('、')}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function searchPoem() {
+            const input = document.getElementById('searchInput').value.trim();
+            if (input) {
+                window.location.href = `search.html?name=${encodeURIComponent(input)}`;
+            }
+        }
+    </script>
+</body>
+</html>
