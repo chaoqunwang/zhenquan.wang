@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>诗词查询API</title>
+    <script src="poems.js"></script>
+</head>
+<body>
+    <script>
+        // 解析URL参数
+        const params = new URLSearchParams(window.location.search)
+        const poemName = params.get('name')
+        const format = params.get('format') || 'text'
+
+        // 处理请求
+        if(poemName) {
+            const content = poemMap.get(poemName)
+            if(content) {
+                // 成功响应
+                if(format === 'json') {
+                    document.write(JSON.stringify({
+                        name: poemName,
+                        content: content,
+                        lines: content.split('\n').length
+                    }))
+                    document.close()
+                } else {
+                    document.write(`<pre>${content}</pre>`)
+                    document.close()
+                }
+            } else {
+                // 错误处理
+                if(format === 'json') {
+                    document.write(JSON.stringify({
+                        error: "Not Found",
+                        available: Array.from(poemMap.keys())
+                    }))
+                } else {
+                    document.write(`未找到《${poemName}》`)
+                }
+                document.close()
+            }
+        } else {
+            // 无参数时显示帮助
+            document.write('使用说明：/find.html?name=静夜思[&format=json]')
+            document.close()
+        }
+    </script>
+</body>
+</html>
