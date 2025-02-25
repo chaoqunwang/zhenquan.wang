@@ -148,43 +148,48 @@
             });
         }
 
-        // 显示诗词内容
-        async function showPoemContent(poemName, buttonElement) {
-            const contentArea = document.getElementById('contentArea');
-            
-            // 显示加载状态
-            contentArea.innerHTML = '<div class="loading">⏳ 正在加载诗词内容...</div>';
 
-            try {
-                const response = await fetch(`cha.html?name=${encodeURIComponent(poemName)}&format=json`);
-                if (!response.ok) throw new Error('诗词加载失败');
-                
-                const data = await response.json();
-                
-                // 创建内容元素
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'poem-content';
-                contentDiv.innerHTML = `
-                    <h2>${data.name}</h2>
-                    <div>${data.content.replace(/\n/g, '<br>')}</div>
-                `;
+    // 显示诗词内容（本地获取）
+    function showPoemContent(poemName, buttonElement) {
+        const contentArea = document.getElementById('contentArea');
+        
+        // 立即清除旧内容
+        contentArea.innerHTML = '';
 
-                // 替换加载提示
-                contentArea.innerHTML = '';
-                contentArea.appendChild(contentDiv);
+        // 获取本地数据
+        const content = poemMap.get(poemName);
+        
+        if (content) {
+            // 创建内容元素
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'poem-content';
+            contentDiv.innerHTML = `
+                <h2>${poemName}</h2>
+                <div>${content.replace(/\n/g, '<br>')}</div>
+            `;
 
-                // 添加激活样式
-                document.querySelectorAll('.poem-button').forEach(btn => btn.style.background = '#f8f9fa');
-                buttonElement.style.background = 'var(--secondary-color)';
-                buttonElement.style.color = 'white';
+            // 添加动画效果
+            contentDiv.style.animation = 'fadeIn 0.5s';
+            contentArea.appendChild(contentDiv);
 
-            } catch (error) {
-                contentArea.innerHTML = `<div class="error">❌ ${error.message}</div>`;
-            }
+            // 按钮交互反馈
+            document.querySelectorAll('.poem-button').forEach(btn => 
+                btn.style.backgroundColor = '#f8f9fa');
+            buttonElement.style.backgroundColor = getComputedStyle(document.documentElement)
+                .getPropertyValue('--secondary-color');
+            buttonElement.style.color = 'white';
+        } else {
+            // 错误处理
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error';
+            errorDiv.innerHTML = `
+                <p>❌ 未找到《${poemName}》</p>
+                <p>可用诗词：${allPoems.join('、')}</p>
+            `;
+            contentArea.appendChild(errorDiv);
         }
+    }
+</script>
 
-        // 初始加载时自动生成一次
-        generateRandomPoems();
-    </script>
 </body>
 </html>
