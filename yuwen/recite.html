@@ -191,53 +191,7 @@
             });
         }
 
-/*
-    // 显示诗词内容（本地获取）
-    function showPoemContent(poemName, buttonElement) {
-        const contentArea = document.getElementById('contentArea');
-        
-        // 立即清除旧内容
-        contentArea.innerHTML = '';
-
-        // 获取本地数据
-        const content = poemMap.get(poemName);
-        
-        if (content) {
-            // 创建内容元素
-            const contentDiv = document.createElement('div');
-            contentDiv.className = 'poem-content';
-            contentDiv.innerHTML = `
-                <h3>${poemName}</h3>
-                <div>${content.replace(/\n/g, '<br>')}</div>
-            `;
-
-            // 添加动画效果
-            contentDiv.style.animation = 'fadeIn 0.5s';
-            contentArea.appendChild(contentDiv);
-            // 修改按钮样式处理部分
-            document.querySelectorAll('.poem-button').forEach(btn => {
-                btn.style.backgroundColor = '#f8f9fa';
-                btn.style.color = getComputedStyle(document.documentElement)
-                    .getPropertyValue('--primary-color'); // 恢复原始文字颜色
-            });
-            buttonElement.style.backgroundColor = getComputedStyle(document.documentElement)
-                .getPropertyValue('--secondary-color');
-            buttonElement.style.color = 'white';
-        } else {
-            // 错误处理
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'error';
-            errorDiv.innerHTML = `
-                <p>❌ 未找到《${poemName}》</p>
-                <p>可用诗词：${allPoems.join('、')}</p>
-            `;
-            contentArea.appendChild(errorDiv);
-        }
-    }
-
-*/
-
-    // 显示诗词内容（修改后）
+    // 显示诗词内容
     function showPoemContent(poemKey, buttonElement) {
         const contentArea = document.getElementById('contentArea');
         const poemData = poemMap.get(poemKey);
@@ -251,7 +205,7 @@
             contentDiv.innerHTML = `
                 <div class="poem-meta">                    
                     <h3>${poemData.title}</h3>
-                    <span class="dynasty">${poemData.dynasty}</span><span class="author">${poemData.author}</span>
+                    <span class="author">${poemData.dynasty} · ${poemData.author}</span>
                 </div>
                 <div class="poem-text">${poemData.poem.replace(/\n/g, '<br>')}</div>
             `;
