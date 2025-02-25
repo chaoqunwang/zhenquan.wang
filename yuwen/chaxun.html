@@ -1,0 +1,30 @@
+<!-- search.html -->
+<script src="poems.js"></script>
+<script>
+// 立即执行函数
+(() => {
+    const params = new URLSearchParams(location.search)
+    const poemName = params.get('name')
+    const format = params.get('format')
+    
+    // 清空已有DOM
+    document.documentElement.innerHTML = ''
+    
+    if(poemName && poemMap.has(poemName)) {
+        const content = poemMap.get(poemName)
+        
+        // 根据格式输出
+        if(format === 'json') {
+            document.write(JSON.stringify({content}))
+            document.title = 'JSON API' // 隐藏标题
+        } else {
+            document.write(content)
+        }
+    } else {
+        document.write(poemName ? '诗词未找到' : '缺少name参数')
+    }
+    
+    // 阻止后续加载
+    document.close()
+})()
+</script>
