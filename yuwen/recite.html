@@ -58,6 +58,33 @@
             gap: 1rem;
             margin-bottom: 2rem;
         }
+        
+        /* 标题优化 */
+        .poem-content h2 {
+            font-size: 1.4em; /* 原浏览器默认2em左右 */
+            margin-bottom: 0.8em;
+        }
+
+        .poem-content {
+            white-space: pre-wrap;
+            line-height: 1.6;  /* 原2 → 1.6 */
+            font-size: 0.95em; /* 原1.1em → 0.95em */
+            color: var(--primary-color);
+            padding: 15px 0;   /* 原20px → 15px */
+            margin: 0 20px;    /* 新增边距 */
+            border-bottom: 1px solid #eee;
+            animation: fadeIn 0.5s;
+        }
+        
+        /* 移动端优化 */
+        @media (max-width: 600px) {
+            .poem-content {
+                font-size: 0.9em;
+                line-height: 1.5;
+                margin: 0 10px;
+                padding: 10px 0;
+            }
+        }
 
         .poem-button {
             padding: 12px;
@@ -65,7 +92,7 @@
             border: 2px solid var(--secondary-color);
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
         }
 
         .poem-button:hover {
@@ -75,19 +102,9 @@
 
         .content-area {
             background: white;
-            padding: 20px;
+            padding: 15px 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .poem-content {
-            white-space: pre-wrap;
-            line-height: 2;
-            font-size: 1.1em;
-            color: var(--primary-color);
-            padding: 20px 0;
-            border-bottom: 1px solid #eee;
-            animation: fadeIn 0.5s;
         }
 
         @keyframes fadeIn {
@@ -171,10 +188,12 @@
             // 添加动画效果
             contentDiv.style.animation = 'fadeIn 0.5s';
             contentArea.appendChild(contentDiv);
-
-            // 按钮交互反馈
-            document.querySelectorAll('.poem-button').forEach(btn => 
-                btn.style.backgroundColor = '#f8f9fa');
+            // 修改按钮样式处理部分
+            document.querySelectorAll('.poem-button').forEach(btn => {
+                btn.style.backgroundColor = '#f8f9fa';
+                btn.style.color = getComputedStyle(document.documentElement)
+                    .getPropertyValue('--primary-color'); // 恢复原始文字颜色
+            });
             buttonElement.style.backgroundColor = getComputedStyle(document.documentElement)
                 .getPropertyValue('--secondary-color');
             buttonElement.style.color = 'white';
