@@ -110,6 +110,39 @@
             color: var(--secondary-color);
             padding: 20px;
         }
+
+    /* 新增样式 */
+    .poem-meta {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    .dynasty {
+        display: block;
+        color: #95a5a6;
+        font-size: 0.9em;
+    }
+    
+    .author {
+        color: #7f8c8d;
+        font-size: 0.95em;
+        margin-top: 0.5rem;
+    }
+    
+    .poem-text {
+        white-space: pre-wrap;
+        line-height: 1.8;
+        font-size: 1.1em;
+        text-align: center;
+    }
+
+    /* 移动端优化 */
+    @media (max-width: 600px) {
+        .poem-text {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+    }
     </style>
 </head>
 <body>
@@ -158,7 +191,7 @@
             });
         }
 
-
+/*
     // 显示诗词内容（本地获取）
     function showPoemContent(poemName, buttonElement) {
         const contentArea = document.getElementById('contentArea');
@@ -200,6 +233,44 @@
             `;
             contentArea.appendChild(errorDiv);
         }
+    }
+
+*/
+
+    // 显示诗词内容（修改后）
+    function showPoemContent(poemKey, buttonElement) {
+        const contentArea = document.getElementById('contentArea');
+        const poemData = poemMap.get(poemKey);
+
+        // 清空旧内容
+        contentArea.innerHTML = '';
+
+        if (poemData) {
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'poem-content';
+            contentDiv.innerHTML = `
+                <div class="poem-meta">
+                    <span class="dynasty">${poemData.dynasty}</span>
+                    <h2>${poemData.title}</h2>
+                    <div class="author">${poemData.author}</div>
+                </div>
+                <div class="poem-text">${poemData.pome.replace(/\n/g, '<br>')}</div>
+            `;
+
+            contentArea.appendChild(contentDiv);
+        } else {
+            contentArea.innerHTML = `<div class="error">❌ 未找到《${poemKey}》</div>`;
+        }
+
+        // 按钮样式处理（优化后）
+        document.querySelectorAll('.poem-button').forEach(btn => {
+            btn.style.backgroundColor = '#f8f9fa';
+            btn.style.color = getComputedStyle(document.documentElement)
+                .getPropertyValue('--primary-color');
+        });
+        buttonElement.style.backgroundColor = getComputedStyle(document.documentElement)
+            .getPropertyValue('--secondary-color');
+        buttonElement.style.color = 'white';
     }
 </script>
 
