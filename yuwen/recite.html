@@ -249,10 +249,9 @@
             const contentDiv = document.createElement('div');
             contentDiv.className = 'poem-content';
             contentDiv.innerHTML = `
-                <div class="poem-meta">
-                    <span class="dynasty">${poemData.dynasty}</span>
-                    <h2>${poemData.title}</h2>
-                    <div class="author">${poemData.author}</div>
+                <div class="poem-meta">                    
+                    <h3>${poemData.title}</h3>
+                    <span class="dynasty">${poemData.dynasty}</span><span class="author">${poemData.author}</span>
                 </div>
                 <div class="poem-text">${poemData.poem.replace(/\n/g, '<br>')}</div>
             `;
