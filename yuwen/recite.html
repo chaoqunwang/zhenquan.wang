@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>诗词背诵系统 - Learn Poetry</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+        }
+
+        body {
+            font-family: '微软雅黑', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .action-bar {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        button {
+            padding: 12px 24px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .poem-buttons {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .poem-button {
+            padding: 12px;
+            background: #f8f9fa;
+            border: 2px solid var(--secondary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .poem-button:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .content-area {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .poem-content {
+            white-space: pre-wrap;
+            line-height: 2;
+            font-size: 1.1em;
+            color: var(--primary-color);
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .loading {
+            text-align: center;
+            color: var(--secondary-color);
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>诗词背诵系统</h1>
+        
+        <div class="action-bar">
+            <button onclick="generateRandomPoems()">🎲 随机抽取诗词</button>
+        </div>
+
+        <div id="poemButtons" class="poem-buttons"></div>
+        <div id="contentArea" class="content-area"></div>
+    </div>
+
+    <script src="poems.js"></script>
+    <script>
+        // 从诗词库获取所有名称
+        const allPoems = Array.from(poemMap.keys());
+
+        // 生成随机诗词按钮
+        function generateRandomPoems() {
+            const buttonsContainer = document.getElementById('poemButtons');
+            const contentArea = document.getElementById('contentArea');
+            
+            // 清空现有内容
+            buttonsContainer.innerHTML = '';
+            contentArea.innerHTML = '';
+
+            // 随机选择3首不重复的诗词
+            const selectedPoems = [];
+            while(selectedPoems.length < 3 && selectedPoems.length < allPoems.length) {
+                const randomIndex = Math.floor(Math.random() * allPoems.length);
+                const poem = allPoems[randomIndex];
+                if(!selectedPoems.includes(poem)) {
+                    selectedPoems.push(poem);
+                }
+            }
+
+            // 生成按钮
+            selectedPoems.forEach(poem => {
+                const button = document.createElement('div');
+                button.className = 'poem-button';
+                button.textContent = poem;
+                button.onclick = () => showPoemContent(poem, button);
+                buttonsContainer.appendChild(button);
+            });
+        }
+
+        // 显示诗词内容
+        async function showPoemContent(poemName, buttonElement) {
+            const contentArea = document.getElementById('contentArea');
+            
+            // 显示加载状态
+            contentArea.innerHTML = '<div class="loading">⏳ 正在加载诗词内容...</div>';
+
+            try {
+                const response = await fetch(`cha.html?name=${encodeURIComponent(poemName)}&format=json`);
+                if (!response.ok) throw new Error('诗词加载失败');
+                
+                const data = await response.json();
+                
+                // 创建内容元素
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'poem-content';
+                contentDiv.innerHTML = `
+                    <h2>${data.name}</h2>
+                    <div>${data.content.replace(/\n/g, '<br>')}</div>
+                `;
+
+                // 替换加载提示
+                contentArea.innerHTML = '';
+                contentArea.appendChild(contentDiv);
+
+                // 添加激活样式
+                document.querySelectorAll('.poem-button').forEach(btn => 
+                    btn.style.background = '#f8f9fa');
+                buttonElement.style.background = var(--secondary-color);
+                buttonElement.style.color = 'white';
+
+            } catch (error) {
+                contentArea.innerHTML = `<div class="error">❌ ${error.message}</div>`;
+            }
+        }
+
+        // 初始加载时自动生成一次
+        generateRandomPoems();
+    </script>
+</body>
+</html>
