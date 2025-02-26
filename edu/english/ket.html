@@ -3,213 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KET核心攻克</title>
+    <title>KET核心突破</title>
     <style>
         :root {
-            --primary-blue: #1e88e5;
-            --secondary-blue: #90caf9;
-            --accent-orange: #fb8c00;
-            --background: #f8fbff;
+            --primary: #2196F3;
+            --secondary: #4CAF50;
+            --accent: #FF9800;
+            --background: #F5F7FB;
+            --text: #2D3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
         }
 
-        #header {
-            text-align: center;
-            margin-bottom: 30px;
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        #definitionCard {
-            min-height: 220px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            padding: 25px;
-            margin-bottom: 25px;
-            transition: all 0.3s ease;
-            border: 2px solid var(--secondary-blue);
-        }
-
-        #wordGrid {
+        .columns {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
-            margin-bottom: 25px;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            flex-grow: 1;
+        }
+
+        @media (min-width: 768px) {
+            .columns {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            height: calc(100vh - 120px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-left: 0.75rem;
+        }
+
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 0.75rem;
+            overflow-y: auto;
+            flex-grow: 1;
+            padding: 0.5rem;
         }
 
         .word-btn {
-            padding: 14px;
-            font-size: 17px;
-            background: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 8px;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.2s ease;
-            letter-spacing: 0.5px;
+            min-height: 48px;
         }
 
         .word-btn:hover {
-            background: #1565c0;
+            opacity: 0.9;
             transform: translateY(-2px);
-            box-shadow: 0 3px 8px rgba(21,101,192,0.3);
         }
 
-        .word-btn:active {
-            transform: translateY(0);
+        .word-btn.completed {
+            background: var(--secondary);
+            opacity: 0.8;
         }
 
-        .refresh-btn {
-            display: block;
-            width: 220px;
-            margin: 0 auto;
-            padding: 12px;
-            font-size: 16px;
-            background: var(--accent-orange);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .refresh-btn:hover {
-            background: #f57c00;
-            transform: scale(1.05);
+        .definition-area {
+            padding: 1rem;
+            background: rgba(33,150,243,0.05);
+            border-radius: 8px;
+            margin-top: 1rem;
+            flex-grow: 1;
+            overflow-y: auto;
         }
 
         .part-tag {
-            display: inline-block;
-            padding: 4px 8px;
-            background: var(--secondary-blue);
-            border-radius: 4px;
-            font-size: 14px;
-            margin-right: 8px;
-            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin: 0.5rem 0;
         }
 
-        .meaning-text {
-            color: #333;
-            font-size: 16px;
-            line-height: 1.8;
-            margin: 12px 0;
+        .meaning-item {
+            margin: 1rem 0;
+            padding: 0.75rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        #statusBar {
-            text-align: center;
-            color: #666;
-            margin: 15px 0;
-            font-size: 14px;
-        }
-
-        @media (max-width: 600px) {
-            #wordGrid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .word-btn {
-                font-size: 16px;
-                padding: 12px;
-            }
+        .icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            margin-right: 0.5rem;
         }
     </style>
 </head>
 <body>
-    <header id="header">
-        <h1 style="color: var(--primary-blue); margin-bottom: 8px;">📚 KET智能单词卡</h1>
-        <p id="statusBar">今日已学习 <span id="wordCount">0</span> 个单词</p>
-    </header>
+    <div class="container">
+        <div class="columns">
+            <!-- 待学区域 -->
+            <div class="card">
+                <div class="card-header">
+                    <svg class="icon" viewBox="0 0 384 512"><path d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"/></svg>
+                    <h2 class="card-title">待学单词</h2>
+                </div>
+                <div id="todoWords" class="word-grid"></div>
+            </div>
 
-    <div id="definitionCard">
-        <div id="definitionContent" style="text-align: center; color: #666; margin-top: 40px;">
-            点击下方单词开始学习
+            <!-- 已完成区域 -->
+            <div class="card">
+                <div class="card-header">
+                    <svg class="icon" viewBox="0 0 512 512"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></svg>
+                    <h2 class="card-title">已掌握单词</h2>
+                </div>
+                <div class="definition-area" id="completedArea">
+                    <div id="definitionContent" style="text-align: center; color: #666; margin-top: 2rem;">
+                        点击左侧单词开始学习
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div id="wordGrid"></div>
-    <button onclick="refreshWords()" class="refresh-btn">🔄 换一组单词</button>
 
     <script src="ket_core_words.js"></script>
     <script>
         let learnedWords = new Set();
-        let totalClicks = 0;
-
-        // 初始化加载
-        window.onload = function() {
+        
+        // 初始化
+        window.addEventListener('DOMContentLoaded', () => {
             refreshWords();
-            setInterval(updateStatusBar, 1000);
-        };
+        });
 
-        // 更新状态栏
-        function updateStatusBar() {
-            document.getElementById('wordCount').textContent = learnedWords.size;
-        }
-
-        // 生成随机单词列表
+        // 刷新单词列表
         function refreshWords() {
-            const words = shuffleArray(Object.keys(wordMap))
-                         .filter(word => !learnedWords.has(word))
-                         .slice(0, 10);
-            renderWordButtons(words);
+            const todoWords = shuffleArray(Object.keys(wordMap))
+                .filter(word => !learnedWords.has(word))
+                .slice(0, 15);
+            
+            renderWordButtons(todoWords);
         }
 
-        // 渲染单词按钮
+        // 渲染待学单词
         function renderWordButtons(words) {
-            const container = document.getElementById('wordGrid');
+            const container = document.getElementById('todoWords');
             container.innerHTML = '';
             
             words.forEach(word => {
                 const btn = document.createElement('button');
                 btn.className = 'word-btn';
-                btn.innerHTML = word;
-                btn.onclick = () => showDefinition(word);
+                btn.innerHTML = `
+                    <svg class="icon" viewBox="0 0 384 512" style="width:16px;height:16px;">
+                        <path d="M336 0H48C21.49 0 0 21.49 0 48v464l192-112 192 112V48c0-26.51-21.49-48-48-48zm0 428.43l-144-84-144 84V54c0-3.37 2.63-6 5.96-6h276.08c3.33 0 5.96 2.63 5.96 6v374.43z"/>
+                    </svg>
+                    ${word}
+                `;
+                btn.onclick = () => learnWord(word);
                 container.appendChild(btn);
             });
         }
 
-        // 显示单词释义（带动画效果）
-        function showDefinition(word) {
-            learnedWords.add(word);
-            totalClicks++;
+        // 学习单词
+        function learnWord(word) {
+            if (learnedWords.has(word)) return;
             
+            learnedWords.add(word);
+            
+            // 添加完成状态
+            const buttons = document.querySelectorAll('.word-btn');
+            buttons.forEach(btn => {
+                if (btn.textContent.includes(word)) {
+                    btn.classList.add('completed');
+                    setTimeout(() => btn.remove(), 300);
+                }
+            });
+
+            // 显示释义
+            showDefinition(word);
+            
+            // 自动刷新单词列表
+            if (document.getElementById('todoWords').children.length <= 5) {
+                refreshWords();
+            }
+        }
+
+        // 显示单词释义
+        function showDefinition(word) {
             const entry = wordMap[word];
             const content = document.getElementById('definitionContent');
             
-            // 渐变动画
-            content.style.opacity = 0;
-            setTimeout(() => {
-                let html = `<div style="margin-bottom: 20px; font-size: 24px; color: var(--primary-blue);">
-                               ${word}
-                            </div>`;
-                
-                entry.definitions.forEach(def => {
-                    const [part, meaning] = def.split('. ', 2);
-                    html += `<div class="meaning-item">
-                                <span class="part-tag">${part}</span>
-                                <span class="meaning-text">${meaning}</span>
-                            </div>`;
-                });
-                
-                content.innerHTML = html;
-                content.style.opacity = 1;
-            }, 300);
+            let html = `
+                <div style="margin-bottom: 1.5rem;">
+                    <h3 style="color: var(--primary); font-size: 1.5rem;">${word}</h3>
+                    <div style="color: #666; margin-top: 0.5rem;">点击其他单词继续学习</div>
+                </div>
+            `;
 
-            // 按钮学习状态反馈
-            document.querySelectorAll('.word-btn').forEach(btn => {
-                if (btn.textContent === word) {
-                    btn.style.background = '#4caf50';
-                    btn.style.boxShadow = 'none';
-                    setTimeout(() => {
-                        btn.remove();
-                    }, 500);
-                }
+            entry.definitions.forEach(def => {
+                const [part, meaning] = def.split('. ', 2);
+                html += `
+                    <div class="meaning-item">
+                        <div class="part-tag">
+                            <svg class="icon" viewBox="0 0 512 512" style="width:14px;height:14px;">
+                                <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"/>
+                            </svg>
+                            ${part}
+                        </div>
+                        <div class="meaning-text">${meaning}</div>
+                    </div>
+                `;
             });
+
+            content.innerHTML = html;
+            content.scrollIntoView({ behavior: 'smooth' });
         }
 
         // 实用函数
