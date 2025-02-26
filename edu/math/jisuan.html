@@ -144,11 +144,12 @@
     <div class="section">
         <h3>四则运算</h3>
         <div class="options">
-            <label><input type="checkbox" id="brackets"> 带括号</label>
-            <label><input type="checkbox" id="decimalResult"> 结果为小数</label>
-            <label><input type="checkbox" id="negativeResult"> 结果为负数</label>
-            <button onclick="generateArithmeticQuestions()">生成题目</button>
+            <label><input type="checkbox" id="useBrackets"> 强制带括号</label>
+            <label><input type="checkbox" id="allowDecimal"> 允许小数结果</label>
+            <label><input type="checkbox" id="allowNegative"> 允许负数结果</label>
+            <button onclick="generateArithmeticQuestions()">生成新题目</button>
         </div>
+        <div class="question-group" id="arithmeticTrain"></div>
     </div>
     <div id="timer">0:00</div>
 
