@@ -2,91 +2,166 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>KET核心词汇</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KET单词学习卡</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #f0f8ff;
+        :root {
+            --primary-blue: #1e88e5;
+            --secondary-blue: #90caf9;
+            --accent-orange: #fb8c00;
+            --background: #f8fbff;
         }
 
-        #wordList {
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--background);
+        }
+
+        #header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        #definitionCard {
+            min-height: 220px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary-blue);
+        }
+
+        #wordGrid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
         }
 
         .word-btn {
-            padding: 15px;
-            font-size: 18px;
-            background-color: #4CAF50;
+            padding: 14px;
+            font-size: 17px;
+            background: var(--primary-blue);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.2s ease;
+            letter-spacing: 0.5px;
         }
 
         .word-btn:hover {
-            background-color: #45a049;
+            background: #1565c0;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(21,101,192,0.3);
         }
 
-        #definitionArea {
-            min-height: 200px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            font-size: 16px;
-            line-height: 1.6;
+        .word-btn:active {
+            transform: translateY(0);
         }
 
         .refresh-btn {
             display: block;
-            width: 200px;
-            margin: 20px auto;
-            padding: 10px;
+            width: 220px;
+            margin: 0 auto;
+            padding: 12px;
             font-size: 16px;
-            background-color: #008CBA;
+            background: var(--accent-orange);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .part {
-            color: #ff5722;
-            font-weight: bold;
+        .refresh-btn:hover {
+            background: #f57c00;
+            transform: scale(1.05);
+        }
+
+        .part-tag {
+            display: inline-block;
+            padding: 4px 8px;
+            background: var(--secondary-blue);
+            border-radius: 4px;
+            font-size: 14px;
+            margin-right: 8px;
+            font-weight: 600;
+        }
+
+        .meaning-text {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.8;
+            margin: 12px 0;
+        }
+
+        #statusBar {
+            text-align: center;
+            color: #666;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            #wordGrid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .word-btn {
+                font-size: 16px;
+                padding: 12px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1 style="text-align: center; color: #333;">KET单词记忆检测</h1>
-    <div id="wordList"></div>
-    <button onclick="refreshWords()" class="refresh-btn">换一批单词</button>
-    <div id="definitionArea"></div>
+    <header id="header">
+        <h1 style="color: var(--primary-blue); margin-bottom: 8px;">📚 KET智能单词卡</h1>
+        <p id="statusBar">今日已学习 <span id="wordCount">0</span> 个单词</p>
+    </header>
+
+    <div id="definitionCard">
+        <div id="definitionContent" style="text-align: center; color: #666; margin-top: 40px;">
+            点击下方单词开始学习
+        </div>
+    </div>
+
+    <div id="wordGrid"></div>
+    <button onclick="refreshWords()" class="refresh-btn">🔄 换一组单词</button>
 
     <script src="ket_core_words.js"></script>
     <script>
-        // 初始化加载单词
+        let learnedWords = new Set();
+        let totalClicks = 0;
+
+        // 初始化加载
         window.onload = function() {
             refreshWords();
+            setInterval(updateStatusBar, 1000);
         };
+
+        // 更新状态栏
+        function updateStatusBar() {
+            document.getElementById('wordCount').textContent = learnedWords.size;
+        }
 
         // 生成随机单词列表
         function refreshWords() {
-            const words = Object.keys(wordMap);
-            const randomWords = shuffleArray(words).slice(0, 10);
-            renderWordButtons(randomWords);
-            clearDefinition();
+            const words = shuffleArray(Object.keys(wordMap))
+                         .filter(word => !learnedWords.has(word))
+                         .slice(0, 10);
+            renderWordButtons(words);
         }
 
         // 渲染单词按钮
         function renderWordButtons(words) {
-            const container = document.getElementById('wordList');
+            const container = document.getElementById('wordGrid');
             container.innerHTML = '';
             
             words.forEach(word => {
@@ -98,30 +173,52 @@
             });
         }
 
-        // 显示单词释义
+        // 显示单词释义（带动画效果）
         function showDefinition(word) {
-            const area = document.getElementById('definitionArea');
+            learnedWords.add(word);
+            totalClicks++;
+            
             const entry = wordMap[word];
-            let html = `<h3 style="color: #2196F3;">${word}</h3>`;
+            const content = document.getElementById('definitionContent');
             
-            entry.definitions.forEach(def => {
-                const [part, meaning] = def.split('. ', 2);
-                html += `<div style="margin-bottom: 10px;">
-                            <span class="part">${part}.</span> ${meaning}
-                         </div>`;
+            // 渐变动画
+            content.style.opacity = 0;
+            setTimeout(() => {
+                let html = `<div style="margin-bottom: 20px; font-size: 24px; color: var(--primary-blue);">
+                               ${word}
+                            </div>`;
+                
+                entry.definitions.forEach(def => {
+                    const [part, meaning] = def.split('. ', 2);
+                    html += `<div class="meaning-item">
+                                <span class="part-tag">${part}</span>
+                                <span class="meaning-text">${meaning}</span>
+                            </div>`;
+                });
+                
+                content.innerHTML = html;
+                content.style.opacity = 1;
+            }, 300);
+
+            // 按钮学习状态反馈
+            document.querySelectorAll('.word-btn').forEach(btn => {
+                if (btn.textContent === word) {
+                    btn.style.background = '#4caf50';
+                    btn.style.boxShadow = 'none';
+                    setTimeout(() => {
+                        btn.remove();
+                    }, 500);
+                }
             });
-            
-            area.innerHTML = html;
         }
 
-        // 清空释义区域
-        function clearDefinition() {
-            document.getElementById('definitionArea').innerHTML = '';
-        }
-
-        // 数组随机排序
+        // 实用函数
         function shuffleArray(array) {
-            return array.sort(() => Math.random() - 0.5);
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
         }
     </script>
 </body>
