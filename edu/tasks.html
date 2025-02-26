@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全能学习打卡</title>
+    <title>智能学习打卡系统</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -106,6 +106,12 @@
             color: white;
         }
 
+        .task-duration {
+            font-size: 0.9em;
+            color: #86868B;
+            margin-top: 0.3rem;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 1rem;
@@ -122,18 +128,41 @@
         <!-- 运动打卡 -->
         <div class="category-card">
             <div class="category-header">
-                <div class="category-icon">
-                    <i class="fas fa-dumbbell fa-lg" style="color: white;"></i>
+                <div class="category-icon" style="background: linear-gradient(135deg, #FF3B30, #FF9500);">
+                    <i class="fas fa-running fa-lg" style="color: white;"></i>
                 </div>
-                <h2>运动打卡</h2>
+                <h2>运动健康</h2>
             </div>
-            <div class="task-progress"><div class="progress-bar" style="width: 45%"></div></div>
+            <div class="task-progress"><div class="progress-bar" style="width: 30%"></div></div>
             <ul class="task-list">
                 <li class="task-item">
-                    <span>单杠训练</span>
+                    <div>
+                        <div>单杠悬垂训练</div>
+                        <div class="task-duration">目标：3组×30秒</div>
+                    </div>
                     <div class="check-button"><i class="fas fa-check"></i></div>
                 </li>
-                <!-- 其他运动项目... -->
+                <li class="task-item">
+                    <div>
+                        <div>仰卧起坐挑战</div>
+                        <div class="task-duration">每日50个标准动作</div>
+                    </div>
+                    <div class="check-button active"><i class="fas fa-check"></i></div>
+                </li>
+                <li class="task-item">
+                    <div>
+                        <div>跳绳训练</div>
+                        <div class="task-duration">连续200次不间断</div>
+                    </div>
+                    <div class="check-button"><i class="fas fa-check"></i></div>
+                </li>
+                <li class="task-item">
+                    <div>
+                        <div>核心肌群训练</div>
+                        <div class="task-duration">平板支撑2分钟</div>
+                    </div>
+                    <div class="check-button"><i class="fas fa-check"></i></div>
+                </li>
             </ul>
         </div>
 
@@ -143,15 +172,38 @@
                 <div class="category-icon" style="background: linear-gradient(135deg, #FF9500, #FF2D55);">
                     <i class="fas fa-book-open fa-lg" style="color: white;"></i>
                 </div>
-                <h2>语文打卡</h2>
+                <h2>语文素养</h2>
             </div>
             <div class="task-progress"><div class="progress-bar" style="width: 65%"></div></div>
             <ul class="task-list">
                 <li class="task-item">
-                    <span>字词听写</span>
+                    <div>
+                        <div>生字听写训练</div>
+                        <div class="task-duration">每日20个生字</div>
+                    </div>
                     <div class="check-button active"><i class="fas fa-check"></i></div>
                 </li>
-                <!-- 其他语文项目... -->
+                <li class="task-item">
+                    <div>
+                        <div>经典诗词背诵</div>
+                        <div class="task-duration">《唐诗三百首》选篇</div>
+                    </div>
+                    <div class="check-button"><i class="fas fa-check"></i></div>
+                </li>
+                <li class="task-item">
+                    <div>
+                        <div>阅读理解训练</div>
+                        <div class="task-duration">2篇现代文精读</div>
+                    </div>
+                    <div class="check-button active"><i class="fas fa-check"></i></div>
+                </li>
+                <li class="task-item">
+                    <div>
+                        <div>作文素材积累</div>
+                        <div class="task-duration">每日500字摘抄</div>
+                    </div>
+                    <div class="check-button"><i class="fas fa-check"></i></div>
+                </li>
             </ul>
         </div>
 
@@ -161,9 +213,39 @@
                 <div class="category-icon" style="background: linear-gradient(135deg, #5856D6, #AF52DE);">
                     <i class="fas fa-calculator fa-lg" style="color: white;"></i>
                 </div>
-                <h2>数学打卡</h2>
+                <h2>数学思维</h2>
             </div>
-            <!-- 数学内容... -->
+            <div class="task-progress"><div class="progress-bar" style="width: 45%"></div></div>
+            <ul class="task-list">
+                <li class="task-item">
+                    <div>
+                        <div>口算闪电战</div>
+                        <div class="task-duration">100道速算题</div>
+                    </div>
+                    <div class="check-button"><i class="fas fa-check"></i></div>
+                </li>
+                <li class="task-item">
+                    <div>
+                        <div>竖式计算特训</div>
+                        <div class="task-duration">四则混合运算20题</div>
+                    </div>
+                    <div class="check-button active"><i class="fas fa-check"></i></div>
+                </li>
+                <li class="task-item">
+                    <div>
+                        <div>新加坡数学</div>
+                        <div class="task-duration">建模思维训练</div>
+                    </div>
+                    <div class="check-button"><i class="fas fa-check"></i></div>
+                </li>
+                <li class="task-item">
+                    <div>
+                        <div>奥数挑战题</div>
+                        <div class="task-duration">每日1道思维题</div>
+                    </div>
+                    <div class="check-button"><i class="fas fa-check"></i></div>
+                </li>
+            </ul>
         </div>
 
         <!-- 英语打卡 -->
@@ -172,9 +254,39 @@
                 <div class="category-icon" style="background: linear-gradient(135deg, #34C759, #00C7BE);">
                     <i class="fas fa-language fa-lg" style="color: white;"></i>
                 </div>
-                <h2>英语打卡</h2>
+                <h2>英语提升</h2>
             </div>
-            <!-- 英语内容... -->
+            <div class="task-progress"><div class="progress-bar" style="width: 70%"></div></div>
+            <ul class="task-list">
+                <li class="task-item">
+                    <div>
+                        <div>KET核心词汇</div>
+                        <div class="task-duration">每日20个单词</div>
+                    </div>
+                    <div class="check-button active"><i class="fas fa-check"></i></div>
+                </li>
+                <li class="task-item">
+                    <div>
+                        <div>语法突破训练</div>
+                        <div class="task-duration">时态专项练习</div>
+                    </div>
+                    <div class="check-button active"><i class="fas fa-check"></i></div>
+                </li>
+                <li class="task-item">
+                    <div>
+                        <div>原版阅读计划</div>
+                        <div class="task-duration">每日15分钟阅读</div>
+                    </div>
+                    <div class="check-button"><i class="fas fa-check"></i></div>
+                </li>
+                <li class="task-item">
+                    <div>
+                        <div>听力精练</div>
+                        <div class="task-duration">BBC 6分钟英语</div>
+                    </div>
+                    <div class="check-button active"><i class="fas fa-check"></i></div>
+                </li>
+            </ul>
         </div>
 
         <!-- 科学打卡 -->
@@ -185,7 +297,37 @@
                 </div>
                 <h2>科学探索</h2>
             </div>
-            <!-- 科学内容... -->
+            <div class="task-progress"><div class="progress-bar" style="width: 55%"></div></div>
+            <ul class="task-list">
+                <li class="task-item">
+                    <div>
+                        <div>物理实验日志</div>
+                        <div class="task-duration">完成1个家庭实验</div>
+                    </div>
+                    <div class="check-button"><i class="fas fa-check"></i></div>
+                </li>
+                <li class="task-item">
+                    <div>
+                        <div>化学方程式</div>
+                        <div class="task-duration">记忆5个新方程式</div>
+                    </div>
+                    <div class="check-button active"><i class="fas fa-check"></i></div>
+                </li>
+                <li class="task-item">
+                    <div>
+                        <div>生物观察报告</div>
+                        <div class="task-duration">植物生长记录</div>
+                    </div>
+                    <div class="check-button"><i class="fas fa-check"></i></div>
+                </li>
+                <li class="task-item">
+                    <div>
+                        <div>地理知识图谱</div>
+                        <div class="task-duration">绘制气候分布图</div>
+                    </div>
+                    <div class="check-button active"><i class="fas fa-check"></i></div>
+                </li>
+            </ul>
         </div>
     </div>
 
