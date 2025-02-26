@@ -40,22 +40,43 @@
         max-width: 1200px;
     }
 
-    .logo {
-        width: 72px;
-        height: 72px;
-        border-radius: 18px;
-        background: linear-gradient(145deg, rgba(0,122,255,0.1) 0%, rgba(52,199,89,0.08) 100%);
-        padding: 10px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        flex-shrink: 0;
-    }
 
-    .logo img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-    }
+/* 修改logo容器为圆形 */
+.logo {
+    width: 80px;  /* 增加尺寸 */
+    height: 80px;
+    border-radius: 50%;  /* 改为圆形 */
+    overflow: hidden;  /* 确保图片不溢出 */
+    padding: 0;  /* 移除内边距 */
+    box-shadow: 0 6px 18px rgba(0,122,255,0.2);  /* 增强阴影 */
+    position: relative; /* 为伪元素定位准备 */
+}
+
+/* 添加环形渐变边框 */
+.logo::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(145deg, #007AFF 0%, #34C759 100%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.15);  /* 放大15% */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 悬停动效增强 */
+.logo:hover img {
+    transform: scale(1.18);
+}
 
     .header-title span {
         font-size: 2.4rem;
@@ -149,9 +170,8 @@
         }
 
         .logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
+            width: 68px;
+            height: 68px;
         }
 
         .header-title span {
@@ -176,10 +196,8 @@
         }
 
         .logo {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            padding: 8px;
+            width: 60px;
+            height: 60px;
         }
 
         .header-title span {
