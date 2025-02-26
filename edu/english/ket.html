@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>KET核心词汇</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f0f8ff;
+        }
+
+        #wordList {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .word-btn {
+            padding: 15px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .word-btn:hover {
+            background-color: #45a049;
+        }
+
+        #definitionArea {
+            min-height: 200px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .refresh-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .part {
+            color: #ff5722;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; color: #333;">KET单词记忆检测</h1>
+    <div id="wordList"></div>
+    <button onclick="refreshWords()" class="refresh-btn">换一批单词</button>
+    <div id="definitionArea"></div>
+
+    <script src="ket_core_words.js"></script>
+    <script>
+        // 初始化加载单词
+        window.onload = function() {
+            refreshWords();
+        };
+
+        // 生成随机单词列表
+        function refreshWords() {
+            const words = Object.keys(wordMap);
+            const randomWords = shuffleArray(words).slice(0, 10);
+            renderWordButtons(randomWords);
+            clearDefinition();
+        }
+
+        // 渲染单词按钮
+        function renderWordButtons(words) {
+            const container = document.getElementById('wordList');
+            container.innerHTML = '';
+            
+            words.forEach(word => {
+                const btn = document.createElement('button');
+                btn.className = 'word-btn';
+                btn.innerHTML = word;
+                btn.onclick = () => showDefinition(word);
+                container.appendChild(btn);
+            });
+        }
+
+        // 显示单词释义
+        function showDefinition(word) {
+            const area = document.getElementById('definitionArea');
+            const entry = wordMap[word];
+            let html = `<h3 style="color: #2196F3;">${word}</h3>`;
+            
+            entry.definitions.forEach(def => {
+                const [part, meaning] = def.split('. ', 2);
+                html += `<div style="margin-bottom: 10px;">
+                            <span class="part">${part}.</span> ${meaning}
+                         </div>`;
+            });
+            
+            area.innerHTML = html;
+        }
+
+        // 清空释义区域
+        function clearDefinition() {
+            document.getElementById('definitionArea').innerHTML = '';
+        }
+
+        // 数组随机排序
+        function shuffleArray(array) {
+            return array.sort(() => Math.random() - 0.5);
+        }
+    </script>
+</body>
+</html>
