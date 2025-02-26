@@ -3,107 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>诗词背诵系统 by cq泰斯特</title>
-<style>
-/* 统一颜色变量 */
-:root {
-    --primary: #007AFF;
-    --secondary: #34C759;
-    --bg: #F5F5F7;
-    --text-primary: #1D1D1F;
-    --border: rgba(0,0,0,0.04);
-}
+    <title>诗词背诵系统 - 真全学习乐园</title>
+    <style>
+        :root {
+            --primary: #007AFF;
+            --secondary: #34C759;
+            --bg: #F5F5F7;
+            --text-primary: #1D1D1F;
+            --border: rgba(0,0,0,0.04);
+        }
 
-/* 容器与门户页面统一 */
-.container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    background: white;
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            margin: 0;
+        }
 
-/* 标题样式统一 */
-h1 {
-    font-size: 2rem;
-    color: var(--text-primary);
-    text-align: center;
-    margin-bottom: 2rem;
-    border-bottom: 2px solid var(--primary);
-    padding-bottom: 1rem;
-}
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        }
 
-/* 按钮样式升级 */
-button {
-    background: var(--primary);
-    border-radius: 12px;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
+        h1 {
+            font-size: 2rem;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary);
+        }
 
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,122,255,0.2);
-}
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
-/* 诗词按钮网格布局 */
-.poem-buttons {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.2rem;
-}
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,122,255,0.2);
+        }
 
-.poem-button {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 1.2rem;
-    transition: all 0.2s;
-}
+        .poem-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
 
-/* 诗词内容展示优化 */
-.poem-meta {
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background: var(--bg);
-    border-radius: 12px;
-}
+        .poem-button {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
 
-.poem-text {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    padding: 1.5rem;
-    background: var(--bg);
-    border-radius: 12px;
-}
+        .poem-button:hover {
+            background: rgba(0,122,255,0.05);
+        }
 
-/* 移动端优化 */
-@media (max-width: 768px) {
-    .container {
-        margin: 1rem;
-        padding: 1.5rem;
-    }
-    
-    .poem-buttons {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
+        .content-area {
+            background: var(--bg);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-top: 1.5rem;
+        }
 
+        .poem-meta {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .poem-meta h3 {
+            color: var(--text-primary);
+            margin: 0 0 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .author {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .poem-text {
+            white-space: pre-wrap;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .poem-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>诗词背诵系统</h1>
-        
-        <div class="action-bar">
+        <div style="text-align: center;">
             <button onclick="generateRandomPoems()">🎲 随机抽取诗词</button>
         </div>
-
-        <div id="poemButtons" class="poem-buttons"></div>
-        <div id="contentArea" class="content-area"></div>
+        <div class="poem-buttons" id="poemButtons"></div>
+        <div class="content-area" id="contentArea"></div>
     </div>
-
+    <!-- 保持原有script内容不变 -->
     <script src="data.js"></script>
     <script>
         // 从诗词库获取所有名称
