@@ -3,116 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>超群智慧学习乐园</title>
+    <title>智慧学习乐园 by wangchaoqun.com</title>
     <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #7c3aed;
-            --secondary: #10b981;
-            --accent: #f59e0b;
+            --primary: #007AFF;
+            --secondary: #34C759;
+            --accent: #FF9500;
+            --bg: #F5F5F7;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Comic Sans MS', '微软雅黑', cursive;
-            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdfa 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
             min-height: 100vh;
+            color: #1D1D1F;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 2rem 1rem;
         }
 
         header {
             text-align: center;
-            padding: 40px 0;
-            animation: float 3s ease-in-out infinite;
+            padding: 4rem 0;
+            margin-bottom: 2rem;
         }
 
         .logo {
-            width: 120px;
-            height: 120px;
-            background: url('data:image/svg+xml,<svg viewBox="0 0 24 24" fill="%237c3aed"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>') no-repeat center;
-            margin: 0 auto 20px;
+            width: 88px;
+            height: 88px;
+            background: var(--primary);
+            margin: 0 auto 1.5rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,122,255,0.15);
+        }
+
+        .logo i {
+            color: white;
+            font-size: 2.2rem;
         }
 
         h1 {
-            color: var(--primary);
-            font-size: 2.5em;
-            text-shadow: 2px 2px 0px rgba(255,255,255,0.8);
+            font-weight: 700;
+            font-size: 2.4rem;
+            color: #1D1D1F;
+            letter-spacing: -0.5px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 0;
         }
 
         .card {
-            background: rgba(255,255,255,0.95);
-            border-radius: 20px;
-            padding: 25px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-            border: 2px solid transparent;
+            background: #FFFFFF;
+            border-radius: 18px;
+            padding: 2rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-decoration: none !important;
+            border: 1px solid rgba(0,0,0,0.04);
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.2);
-            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
         }
 
-        .card i {
-            font-size: 2.5em;
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: rgba(0,122,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon i {
             color: var(--primary);
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 1.6rem;
         }
 
         .card h2 {
-            color: var(--primary);
-            margin-bottom: 12px;
-            font-size: 1.5em;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #1D1D1F;
         }
 
         .card p {
-            color: #666;
+            color: #86868B;
             line-height: 1.6;
-            font-size: 0.95em;
+            font-size: 1rem;
+            font-weight: 400;
         }
 
         footer {
             text-align: center;
-            padding: 30px;
-            color: var(--primary);
-            font-size: 0.9em;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            padding: 3rem 0 2rem;
+            color: #86868B;
+            font-size: 0.9rem;
         }
 
         @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr;
+            .container {
+                padding: 1rem;
             }
-            
+
+            header {
+                padding: 2rem 0;
+            }
+
             h1 {
-                font-size: 2em;
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -120,39 +143,49 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo"></div>
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
             <h1>超群智慧学习乐园</h1>
         </header>
 
         <div class="grid">
             <a href="edu/chinese/poems.html" class="card">
-                <i class="fas fa-book-open"></i>
+                <div class="card-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
                 <h2>诗词大闯关</h2>
-                <p>穿越时空与诗人对话，解锁经典诗词宝藏！每日随机推荐三首经典诗词，点击即可开启背诵挑战。</p>
+                <p>精选经典诗词库，每日智能推荐背诵内容，支持语音评测和AR诗人互动。</p>
             </a>
 
             <a href="edu/math/jisuan.html" class="card">
-                <i class="fas fa-calculator"></i>
+                <div class="card-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
                 <h2>数学训练营</h2>
-                <p>包含四则运算、快速心算等六大训练模块，智能生成个性化题目，附带即时反馈和积分系统。</p>
+                <p>自适应难度数学题库，实时反馈解题过程，可视化数据分析学习进度。</p>
             </a>
 
-            <a href="edu/science/test.html" class="card">
-                <i class="fas fa-flask"></i>
+            <a href="science.html" class="card">
+                <div class="card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
                 <h2>科学实验室</h2>
-                <p>300+趣味科学实验，涵盖物理、化学、生物等领域，通过虚拟实验培养科学思维。</p>
+                <p>3D虚拟实验场景，安全探索物理化学反应，配套原理动画讲解。</p>
             </a>
 
-            <a href="edu/battle/test.html" class="card">
-                <i class="fas fa-gamepad"></i>
+            <a href="games.html" class="card">
+                <div class="card-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
                 <h2>知识竞技场</h2>
-                <p>将学习变成闯关游戏！与全国小伙伴实时PK，涵盖语数外等学科知识竞赛。</p>
+                <p>实时多人对战模式，覆盖全学科知识点，成就系统和勋章奖励。</p>
             </a>
         </div>
     </div>
 
     <footer>
-        <p>©超群智慧学习乐园 | 让学习像游戏一样有趣！</p>
+        <p>© wangchaoqun.com. 探索无界，学无止境。</p>
     </footer>
 </body>
 </html>
