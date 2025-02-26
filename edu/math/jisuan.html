@@ -111,7 +111,10 @@
         <h3>一位小数乘法</h3>
         <div class="question-group" id="decimalTrain"></div>
     </div>
-
+    <div class="section">
+        <h3>四则运算</h3>
+        <div class="question-group" id="arithmeticTrain"></div>
+    </div>
     <div id="timer">0:00</div>
 
     <script>
@@ -179,12 +182,79 @@
             const b = parseFloat(randomDecimal());
             return [a, b];
         }
+        // 四则运算
+        function generateArithmetic() {
+            const ops = ['+', '-', '×', '÷'];
+            const generateNumber = () => randomInt(10, 99);
+            
+            // 生成两种基本结构：(a op b) op c 或 a op (b op c)
+            if(Math.random() < 0.5) {
+                const a = generateNumber();
+                const b = generateNumber();
+                const c = generateNumber();
+                const op1 = ops[randomInt(0, 3)];
+                const op2 = ops[randomInt(0, 3)];
+                return [`(${a} ${op1} ${b}) ${op2} ${c}`, [a, b, c, op1, op2]];
+            } else {
+                const a = generateNumber();
+                const b = generateNumber();
+                const c = generateNumber();
+                const op1 = ops[randomInt(0, 3)];
+                const op2 = ops[randomInt(0, 3)];
+                return [`${a} ${op1} (${b} ${op2} ${c})`, [a, b, c, op1, op2]];
+            }
+        }
+        // 四则运算处理函数
+        function createArithmeticQuestion(containerId, count) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            for(let i = 0; i < count; i++) {
+                let expr, nums, valid = false;
+                
+                // 确保生成有效题目
+                while(!valid) {
+                    [expr, nums] = generateArithmetic();
+                    const [a, b, c, op1, op2] = nums;
+                    
+                    try {
+                        // 替换运算符为JS可识别的
+                        const calcExpr = expr
+                            .replace(/×/g, '*')
+                            .replace(/÷/g, '/');
+                        
+                        const result = eval(calcExpr);
+                        
+                        // 验证结果有效性
+                        if(Number.isInteger(result) && result > 0) {
+                            valid = true;
+                        }
+                    } catch(e) {
+                        // 无效表达式重新生成
+                    }
+                }
+                
+                const btn = document.createElement('div');
+                btn.className = 'question-btn';
+                btn.innerHTML = expr;
+                btn.onclick = () => {
+                    btn.classList.add('revealed');
+                    const calcExpr = expr
+                        .replace(/×/g, '×')
+                        .replace(/÷/g, '÷');
+                    const result = eval(expr.replace(/×/g, '*').replace(/÷/g, '/'));
+                    btn.innerHTML = `${calcExpr} = ${result}`;
+                };
+                container.appendChild(btn);
+            }
+        }
 
         // 初始化所有题目
         function initQuestions() {
             createQuestion('train653', generate653, 3);
             createQuestion('train754', generate754, 3);
             createQuestion('decimalTrain', generateDecimal, 3);
+            createArithmeticQuestion('arithmeticTrain', 3);
         }
 
         // 计时器逻辑
