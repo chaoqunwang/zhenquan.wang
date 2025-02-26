@@ -4,146 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>诗词背诵系统 by cq泰斯特</title>
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-        }
+<style>
+/* 统一颜色变量 */
+:root {
+    --primary: #007AFF;
+    --secondary: #34C759;
+    --bg: #F5F5F7;
+    --text-primary: #1D1D1F;
+    --border: rgba(0,0,0,0.04);
+}
 
-        body {
-            font-family: '微软雅黑', sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f7fa;
-        }
+/* 容器与门户页面统一 */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
 
-        .container {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+/* 标题样式统一 */
+h1 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 1rem;
+}
 
-        h1 {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 2rem;
-        }
+/* 按钮样式升级 */
+button {
+    background: var(--primary);
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
 
-        .action-bar {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,122,255,0.2);
+}
 
-        button {
-            padding: 12px 24px;
-            background: var(--secondary-color);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
+/* 诗词按钮网格布局 */
+.poem-buttons {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+}
 
-        button:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
+.poem-button {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.2rem;
+    transition: all 0.2s;
+}
 
-        .poem-buttons {
-            display: grid;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
+/* 诗词内容展示优化 */
+.poem-meta {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--bg);
+    border-radius: 12px;
+}
 
-        .poem-content {
-            line-height: 1;
-            font-size: 0.95em;
-            color: var(--primary-color);
-            padding: 6px 0;
-            margin: 0 6px;
-            border-bottom: 1px solid #eee;
-            animation: fadeIn 0.5s;
-        }
-        
-        /* 移动端优化 */
-        @media (max-width: 600px) {
-            .poem-content {
-                font-size: 0.9em;
-                line-height: 1;
-                margin: 0 6px;
-                padding: 6px 0;
-            }
-        }
+.poem-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    padding: 1.5rem;
+    background: var(--bg);
+    border-radius: 12px;
+}
 
-        .poem-button {
-            padding: 12px;
-            background: #f8f9fa;
-            border: 2px solid var(--secondary-color);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .poem-button:hover {
-            background: var(--secondary-color);
-            color: white;
-        }
-
-        .content-area {
-            background: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .loading {
-            text-align: center;
-            color: var(--secondary-color);
-            padding: 20px;
-        }
-
-    /* 新增样式 */
-    .poem-meta {
-        text-align: center;
-        margin-bottom: 1.5rem;
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .container {
+        margin: 1rem;
+        padding: 1.5rem;
     }
     
-    .dynasty {
-        display: block;
-        color: #95a5a6;
-        font-size: 0.9em;
+    .poem-buttons {
+        grid-template-columns: 1fr;
     }
-    
-    .author {
-        color: #7f8c8d;
-        font-size: 0.95em;
-        margin-top: 0.5rem;
-    }
-    
-    .poem-text {
-        white-space: pre-wrap;
-        line-height: 1.8;
-        font-size: 1.1em;
-        text-align: center;
-    }
+}
+</style>
 
-    /* 移动端优化 */
-    @media (max-width: 600px) {
-        .poem-text {
-            font-size: 1em;
-            line-height: 1.6;
-        }
-    }
-    </style>
 </head>
 <body>
     <div class="container">
