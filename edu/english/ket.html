@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KET核心突破</title>
+    <title>KET单词学习系统</title>
     <style>
         :root {
             --primary: #2196F3;
@@ -35,6 +35,14 @@
             margin: 0 auto;
         }
 
+        .definition-top {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
         .columns {
             display: grid;
             grid-template-columns: 1fr;
@@ -53,7 +61,7 @@
             border-radius: 12px;
             padding: 1.5rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            height: calc(100vh - 120px);
+            height: calc(100vh - 280px);
             display: flex;
             flex-direction: column;
         }
@@ -61,7 +69,7 @@
         .card-header {
             display: flex;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .card-title {
@@ -104,15 +112,6 @@
             opacity: 0.8;
         }
 
-        .definition-area {
-            padding: 1rem;
-            background: rgba(33,150,243,0.05);
-            border-radius: 8px;
-            margin-top: 1rem;
-            flex-grow: 1;
-            overflow-y: auto;
-        }
-
         .part-tag {
             display: inline-flex;
             align-items: center;
@@ -127,9 +126,8 @@
         .meaning-item {
             margin: 1rem 0;
             padding: 0.75rem;
-            background: white;
+            background: rgba(33,150,243,0.05);
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         .icon {
@@ -138,15 +136,32 @@
             fill: currentColor;
             margin-right: 0.5rem;
         }
+
+        .initial-prompt {
+            text-align: center;
+            color: #666;
+            padding: 2rem;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- 顶部释义区域 -->
+        <div class="definition-top">
+            <div id="definitionContent" class="initial-prompt">
+                点击下方单词开始学习
+            </div>
+            <div id="dynamicContent"></div>
+        </div>
+
+        <!-- 底部双栏 -->
         <div class="columns">
             <!-- 待学区域 -->
             <div class="card">
                 <div class="card-header">
-                    <svg class="icon" viewBox="0 0 384 512"><path d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"/></svg>
+                    <svg class="icon" viewBox="0 0 384 512">
+                        <path d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"/>
+                    </svg>
                     <h2 class="card-title">待学单词</h2>
                 </div>
                 <div id="todoWords" class="word-grid"></div>
@@ -155,14 +170,12 @@
             <!-- 已完成区域 -->
             <div class="card">
                 <div class="card-header">
-                    <svg class="icon" viewBox="0 0 512 512"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></svg>
+                    <svg class="icon" viewBox="0 0 512 512">
+                        <path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/>
+                    </svg>
                     <h2 class="card-title">已掌握单词</h2>
                 </div>
-                <div class="definition-area" id="completedArea">
-                    <div id="definitionContent" style="text-align: center; color: #666; margin-top: 2rem;">
-                        点击左侧单词开始学习
-                    </div>
-                </div>
+                <div id="completedWords" class="word-grid"></div>
             </div>
         </div>
     </div>
@@ -183,6 +196,7 @@
                 .slice(0, 15);
             
             renderWordButtons(todoWords);
+            updateCompletedList();
         }
 
         // 渲染待学单词
@@ -204,39 +218,50 @@
             });
         }
 
+        // 更新已掌握列表
+        function updateCompletedList() {
+            const container = document.getElementById('completedWords');
+            container.innerHTML = '';
+            
+            Array.from(learnedWords).forEach(word => {
+                const div = document.createElement('div');
+                div.className = 'word-btn completed';
+                div.innerHTML = `
+                    <svg class="icon" viewBox="0 0 512 512" style="width:16px;height:16px;">
+                        <path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/>
+                    </svg>
+                    ${word}
+                `;
+                container.appendChild(div);
+            });
+        }
+
         // 学习单词
         function learnWord(word) {
             if (learnedWords.has(word)) return;
             
             learnedWords.add(word);
-            
-            // 添加完成状态
-            const buttons = document.querySelectorAll('.word-btn');
-            buttons.forEach(btn => {
-                if (btn.textContent.includes(word)) {
-                    btn.classList.add('completed');
-                    setTimeout(() => btn.remove(), 300);
-                }
-            });
-
-            // 显示释义
             showDefinition(word);
-            
-            // 自动刷新单词列表
-            if (document.getElementById('todoWords').children.length <= 5) {
-                refreshWords();
-            }
+            refreshWords();
         }
 
         // 显示单词释义
         function showDefinition(word) {
             const entry = wordMap[word];
             const content = document.getElementById('definitionContent');
+            const dynamic = document.getElementById('dynamicContent');
             
+            content.style.display = 'none';
+            dynamic.innerHTML = '';
+
             let html = `
                 <div style="margin-bottom: 1.5rem;">
-                    <h3 style="color: var(--primary); font-size: 1.5rem;">${word}</h3>
-                    <div style="color: #666; margin-top: 0.5rem;">点击其他单词继续学习</div>
+                    <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 1rem;">
+                        <svg class="icon" viewBox="0 0 384 512" style="width:24px;height:24px;">
+                            <path d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm144 418c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V118c0-3.3 2.7-6 6-6h42v36c0 6.6 5.4 12 12 12h168c6.6 0 12-5.4 12-12v-36h42c3.3 0 6 2.7 6 6v340z"/>
+                        </svg>
+                        ${word}
+                    </h3>
                 </div>
             `;
 
@@ -255,8 +280,8 @@
                 `;
             });
 
-            content.innerHTML = html;
-            content.scrollIntoView({ behavior: 'smooth' });
+            dynamic.innerHTML = html;
+            dynamic.scrollIntoView({ behavior: 'smooth' });
         }
 
         // 实用函数
