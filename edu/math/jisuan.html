@@ -6,123 +6,125 @@
     <title>数学训练营 - 真全学习乐园</title>
     <style>
         :root {
-            --primary: #007AFF;
-            --secondary: #34C759;
-            --bg: #F5F5F7;
-            --text-primary: #1D1D1F;
-            --border: rgba(0,0,0,0.04);
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: var(--bg);
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            font-family: '微软雅黑', sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f5f7fa;
         }
 
         .section {
             background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        h2 {
-            color: var(--text-primary);
-            font-size: 1.6rem;
-            margin: 0 0 2rem;
-            padding-left: 1rem;
-            border-left: 4px solid var(--primary);
+        h3 {
+            color: var(--primary-color);
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 10px;
+            margin: 0 0 20px;
         }
 
         .question-group {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         }
 
         .question-btn {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.2rem;
+            padding: 15px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s;
+            font-size: 16px;
             text-align: center;
-            font-size: 1.1rem;
-        }
-
-        .question-btn:hover {
-            background: rgba(0,122,255,0.05);
         }
 
         .question-btn.revealed {
-            background: var(--primary);
+            background: var(--secondary-color);
             color: white;
-        }
-
-        .options {
-            background: var(--bg);
-            border-radius: 14px;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .options label {
-            background: white;
-            border-radius: 8px;
-            padding: 0.8rem 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            border-color: var(--secondary-color);
         }
 
         #timer {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--primary);
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 30px;
+            background: var(--primary-color);
             color: white;
-            padding: 1rem 2rem;
             border-radius: 30px;
-            box-shadow: 0 6px 18px rgba(0,122,255,0.2);
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        #timer:hover {
+            transform: scale(1.05);
         }
 
         @media (max-width: 768px) {
-            .container {
-                margin: 1rem;
-            }
-            
-            .section {
-                padding: 1.5rem;
-            }
-            
             .question-group {
                 grid-template-columns: 1fr;
             }
             
             #timer {
-                bottom: 1rem;
-                right: 1rem;
-                padding: 0.8rem 1.5rem;
+                bottom: 10px;
+                right: 10px;
+                padding: 12px 24px;
             }
+        }
+        .options {
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            align-items: center;
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            background: #f5f7fa;
+            border-radius: 4px;
+        }
+
+        .options button {
+            padding: 8px 16px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .options button:hover {
+            background: #2980b9;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <span style="text-align: center;">
         <h2>每天10分钟，计算更轻松</h2>
+    </span>
 
     <!-- 754训练 -->
     <div class="section">
@@ -150,7 +152,7 @@
         <div class="question-group" id="arithmeticTrain"></div>
     </div>
     <div id="timer">0:00</div>
-</div>
+
     <script>
         // 生成随机数函数
         function randomInt(min, max) {
