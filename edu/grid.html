@@ -144,6 +144,82 @@
         @keyframes pop {
             50% { transform: scale(1.1); }
         }
+        /* 新增模态框样式 */
+        .result-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            transform: scale(0.9);
+            animation: modalIn 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.3) forwards;
+        }
+        
+        .modal-body {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .modal-body p {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            color: #86868B;
+        }
+        
+        .modal-actions {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .modal-btn {
+            padding: 0.8rem;
+            border: none;
+            border-radius: 12px;
+            background: var(--background);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .modal-btn.primary {
+            background: linear-gradient(145deg, #007AFF, #0040FF);
+            color: white;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes modalIn {
+            to { transform: scale(1); }
+        }
+        
+        @media (max-width: 480px) {
+            .modal-content {
+                padding: 1.5rem;
+            }
+            
+            .modal-body p {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -226,7 +302,8 @@
                 if (currentNumber > gridSize * gridSize) {
                     stopTimer();
                     updateRecords();
-                    setTimeout(() => alert(`🎉 完成！用时：${document.querySelector('.timer').textContent}`), 100);
+                    // setTimeout(() => alert(`🎉 完成！用时：${document.querySelector('.timer').textContent}`), 100);
+                    showResult();
                 }
             } else {
                 // 错误反馈动画
@@ -280,6 +357,22 @@
             const milliseconds = Math.floor((ms % 1000) / 10);
             return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(milliseconds).padStart(2, '0')}`;
         }
+
+        // 新增模态框控制函数
+        function showResult() {
+            document.querySelector('#finalTime').textContent = document.querySelector('.timer').textContent;
+            document.querySelector('#modalBest').textContent = formatTime(bestTimes[gridSize]);
+            document.querySelector('.result-modal').style.display = 'flex';
+        }
+        
+        function hideResult() {
+            document.querySelector('.result-modal').style.display = 'none';
+        }
+        
+        // 点击遮罩关闭
+        document.querySelector('.result-modal').addEventListener('click', function(e) {
+            if (e.target === this) hideResult();
+        });
 
         // 响应式调整字体大小
         window.addEventListener('resize', () => {
