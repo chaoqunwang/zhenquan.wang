@@ -320,16 +320,15 @@
                 grid.appendChild(cell);
             });
 
-            currentNumber = 1;
-            resetTimer();
-            updateStats();
-
             // 添加初始化动画
-            const grid = document.getElementById('grid');
             grid.style.transform = 'scale(0.9)';
             setTimeout(() => {
                 grid.style.transform = 'scale(1)';
             }, 50);
+
+            currentNumber = 1;
+            resetTimer();
+            updateStats();
         }
     
         // 优化后的点击处理函数
