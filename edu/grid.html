@@ -96,12 +96,6 @@
             min-height: 30px;
         }
 
-        .cell.active {
-            background: linear-gradient(145deg, #32D74B, #00C7BE);
-            color: white;
-            transform: scale(0.95);
-        }
-
         .stats {
             text-align: center;
             margin-top: 1.5rem;
@@ -126,6 +120,29 @@
             .cell {
                 font-size: 1rem;
             }
+        }
+        /* 新增错误状态样式 */
+        .cell.error {
+            background: #FF3B30;
+            color: white;
+            animation: shake 0.4s;
+        }
+    
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+    
+        .cell.active {
+            background: linear-gradient(145deg, #32D74B, #00C7BE);
+            color: white;
+            transform: scale(0.95);
+            animation: pop 0.3s;
+        }
+    
+        @keyframes pop {
+            50% { transform: scale(1.1); }
         }
     </style>
 </head>
@@ -168,46 +185,53 @@
         // 初始化生成5×5网格
         generateGrid(5);
 
+        // 修改后的核心逻辑
         function generateGrid(size) {
             gridSize = size;
             const grid = document.getElementById('grid');
             grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
             grid.innerHTML = '';
             
-            // 生成数字数组并打乱顺序
             const numbers = Array.from({length: size*size}, (_, i) => i + 1);
             numbers.sort(() => Math.random() - 0.5);
-
-            // 创建单元格
+    
             numbers.forEach(num => {
                 const cell = document.createElement('div');
                 cell.className = 'cell';
                 cell.textContent = num;
-                cell.onclick = () => handleClick(num);
+                cell.dataset.value = num; // 添加data属性存储实际值
+                cell.onclick = handleCellClick;
                 grid.appendChild(cell);
             });
-
-            // 重置状态
+    
             currentNumber = 1;
             resetTimer();
             updateStats();
         }
-
-        function handleClick(num) {
+    
+        // 优化后的点击处理函数
+        function handleCellClick() {
+            const clickedNumber = parseInt(this.dataset.value);
+            
             if (!isRunning) {
                 startTimer();
                 isRunning = true;
             }
-
-            if (num === currentNumber) {
-                document.querySelectorAll('.cell')[num-1].classList.add('active');
+    
+            if (clickedNumber === currentNumber) {
+                this.classList.add('active');
+                this.style.pointerEvents = 'none'; // 禁用已正确点击的单元格
                 currentNumber++;
                 
-                if (currentNumber > gridSize*gridSize) {
+                if (currentNumber > gridSize * gridSize) {
                     stopTimer();
                     updateRecords();
                     setTimeout(() => alert(`🎉 完成！用时：${document.querySelector('.timer').textContent}`), 100);
                 }
+            } else {
+                // 错误反馈动画
+                this.classList.add('error');
+                setTimeout(() => this.classList.remove('error'), 500);
             }
         }
 
