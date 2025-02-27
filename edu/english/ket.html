@@ -24,6 +24,7 @@
             background: var(--background);
             color: var(--text);
             line-height: 1.6;
+            overflow-y: scroll; /* 防止内容抖动 */
         }
 
         .container {
@@ -35,33 +36,37 @@
             margin: 0 auto;
         }
 
+        /* 顶部释义区 */
         .definition-top {
             background: white;
             border-radius: 12px;
             padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            min-height: 220px; /* 固定高度防止跳动 */
         }
 
-        .columns {
+        /* 主内容区 */
+        .main-content {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            gap: 1rem;
             flex-grow: 1;
         }
 
         @media (min-width: 768px) {
-            .columns {
+            .main-content {
                 grid-template-columns: 1fr 1fr;
             }
         }
 
+        /* 卡片通用样式 */
         .card {
             background: white;
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 1.25rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            height: calc(100vh - 280px);
+            height: calc(100vh - 340px); /* 合理分配高度 */
             display: flex;
             flex-direction: column;
         }
@@ -73,38 +78,47 @@
         }
 
         .card-title {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-left: 0.75rem;
+            margin-left: 0.5rem;
         }
 
+        /* 待学单词网格 */
         .word-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-            gap: 0.75rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
             overflow-y: auto;
             flex-grow: 1;
-            padding: 0.5rem;
+            padding: 0.25rem;
         }
 
+        @media (min-width: 480px) {
+            .word-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* 单词按钮 */
         .word-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.75rem;
+            padding: 0.6rem;
             background: var(--primary);
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.2s ease;
-            min-height: 48px;
+            min-height: 44px;
+            word-break: break-all; /* 防止长单词溢出 */
         }
 
         .word-btn:hover {
             opacity: 0.9;
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
 
         .word-btn.completed {
@@ -112,62 +126,74 @@
             opacity: 0.8;
         }
 
+        /* 词性标签和释义行 */
+        .meaning-row {
+            display: flex;
+            align-items: baseline;
+            gap: 0.8rem;
+            margin: 0.8rem 0;
+            padding: 0.5rem;
+            background: rgba(33,150,243,0.05);
+            border-radius: 6px;
+        }
+
         .part-tag {
             display: inline-flex;
             align-items: center;
-            padding: 0.25rem 0.75rem;
+            padding: 0.2rem 0.6rem;
             background: var(--accent);
             color: white;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            margin: 0.5rem 0;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            flex-shrink: 0;
         }
 
-        .meaning-item {
-            margin: 1rem 0;
-            padding: 0.75rem;
-            background: rgba(33,150,243,0.05);
-            border-radius: 8px;
+        .meaning-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text);
         }
 
         .icon {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             fill: currentColor;
-            margin-right: 0.5rem;
+            margin-right: 0.4rem;
         }
 
+        /* 初始提示 */
         .initial-prompt {
             text-align: center;
             color: #666;
-            padding: 2rem;
+            padding: 1.5rem;
+            font-size: 0.95rem;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 顶部释义区域 -->
+        <!-- 顶部释义区 -->
         <div class="definition-top">
             <div id="definitionContent" class="initial-prompt">
-                点击下方单词开始学习
+                🎯 点击下方单词开始学习
             </div>
             <div id="dynamicContent"></div>
         </div>
 
-        <!-- 底部双栏 -->
-        <div class="columns">
-            <!-- 待学区域 -->
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 待学区 -->
             <div class="card">
                 <div class="card-header">
                     <svg class="icon" viewBox="0 0 384 512">
                         <path d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"/>
                     </svg>
-                    <h2 class="card-title">待学单词</h2>
+                    <h2 class="card-title">待学单词（6个）</h2>
                 </div>
                 <div id="todoWords" class="word-grid"></div>
             </div>
 
-            <!-- 已完成区域 -->
+            <!-- 已掌握区 -->
             <div class="card">
                 <div class="card-header">
                     <svg class="icon" viewBox="0 0 512 512">
@@ -193,7 +219,7 @@
         function refreshWords() {
             const todoWords = shuffleArray(Object.keys(wordMap))
                 .filter(word => !learnedWords.has(word))
-                .slice(0, 15);
+                .slice(0, 6); // 只显示6个
             
             renderWordButtons(todoWords);
             updateCompletedList();
@@ -208,14 +234,28 @@
                 const btn = document.createElement('button');
                 btn.className = 'word-btn';
                 btn.innerHTML = `
-                    <svg class="icon" viewBox="0 0 384 512" style="width:16px;height:16px;">
+                    <svg class="icon" viewBox="0 0 384 512" style="width:14px;height:14px;">
                         <path d="M336 0H48C21.49 0 0 21.49 0 48v464l192-112 192 112V48c0-26.51-21.49-48-48-48zm0 428.43l-144-84-144 84V54c0-3.37 2.63-6 5.96-6h276.08c3.33 0 5.96 2.63 5.96 6v374.43z"/>
                     </svg>
                     ${word}
                 `;
-                btn.onclick = () => learnWord(word);
+                btn.onclick = () => handleWordClick(word);
                 container.appendChild(btn);
             });
+        }
+
+        // 处理单词点击
+        function handleWordClick(word) {
+            if (learnedWords.has(word)) return;
+            
+            learnedWords.add(word);
+            showDefinition(word);
+            
+            // 平滑移除已学单词
+            const buttons = Array.from(document.querySelectorAll('.word-btn'));
+            buttons.find(btn => btn.textContent.includes(word)).style.opacity = '0';
+            
+            setTimeout(refreshWords, 300); // 延迟刷新保持动画
         }
 
         // 更新已掌握列表
@@ -227,7 +267,7 @@
                 const div = document.createElement('div');
                 div.className = 'word-btn completed';
                 div.innerHTML = `
-                    <svg class="icon" viewBox="0 0 512 512" style="width:16px;height:16px;">
+                    <svg class="icon" viewBox="0 0 512 512" style="width:14px;height:14px;">
                         <path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"/>
                     </svg>
                     ${word}
@@ -236,55 +276,46 @@
             });
         }
 
-        // 学习单词
-        function learnWord(word) {
-            if (learnedWords.has(word)) return;
-            
-            learnedWords.add(word);
-            showDefinition(word);
-            refreshWords();
-        }
-
         // 显示单词释义
         function showDefinition(word) {
             const entry = wordMap[word];
-            const content = document.getElementById('definitionContent');
             const dynamic = document.getElementById('dynamicContent');
             
-            content.style.display = 'none';
-            dynamic.innerHTML = '';
-
-            let html = `
-                <div style="margin-bottom: 1.5rem;">
-                    <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 1rem;">
-                        <svg class="icon" viewBox="0 0 384 512" style="width:24px;height:24px;">
-                            <path d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm144 418c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V118c0-3.3 2.7-6 6-6h42v36c0 6.6 5.4 12 12 12h168c6.6 0 12-5.4 12-12v-36h42c3.3 0 6 2.7 6 6v340z"/>
-                        </svg>
-                        ${word}
-                    </h3>
-                </div>
-            `;
-
-            entry.definitions.forEach(def => {
-                const [part, meaning] = def.split('. ', 2);
-                html += `
-                    <div class="meaning-item">
-                        <div class="part-tag">
-                            <svg class="icon" viewBox="0 0 512 512" style="width:14px;height:14px;">
-                                <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"/>
+            // 平滑过渡
+            dynamic.style.opacity = '0';
+            setTimeout(() => {
+                let html = `
+                    <div style="margin-bottom:1.2rem;">
+                        <div style="font-size:1.4rem;color:var(--primary);margin-bottom:0.8rem;">
+                            <svg class="icon" viewBox="0 0 384 512" style="width:22px;height:22px;">
+                                <path d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm144 418c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V118c0-3.3 2.7-6 6-6h42v36c0 6.6 5.4 12 12 12h168c6.6 0 12-5.4 12-12v-36h42c3.3 0 6 2.7 6 6v340z"/>
                             </svg>
-                            ${part}
+                            ${word}
                         </div>
-                        <div class="meaning-text">${meaning}</div>
-                    </div>
                 `;
-            });
 
-            dynamic.innerHTML = html;
-            dynamic.scrollIntoView({ behavior: 'smooth' });
+                entry.definitions.forEach(def => {
+                    const [part, meaning] = def.split('. ', 2);
+                    html += `
+                        <div class="meaning-row">
+                            <span class="part-tag">
+                                <svg class="icon" viewBox="0 0 512 512" style="width:12px;height:12px;">
+                                    <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"/>
+                                </svg>
+                                ${part}
+                            </span>
+                            <span class="meaning-text">${meaning}</span>
+                        </div>
+                    `;
+                });
+
+                html += '</div>';
+                dynamic.innerHTML = html;
+                dynamic.style.opacity = '1';
+            }, 150);
         }
 
-        // 实用函数
+        // 实用函数：Fisher-Yates洗牌算法
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
