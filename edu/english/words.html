@@ -45,7 +45,7 @@
             padding: 2rem;
             margin-bottom: 0.5rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            min-height: 150px;
+            min-height: 100px;
         }
 
         .main-content {
@@ -303,19 +303,20 @@
                             ${word}
                         </div>
                 `;
-                wordMap[word].definitions.forEach(def => {
+                html += `<span class="meaning-text">`;
+                wordMap[word].definitions.forEach(def => {                    
                     let part = '';
                     let meaning = def;
                     const splitIndex = def.indexOf('. ');
                     if (splitIndex !== -1) {
                         part = def.substring(0, splitIndex);
                         meaning = def.substring(splitIndex + 2);
-                        html += `<span class="meaning-text"><b>${part}.</b> ${meaning}</span>`;
+                        html += `<b>${part}.</b> ${meaning}`;
                     } else {
-                        html += `<span class="meaning-text">${def}</span>`;
+                        html += `${def}`;
                     }
                 });
-
+                html += '</span>';
                 html += '</div></div>';
                 dynamic.innerHTML = html;
                 dynamic.style.opacity = '1';
