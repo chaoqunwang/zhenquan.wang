@@ -69,6 +69,7 @@
         .grid-container {
             position: relative;
             margin: 1rem 0;
+            transition: transform 0.3s ease;
         }
 
         .grid {
@@ -80,6 +81,7 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
             min-height: 360px;
             max-height: auto;
+            transition: transform 0.3s ease;
         }
 
         .cell {
@@ -317,10 +319,17 @@
                 cell.onclick = handleCellClick;
                 grid.appendChild(cell);
             });
-    
+
             currentNumber = 1;
             resetTimer();
             updateStats();
+
+            // 添加初始化动画
+            const grid = document.getElementById('grid');
+            grid.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                grid.style.transform = 'scale(1)';
+            }, 50);
         }
     
         // 优化后的点击处理函数
@@ -454,7 +463,18 @@
         function random(range) {
             return Math.random() * range;
         }
-
+        // 新增重启游戏函数
+        function restartGame() {
+            hideResult();  // 关闭模态框
+            generateGrid(gridSize);  // 重新生成当前尺寸网格
+            
+            // 添加过渡动画
+            const gridContainer = document.querySelector('.grid-container');
+            gridContainer.style.opacity = '0';
+            setTimeout(() => {
+                gridContainer.style.opacity = '1';
+            }, 300);
+        }
         // 响应式调整字体大小
         window.addEventListener('resize', () => {
             const cells = document.querySelectorAll('.cell');
@@ -475,7 +495,7 @@
             </div>
             <div class="modal-actions">
                 <button class="modal-btn" onclick="hideResult()">返回</button>
-                <button class="modal-btn primary" onclick="generateGrid(gridSize)">再来一次</button>
+                <button class="modal-btn primary" onclick="restartGame()">再来一次</button>
             </div>
         </div>
     </div>
