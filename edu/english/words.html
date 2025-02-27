@@ -153,6 +153,14 @@
             font-size: 1rem;
             line-height: 1.5;
             color: var(--text);
+
+            display: flex;
+            align-items: baseline;
+            gap: 0.8rem;
+            margin: 0.8rem 0;
+            padding: 0.5rem;
+            background: rgba(33,150,243,0.05);
+            border-radius: 6px;
         }
 
         .icon {
@@ -304,7 +312,7 @@
                 wordMap[word].definitions.forEach(def => {
                     const [part, meaning] = def.split('. ', 2);
                     html += `
-                            <span class="meaning-text"><b>${part}.</b> ${meaning}</span>
+                            <span class="meaning-text"><b>${part}.</b> ${meaning}</span> &nbsp;/&nbsp;
                     `;
                 });
 
