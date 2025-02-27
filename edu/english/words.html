@@ -305,10 +305,16 @@
 
                 html += '<div class="meaning-row">';
                 wordMap[word].definitions.forEach(def => {
-                    const [part, meaning] = def.split('. ', 2);
-                    html += `
-                            <span class="meaning-text"><b>${part}.</b> ${meaning}</span>
-                    `;
+                    let part = '';
+                    let meaning = def;
+                    const splitIndex = def.indexOf('. ');
+                    if (splitIndex !== -1) {
+                        part = def.substring(0, splitIndex);
+                        meaning = def.substring(splitIndex + 2);
+                        html += `<span class="meaning-text"><b>${part}.</b> ${meaning}</span>`;
+                    } else {
+                        html += `<span class="meaning-text">${def}</span>`;
+                    }
                 });
 
                 html += '</div></div>';
