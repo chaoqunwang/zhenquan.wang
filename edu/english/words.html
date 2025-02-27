@@ -45,7 +45,7 @@
             padding: 2rem;
             margin-bottom: 0.5rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            min-height: 100px;
+            min-height: 130px;
         }
 
         .main-content {
@@ -305,7 +305,7 @@
                         </div>
                 `;
                 html += `<span class="meaning-text">`;
-                wordMap[word].definitions.forEach(def => {                    
+                wordMap[word].definitions.forEach(def => {
                     let part = '';
                     let meaning = def;
                     const splitIndex = def.indexOf('. ');
@@ -316,6 +316,7 @@
                     } else {
                         html += `${def}`;
                     }
+                    html += '&nbsp;&nbsp;&nbsp;';
                 });
                 html += '</span>';
                 html += '</div></div>';
