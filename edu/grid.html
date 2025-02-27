@@ -220,6 +220,44 @@
                 font-size: 1rem;
             }
         }
+        /* 新增特效样式 */
+        @keyframes screenShake {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-8px, 8px); }
+            50% { transform: translate(8px, -8px); }
+            75% { transform: translate(-8px, -8px); }
+            100% { transform: translate(0, 0); }
+        }
+    
+        .celebration-particle {
+            position: fixed;
+            pointer-events: none;
+            animation: particleFly 1.2s ease-out forwards;
+        }
+    
+        @keyframes particleFly {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(
+                    calc(-50% + (random(200) - 100) * 1vw), 
+                    calc(-50% + (random(200) - 100) * 1vh)
+                ) scale(0);
+            }
+        }
+    
+        .success-glow {
+            animation: glowPulse 1.2s ease-out;
+        }
+    
+        @keyframes glowPulse {
+            50% {
+                box-shadow: 0 0 60px rgba(50, 215, 75, 0.4);
+            }
+        }
     </style>
 </head>
 <body>
@@ -299,10 +337,27 @@
                 this.style.pointerEvents = 'none'; // 禁用已正确点击的单元格
                 currentNumber++;
                 
-                if (currentNumber > gridSize * gridSize) {
+                if (currentNumber > gridSize*gridSize) {
+                    // 触发特效
+                    const grid = document.querySelector('.grid-container');
+                    grid.classList.add('success-glow');
+                    document.body.style.animation = 'screenShake 0.6s ease-out';
+
+                    // 屏幕中央生成粒子
+                    const viewportCenter = {
+                        x: window.innerWidth / 2,
+                        y: window.innerHeight / 2
+                    };
+                    createParticles(viewportCenter.x, viewportCenter.y);
+
+                    // 重置动画
+                    setTimeout(() => {
+                        grid.classList.remove('success-glow');
+                        document.body.style.animation = '';
+                    }, 1200);
+
                     stopTimer();
                     updateRecords();
-                    // setTimeout(() => alert(`🎉 完成！用时：${document.querySelector('.timer').textContent}`), 100);
                     showResult();
                 }
             } else {
@@ -373,6 +428,32 @@
         document.querySelector('.result-modal').addEventListener('click', function(e) {
             if (e.target === this) hideResult();
         });
+ 
+        function createParticles(x, y) {
+            const colors = ['#FFD700', '#FF3B30', '#007AFF', '#32D74B'];
+            for(let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'celebration-particle';
+                particle.style.cssText = `
+                    left: ${x}px;
+                    top: ${y}px;
+                    width: ${8 + Math.random() * 8}px;
+                    height: ${8 + Math.random() * 8}px;
+                    background: ${colors[i%4]};
+                    border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+                    animation-delay: ${i * 20}ms;
+                `;
+                document.body.appendChild(particle);
+                
+                particle.addEventListener('animationend', () => {
+                    particle.remove();
+                });
+            }
+        }
+        
+        function random(range) {
+            return Math.random() * range;
+        }
 
         // 响应式调整字体大小
         window.addEventListener('resize', () => {
