@@ -240,8 +240,11 @@
         }
 
         function handleWordClick(word) {
-            if (learnedWords.has(word)) return;
-            
+            if (learnedWords.has(word)) {
+                showDefinition(word);
+                return;
+            }
+
             learnedWords.add(word);
             showDefinition(word);
             
@@ -264,7 +267,7 @@
                     </svg>
                     ${word}
                 `;
-                div.addEventListener("click",handleWordClick(word),false);
+                div.onclick = () => handleWordClick(word);
                 container.appendChild(div);
             });
         }
