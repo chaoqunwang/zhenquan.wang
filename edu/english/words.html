@@ -83,7 +83,7 @@
 
         .word-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(1, 1fr);
             gap: 0.5rem;
             overflow-y: auto;
             flex-grow: 1;
@@ -264,7 +264,7 @@
                     </svg>
                     ${word}
                 `;
-                div.onclick = () => handleWordClick(word);
+                div.addEventListener("click",handleWordClick(word),false);
                 container.appendChild(div);
             });
         }
