@@ -73,7 +73,10 @@
             align-items: center;
             margin-bottom: 0.3rem;
         }
-
+        .card-header i {
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
         .card-title {
             font-size: 1.1rem;
             font-weight: 600;
@@ -164,7 +167,14 @@
             font-size: 0.9rem;
         }
 
-        /* 已掌握单词区优化 */
+        /* 单词区优化 */
+        #todoWords {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 0.3rem;
+            padding: 0.25rem !important;
+        }
         #completedWords, #todoWords {
             display: flex;
             flex-wrap: wrap;
