@@ -1,5 +1,4 @@
-module.exports = {
-  dataMap:  {
+{
   "able": {
     "word": "able",
     "definitions": [
@@ -14133,4 +14132,4 @@ module.exports = {
       "n. 动物园"
     ]
   }
-}};
+}
