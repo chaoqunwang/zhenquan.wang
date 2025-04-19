@@ -1,4 +1,4 @@
-const dataMap = {
+ {
     "阿房宫赋": {
         "name": "阿房宫赋",
         "dynasty": "唐",
@@ -1568,7 +1568,3 @@ const dataMap = {
         "stage": "初中"
     }
 }
-
-module.exports = {
-    dataMap
-};
