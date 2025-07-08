@@ -1,3 +1,2 @@
 User-agent: *
-Allow: /wangchaoqun.com/*
-Sitemap: http://wangchaoqun.com/sitemap.xml 
+Allow: /zhenquan.wang/*
