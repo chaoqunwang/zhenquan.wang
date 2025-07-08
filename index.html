@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>真全学习乐园</title>
+    <meta name="description" content="真全学习乐园 - 提供计算训练、字词学习、诗词欣赏、成语挑战等多样化学习功能">
+    <style>
+        body {
+            background: #f8f9ff;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .container {
+            background: transparent;
+        }
+
+        .header {
+            width: 100%;
+            background:
+                linear-gradient(to bottom,
+                    rgba(106, 17, 203, 0.8) 0%,
+                    rgba(106, 17, 203, 0.4) 50%,
+                    rgba(106, 17, 203, 0) 100%),
+                linear-gradient(135deg, #6a11cb 20%, #2575fc 50%);
+            padding-bottom: 10px;
+            margin-bottom: 5px;
+            padding-top: calc(1% + 33px);
+            height: 8vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            padding-left: 16px;
+            gap: 10px;
+            justify-content: flex-start;
+        }
+
+        .logo {
+            width: 45px;
+            height: 45px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            line-height: 1.4;
+            margin-left: 5px;
+            display: inline-block;
+            padding: 6px;
+            border-radius: 4px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px 8px;
+            padding: 10px;
+        }
+
+        .card {
+            min-height: 90px;
+            padding: 10px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(37, 117, 252, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 6px rgba(37, 117, 252, 0.15);
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 117, 252, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            width: 100%;
+            background: transparent;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: #2F4F4F;
+            line-height: 1.6;
+        }
+
+        .card-icon {
+            width: 27px;
+            height: 27px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .card-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .card-icon-image {
+            width: 25px;
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer {
+            font-size: 1rem;
+            color: #666;
+            text-align: center;
+            max-height: 10vh;
+            margin-top: auto;
+        }
+
+        /* 二维码按钮样式 */
+        .qr-btn {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* 二维码弹窗样式 */
+        .qr-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .qr-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .qr-content img {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 600px) {
+            .header {
+                padding-top: 30px;
+                height: 10vh;
+            }
+
+            .logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .title {
+                font-size: 22px;
+            }
+
+            .card {
+                padding: 5px 7.5px;
+            }
+
+            .card-icon {
+                width: 25px;
+                height: 25px;
+            }
+
+            .card-icon-image {
+                width: 22px;
+                height: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <img class="logo" src="images/logo-small.png" alt="Logo">
+                <div class="title-container"><span class="title">真全学习乐园</span></div>
+            </div>
+        </div>
+
+        <div class="grid"></div>
+    </div>
+
+
+    <script>
+        // 这里可以添加交互逻辑
+        const cards = [{
+            url: "/pages/calc/calc",
+            icon: "images/icons/calculate.png",
+            openType: "navigate",
+            title: "计算训练营",
+            desc: "每天10分钟，754、653计算专项训练"
+        }, {
+            url: "/pages/chars/chars",
+            icon: "images/icons/chars.png",
+            openType: "navigate",
+            title: "字词故事会",
+            desc: "识字、听写、小故事...记忆有妙招，坚持积累"
+        }, {
+            url: "/pages/poem/poem",
+            icon: "images/icons/poem.png",
+            openType: "navigate",
+            title: "天天背诗",
+            desc: "穿越千年与诗人对话，200多经典诗词等你挑战"
+        }, {
+            url: "/pages/idioms/idioms",
+            icon: "images/icons/idiom.png",
+            openType: "navigate",
+            title: "成语达人",
+            desc: "成语接龙大比拼，看看你能连续接多少个？"
+        }, {
+            url: "/pages/words/words",
+            icon: "images/icons/english.png",
+            openType: "navigate",
+            title: "KET核心词",
+            desc: "一学期轻松拿下，攻克2000多个KET核心词汇"
+        }, {
+            url: "/pages/ai/ai?type=thinking",
+            icon: "images/icons/thinking.png",
+            openType: "navigate",
+            title: "结构化思维",
+            desc: "打造清晰思考力->精准表达力->系统解决力"
+        }, {
+            url: "/pages/game/grid",
+            icon: "images/icons/grid.png",
+            openType: "navigate",
+            title: "舒尔特方格",
+            desc: "1分钟挑战赛，测测你的专注力能打败多少小伙伴"
+        }, {
+            url: "/pages/game/memory",
+            icon: "images/icons/card.png",
+            openType: "navigate",
+            title: "记忆翻翻乐",
+            desc: "1分钟挑战赛，测测你的记忆力能打败多少小伙伴"
+        }, {
+            url: "/pages/game/food",
+            icon: "images/icons/food.png",
+            openType: "navigate",
+            title: "吃什么",
+            desc: "快来看看，吃什么？选择困难症患者的福音"
+        }, {
+            url: "#",
+            icon: "images/logo-small.png",
+            openType: "navigate",
+            title: "完整功能……",
+            desc: "尽在【真全学习乐园】微信小程序"
+        }];
+
+        // 动态生成卡片
+        function renderCards() {
+            const grid = document.querySelector('.grid');
+            grid.innerHTML = cards.map(card => {
+                return `
+                    <a href="#" onclick="showQRCode('images/qr.png'); return false;" class="card">
+                        <div class="card-header">
+                            <div class="card-icon"><img class="card-icon-image" src="${card.icon}" alt="${card.title}"></div>
+                            <span class="card-title">${card.title}</span>
+                        </div>
+                        <p class="card-desc">${card.desc}</p>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        // 显示二维码弹窗
+        function showQRCode(qrPath) {
+            const modal = document.createElement('div');
+            modal.className = 'qr-modal';
+            modal.innerHTML = `
+                <div class="qr-content">
+                    <img src="${qrPath}" alt="真全学园小程序二维码">
+                    <p>长按识别二维码</p>
+                    <button onclick="this.parentElement.parentElement.remove()">关闭</button>
+                    <a href="${qrPath}" download="真全学园小程序二维码.png">保存图片</a>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        document.addEventListener('DOMContentLoaded', renderCards);
+    </script>
+
+    <div class="footer">
+        © 真全学园——探索无界，学无止境
+    </div>
+</body>
+
+</html>
