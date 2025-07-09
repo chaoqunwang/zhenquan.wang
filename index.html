@@ -21,11 +21,13 @@
         .container {
             margin: 0 auto;
             padding: 0 15px;
-            width: 80%;
+            width: min(80%, 360px);
             background: #f8f9ff;
             display: flex;
             flex-direction: column;
-            height: 90vh;
+            height: auto;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .header {
@@ -38,7 +40,7 @@
                 linear-gradient(135deg, #6a11cb 20%, #2575fc 50%);
             padding-bottom: 10px;
             margin-bottom: 5px;
-            padding-top: calc(1% + 33px);
+            padding-top: 20px;
             height: 8vh;
             position: relative;
             overflow: hidden;
@@ -95,36 +97,25 @@
             color: inherit;
         }
 
-        .card:active {
-            transform: scale(0.98);
-            box-shadow: 0 2px 6px rgba(37, 117, 252, 0.15);
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(37, 117, 252, 0.15);
-        }
-
         .card-header {
             display: flex;
             align-items: center;
-            margin-bottom: 5px;
             border-radius: 8px;
             width: 100%;
             background: transparent;
         }
 
         .card-title {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             color: #2F4F4F;
             padding-left: 5px;
         }
 
         .card-desc {
-            font-size: 16px;
+            font-size: 14px;
             color: #2F4F4F;
-            line-height: 1.6;
+            line-height: 1.4;
             padding-left: 20px;
         }
 
@@ -158,7 +149,6 @@
             padding: 10px 0;
         }
 
-        /* 二维码按钮样式 */
         .qr-btn {
             position: absolute;
             right: 10px;
@@ -168,7 +158,6 @@
             cursor: pointer;
         }
 
-        /* 二维码弹窗样式 */
         .qr-modal {
             position: fixed;
             top: 0;
@@ -195,6 +184,61 @@
             margin: 10px;
         }
 
+        .qr-content button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .tab-bar {
+            position: relative;
+            bottom: auto;
+            left: auto;
+            right: auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: max(10%, 50px);
+            background-color: #fff;
+            border-top: 1px solid #f1f1f1;
+            margin-top: 10px;
+        }
+
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .tab-icon {
+            width: 20px;
+            height: 20px;
+            margin-bottom: 2px;
+        }
+
+        .tab-text {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* 选中状态样式 */
+        .tab-item.active .tab-icon {
+            filter: brightness(0) saturate(100%) invert(39%) sepia(99%) saturate(748%) hue-rotate(196deg) brightness(98%) contrast(96%);
+        }
+
+        .tab-item.active .tab-text {
+            color: #2575fc;
+        }
+
         @media (min-width: 600px) {
             .header {
                 padding-top: 30px;
@@ -211,11 +255,11 @@
             }
 
             .card-title {
-                font-size: 24px;
+                font-size: 20px;
             }
 
             .card-desc {
-                font-size: 20px;
+                font-size: 16px;
             }
 
             .card {
@@ -235,6 +279,16 @@
             .footer {
                 font-size: 16px;
             }
+
+            .tab-icon {
+                width: 32px;
+                height: 32px;
+                margin-bottom: 5px;
+            }
+
+            .tab-text {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
@@ -249,6 +303,24 @@
         </div>
 
         <div class="grid-container"></div>
+        <div class="tab-bar">
+            <div class="tab-item" onclick="showQRCode('images/qroa.png'); return false;">
+                <img class="tab-icon" src="images/icons/home.png" alt="首页">
+                <span class="tab-text">首页</span>
+            </div>
+            <div class="tab-item" onclick="showQRCode('images/qroa.png'); return false;">
+                <img class="tab-icon" src="images/icons/agents.png" alt="学习">
+                <span class="tab-text">学习</span>
+            </div>
+            <div class="tab-item" onclick="showQRCode('images/qroa.png'); return false;">
+                <img class="tab-icon" src="images/icons/tasks.png" alt="打卡">
+                <span class="tab-text">打卡</span>
+            </div>
+            <div class="tab-item" onclick="showQRCode('images/qroa.png'); return false;">
+                <img class="tab-icon" src="images/icons/usercenter.png" alt="我的">
+                <span class="tab-text">我的</span>
+            </div>
+        </div>
         <div class="footer">© 真全官网 zhenquan.vip 和 zhenquan.wang</div>
     </div>
 
@@ -312,8 +384,8 @@
             url: "#",
             icon: "images/qroa.png",
             openType: "navigate",
-            title: "全部功能……",
-            desc: "尽在【真全学习乐园】微信小程序"
+            title: "全部功能…",
+            desc: "关注【真全学习乐园】微信小程序和公众号"
         }];
 
         // 动态生成卡片
@@ -339,8 +411,7 @@
             modal.innerHTML = `
                 <div class="qr-content">
                     <img src="${qrPath}" alt="真全学园小程序二维码">
-                    <p>长按识别二维码</p>
-                    <a href="${qrPath}" download="真全学园小程序二维码.png">保存图片</a>
+                    <p>长按识别二维码， <a href="${qrPath}" download="真全学园小程序二维码.png">保存图片</a></p>
                     <button onclick="this.parentElement.parentElement.remove()">关闭</button>
                 </div>
             `;
