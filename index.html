@@ -21,13 +21,14 @@
         .container {
             margin: 0 auto;
             padding: 0 15px;
-            width: min(80%, 360px);
             background: #f8f9ff;
             display: flex;
             flex-direction: column;
-            height: auto;
             max-height: 90vh;
             overflow-y: auto;
+            aspect-ratio: 36/65;
+            height: auto;
+            box-sizing: border-box;
         }
 
         .header {
@@ -230,15 +231,6 @@
             color: #666;
         }
 
-        /* 选中状态样式 */
-        .tab-item.active .tab-icon {
-            filter: brightness(0) saturate(100%) invert(39%) sepia(99%) saturate(748%) hue-rotate(196deg) brightness(98%) contrast(96%);
-        }
-
-        .tab-item.active .tab-text {
-            color: #2575fc;
-        }
-
         @media (min-width: 600px) {
             .header {
                 padding-top: 30px;
@@ -252,14 +244,6 @@
 
             .title {
                 font-size: 28px;
-            }
-
-            .card-title {
-                font-size: 20px;
-            }
-
-            .card-desc {
-                font-size: 16px;
             }
 
             .card {
@@ -276,18 +260,10 @@
                 height: 24px;
             }
 
-            .footer {
-                font-size: 16px;
-            }
-
             .tab-icon {
                 width: 32px;
                 height: 32px;
                 margin-bottom: 5px;
-            }
-
-            .tab-text {
-                font-size: 20px;
             }
         }
     </style>
