@@ -8,13 +8,24 @@
     <meta name="description" content="真全学习乐园 - 提供计算训练、字词学习、诗词欣赏、成语挑战等多样化学习功能">
     <style>
         body {
-            background: #f8f9ff;
             margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 0;
+            min-height: 100vh;
+            line-height: initial;
+            background-image: url(images/bg.png);
+            background-size: cover;
+            background-position: center;
+            display: flex;
         }
 
         .container {
-            background: transparent;
+            margin: 0 auto;
+            padding: 0 15px;
+            width: 80%;
+            background: #f8f9ff;
+            display: flex;
+            flex-direction: column;
+            height: 90vh;
         }
 
         .header {
@@ -42,8 +53,8 @@
         }
 
         .logo {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             flex-shrink: 0;
             border-radius: 50%;
             border: 3px solid rgba(255, 255, 255, 0.8);
@@ -60,15 +71,19 @@
             border-radius: 4px;
         }
 
-        .grid {
+        .grid-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px 8px;
             padding: 10px;
+            min-height: 55vh;
+            max-height: 95%;
+            overflow-y: auto;
         }
 
         .card {
-            min-height: 90px;
+            min-height: 8vh;
+            max-height: 10vh;
             padding: 10px;
             background: #ffffff;
             border-radius: 12px;
@@ -99,15 +114,23 @@
             background: transparent;
         }
 
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2F4F4F;
+            padding-left: 5px;
+        }
+
         .card-desc {
-            font-size: 14px;
+            font-size: 16px;
             color: #2F4F4F;
             line-height: 1.6;
+            padding-left: 20px;
         }
 
         .card-icon {
-            width: 27px;
-            height: 27px;
+            width: 28px;
+            height: 28px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -127,11 +150,12 @@
         }
 
         .footer {
-            font-size: 1rem;
+            font-size: 14px;
             color: #666;
             text-align: center;
             max-height: 10vh;
             margin-top: auto;
+            padding: 10px 0;
         }
 
         /* 二维码按钮样式 */
@@ -160,15 +184,15 @@
 
         .qr-content {
             background: white;
-            padding: 20px;
+            padding: 10px;
             border-radius: 10px;
             text-align: center;
         }
 
         .qr-content img {
-            width: 200px;
-            height: 200px;
-            margin-bottom: 10px;
+            width: 90%;
+            height: 45%;
+            margin: 10px;
         }
 
         @media (min-width: 600px) {
@@ -178,12 +202,20 @@
             }
 
             .logo {
-                width: 40px;
-                height: 40px;
+                width: 60px;
+                height: 60px;
             }
 
             .title {
-                font-size: 22px;
+                font-size: 28px;
+            }
+
+            .card-title {
+                font-size: 24px;
+            }
+
+            .card-desc {
+                font-size: 20px;
             }
 
             .card {
@@ -191,13 +223,17 @@
             }
 
             .card-icon {
-                width: 25px;
-                height: 25px;
+                width: 28px;
+                height: 28px;
             }
 
             .card-icon-image {
-                width: 22px;
-                height: 22px;
+                width: 24px;
+                height: 24px;
+            }
+
+            .footer {
+                font-size: 16px;
             }
         }
     </style>
@@ -212,9 +248,9 @@
             </div>
         </div>
 
-        <div class="grid"></div>
+        <div class="grid-container"></div>
+        <div class="footer">© 真全官网 zhenquan.vip 和 zhenquan.wang</div>
     </div>
-
 
     <script>
         // 这里可以添加交互逻辑
@@ -274,23 +310,23 @@
             desc: "快来看看，吃什么？选择困难症患者的福音"
         }, {
             url: "#",
-            icon: "images/qr.jpeg",
+            icon: "images/qroa.png",
             openType: "navigate",
-            title: "：全部功能……",
+            title: "全部功能……",
             desc: "尽在【真全学习乐园】微信小程序"
         }];
 
         // 动态生成卡片
         function renderCards() {
-            const grid = document.querySelector('.grid');
+            const grid = document.querySelector('.grid-container');
             grid.innerHTML = cards.map(card => {
                 return `
-                    <a href="#" onclick="showQRCode('images/qr.jpeg'); return false;" class="card">
+                    <a href="#" onclick="showQRCode('images/qroa.png'); return false;" class="card">
                         <div class="card-header">
                             <div class="card-icon"><img class="card-icon-image" src="${card.icon}" alt="${card.title}"></div>
                             <span class="card-title">${card.title}</span>
                         </div>
-                        <p class="card-desc">${card.desc}</p>
+                        <div class="card-desc">${card.desc}</div>
                     </a>
                 `;
             }).join('');
@@ -304,8 +340,8 @@
                 <div class="qr-content">
                     <img src="${qrPath}" alt="真全学园小程序二维码">
                     <p>长按识别二维码</p>
-                    <button onclick="this.parentElement.parentElement.remove()">关闭</button>
                     <a href="${qrPath}" download="真全学园小程序二维码.png">保存图片</a>
+                    <button onclick="this.parentElement.parentElement.remove()">关闭</button>
                 </div>
             `;
             document.body.appendChild(modal);
@@ -313,9 +349,6 @@
         document.addEventListener('DOMContentLoaded', renderCards);
     </script>
 
-    <div class="footer">
-        © 真全学园——探索无界，学无止境
-    </div>
 </body>
 
 </html>
