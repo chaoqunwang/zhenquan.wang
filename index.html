@@ -24,11 +24,12 @@
             background: #f8f9ff;
             display: flex;
             flex-direction: column;
-            max-height: 90vh;
+            max-height: 95vh;
             overflow-y: auto;
             aspect-ratio: 36/65;
             height: auto;
             box-sizing: border-box;
+            transition: all 0.3s ease;
         }
 
         .header {
@@ -145,8 +146,8 @@
             font-size: 14px;
             color: #666;
             text-align: center;
-            max-height: 10vh;
-            margin-top: auto;
+            max-height: 5vh;
+            margin: auto;
             padding: 10px 0;
         }
 
@@ -301,6 +302,28 @@
     </div>
 
     <script>
+        function checkOrientation() {
+            const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+            const container = document.querySelector('.container');
+
+            if (isPortrait) {
+                container.style.aspectRatio = '36/65';
+                container.style.maxWidth = 'max(80%, 360px)';
+            } else {
+                container.style.aspectRatio = '65/36';
+                container.style.maxWidth = 'max(80%, 600px)';
+            }
+        }
+
+        // 初始检查和事件监听
+        window.addEventListener('DOMContentLoaded', () => {
+            checkOrientation();
+            renderCards();
+        });
+
+        window.addEventListener('resize', checkOrientation);
+        window.addEventListener('orientationchange', checkOrientation);
+
         // 这里可以添加交互逻辑
         const cards = [{
             url: "/pages/calc/calc",
