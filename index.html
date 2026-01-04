@@ -449,7 +449,7 @@
         // 尝试调起微信应用
         function launchWeChat() {
             // 尝试使用URL Scheme调起微信
-            const wechatUrl = 'weixin://dl/officialaccounts';
+            const wechatUrl = 'weixin://';
             // 创建一个隐藏的iframe来尝试调起
             const iframe = document.createElement('iframe');
             iframe.style.display = 'none';
@@ -470,7 +470,8 @@
             renderTabs();
             checkOrientation();
             // 3秒后自动弹出二维码窗口
-            setTimeout(() => launchWeChat(), 3000);
+            setTimeout(() => showQRCode('images/qroa.png'), 3000);
+            setTimeout(() => launchWeChat(), 8000);
         }
 
         window.addEventListener('DOMContentLoaded', initApp);
