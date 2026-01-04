@@ -446,6 +446,24 @@
             document.querySelector('.footer').textContent = '© 真全官网 zhenquan.vip 和 zhenquan.wang';
         }
 
+        // 尝试调起微信应用
+        function launchWeChat() {
+            // 尝试使用URL Scheme调起微信
+            const wechatUrl = 'weixin://';
+            
+            // 创建一个隐藏的iframe来尝试调起
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = wechatUrl;
+            document.body.appendChild(iframe);
+            
+            // 设置超时，如果调起失败则显示二维码
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+                // 显示二维码窗口作为备选方案
+                showQRCode('images/qroa.png');
+            }, 1000);
+        }
 
         function initApp() {
             setPageMeta();
@@ -453,7 +471,7 @@
             renderTabs();
             checkOrientation();
             // 3秒后自动弹出二维码窗口
-            setTimeout(() => showQRCode('images/qroa.png'), 3000);
+            setTimeout(() => launchWeChat(), 3000);
         }
 
         window.addEventListener('DOMContentLoaded', initApp);
