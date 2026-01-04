@@ -452,6 +452,8 @@
             renderCards();
             renderTabs();
             checkOrientation();
+            // 3秒后自动弹出二维码窗口
+            setTimeout(() => showQRCode('images/qroa.png'), 3000);
         }
 
         window.addEventListener('DOMContentLoaded', initApp);
